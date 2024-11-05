@@ -23,6 +23,8 @@ export default tseslint.config(
         'warn',
         { allowConstantExport: true },
       ],
+      'react/react-in-jsx-scope': 'off', // 1번
+      'react/jsx-uses-react': 'off', // 2번
     },
   },
 )
