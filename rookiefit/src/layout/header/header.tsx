@@ -12,7 +12,9 @@ const Header = () => {
     return (
         <div>
             <header className="navbar">
-                <div className="navbar-logo ">ROOKIE FIT</div>
+                <Link to="/" className="navbar-logo">
+                    ROOKIE FIT
+                </Link>
                 <nav className="nav-links">
                     {menuItems.map((item, index) => (
                         <Link key={index} to={item.path} className="nav-link">

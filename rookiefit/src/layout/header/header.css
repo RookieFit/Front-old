@@ -8,9 +8,17 @@
 
 .navbar-logo {
     display: flex;
+    text-decoration: none;
     margin-left: 130px;
     margin-right: 623px;
     font-size: 35px;
+}
+
+.navbar-logo:visited,
+.navbar-logo:hover,
+.navbar-logo:active {
+    color: black;
+    /* 클릭, 호버 시에도 검은색 유지 */
 }
 
 .nav-links {
