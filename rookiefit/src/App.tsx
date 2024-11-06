@@ -3,7 +3,7 @@ import './App.css'
 import Header from './layout/header/header';
 import CalenderPage from './calendar/calenderPage';
 
-function App() {
+const App: React.FC = () => {
   return (
     <BrowserRouter>
       <div>
