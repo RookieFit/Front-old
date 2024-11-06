@@ -1,0 +1,49 @@
+/* Header.css */
+
+.navbar {
+    display: flex;
+    align-items: center;
+    margin-bottom: 32px;
+    margin-top: 31px;
+}
+
+.navbar-logo {
+    display: flex;
+    margin-left: 130px;
+    margin-right: 623px;
+    font-size: 35px;
+}
+
+.nav-links {
+    display: flex;
+    font-size: 25px;
+}
+
+.nav-link {
+    display: flex;
+    margin-right: 171px;
+    text-decoration: none;
+    color: black;
+    transition: color 0.3s;
+}
+
+.nav-link:hover {
+    color: #ED9201;
+}
+
+.nav-link:last-child {
+    margin-right: 0;
+}
+
+.mypage {
+    display: flex;
+    width: 40px;
+    height: 40px;
+    margin-left: 257px;
+    background-image: url(../assets/images/Person.png);
+    background-size: cover;
+    /* 이미지 크기를 컨테이너에 맞게 조정 */
+    background-position: center;
+    /* 이미지가 중앙에 오도록 */
+    cursor: pointer;
+}
