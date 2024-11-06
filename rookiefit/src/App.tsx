@@ -1,11 +1,20 @@
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.css'
+import Header from './layout/header/header';
 
 function App() {
   return (
-    <div>
-      <h1>안녕하세요 홈 메뉴바 입니다.</h1>
-    </div>
-  )
+    <BrowserRouter>
+      <div>
+        <Header />
+        <Routes>
+          <Route path="/mypage" element={<></>} />
+          <Route path="/calendar" element={<></>} />
+          <Route path="/diet" element={<></>} />
+          <Route path="/community" element={<></>} />
+        </Routes>
+      </div>
+    </BrowserRouter>
+  );
 }
-
 export default App

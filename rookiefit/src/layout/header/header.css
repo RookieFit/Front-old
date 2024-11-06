@@ -1,0 +1,53 @@
+/* 기본 Navbar 스타일 */
+.navbar {
+    display: flex;
+    align-items: center;
+    margin-bottom: 32px;
+    margin-top: 31px;
+}
+
+.navbar-logo {
+    display: flex;
+    margin-left: 130px;
+    margin-right: 623px;
+    font-size: 35px;
+}
+
+.nav-links {
+    display: flex;
+    font-size: 25px;
+    position: relative;
+}
+
+.nav-link-container {
+    position: relative;
+}
+
+.nav-link {
+    display: flex;
+    margin-right: 171px;
+    text-decoration: none;
+    color: black;
+    transition: color 0.3s;
+}
+
+.nav-link:hover {
+    color: #ED9201;
+}
+
+.nav-link:last-child {
+    margin-right: 0;
+}
+
+/* mypage 이미지 스타일 */
+.mypage {
+    display: flex;
+    width: 40px;
+    height: 40px;
+    margin-left: 257px;
+    background-image: url(../assets/images/Person.png);
+    background-size: cover;
+    background-position: center;
+    cursor: pointer;
+    transition: transform 0.3s ease, filter 0.3s ease;
+}
