@@ -1,0 +1,398 @@
+.header {
+    position: absolute;
+    width: 1920px;
+    height: 60px;
+    left: 0px;
+    top: 0px;
+
+    background: #D9D9D9;
+}
+
+
+
+.login {
+        
+    position: absolute;
+    width: 142px;
+    height: 61px;
+    left: calc(50% - 142px/2 + 17px);
+    top: 262px;
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 36px;
+    line-height: 44px;
+
+    color: #000000;
+}
+
+
+.login_email_id_box{
+    position: absolute;
+    width: 489px;
+    height: 47px;
+    left: calc(50% - 489px/2 + 0.5px);
+    top: 360px;
+    
+    background: #F2F2F2;
+    
+}
+
+
+.Rectangle_22{
+
+    position: absolute;
+    width: 489px;
+    height: 47px;
+    left: calc(50% - 489px/2 + 0.5px);
+    top: 424px;
+    
+    background: #F2F2F2;
+    
+}
+
+.Rectangle_21{
+        
+    position: absolute;
+    width: 489px;
+    height: 47px;
+    left: calc(50% - 489px/2 + 0.5px);
+    top: 488px;
+
+    background: #A8A8A8;
+
+}
+
+
+.email_id_letter{
+
+    position: absolute;
+    width: 122px;
+    height: 27px;
+    left: 727px;
+    top: 372px;
+    
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 24px;
+    
+    color: #858585;
+}
+
+
+
+
+.password_letter{
+
+    position: absolute;
+    width: 77px;
+    height: 27px;
+    left: 727px;
+    top: 434px;
+    
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 24px;
+    
+    color: #858585;
+    
+}
+
+
+
+
+.Rectangle_23{
+    position: absolute;
+    width: 489px;
+    height: 47px;
+    left: calc(50% - 489px/2 + 0.5px);
+    top: 658px;
+    
+    background: #E6E6E6;
+}
+
+
+
+.sign_up_letter{
+    position: absolute;
+    width: 79px;
+    height: 27px;
+    left: calc(50% - 79px/2 + 0.5px);
+    top: 668px;
+    
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 24px;
+    
+    color: #858585;
+}
+
+
+
+
+.login_letter{
+
+    position: absolute;
+    width: 57px;
+    height: 27px;
+    left: 919px;
+    top: 500px;
+    
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 24px;
+    
+    color: #FFFFFF;
+    
+}
+
+
+
+.find_id.password_letter{
+
+    position: absolute;
+    width: 206px;
+    height: 27px;
+    left: 1005px;
+    top: 572px;
+    
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 18px;
+    
+    color: #9E9E9E;
+}
+
+
+
+
+.easy_login{
+
+    position: absolute;
+    width: 95px;
+    height: 27px;
+    left: calc(50% - 95px/2 + 0.5px);
+    top: 720px;
+    
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 17px;
+    line-height: 24px;
+    
+    color: #6B6B6B;
+}
+
+
+
+
+.seperate_line_bottom{
+
+    position: absolute;
+    width: 489px;
+    height: 0px;
+    left: 716px;
+    top: 621px;
+    
+    border: 1px solid #9C9C9C;
+}
+
+
+
+.kakao_circle{
+
+    position: absolute;
+    width: 70px;
+    height: 70px;
+    left: 925px;
+    top: 769px;
+    
+    background: #FFEA00;
+    
+}
+
+
+.naver_circle{
+
+    position: absolute;
+    width: 70px;
+    height: 70px;
+    left: 821px;
+    top: 769px;
+    
+    background: #00C00D;
+}
+
+
+
+.google_circle{
+
+    position: absolute;
+    width: 70px;
+    height: 70px;
+    left: 1029px;
+    top: 769px;
+    
+    background: #FF0000;
+}
+
+
+
+.naver_letter{
+    position: absolute;
+    width: 51px;
+    height: 39px;
+    left: 834px;
+    top: 794px;
+    
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;
+    
+    color: #FFFFFF;
+}
+
+
+.kakao_letter{
+
+    position: absolute;
+    width: 51px;
+    height: 39px;
+    left: 938px;
+    top: 794px;
+    
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;
+    
+    color: #FFFFFF;
+    
+}
+
+
+
+.googl_letter{
+    position: absolute;
+    width: 51px;
+    height: 39px;
+    left: 1048px;
+    top: 794px;
+    
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;
+    
+    color: #FFFFFF;
+    
+}
+
+
+
+
+.seperate_line_top{ 
+    position: absolute;
+    width: 1772px;
+    height: 0px;
+    left: calc(50% - 1772px/2 + 0px);
+    top: 161px;
+
+    border: 1px solid #000000;
+
+}
+
+
+.Calender_header{
+        
+    position: absolute;
+    width: 69px;
+    height: 30px;
+    left: 934px;
+    top: 97px;
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 25px;
+    line-height: 30px;
+
+    color: #000000;
+
+}
+
+
+
+.user_diet_diary{
+
+    position: absolute;
+    width: 46px;
+    height: 30px;
+    left: 1175px;
+    top: 97px;
+    
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 25px;
+    line-height: 30px;
+    
+    color: #000000;
+    
+}
+
+
+
+.community_letter{
+    position: absolute;
+    width: 92px;
+    height: 30px;
+    left: 1391px;
+    top: 97px;
+    
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 25px;
+    line-height: 30px;
+    
+    color: #000000;
+}
+
+
+
+
+
+.rookiefit_logo{
+
+    position: absolute;
+    width: 181px;
+    height: 42px;
+    left: 130px;
+    top: 91px;
+    
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 35px;
+    line-height: 42px;
+    
+    color: #000000;
+    
+    
+}

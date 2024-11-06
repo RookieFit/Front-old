@@ -2,7 +2,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.css'
 import Header from './layout/header/header';
 
-function App() {
+const App: React.FC = () => {
   return (
     <BrowserRouter>
       <div>
