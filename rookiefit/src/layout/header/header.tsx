@@ -2,11 +2,13 @@ import React from 'react';
 import './Header.css';
 import { Link } from 'react-router-dom';
 
-type HeaderProps = {
-    menuItems: { label: string; path: string }[]; // 메뉴 아이템 배열
-};
 
-const Header = ({ menuItems }: HeaderProps) => {
+const Header = () => {
+    const menuItems = [
+        { label: "캘린더", path: "/calendar" },
+        { label: "식단", path: "/diet" },
+        { label: "커뮤니티", path: "/community" }
+    ];
     return (
         <div>
             <header className="navbar">

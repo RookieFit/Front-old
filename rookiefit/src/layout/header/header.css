@@ -1,5 +1,4 @@
-/* Header.css */
-
+/* 기본 Navbar 스타일 */
 .navbar {
     display: flex;
     align-items: center;
@@ -17,6 +16,11 @@
 .nav-links {
     display: flex;
     font-size: 25px;
+    position: relative;
+}
+
+.nav-link-container {
+    position: relative;
 }
 
 .nav-link {
@@ -35,6 +39,7 @@
     margin-right: 0;
 }
 
+/* mypage 이미지 스타일 */
 .mypage {
     display: flex;
     width: 40px;
@@ -42,8 +47,7 @@
     margin-left: 257px;
     background-image: url(../assets/images/Person.png);
     background-size: cover;
-    /* 이미지 크기를 컨테이너에 맞게 조정 */
     background-position: center;
-    /* 이미지가 중앙에 오도록 */
     cursor: pointer;
+    transition: transform 0.3s ease, filter 0.3s ease;
 }
