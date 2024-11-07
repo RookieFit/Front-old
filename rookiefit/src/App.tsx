@@ -7,7 +7,6 @@ import SignUpPage from './signup/signUpPage';
 
 
 const App: React.FC = () => {
-const App: React.FC = () => {
   return (
     <BrowserRouter>
       <div>
