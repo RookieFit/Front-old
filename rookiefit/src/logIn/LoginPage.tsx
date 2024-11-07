@@ -1,6 +1,9 @@
+import { useNavigate } from 'react-router-dom';
 import './loginPage.css';
 
+
 function LoginPage() {
+    const navigate = useNavigate();
     /*  로그인 */
     const idClickHandler = () => {
         alert("click");
@@ -22,11 +25,11 @@ function LoginPage() {
 
      /*  회원가입 */
      const signupClickHandler = () => {
-        alert("회원가입~~");
-    }
+        navigate("/signUpPage");
+    };
 
     return (
-        <div id="sign-in-wrapper">
+        <div id="log-in-wrapper">
             <div className='login_title'>로그인</div>
 
             {/* ID Input Field */}

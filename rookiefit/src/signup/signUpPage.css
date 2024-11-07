@@ -1,0 +1,40 @@
+
+#sign-up-wrapper {
+    
+    padding: 4%;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+ 
+    gap: 20px;
+
+ } 
+ 
+/* 회원가입 타이틀*/
+.signup_title{
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 36px;
+    
+    color: #000000;
+    
+}
+
+
+.name_container{
+
+    margin-top: 0.2%;
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+ 
+    gap: 20px;
+
+}
+
+
