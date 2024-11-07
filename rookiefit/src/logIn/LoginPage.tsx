@@ -25,7 +25,7 @@ function LoginPage() {
 
      /*  회원가입 */
      const signupClickHandler = () => {
-        navigate("/signUpPage");
+        navigate("/signup");
     };
 
     return (

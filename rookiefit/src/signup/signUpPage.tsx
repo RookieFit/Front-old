@@ -44,6 +44,9 @@ function SignUpPage() {
                     type="text"
                     placeholder="인증번호를 입력해주세요">
                 </input>
+                
+            <div className='underline'></div>
+
 
             </div>
         </div>

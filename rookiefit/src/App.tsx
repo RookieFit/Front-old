@@ -5,8 +5,7 @@ import CalenderPage from './calendar/calenderPage';
 import LoginPage from './logIn/LoginPage';
 import SignUpPage from './signup/signUpPage';
 
-
-const App: React.FC = () => {
+function App() {
   return (
     <BrowserRouter>
       <div>
@@ -18,7 +17,6 @@ const App: React.FC = () => {
           <Route path="/calendar" element={<CalenderPage />} />
           <Route path="/diet" element={<></>} />
           <Route path="/community" element={<></>} />
-          <Route path="/signUpPage" element={<></>} />
         </Routes>
       </div>
     </BrowserRouter>
