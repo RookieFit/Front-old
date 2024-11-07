@@ -22,7 +22,6 @@ function LoginPage() {
     const googleClickHandler = () => {
         alert("google login~~");
     }
-
      /*  회원가입 */
      const signupClickHandler = () => {
         navigate("/signup");
