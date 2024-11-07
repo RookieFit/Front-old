@@ -1,0 +1,11 @@
+.calendar-back {
+    margin-left: 10vw;
+    margin-top: 2vw;
+    top: 0;
+    left: 0;
+    width: 38vw;
+    height: 37.4vw;
+    border-radius: 12px;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.15);
+    background-color: beige;
+}

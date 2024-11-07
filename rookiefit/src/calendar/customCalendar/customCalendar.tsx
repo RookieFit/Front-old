@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
 import 'react-calendar/dist/Calendar.css';
-import './Calendar.css'; // CSS 파일에서 스타일링 추가
+import './Calendar.css';
 import moment from 'moment';
 import { StyledCalendar, StyledCalendarWrapper } from './style';
 
 type ValuePiece = Date | null;
-
 
 type Value = ValuePiece | [ValuePiece, ValuePiece];
 
@@ -18,7 +17,6 @@ const CustomCalendar = () => {
     };
 
     const dayClickHandler = () => {
-        alert(date);
     }
 
     return (
@@ -37,6 +35,7 @@ const CustomCalendar = () => {
                     prev2Label={null} // -1년 & -10년 이동 버튼 숨기기
                     minDetail="year" // 10년단위 년도 숨기기
                 />
+                <div>편집하기</div>
             </div>
         </StyledCalendarWrapper>
     );

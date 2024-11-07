@@ -4,30 +4,31 @@ import "react-calendar/dist/Calendar.css";
 
 // 캘린더를 감싸주는 스타일
 export const StyledCalendarWrapper = styled.div`
-  width: 50%;
-  height: 60%;
+  width: 50vw;
+  height: 42vw;
   display: flex;
   justify-content: center;
   position: absolute;
 
   .react-calendar { 
-    margin: 3% auto;
-    width: 90%;
+    margin: 1.5vw auto;
+    width: 100%;
+    max-width: 35vw;  /* 최대 크기 제한 */
     border: none;
     border-radius: 1rem;
     box-shadow: 4px 2px 10px 0px rgba(0, 0, 0, 0.13);
-    padding: 3% 3%;
+    padding: 1vw 1vw;
     background-color: white;
-    font-size: 20px;
+    font-size: 18px;
     font-weight: bold;
-    line-height: 310%;
+    line-height: 3.5vw;
   }
 
   .react-calendar__month-view__weekdays__weekday {
     color: #000;
     font-size: 18px;
     font-weight: bold;
-    margin-bottom: 10px;
+    margin-bottom: 0.7vw;
   }
 
   /* 오늘 날짜 */
