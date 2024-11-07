@@ -5,14 +5,14 @@ import "react-calendar/dist/Calendar.css";
 // 캘린더를 감싸주는 스타일
 export const StyledCalendarWrapper = styled.div`
   width: 50%;
+  height: 60%;
   display: flex;
   justify-content: center;
-  position: relative;
+  position: absolute;
 
-  .react-calendar {
-    margin-top: 3.3vw;
-    margin-left: 5vw;
-    width: 70%;
+  .react-calendar { 
+    margin: 3% auto;
+    width: 90%;
     border: none;
     border-radius: 1rem;
     box-shadow: 4px 2px 10px 0px rgba(0, 0, 0, 0.13);
@@ -20,7 +20,7 @@ export const StyledCalendarWrapper = styled.div`
     background-color: white;
     font-size: 20px;
     font-weight: bold;
-    line-height: 330%;
+    line-height: 310%;
   }
 
   .react-calendar__month-view__weekdays__weekday {
@@ -61,6 +61,14 @@ export const StyledCalendarWrapper = styled.div`
 
   .react-calendar__tile--active:enabled:hover, .react-calendar__tile--active:enabled:focus {
     background: #51F8C4;
+  }
+
+  .react-calendar__tile:enabled:hover,
+  .react-calendar__tile:enabled:focus {
+    background-color: #51F8C4;
+    opacity: 0.7;
+    border-radius: 50px;
+    color: #000;
   }
 
   /* 네비게이션 폰트 설정 */

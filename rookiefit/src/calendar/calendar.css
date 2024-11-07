@@ -1,0 +1,17 @@
+/* Calendar.css */
+.calendar-back {
+    margin-left: 12vw;
+    margin-top: 2vw;
+    /* 부모 요소 기준 위치 */
+    top: 0;
+    left: 0;
+    width: 110%;
+    /* 달력보다 살짝 크게 */
+    height: 130%;
+    /* 가벼운 음영 효과 */
+    border-radius: 12px;
+    /* 테두리 모서리를 둥글게 */
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.15);
+    /* 음영 효과로 떠있는 느낌 */
+    background-color: beige;
+}
