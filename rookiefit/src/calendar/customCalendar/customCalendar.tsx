@@ -35,7 +35,7 @@ const CustomCalendar = () => {
                     prev2Label={null} // -1년 & -10년 이동 버튼 숨기기
                     minDetail="year" // 10년단위 년도 숨기기
                 />
-                <div>편집하기</div>
+                <div className='calendar-write'>운동 일지 작성하러 가기</div>
             </div>
         </StyledCalendarWrapper>
     );

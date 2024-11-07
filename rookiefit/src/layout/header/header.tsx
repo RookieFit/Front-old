@@ -3,7 +3,7 @@ import React from 'react';
 import './Header.css';
 import { Link, useLocation } from 'react-router-dom';
 //TODO: 로그인 여부를 판단해 로그인 필요 시 링크 전환 구현이 필요합니다.
-
+//MARK: 하이
 const Header = () => {
     const location = useLocation();
     const isHomePage = location.pathname === '/';
