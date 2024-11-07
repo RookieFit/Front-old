@@ -1,53 +1,107 @@
-/* 기본 Navbar 스타일 */
+/* Header.css */
+
 .navbar {
     display: flex;
     align-items: center;
-    margin-bottom: 32px;
-    margin-top: 31px;
+    justify-content: space-between;
+    padding: 2vh 5vw;
 }
 
 .navbar-logo {
     display: flex;
-    margin-left: 130px;
-    margin-right: 623px;
-    font-size: 35px;
+    text-decoration: none;
+    font-size: 2rem;
+    margin: 0 1vw;
+}
+
+.navbar-logo:visited,
+.navbar-logo:hover,
+.navbar-logo:active {
+    color: black;
 }
 
 .nav-links {
     display: flex;
-    font-size: 25px;
-    position: relative;
+    margin-left: 25vw;
+    gap: 10vw;
+    font-size: 1.6rem;
 }
 
-.nav-link-container {
-    position: relative;
-}
-
+/* Header.css */
 .nav-link {
-    display: flex;
-    margin-right: 171px;
     text-decoration: none;
     color: black;
-    transition: color 0.3s;
+    transition: color 0.2s;
 }
 
-.nav-link:hover {
+.nav-link:hover,
+.nav-link.active {
     color: #ED9201;
+    /* 활성화된 링크의 색상 */
 }
 
-.nav-link:last-child {
-    margin-right: 0;
-}
 
-/* mypage 이미지 스타일 */
-.mypage {
+/* 오른쪽 정렬을 위해 mypage-login에 margin-left: auto 추가 */
+.mypage-login {
     display: flex;
-    width: 40px;
-    height: 40px;
-    margin-left: 257px;
+    align-items: center;
+    margin-left: auto;
+}
+
+/* auth-links와 mypage의 너비 동일하게 설정 */
+.auth-links {
+    display: flex;
+    align-items: center;
+    gap: 1vw;
+}
+
+.mypage {
+    width: 2vw;
+    height: 2vw;
     background-image: url(../assets/images/Person.png);
     background-size: cover;
     background-position: center;
     cursor: pointer;
     transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.auth-links .nav-link {
+    margin-top: 1vw;
+    font-size: 1rem;
+}
+
+/* 반응형을 위한 미디어 쿼리 */
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        align-items: center;
+        padding: 1vh 3vw;
+    }
+
+    .navbar-logo {
+        font-size: 1.8rem;
+        margin: 1vh 0;
+    }
+
+    .nav-links {
+        flex-direction: column;
+        gap: 1.5vh;
+        font-size: 1.4rem;
+    }
+
+    .nav-link {
+        margin: 0;
+    }
+
+    .mypage {
+        width: 5vw;
+        height: 5vw;
+        margin-top: 1vh;
+    }
+
+    /* 모바일에서 auth-links와 mypage-login 정렬 */
+    .mypage-login {
+        justify-content: center;
+        margin-left: 0;
+    }
 }
