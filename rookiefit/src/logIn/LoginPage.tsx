@@ -37,8 +37,7 @@ function LoginPage() {
                 <input
                     className='id_password_box'
                     type="text"
-                    placeholder="이메일 아이디"
-                
+                    placeholder="이메일 아이디"       
                 />
             </div>
 
@@ -48,8 +47,6 @@ function LoginPage() {
                     className='id_password_box'
                     type="password"
                     placeholder="Password"
-                    
-                    
                 />
             </div>
 
