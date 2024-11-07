@@ -1,3 +1,5 @@
+/* Header.css */
+
 .navbar {
     display: flex;
     align-items: center;
@@ -20,23 +22,40 @@
 
 .nav-links {
     display: flex;
-    margin-left: 13vw;
+    margin-left: 25vw;
     gap: 10vw;
     font-size: 1.6rem;
 }
 
+/* Header.css */
 .nav-link {
     text-decoration: none;
     color: black;
     transition: color 0.2s;
 }
 
-.nav-link:hover {
+.nav-link:hover,
+.nav-link.active {
     color: #ED9201;
+    /* 활성화된 링크의 색상 */
+}
+
+
+/* 오른쪽 정렬을 위해 mypage-login에 margin-left: auto 추가 */
+.mypage-login {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+}
+
+/* auth-links와 mypage의 너비 동일하게 설정 */
+.auth-links {
+    display: flex;
+    align-items: center;
+    gap: 1vw;
 }
 
 .mypage {
-    display: flex;
     width: 2vw;
     height: 2vw;
     background-image: url(../assets/images/Person.png);
@@ -46,8 +65,13 @@
     transition: transform 0.3s ease, filter 0.3s ease;
 }
 
+.auth-links .nav-link {
+    margin-top: 1vw;
+    font-size: 1rem;
+}
+
 /* 반응형을 위한 미디어 쿼리 */
-/* @media (max-width: 768px) {
+@media (max-width: 768px) {
     .navbar {
         flex-direction: column;
         align-items: center;
@@ -74,4 +98,10 @@
         height: 5vw;
         margin-top: 1vh;
     }
-} */
+
+    /* 모바일에서 auth-links와 mypage-login 정렬 */
+    .mypage-login {
+        justify-content: center;
+        margin-left: 0;
+    }
+}
