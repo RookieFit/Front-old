@@ -1,0 +1,33 @@
+/* TextInput.css */
+.text-input-wrapper {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+}
+
+.text-input-label {
+    background-color: #f0f0f0;
+    /* 라벨의 배경색 */
+    padding: 4px 8px;
+    border-radius: 8px;
+    /* 둥근 모서리 */
+    font-size: 0.9rem;
+    text-align: center;
+    margin-bottom: 5px;
+    /* 라벨과 입력 필드 간격 */
+}
+
+.text-input-field {
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    resize: none;
+    /* 크기 조정 비활성화 */
+    width: 100%;
+    /* 고정 크기 설정 */
+    max-width: 300px;
+    /* 원하는 최대 너비 설정 */
+    box-sizing: border-box;
+    /* 패딩 포함한 너비 계산 */
+}

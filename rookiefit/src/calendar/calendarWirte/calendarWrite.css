@@ -1,0 +1,12 @@
+.input-row {
+    display: flex;
+    gap: 16px;
+    /* 입력 필드 간격 */
+    padding: 0 16px;
+    /* 좌우 여백 */
+}
+
+.calendar-write-detail {
+    margin-bottom: 16px;
+    /* 아래 여백 */
+}

@@ -1,0 +1,17 @@
+.added-details {
+    padding: 0 16px;
+    /* 좌우 여백 */
+}
+
+.added-detail {
+    display: flex;
+    gap: 16px;
+    /* 항목 간의 간격 */
+    margin-bottom: 12px;
+    /* 항목 사이의 아래 여백 */
+}
+
+.added-detail>div {
+    flex: 1;
+    /* 각 항목을 균등하게 배치 */
+}
