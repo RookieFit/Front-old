@@ -1,17 +1,77 @@
+/* 기록목록 */
 .added-details {
-    padding: 0 16px;
-    /* 좌우 여백 */
-}
-
-.added-detail {
     display: flex;
-    gap: 16px;
-    /* 항목 간의 간격 */
-    margin-bottom: 12px;
-    /* 항목 사이의 아래 여백 */
+    flex-direction: column;
+    gap: 8px;
+    /* 항목 간 세로 간격을 줄였습니다 */
+    padding: 0 1vw;
+    /* 좌우 패딩 */
+    overflow-y: auto;
+    /* 세로 스크롤 활성화 */
+    border-radius: 1vw;
+    /* 둥근 모서리 */
+    box-sizing: border-box;
+    /* padding을 포함한 너비 및 높이 계산 */
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+    background-color: aquamarine;
+    min-height: 10vw;
+    /* 최소 높이를 설정하여 배경이 항상 보이게 함 */
+    height: auto;
+    /* 높이를 auto로 설정하여 내용에 맞게 자동 조정되도록 합니다 */
+    max-height: 10vw;
+    /* 최대 높이를 설정하여 스크롤이 잘 동작하도록 합니다 */
 }
 
-.added-detail>div {
-    flex: 1;
-    /* 각 항목을 균등하게 배치 */
+/* 각 운동 항목 */
+.detail-item {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+/* 제목 (운동명, 횟수, 세트수, 휴식시간)을 가로로 배치 */
+.detail-header {
+    display: flex;
+    justify-content: space-between;
+    gap: 1.5vw;
+    font-weight: bold;
+    padding: 0 1vw;
+}
+
+/* 세부 내용 (운동명, 횟수, 세트수, 휴식시간)을 가로로 배치 */
+.detail-content {
+    display: flex;
+    justify-content: space-between;
+    gap: 0.5vw;
+    padding: 0 1vw;
+}
+
+/* 세로 스크롤 */
+.added-details::-webkit-scrollbar {
+    width: 8px;
+}
+
+.added-details::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 8px;
+}
+
+.added-details::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 8px;
+}
+
+.added-details::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+/* 항목이 없을 때 기본 메시지 표시 */
+.added-details:empty::before {
+    content: "추가된 항목이 없습니다.";
+    color: rgba(0, 0, 0, 0.5);
+    font-style: italic;
+    text-align: center;
+    width: 100%;
+    padding: 0.3vw 0;
 }
