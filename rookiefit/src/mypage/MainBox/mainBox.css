@@ -1,0 +1,8 @@
+.mainBoxMyPage{
+    min-height: 1,989px;
+    min-width: 1285px;
+    display: flex;
+    flex-direction: column;
+    margin-top: 88px;
+    margin-left: 242px;
+}

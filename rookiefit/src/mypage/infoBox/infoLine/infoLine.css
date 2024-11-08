@@ -1,0 +1,26 @@
+.myinfo_box{
+    display: flex;
+    flex-direction: row;
+    margin-top: 9px;
+    margin-left: 31px;
+}
+.myinfo_little_box{
+    width: 122px;
+    height: 52px;
+    border-radius: 5px;
+    font-size: 20px; 
+    background-color: #B6B6B6;
+    text-align: center;
+    line-height: 50px;
+}
+.myinfo_box_box{
+    width: 385px;
+    height: 52px;
+    text-align: center;
+    line-height: 50px;
+    border-color: #000000;
+    border-width: 0px 0px 2px 0px ;
+    border-style: solid;
+    background-color: #D9D9D9;
+    margin-left: 25px;
+}
