@@ -16,30 +16,17 @@
     justify-content: center;
     gap: 20px;
 }
- 
+
 .login_title {
-    font-weight: 400;
-    font-size: 36px;
-    color: #000000;
+    position: absolute;
+    width: 529px;
+    height: 84px;
+    left: 696px;
+    top: 340px;
+    border-radius: 5px;
+
 }
 
-.id_password_box {
-    font-size: 20px;
-    width: 489px;
-    height: 47px;
-    border: 0;
-    background: #F2F2F2;
-}
-
-.login_button {
-    font-size: 20px;
-    color: white;
-    width: 489px;
-    height: 47px;
-    border: 0;
-    background: #A8A8A8;
-    cursor: pointer;
-}
 
 .find_id_password_button {   
     font-weight: 400;
@@ -47,10 +34,7 @@
     line-height: 18px;
     color: #9E9E9E;
     display: flex;
-    gap: 10px; 
     justify-content: flex-end; 
-    width: 100%; 
-    padding-right: 36%; 
     margin-top: 10px; 
     border: 0;
     cursor: pointer;
@@ -75,6 +59,12 @@
     border-top: 5px solid (#9C9C9C);
     background-color: #9C9C9C;
 }
+
+.vertical_line {
+    width: 1px;
+    height: 15px;
+    background-color: #9C9C9C;
+  }
 
 .kakao_login {
     width: 70px;
@@ -125,6 +115,17 @@
     flex-direction: row;
     align-items: center;
     justify-content: center;
+    gap: 20px;
+}
+
+.find_id_password_container {
+    margin-top: 0.2%;
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+    margin-left: 15%;
     gap: 20px;
 }
 

@@ -1,0 +1,79 @@
+.input-box.full-width {
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;    /* 모든 요소가 상단에 맞춰지도록 설정 */
+    justify-content: flex-start;
+    gap: 20px;
+}
+
+.input-box-title {
+    display: flex;
+    width: 125px;
+    height: 47px;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 24px;
+    border: 0;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #858585;
+    background: #F2F2F2;
+}
+
+.input-box-content {
+    display: flex;
+    flex-direction: column;   /* 메시지와 input이 수직으로 배치되도록 설정 */
+}
+
+.input-box-body {
+    display: flex;
+    flex-direction: row;       /* title, input, button이 한 줄에 배치되도록 설정 */
+    align-items: center;
+    gap: 10px;
+}
+
+.input-box-input {
+    font-size: 20px;
+    width: 254px;
+    height: 47px;
+    border: 0;
+    background: #F2F2F2;
+}
+
+.input-box-input-full {
+    width: 390px;
+    font-size: 20px;
+    height: 47px;
+    border: 0;
+    background: #F2F2F2;
+}
+
+.input-box-message {
+    font-size: 12px;
+    color: #0600C0;
+    margin-top: 5px;  /* input 아래 메시지 여백 */
+}
+
+.input-box-message-error {
+    font-size: 12px;
+    color: red;
+    margin-top: 5px;
+}
+
+.input-box-button {
+    display: flex;
+    width: 125px;
+    height: 47px;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 24px;
+    border: 0;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #858585;
+    background: #F2F2F2;
+    cursor: pointer;
+}
