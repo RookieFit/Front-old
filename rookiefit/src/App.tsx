@@ -10,9 +10,8 @@ function App() {
   return (
     <BrowserRouter>
       <div>
-        <Header />
+        <Header/>
         <Routes>
-          <Route path="/porfilePofile" element={<porfilePofile />} />
           <Route path="/mypage" element={<MainBox />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/signup" element={<SignUpPage/>} />
