@@ -1,4 +1,3 @@
-// CalendarWrite.tsx
 import React, { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import TextInput from './calendarInput';
@@ -7,10 +6,10 @@ import moment from 'moment';
 import './CalendarWrite.css';
 
 interface CalendarWriteProps {
-    setDetails: React.Dispatch<React.SetStateAction<string[][]>>; // setDetails props 추가
+    setDetails: React.Dispatch<React.SetStateAction<string[][]>>;
 }
 
-const CalendarWrite: React.FC<CalendarWriteProps> = ({ setDetails }) => {
+const CalendarWrite = ({ setDetails }: CalendarWriteProps) => {
     const location = useLocation();
     const navigate = useNavigate();
     const selectedDate = location.state?.selectedDate || new Date();
@@ -22,12 +21,12 @@ const CalendarWrite: React.FC<CalendarWriteProps> = ({ setDetails }) => {
     });
     const [title, setTitle] = useState('');
     const [diaryContent, setDiaryContent] = useState('');
-    const [details, setLocalDetails] = useState<string[][]>([]); // 컴포넌트 내부에서 details 상태 관리
+    const [details, setLocalDetails] = useState<string[][]>([]);
 
     const handleAddDetail = () => {
         const newDetail = [content.exerciseName, content.repetitions, content.sets, content.restTime];
         setLocalDetails((prevDetails) => [...prevDetails, newDetail]);
-        setDetails((prevDetails) => [...prevDetails, newDetail]); // 상위 상태도 업데이트
+        setDetails((prevDetails) => [...prevDetails, newDetail]);
         setContent({ exerciseName: '', repetitions: '', sets: '', restTime: '' });
     };
 
@@ -84,7 +83,7 @@ const CalendarWrite: React.FC<CalendarWriteProps> = ({ setDetails }) => {
                     </div>
                     <div className="calendar-write-add-detail">
                         <button className="calendar-write-add" onClick={handleAddDetail}>추가하기</button>
-                        <AddedDetails details={details} /> {/* 업데이트된 details 상태 전달 */}
+                        <AddedDetails details={details} />
                     </div>
 
                     <div className="diary-input-section">

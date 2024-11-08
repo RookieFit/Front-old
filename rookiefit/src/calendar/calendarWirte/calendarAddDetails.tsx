@@ -1,16 +1,16 @@
+import React from 'react';
 import './calendarAddDetails.css';
 
 interface AddedDetailsProps {
     details: string[][];
 }
 
-const AddedDetails: React.FC<AddedDetailsProps> = ({ details }) => {
+const AddedDetails = ({ details }: AddedDetailsProps) => {
     return (
         <div className="added-details">
             {details.length > 0 ? (
                 details.map((detail, index) => (
                     <div key={index} className="detail-item">
-                        {/* 첫 번째 항목에만 제목을 표시 */}
                         <div className="detail-header">
                             {index === 0 && (
                                 <>

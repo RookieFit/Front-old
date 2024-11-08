@@ -2,10 +2,10 @@ import React from 'react';
 import './customCalendarDetail.css';
 
 interface CustomCalendarDetailProps {
-    details: string[][]; // details props 추가
+    details: string[][];
 }
 
-const CustomCalendarDetail: React.FC<CustomCalendarDetailProps> = ({ details }) => {
+const CustomCalendarDetail = ({ details }: CustomCalendarDetailProps) => {
     return (
         <div className="calendar-detail-back">
             <div className="calendar-detail-cell">
