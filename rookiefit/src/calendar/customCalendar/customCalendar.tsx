@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useEffect, useState } from 'react';
 import 'react-calendar/dist/Calendar.css';
 import './Calendar.css';

@@ -6,27 +6,27 @@ import CalendarWrite from './calendarWirte/calendarWrite';
 import './calendarPage.css';
 
 const CalendarPage = () => {
-    const location = useLocation();
+    const location = useLocation(); // 현재 위치 정보 가져오기 (URL 경로 확인 용도)
     const [details, setDetails] = useState<{
         entries: Array<{
             title: string;
             diaryContent: string;
-            workoutDetails: string[][];
+            workoutDetails: string[][]; // 운동 세부사항 배열
             date: string;
         }>;
     }>({
-        entries: []
+        entries: [] // 초기 상태: 빈 entries 배열
     });
 
-    const isWritePage = location.pathname === '/calendar/write';
+    const isWritePage = location.pathname === '/calendar/write'; // 현재 페이지가 '일기 작성' 페이지인지 확인
 
     return (
         <div className='calendarPage'>
             <CustomCalendar />
-            {isWritePage ? (
+            {isWritePage ? ( // '일기 작성' 페이지일 경우 CalendarWrite 컴포넌트 표시
                 <CalendarWrite setDetails={setDetails} />
             ) : (
-                <CustomCalendarDetail details={details} />
+                <CustomCalendarDetail details={details} /> // 아닌 경우 CustomCalendarDetail 컴포넌트로 세부사항 표시
             )}
         </div>
     );

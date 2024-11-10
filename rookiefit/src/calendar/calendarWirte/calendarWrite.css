@@ -6,12 +6,15 @@
     /* 좌우 여백 */
 }
 
-.calendar-header {}
+.calendar-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
 /* 일지작성 디테일 */
 .calendar-write-detail {
     margin-bottom: 5px;
-    /* 아래 여백 */
 }
 
 /* 제목 */
@@ -90,5 +93,4 @@
     box-sizing: border-box;
     box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
     height: 8vw;
-    /* 텍스트 입력 필드 높이 설정 */
 }

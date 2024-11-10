@@ -7,14 +7,11 @@
 
 .text-input-label {
     background-color: #f0f0f0;
-    /* 라벨의 배경색 */
     padding: 4px 8px;
     border-radius: 0.7vw;
-    /* 둥근 모서리 */
     font-size: 0.9rem;
     text-align: center;
     margin-bottom: 2px;
-    /* 라벨과 입력 필드 간격 */
     box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
 }
 
