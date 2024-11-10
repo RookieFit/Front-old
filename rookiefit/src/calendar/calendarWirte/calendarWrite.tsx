@@ -6,8 +6,16 @@ import moment from 'moment';
 import './CalendarWrite.css';
 
 interface CalendarWriteProps {
-    setDetails: React.Dispatch<React.SetStateAction<string[][]>>;
+    setDetails: React.Dispatch<React.SetStateAction<{
+        entries: Array<{
+            title: string;
+            diaryContent: string;
+            workoutDetails: string[][];
+            date: string;
+        }>;
+    }>>;
 }
+
 
 const CalendarWrite = ({ setDetails }: CalendarWriteProps) => {
     const location = useLocation();
@@ -26,7 +34,6 @@ const CalendarWrite = ({ setDetails }: CalendarWriteProps) => {
     const handleAddDetail = () => {
         const newDetail = [content.exerciseName, content.repetitions, content.sets, content.restTime];
         setLocalDetails((prevDetails) => [...prevDetails, newDetail]);
-        setDetails((prevDetails) => [...prevDetails, newDetail]);
         setContent({ exerciseName: '', repetitions: '', sets: '', restTime: '' });
     };
 
@@ -39,8 +46,17 @@ const CalendarWrite = ({ setDetails }: CalendarWriteProps) => {
     };
 
     const handleSubmit = () => {
-        console.log('운동 세부사항:', content);
-        console.log('일지 내용:', diaryContent);
+        setDetails((prevDetails) => ({
+            entries: [
+                ...prevDetails.entries,
+                {
+                    title,
+                    diaryContent,
+                    workoutDetails: details,
+                    date: selectedDate.toString(),
+                }
+            ]
+        }));
         navigate("/calendar");
     };
 
@@ -85,7 +101,6 @@ const CalendarWrite = ({ setDetails }: CalendarWriteProps) => {
                         <button className="calendar-write-add" onClick={handleAddDetail}>추가하기</button>
                         <AddedDetails details={details} />
                     </div>
-
                     <div className="diary-input-section">
                         <textarea
                             value={diaryContent}
