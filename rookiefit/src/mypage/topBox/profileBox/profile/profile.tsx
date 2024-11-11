@@ -1,14 +1,11 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
-import './profilePofile.css';
-
+import './profile.css';
 
 const myPage_Edit = [
   {profilePofile_button: "프로필 편집", path: "/myPage_Edit"}
 ];
-
-
-const ProfilePofile = () => {
+const profile = () => {
   return (
     <div className='profile_main'>
       <div className='profile_image'>
@@ -30,4 +27,4 @@ const ProfilePofile = () => {
   )
 };
 
-export default ProfilePofile;
+export default profile;

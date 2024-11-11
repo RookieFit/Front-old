@@ -8,7 +8,7 @@
     border-radius: 13px; 
 }
 
-.profile_image{
+.profile_image {
     width: 380px;
     height: 380px;
     border: thin solid  rgb(153, 151, 151);
@@ -19,7 +19,7 @@
     background-color: #ffffff;
 }
 
-.profile_nickname{
+.profile_nickname {
     width: 181px;
     height: 25px;
     margin: 22px auto;
@@ -27,14 +27,14 @@
     text-align:center;
 }
 
-.profile_message{
+.profile_message {
     width: 521px;
     height: 43px;
     margin: 36px;
     text-align:center;
 }
 
-textarea{
+textarea {
     display: inline-block;
     font-size: 25px;
     width: 521px;
@@ -48,7 +48,7 @@ textarea{
     text-align:center;
 }
 
-.profile_edit{
+.profile_edit {
     font-size: 24px;
     width: 383px;
     height: 45px;
@@ -59,7 +59,7 @@ textarea{
     border-radius: 13px;
 }
 
-.profilePofile_button{
+.profilePofile_button {
     text-decoration-line: none;
     color: black;
     margin-top: 4px;

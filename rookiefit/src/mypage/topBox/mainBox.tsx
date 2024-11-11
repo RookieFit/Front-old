@@ -1,6 +1,6 @@
 import './MainBox.css';
-import Info_minBox from "../MainBox/Components/infoBox/info_minBox/info_minBox";
-import ProfilePofile from "../MainBox/Components/profileBox/profilePofile/profilePofile";
+import Info_minBox from "./infoBox/info_minBox/info_minBox";
+import Profile from "./profileBox/profile/profile";
 
 interface props {
     title: string;
@@ -13,7 +13,7 @@ interface props {
 const MainBox = () => {
     return (
         <div className="mainBoxMyPage">
-            <ProfilePofile/>
+            <Profile/>
             <Info_minBox /> 
         </div>
     )

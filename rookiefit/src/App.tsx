@@ -4,7 +4,7 @@ import Header from './layout/header/header';
 import CalenderPage from './calendar/calenderPage';
 import LoginPage from './logIn/LoginPage';
 import SignUpPage from './signup/signUpPage';
-import MainBox from './mypage/MainBox/mainBox';
+import MainBox from './mypage/topBox/mainBox';
 
 function App() {
   return (

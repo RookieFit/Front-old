@@ -1,6 +1,6 @@
 import './MainBox.css';
-import Info_sedBox from "../mypage/MainBox/Components/infoBox/info_minBox/info_minBox";
-import ProfilePofile from "../mypage/MainBox/Components/profileBox/profilePofile/profilePofile";
+import Info_sedBox from "./topBox/Components/infoBox/info_minBox/info_minBox";
+import ProfilePofile from "./topBox/profileBox/profile/profile";
 
 interface props {
     title: string;

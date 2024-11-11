@@ -1,4 +1,4 @@
-.myinfo_main{
+.myinfo_main {
     display: flex;
     flex-direction: column;
     background-color: #ECECEC; 
@@ -7,7 +7,7 @@
     border-radius: 13px; 
 }
 
-.myinfo_click{
+.myinfo_click {
     font-size: 36px;
     padding-left: 30px;
     padding-top: 25px;
@@ -28,7 +28,7 @@
     margin-bottom: 2px;
 }
 
-.myinfo_box_info{
+.myinfo_box_info {
     margin-bottom: 18px;
     margin-left: 21px;
     width: 593px;
