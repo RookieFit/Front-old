@@ -1,11 +1,11 @@
-.myinfo-box {
+.myinfo-box2{
     display: flex;
     flex-direction: row;
     margin-top: 7px;
     margin-left: 31px;
 }
 
-.myinfo-little-box {
+.myinfo-little-box2 {
     width: 120px;
     height: 50px;
     border-radius: 5px;
@@ -17,7 +17,22 @@
     margin-top: 3px;
 }
 
-.myinfo-box-box {
+/*
+.myinfo-box-box2 {
+    width: 385px;
+    height: 50px;
+    text-align: center;
+    line-height: 50px;
+    border-color: #000000;
+    border-width: 0px 0px 2px 0px ;
+    border-style: solid;
+    background-color: #D9D9D9;  
+    margin-left: 20px;
+    margin-bottom: 1px;
+    margin-top: 1px;
+}
+*/
+.myinfo-message-textarea {
     width: 385px;
     height: 50px;
     text-align: center;
@@ -26,7 +41,10 @@
     border-width: 0px 0px 2px 0px ;
     border-style: solid;
     background-color: #D9D9D9;
-    margin-left: 20px;
-    margin-bottom: 1px;
-    margin-top: 1px;
+    border: none;
+    resize: none;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    margin-left: 24px;
 }

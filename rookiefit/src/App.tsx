@@ -5,6 +5,7 @@ import CalenderPage from './calendar/calenderPage';
 import LoginPage from './logIn/LoginPage';
 import SignUpPage from './signup/signUpPage';
 import MyPage from './mypage/myPage';
+import MyPageEdit from './mypageeidt/myPageEdit';
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
       <div>
         <Header/>
         <Routes>
+          <Route path="/mypageedit" element={<MyPageEdit />} />
           <Route path="/mypage" element={<MyPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/signup" element={<SignUpPage/>} />
