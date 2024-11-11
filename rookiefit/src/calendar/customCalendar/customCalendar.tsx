@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import 'react-calendar/dist/Calendar.css';
 import './Calendar.css';
 import moment from 'moment';
@@ -10,12 +10,13 @@ type Value = Date | null;
 
 
 const CustomCalendar = ({ details }: { details: { date: string; /* other fields */ }[] }) => {
+    // details에서 날짜 가져오기
     const markedDates = details.map(detail => moment(detail.date).format('YYYY-MM-DD'));
 
     const navigate = useNavigate();
     const { selectedDate, updateSelectedDate } = UseCalendar(); // useContext로 selectedDate 가져오기
 
-    // const [markedDates, setMarkedDates] = useState<string[]>([]); // 일지가 있는 날짜 저장
+    // const [markedDates, setMarkedDates] = useState<string[]>([]);
 
     const dayClickHandler = (newDate: Value) => {
         if (newDate) {
