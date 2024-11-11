@@ -1,0 +1,96 @@
+.input-box.full-width {
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;    /* 모든 요소가 상단에 맞춰지도록 설정 */
+    justify-content: flex-start;
+    gap: 20px;
+}
+
+.input-box-title {
+    white-space: pre-line;
+    display: flex;
+    width: 125px;
+    height: 47px;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 24px;
+    border: 0;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #858585;
+    background: #F2F2F2;
+}
+
+.input-box-content {
+    display: flex;
+    flex-direction: column;   /* 메시지와 input이 수직으로 배치되도록 설정 */
+}
+
+.input-box-body {
+    display: flex;
+    flex-direction: row;       /* title, input, button이 한 줄에 배치되도록 설정 */
+    align-items: center;
+    gap: 10px;
+}
+
+.input-box-input {
+    font-size: 20px;
+    width: 254px;
+    height: 47px;
+    border: 0;
+    background: #F2F2F2;
+    text-align: center;  
+    padding: 0; 
+    box-sizing: border-box; 
+}
+
+
+.input-box-button-disable {
+    display: flex;
+    width: 390px;
+    height: 47px;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 24px;
+    border: 0;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #858585;
+    background: #F2F2F2;
+    cursor: pointer;
+}
+
+.input-box-message {
+    min-height: 20px;  /* 메시지 영역의 고정 높이 */
+    font-size: 12px;
+    color: #0600C0;    /* 일반 메시지 색상 */
+    display: flex;
+    align-items: center;
+}
+
+.input-box-message-error {
+    min-height: 20px;  /* 메시지 영역의 고정 높이 */
+    font-size: 12px;
+    color: red;        /* 에러 메시지 색상 */
+    display: flex;
+    align-items: center;
+}
+
+.input-box-button {
+    display: flex;
+    width: 125px;
+    height: 47px;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 24px;
+    border: 0;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #858585;
+    background: #F2F2F2;
+    cursor: pointer;
+}
