@@ -1,4 +1,4 @@
-#log-in-wrapper {
+#findId-wrapper {
     padding: 4%;
     flex: 1;
     display: flex;
@@ -6,4 +6,10 @@
     align-items: center;
     justify-content: center;
     gap: 20px;
+}
+
+.findId-title {
+    font-weight: 400;
+    font-size: 36px;
+    color: #000000;
 }

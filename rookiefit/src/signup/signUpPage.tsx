@@ -147,7 +147,7 @@ function SignUpPage() {
                 message={certificationMessage}
                 isErrorMessage={isCertificationError}
                 buttonTitle="인증 확인"
-                onButtonClick={() => alert("인증이 완료되었습니다.")}
+                onButtonClick={() => alert("인증이 완료되었습니다")}
                 onKeyDown={() => {}}
             />
 

@@ -30,14 +30,7 @@ const InputBox = forwardRef<HTMLInputElement, Props>((props: Props, ref) => {
 
     const [inputValue, setInputValue] = useState(value);
 
-    const onFocus = (event: React.FocusEvent<HTMLInputElement>) => {
-        setInputValue('');
-    };
     
-
-    const onBlur = () => {
-        setInputValue(value);
-    };
 	const [isInputClicked, setIsInputClicked] = useState(false);
 
     // 버튼 스타일 및 메시지 스타일 클래스명 설정
