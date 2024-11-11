@@ -29,7 +29,7 @@ const InputBox = forwardRef<HTMLInputElement, Props>((props: Props, ref) => {
     } = props;
 
     // 버튼 스타일 및 메시지 스타일 클래스명 설정
-    const buttonClassName = value === '' ? 'input-box-button-disable' : 'input-box-button';
+    const buttonClassName = buttonTitle === '' ? 'input-box-button-disable' : 'input-box-button';
     const messageClassName = isErrorMessage ? 'input-box-message-error' : 'input-box-message';
     
     return (
@@ -39,7 +39,7 @@ const InputBox = forwardRef<HTMLInputElement, Props>((props: Props, ref) => {
                 <div className="input-box-body">
                     <input
                         ref={ref}
-                        className="input-box-input"
+                        className={`input-box-input ${buttonTitle ? '' : 'input-box-button-disable'}`}
                         type={type}
                         value={value}
                         placeholder={placeholder}
@@ -52,7 +52,7 @@ const InputBox = forwardRef<HTMLInputElement, Props>((props: Props, ref) => {
                         </button>
                     )}
                 </div>
-                {message && <div className={messageClassName}>{message}</div>}
+                {<div className={messageClassName}>{message || '\u00A0'}</div>}
             </div>
         </div>
     );

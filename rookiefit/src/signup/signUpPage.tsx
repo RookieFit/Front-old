@@ -1,16 +1,19 @@
-import { ChangeEvent, KeyboardEvent, useState } from 'react';
+import { ChangeEvent, KeyboardEvent, useState, useEffect } from 'react';
 import InputBox from '../inputbox/inputbox';
 import './signUpPage.css';
 
 function SignUpPage() {
     const [id, setId] = useState<string>('');
     const [password, setPassword] = useState<string>('');
-    const [confirmPassword, setConfirmPassword] = useState<string>('');  // 패스워드 확인을 위한 상태 추가
+    const [confirmPassword, setConfirmPassword] = useState<string>('');
     const [phoneNumber, setPhoneNumber] = useState<string>('');
     const [certificationNumber, setCertificationNumber] = useState<string>('');
 
     const [idMessage, setIdMessage] = useState<string>('');
     const [isIdErrorMessage, setIsIdErrorMessage] = useState<boolean>(false);
+
+    const [passwordMessage, setPasswordMessage] = useState<string>('');  // 패스워드 메시지 상태 추가
+    const [isPasswordErrorMessage, setIsPasswordErrorMessage] = useState<boolean>(false);
 
     /* 간편 로그인 클릭 */
     const naverClickHandler = () => alert("naver login~~");
@@ -25,6 +28,19 @@ function SignUpPage() {
     const certificateNumberClickHandler = () => alert("인증 번호 전송 중 ---");
     const certificateCompleteClickHandler = () => alert("인증이 완료되었습니다.");
     const signUpCompleteClickHandler = () => alert("가입 완료! 환영합니다.");
+
+    // 패스워드와 확인 패스워드가 일치하는지 확인하는 useEffect 추가
+    useEffect(() => {
+        if (confirmPassword) {
+            if (password !== confirmPassword) {
+                setPasswordMessage("패스워드를 다시 입력해주세요.");
+                setIsPasswordErrorMessage(true);
+            } else {
+                setPasswordMessage("패스워드가 일치합니다.");
+                setIsPasswordErrorMessage(false);
+            }
+        }
+    }, [password, confirmPassword]);
 
     return (
         <div id="sign-up-wrapper">
@@ -47,7 +63,6 @@ function SignUpPage() {
                 }}
             />
 
-            {/* 버튼이 없는 경우 전체 너비로 확장되는 패스워드 필드 */}
             <InputBox
                 title="패스워드"
                 placeholder="패스워드를 입력해주세요"
@@ -57,13 +72,14 @@ function SignUpPage() {
                 onKeydown={() => {}}
             />
 
-            {/* 패스워드 확인 필드에 별도 상태 적용 */}
             <InputBox
                 title={"패스워드\n확인"}
                 placeholder="패스워드를 다시 입력해주세요"
                 type="password"
-                value={confirmPassword}  // 패스워드 확인을 위한 상태 사용
+                value={confirmPassword}
                 onChange={(e: ChangeEvent<HTMLInputElement>) => setConfirmPassword(e.target.value)}
+                message={passwordMessage}  // 패스워드 메시지 표시
+                isErrorMessage={isPasswordErrorMessage}  // 메시지 오류 여부 적용
                 onKeydown={() => {}}
             />
 
@@ -104,4 +120,4 @@ function SignUpPage() {
     );
 }
 
-export default SignUpPage; 
+export default SignUpPage;

@@ -1,107 +1,99 @@
-import { ChangeEvent, KeyboardEvent, useState } from 'react';
-import InputBox from '../inputbox/inputbox';
-import './signUpPage.css';
+import { useState, ChangeEvent, KeyboardEvent } from 'react';
+import InputBox from '../inputbox/inputbox'; // InputBox 컴포넌트를 가져옵니다.
+import './loginPage.css';
 
-function SignUpPage() {
+function LoginPage() {
+    // 상태 변수 선언
     const [id, setId] = useState<string>('');
     const [password, setPassword] = useState<string>('');
-    const [confirmPassword, setConfirmPassword] = useState<string>('');  // 패스워드 확인을 위한 상태 추가
-    const [phoneNumber, setPhoneNumber] = useState<string>('');
-    const [certificationNumber, setCertificationNumber] = useState<string>('');
-
     const [idMessage, setIdMessage] = useState<string>('');
-    const [isIdErrorMessage, setIsIdErrorMessage] = useState<boolean>(false);
+    const [passwordMessage, setPasswordMessage] = useState<string>('');
+    const [isIdError, setIsIdError] = useState<boolean>(false);
+    const [isPasswordError, setIsPasswordError] = useState<boolean>(false);
 
-    /* 간편 로그인 클릭 */
-    const naverClickHandler = () => alert("naver login~~");
-    const kakaoClickHandler = () => alert("kakao login~~");
-    const googleClickHandler = () => alert("google login~~");
-
-    const duplicateIdCheckClickHandler = () => {
-        setIdMessage("사용 가능한 아이디입니다.");
-        setIsIdErrorMessage(false);
+    // 입력 핸들러
+    const handleIdChange = (event: ChangeEvent<HTMLInputElement>) => {
+        setId(event.target.value);
+        setIdMessage('');
+        setIsIdError(false);
     };
 
-    const certificateNumberClickHandler = () => alert("인증 번호 전송 중 ---");
-    const certificateCompleteClickHandler = () => alert("인증이 완료되었습니다.");
-    const signUpCompleteClickHandler = () => alert("가입 완료! 환영합니다.");
+    const handlePasswordChange = (event: ChangeEvent<HTMLInputElement>) => {
+        setPassword(event.target.value);
+        setPasswordMessage('');
+        setIsPasswordError(false);
+    };
+
+    // 로그인 버튼 클릭 시 이벤트
+    const handleLoginClick = () => {
+        if (id === '') {
+            setIdMessage('아이디를 입력하세요.');
+            setIsIdError(true);
+        }
+        if (password === '') {
+            setPasswordMessage('비밀번호를 입력하세요.');
+            setIsPasswordError(true);
+        }
+        if (id && password) {
+            alert("로그인 시도 중..."); // 실제 로그인 로직이 들어갈 수 있습니다.
+        }
+    };
+
+    // Enter 키 이벤트 핸들러
+    const handleKeyDown = (event: KeyboardEvent<HTMLInputElement>) => {
+        if (event.key === 'Enter') handleLoginClick();
+    };
 
     return (
-        <div id="sign-up-wrapper">
-            <div className="signup_title"> 로그인</div>
-
+        <div id="log-in-wrapper">
+            <h2 className="login_title">로그인</h2>
+            {/* 아이디 입력 필드 */}
             <InputBox
                 title="아이디"
-                placeholder="아이디를 입력해주세요"
+                placeholder="아이디를 입력하세요."
                 type="text"
                 value={id}
-                onChange={(e: ChangeEvent<HTMLInputElement>) => setId(e.target.value)}
                 message={idMessage}
-                isErrorMessage={isIdErrorMessage}
-                buttonTitle="중복체크"
-                onButtonClick={duplicateIdCheckClickHandler}
-                onKeydown={(e: KeyboardEvent<HTMLInputElement>) => {
-                    if (e.key === 'Enter') {
-                        duplicateIdCheckClickHandler();
-                    }
-                }}
+                isErrorMessage={isIdError}
+                onChange={handleIdChange}
+                onKeydown={handleKeyDown}
             />
 
-            {/* 버튼이 없는 경우 전체 너비로 확장되는 패스워드 필드 */}
+            {/* 비밀번호 입력 필드 */}
             <InputBox
-                title="패스워드"
-                placeholder="패스워드를 입력해주세요"
+                title="비밀번호"
+                placeholder="비밀번호를 입력하세요."
                 type="password"
                 value={password}
-                onChange={(e: ChangeEvent<HTMLInputElement>) => setPassword(e.target.value)}
-                onKeydown={() => {}}
+                message={passwordMessage}
+                isErrorMessage={isPasswordError}
+                onChange={handlePasswordChange}
+                onKeydown={handleKeyDown}
             />
 
-            {/* 패스워드 확인 필드에 별도 상태 적용 */}
-            <InputBox
-                title={"패스워드\n확인"}
-                placeholder="패스워드를 다시 입력해주세요"
-                type="password"
-                value={confirmPassword}  // 패스워드 확인을 위한 상태 사용
-                onChange={(e: ChangeEvent<HTMLInputElement>) => setConfirmPassword(e.target.value)}
-                onKeydown={() => {}}
-            />
-
-            <InputBox
-                title="휴대전화"
-                placeholder="전화번호를 입력해주세요"
-                type="text"
-                value={phoneNumber}
-                onChange={(e: ChangeEvent<HTMLInputElement>) => setPhoneNumber(e.target.value)}
-                buttonTitle="인증 요청"
-                onButtonClick={certificateNumberClickHandler}
-                onKeydown={() => {}}
-            />
-
-            <InputBox
-                title="인증번호"
-                placeholder="인증번호를 입력해주세요"
-                type="text"
-                value={certificationNumber}
-                onChange={(e: ChangeEvent<HTMLInputElement>) => setCertificationNumber(e.target.value)}
-                buttonTitle="인증 확인"
-                onButtonClick={certificateCompleteClickHandler}
-                onKeydown={() => {}}
-            />
-
-            <div className="underline"></div>
-
-            <button className="sign_up_button" onClick={signUpCompleteClickHandler}>
-                회원가입
+            {/* 로그인 버튼 */}
+            <button className="sign_in_button" onClick={handleLoginClick}>
+                로그인
             </button>
 
+            {/* 아이디/비밀번호 찾기 버튼 */}
+            <div className="find_id_password_container">
+                <button className="find_id_password_button">아이디 찾기</button>
+                <span className="vertical_line"></span>
+                <button className="find_id_password_button">비밀번호 찾기</button>
+            </div>
+            
+            <div className="underline"></div>
+
+            {/* SNS 간편 로그인 */}
+            <div className="easy_login_text">간편 로그인</div>
             <div className="sns_login_container">
-                <button className="naver_login" onClick={naverClickHandler}></button>
-                <button className="kakao_login" onClick={kakaoClickHandler}></button>
-                <button className="google_login" onClick={googleClickHandler}></button>
+                <button className="naver_login"></button>
+                <button className="kakao_login"></button>
+                <button className="google_login"></button>
             </div>
         </div>
     );
 }
 
-export default SignUpPage; 
+export default LoginPage;

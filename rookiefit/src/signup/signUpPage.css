@@ -25,16 +25,16 @@
     background-color: #9C9C9C;
 }
 
-/* 회원가입 버튼*/
 .sign_up_button {
     font-weight: 400;
     font-size: 20px;
     line-height: 24px;
     cursor: pointer;
-    width: 489px;
+    width: 545px;
     height: 47px;
-    border: 0;   
     color: #858585;
+    background-color: #d9d9d9;
+    border: none;
+    border-radius: 5px;
 }
-
 

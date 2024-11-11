@@ -8,6 +8,7 @@
 }
 
 .input-box-title {
+    white-space: pre-line;
     display: flex;
     width: 125px;
     height: 47px;
@@ -40,26 +41,42 @@
     height: 47px;
     border: 0;
     background: #F2F2F2;
+    text-align: center;  
+    padding: 0; 
+    box-sizing: border-box; 
 }
 
-.input-box-input-full {
+
+.input-box-button-disable {
+    display: flex;
     width: 390px;
-    font-size: 20px;
     height: 47px;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 24px;
     border: 0;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #858585;
     background: #F2F2F2;
+    cursor: pointer;
 }
 
 .input-box-message {
+    min-height: 20px;  /* 메시지 영역의 고정 높이 */
     font-size: 12px;
-    color: #0600C0;
-    margin-top: 5px;  /* input 아래 메시지 여백 */
+    color: #0600C0;    /* 일반 메시지 색상 */
+    display: flex;
+    align-items: center;
 }
 
 .input-box-message-error {
+    min-height: 20px;  /* 메시지 영역의 고정 높이 */
     font-size: 12px;
-    color: red;
-    margin-top: 5px;
+    color: red;        /* 에러 메시지 색상 */
+    display: flex;
+    align-items: center;
 }
 
 .input-box-button {
