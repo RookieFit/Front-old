@@ -1,6 +1,7 @@
-import './MainBox.css';
-import Info_sedBox from "./topBox/Components/infoBox/info_minBox/info_minBox";
-import ProfilePofile from "./topBox/profileBox/profile/profile";
+import './myPage.css';
+import React from 'react';
+import GraphBox from './bottomBox/graphBox';
+import TopMainBox from './topBox/topMainBox';
 
 interface props {
     title: string;
@@ -10,12 +11,16 @@ interface props {
     //onChange : (event: ChangeEvent<HTMLInputElement>) => void;
     //onKeydown? : (event: KeyboardEvent<HTMLInputElement>) => void;
 }
-const MainBox = () => {
+const MyPage = () => {
     return (
-        <div className="mainBoxMyPage">
-            <ProfilePofile/>
-            <Info_sedBox /> 
+        <div className="mainBox">
+            <div className='topBox'>
+                <TopMainBox/>
+            </div>
+            <div className='bottomBox'>
+                <GraphBox/>
+            </div> 
         </div>
-    )
+    )       
 };
-export default MainBox;
+export default MyPage

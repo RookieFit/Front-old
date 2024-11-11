@@ -2,9 +2,9 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.css';
 import Header from './layout/header/header';
 import CalenderPage from './calendar/calenderPage';
-import LoginPage from './logIn/loginPage';
+import LoginPage from './logIn/LoginPage';
 import SignUpPage from './signup/signUpPage';
-import MainBox from './mypage/topBox/mainBox';
+import MyPage from './mypage/myPage';
 
 function App() {
   return (
@@ -12,7 +12,7 @@ function App() {
       <div>
         <Header/>
         <Routes>
-          <Route path="/mypage" element={<MainBox />} />
+          <Route path="/mypage" element={<MyPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/signup" element={<SignUpPage/>} />
           <Route path="/calendar" element={<CalenderPage />} />
