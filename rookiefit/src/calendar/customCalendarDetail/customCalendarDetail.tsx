@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './customCalendarDetail.css';
 import moment from 'moment';
-import { UseCalendar } from './calendarContext';
+import { UseCalendar } from '../calendarContext';
 
 interface Entry {
     title: string;

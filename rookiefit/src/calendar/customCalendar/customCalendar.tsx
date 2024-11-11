@@ -4,7 +4,7 @@ import './Calendar.css';
 import moment from 'moment';
 import { StyledCalendar, StyledCalendarWrapper } from './style';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { UseCalendar } from '../customCalendarDetail/calendarContext';
+import { UseCalendar } from '../calendarContext';
 
 type Value = Date | null;
 
@@ -14,12 +14,6 @@ const CustomCalendar = () => {
 
     // const [date, setDate] = useState<Value>(new Date());
     const [markedDates, setMarkedDates] = useState<string[]>([]); // 일지가 있는 날짜 저장
-
-    // const handleDateChange = (newDate: Value) => {
-    //     if (newDate) {
-    //         updateSelectedDate(newDate); // 날짜가 변경되면 상태 업데이트
-    //     }
-    // };
 
     const dayClickHandler = (newDate: Value) => {
         if (newDate) {

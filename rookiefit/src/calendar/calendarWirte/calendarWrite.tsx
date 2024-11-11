@@ -4,7 +4,7 @@ import TextInput from './calendarInput';
 import AddedDetails from './calendarAddDetails';
 import moment from 'moment';
 import './CalendarWrite.css';
-import { UseCalendar } from '../customCalendarDetail/calendarContext';
+import { UseCalendar } from '../calendarContext';
 
 interface CalendarWriteProps {
     setDetails: React.Dispatch<React.SetStateAction<{
