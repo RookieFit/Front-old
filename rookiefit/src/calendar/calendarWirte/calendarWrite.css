@@ -1,0 +1,96 @@
+.input-row {
+    display: flex;
+    gap: 0.5vw;
+    /* 입력 필드 간격 */
+    padding: 0.1vw 1vw;
+    /* 좌우 여백 */
+}
+
+.calendar-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* 일지작성 디테일 */
+.calendar-write-detail {
+    margin-bottom: 5px;
+}
+
+/* 제목 */
+.calendar-title-input {
+    padding: 0 1vw;
+}
+
+.calendar-title-input label {
+    display: block;
+    background-color: #f0f0f0;
+    padding: 0 1vw;
+    border-radius: 0.7vw;
+    font-size: 0.9rem;
+    text-align: center;
+    margin-bottom: 0.2vw;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.calendar-title-input textarea {
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 0.7vw;
+    resize: none;
+    width: 100%;
+    box-sizing: border-box;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+    height: 2.8vw;
+    /* 텍스트 입력 필드 높이 설정 */
+}
+
+/* 추가버튼 */
+.calendar-write-add {
+    font-size: 1.2rem;
+    border: 1px solid #ddd;
+    border-radius: 1vw;
+    resize: none;
+    /* 크기 조정 비활성화 */
+    height: 3vw;
+    width: 100%;
+    /* 고정 크기 설정 */
+    box-sizing: border-box;
+    /* 패딩 포함한 너비 계산 */
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+    margin-bottom: 0.5vw;
+}
+
+/* 추가하기, 일지목록 */
+.calendar-write-add-detail {
+    padding: 0.1vw 1vw;
+}
+
+/* 일지 입력 섹션 스타일 */
+.diary-input-section {
+    padding: 0.5vw 1vw;
+}
+
+.diary-input-section label {
+    display: block;
+    background-color: #f0f0f0;
+    padding: 0 1vw;
+    border-radius: 0.7vw;
+    font-size: 0.9rem;
+    text-align: center;
+    margin-bottom: 0.2vw;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.diary-input-section textarea {
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 0.7vw;
+    resize: none;
+    width: 100%;
+    box-sizing: border-box;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+    height: 8vw;
+}

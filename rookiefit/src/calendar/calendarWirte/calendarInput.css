@@ -1,0 +1,30 @@
+/* 일지 입력 */
+.text-input-wrapper {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 0.3vw;
+}
+
+.text-input-label {
+    background-color: #f0f0f0;
+    padding: 4px 8px;
+    border-radius: 0.7vw;
+    font-size: 0.9rem;
+    text-align: center;
+    margin-bottom: 2px;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.text-input-field {
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 0.7vw;
+    resize: none;
+    /* 크기 조정 비활성화 */
+    width: 100%;
+    /* 고정 크기 설정 */
+    box-sizing: border-box;
+    /* 패딩 포함한 너비 계산 */
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+}
