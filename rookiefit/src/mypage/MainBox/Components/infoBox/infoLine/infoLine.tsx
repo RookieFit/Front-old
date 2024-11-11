@@ -1,4 +1,3 @@
-import { ChangeEvent, forwardRef } from "react";
 import './InfoLine.css';
 
 interface props {

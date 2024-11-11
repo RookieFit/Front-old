@@ -1,10 +1,10 @@
 .profile_main {
-    display: flex;
-    flex-direction: column;
-    margin-right: 243px;
-    background-color: #ECECEC; 
     width: 636px;
     height: 678px;
+    display: flex;
+    flex-direction: column;
+    margin-right: 15px;
+    background-color: #ECECEC; 
     border-radius: 13px; 
 }
 
@@ -50,16 +50,17 @@ textarea{
 
 .profile_edit{
     font-size: 24px;
-    text-align:center;
     width: 383px;
     height: 45px;
     margin-bottom: 41px;  
     margin-left: 130px;
+    text-align:center;
     background-color: #D9D9D9;  
     border-radius: 13px;
 }
 
-.button{
+.profilePofile_button{
     text-decoration-line: none;
     color: black;
+    margin-top: 4px;
 }

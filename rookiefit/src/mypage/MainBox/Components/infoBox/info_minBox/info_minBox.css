@@ -1,7 +1,6 @@
 .myinfo_main{
     display: flex;
     flex-direction: column;
-    margin-right: 243px;
     background-color: #ECECEC; 
     width: 636px;
     height: 678px;
@@ -10,19 +9,23 @@
 
 .myinfo_click{
     font-size: 36px;
-    padding-left: 35px;
+    padding-left: 30px;
     padding-top: 25px;
     display: flex;
     justify-content: left;
 }
 
-.button2 {
+.myinfo_button { 
     width: 74px;
     height: 24px;
     font-size: 18px;
     color: rgb(0, 0, 0);
     text-decoration-line: none;
-    resize: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: right;
+    margin-left: 270px;
+    margin-bottom: 2px;
 }
 
 .myinfo_box_info{

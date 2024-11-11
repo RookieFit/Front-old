@@ -1,5 +1,5 @@
 import InfoLine from '../infoLine/infoLine';
-import './info_sedBox.css';
+import './info_minBox.css';
 import { Link } from "react-router-dom";
 
 interface props {
@@ -10,23 +10,20 @@ interface props {
     //onChange : (event: ChangeEvent<HTMLInputElement>) => void;
     //onKeydown? : (event: KeyboardEvent<HTMLInputElement>) => void;
 }
-    const Info_sedBox = () => {
+    const info_minBox = () => {
     const myinfo_edit = [
-        {button2: "수정하기", path: "/myPage_Edit"}
+        {myinfo_button: "수정하기", path: "/myPage_Edit"}
     ];
     return (
         <div className="myinfo_main">
             <div className='myinfo_click'> 내 정보</div>
-            <nav className='button2'>
+            <nav className='myinfo_button'>
                     {myinfo_edit.map((item, index) => (
-                    <Link key={index} to={item.path} className='button2'>
-                    {item.button2}
+                    <Link key={index} to={item.path} className='myinfo_button'>
+                    {item.myinfo_button}
                     </Link>
                     ))}
-                </nav>
-                <Link to='/myPage_Edit' className='button2' />
-                
-            
+                </nav>                
             <div className='myinfo_box_info'>
             <InfoLine />
             <InfoLine />
@@ -39,13 +36,7 @@ interface props {
             <InfoLine />
             </div>
         </div>
-
-
-    
-
-
     )
-
 };
 
-export default Info_sedBox;
+export default info_minBox;
