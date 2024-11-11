@@ -4,26 +4,31 @@ import './Calendar.css';
 import moment from 'moment';
 import { StyledCalendar, StyledCalendarWrapper } from './style';
 import { useNavigate, useLocation } from 'react-router-dom';
+import { UseCalendar } from '../customCalendarDetail/calendarContext';
 
-type ValuePiece = Date | null;
-type Value = ValuePiece | [ValuePiece, ValuePiece];
+type Value = Date | null;
 
 const CustomCalendar = () => {
     const navigate = useNavigate();
-    const [date, setDate] = useState<Value>(new Date());
+    const { selectedDate, updateSelectedDate } = UseCalendar(); // useContext로 selectedDate 가져오기
+
+    // const [date, setDate] = useState<Value>(new Date());
     const [markedDates, setMarkedDates] = useState<string[]>([]); // 일지가 있는 날짜 저장
 
-    const handleDateChange = (newDate: Value) => {
-        setDate(newDate);
-    };
+    // const handleDateChange = (newDate: Value) => {
+    //     if (newDate) {
+    //         updateSelectedDate(newDate); // 날짜가 변경되면 상태 업데이트
+    //     }
+    // };
 
     const dayClickHandler = (newDate: Value) => {
-        setDate(newDate);
-        navigate("/calendar", { state: { selectedDate: newDate } });
-    }
+        if (newDate) {
+            updateSelectedDate(newDate); // 날짜 클릭 시 상태 업데이트
+        }
+    };
 
     const goToWritePage = () => {
-        navigate("/calendar/write", { state: { selectedDate: date } });
+        navigate("/calendar/write");
     };
 
     const isWritePage = useLocation().pathname === '/calendar/write';
@@ -43,9 +48,9 @@ const CustomCalendar = () => {
         <StyledCalendarWrapper>
             <div className='calendar-back'>
                 <StyledCalendar
-                    value={date}
+                    value={selectedDate}
                     onClickDay={dayClickHandler}
-                    onChange={handleDateChange}
+                    // onChange={handleDateChange}
                     formatDay={(locale, date) => moment(date).format("D")}
                     formatYear={(locale, date) => moment(date).format("YYYY")}
                     formatMonthYear={(locale, date) => moment(date).format("YYYY. MM")}
