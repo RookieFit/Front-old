@@ -13,11 +13,12 @@
 .login_title {
     font-weight: 400;
     font-size: 36px;
-    color: #000000;/* 텍스트 색상 설정 */
+    color: #000000;
+    /* 텍스트 색상 설정 */
 }
 
 /* 아이디/비밀번호 찾기 버튼 */
-.find_id_password_button {   
+.find_id_password_button {
     font-weight: 400;
     font-size: 15px;
     line-height: 18px;
@@ -58,7 +59,9 @@
 }
 
 /* SNS 로그인 버튼 스타일 */
-.kakao_login, .google_login, .naver_login {
+.kakao_login,
+.google_login,
+.naver_login {
     width: 70px;
     height: 70px;
     background-size: cover;
@@ -100,7 +103,7 @@
 }
 
 /* 간편 로그인 텍스트 */
-.easy_login_text {   
+.easy_login_text {
     font-weight: 400;
     font-size: 20px;
     line-height: 24px;
