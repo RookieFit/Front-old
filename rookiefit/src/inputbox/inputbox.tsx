@@ -10,7 +10,7 @@ interface Props {
     isErrorMessage?: boolean;
     buttonTitle?: string;
     onChange: (event: ChangeEvent<HTMLInputElement>) => void;
-    onKeydown: (event: KeyboardEvent<HTMLInputElement>) => void;
+    onKeyDown: (event: KeyboardEvent<HTMLInputElement>) => void;
     onButtonClick?: () => void;
 }
 
@@ -24,7 +24,7 @@ const InputBox = forwardRef<HTMLInputElement, Props>((props: Props, ref) => {
         isErrorMessage = false,
         buttonTitle,
         onChange,
-        onKeydown,
+        onKeyDown,
         onButtonClick,
     } = props;
 
@@ -44,7 +44,7 @@ const InputBox = forwardRef<HTMLInputElement, Props>((props: Props, ref) => {
                         value={value}
                         placeholder={placeholder}
                         onChange={onChange}
-                        onKeyDown={onKeydown}
+                        onKeyDown={onKeyDown}
                     />
                     {buttonTitle && onButtonClick && (
                         <button className={buttonClassName} onClick={onButtonClick}>

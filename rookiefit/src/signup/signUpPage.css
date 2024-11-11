@@ -8,7 +8,7 @@
     gap: 20px;
  } 
 /* 회원가입 타이틀*/
-.signup_title {
+.signup-title {
     font-family: 'Inter';
     font-style: normal;
     font-weight: 400;
@@ -25,7 +25,7 @@
     background-color: #9C9C9C;
 }
 
-.sign_up_button {
+.sign-up-button {
     font-weight: 400;
     font-size: 20px;
     line-height: 24px;
