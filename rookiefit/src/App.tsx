@@ -10,13 +10,14 @@ function App() {
   return (
     <BrowserRouter>
       <div>
-        <Header/>
+        <Header />
         <Routes>
           <Route path="/mypage" element={<MyPage />} />
           <Route path="/login" element={<LoginPage />} />
-          <Route path="/signup" element={<SignUpPage/>} />
+          <Route path="/signup" element={<SignUpPage />} />
           <Route path="/calendar" element={<CalenderPage />} />
           <Route path="/calendar/write" element={<CalenderPage />} /> {/* /calendar/write 경로 추가 */}
+          <Route path="/calendar/detail" element={<CalenderPage />} /> {/* /calendar/write 경로 추가 */}
           <Route path="/diet" element={<></>} />
           <Route path="/community" element={<></>} />
         </Routes>

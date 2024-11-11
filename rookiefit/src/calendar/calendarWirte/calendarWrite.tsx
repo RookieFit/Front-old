@@ -4,22 +4,13 @@ import TextInput from './calendarInput';
 import AddedDetails from './calendarAddDetails';
 import moment from 'moment';
 import './CalendarWrite.css';
+import { useCalendarDetails } from '../calendarDetailContext';
 import { UseCalendar } from '../calendarContext';
 
-interface CalendarWriteProps {
-    setDetails: React.Dispatch<React.SetStateAction<{
-        entries: Array<{
-            title: string;
-            diaryContent: string;
-            workoutDetails: string[][];
-            date: string;
-        }>;
-    }>>;
-}
-
-const CalendarWrite = ({ setDetails }: CalendarWriteProps) => {
+const CalendarWrite = () => {
     const navigate = useNavigate();
     const { selectedDate } = UseCalendar(); // useContext로 selectedDate 가져오기
+    const { setDetails } = useCalendarDetails(); // CalendarDetailsProvider에서 setDetails 가져오기
 
     const [content, setContent] = useState({
         exerciseName: '',
