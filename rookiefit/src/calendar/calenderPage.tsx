@@ -33,3 +33,11 @@ const CalendarPage = () => {
 };
 
 export default CalendarPage;
+
+// location의 state에서 선택된 날짜 가져오기
+// const selectedDate = location.state?.selectedDate;
+
+// // 선택된 날짜에 맞는 데이터 필터링
+// const filteredDetails = details.entries.filter(
+//     (entry) => entry.date === moment(selectedDate).format('YYYY-MM-DD')
+// );

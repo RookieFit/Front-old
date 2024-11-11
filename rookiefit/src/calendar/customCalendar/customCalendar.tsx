@@ -17,7 +17,12 @@ const CustomCalendar = () => {
         setDate(newDate);
     };
 
-    const dayClickHandler = () => {
+    const dayClickHandler = (newDate: Value) => {
+        setDate(newDate);
+        navigate("/calendar", { state: { selectedDate: newDate } });
+    }
+
+    const goToWritePage = () => {
         navigate("/calendar/write", { state: { selectedDate: date } });
     };
 
@@ -39,6 +44,7 @@ const CustomCalendar = () => {
             <div className='calendar-back'>
                 <StyledCalendar
                     value={date}
+                    onClickDay={dayClickHandler}
                     onChange={handleDateChange}
                     formatDay={(locale, date) => moment(date).format("D")}
                     formatYear={(locale, date) => moment(date).format("YYYY")}
@@ -57,7 +63,7 @@ const CustomCalendar = () => {
                     }}
                 />
                 {!isWritePage && (
-                    <div className='calendar-write' onClick={dayClickHandler}>
+                    <div className='calendar-write' onClick={goToWritePage}>
                         운동 일지 작성하러 가기
                     </div>
                 )}
