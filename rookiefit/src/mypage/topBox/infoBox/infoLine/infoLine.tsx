@@ -1,4 +1,4 @@
-import './InfoLine.css';
+import './infoLine.css';
 
 interface props {
     title: string;
@@ -9,9 +9,9 @@ interface props {
 }
 const InfoLine = () => {
     return (
-        <div className="myinfo_box">
-            <div className="myinfo_little_box">{'title'}</div>
-            <div className="myinfo_box_box"></div>
+        <div className="myinfo-box">
+            <div className="myinfo-little-box">{'title'}</div>
+            <div className="myinfo-box-box"></div>
         </div>
     )
 };

@@ -1,11 +1,11 @@
-.myinfo_box{
+.myinfo-box{
     display: flex;
     flex-direction: row;
     margin-top: 7px;
     margin-left: 31px;
 }
 
-.myinfo_little_box{
+.myinfo-little-box{
     width: 120px;
     height: 50px;
     border-radius: 5px;
@@ -17,7 +17,7 @@
     margin-top: 3px;
 }
 
-.myinfo_box_box{
+.myinfo-box-box{
     width: 385px;
     height: 50px;
     text-align: center;
