@@ -1,41 +1,66 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import 'react-calendar/dist/Calendar.css';
 import './Calendar.css';
 import moment from 'moment';
 import { StyledCalendar, StyledCalendarWrapper } from './style';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 type ValuePiece = Date | null;
-
 type Value = ValuePiece | [ValuePiece, ValuePiece];
 
 const CustomCalendar = () => {
-    const today = new Date();
-    const [date, setDate] = useState<Value>(today);
+    const navigate = useNavigate();
+    const [date, setDate] = useState<Value>(new Date());
+    const [markedDates, setMarkedDates] = useState<string[]>([]); // 일지가 있는 날짜 저장
 
     const handleDateChange = (newDate: Value) => {
         setDate(newDate);
     };
 
     const dayClickHandler = () => {
-    }
+        navigate("/calendar/write", { state: { selectedDate: date } });
+    };
+
+    const isWritePage = useLocation().pathname === '/calendar/write';
+
+    useEffect(() => {
+        // 나중에 DB에서 일지 있는 날짜들 불러오기
+        // 예: 
+        // fetch('/api/marked-dates')
+        //   .then(response => response.json())
+        //   .then(data => {
+        //     setMarkedDates(data.markedDates); // DB에서 받은 날짜들로 markedDates 업데이트
+        //   })
+        //   .catch(error => console.error('Error:', error));
+    }, []);
 
     return (
         <StyledCalendarWrapper>
             <div className='calendar-back'>
                 <StyledCalendar
-                    onClickDay={dayClickHandler}
                     value={date}
                     onChange={handleDateChange}
-                    formatDay={(locale, date) => moment(date).format("D")} // 일 제거 숫자만 보이게
-                    formatYear={(locale, date) => moment(date).format("YYYY")} // 네비게이션 눌렀을때 숫자 년도만 보이게
-                    formatMonthYear={(locale, date) => moment(date).format("YYYY. MM")} // 네비게이션에서 2023. 12 이렇게 보이도록 설정
-                    calendarType="gregory" // 일요일 부터 시작
-                    showNeighboringMonth={false} // 전달, 다음달 날짜 숨기기
-                    next2Label={null} // +1년 & +10년 이동 버튼 숨기기
-                    prev2Label={null} // -1년 & -10년 이동 버튼 숨기기
-                    minDetail="year" // 10년단위 년도 숨기기
+                    formatDay={(locale, date) => moment(date).format("D")}
+                    formatYear={(locale, date) => moment(date).format("YYYY")}
+                    formatMonthYear={(locale, date) => moment(date).format("YYYY. MM")}
+                    calendarType="gregory"
+                    showNeighboringMonth={false}
+                    next2Label={null}
+                    prev2Label={null}
+                    minDetail="year"
+                    tileClassName={({ date }) => {
+                        const dateString = moment(date).format('YYYY-MM-DD');
+                        if (markedDates.includes(dateString)) {
+                            return 'marked-date'; // 일지가 있는 날짜에 스타일 추가
+                        }
+                        return '';
+                    }}
                 />
-                <div>편집하기</div>
+                {!isWritePage && (
+                    <div className='calendar-write' onClick={dayClickHandler}>
+                        운동 일지 작성하러 가기
+                    </div>
+                )}
             </div>
         </StyledCalendarWrapper>
     );

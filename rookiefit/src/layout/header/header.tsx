@@ -1,8 +1,6 @@
-// Header.js
 import React from 'react';
 import './Header.css';
 import { Link, useLocation } from 'react-router-dom';
-//TODO: 로그인 여부를 판단해 로그인 필요 시 링크 전환 구현이 필요합니다.
 
 const Header = () => {
     const location = useLocation();
@@ -15,6 +13,10 @@ const Header = () => {
         { label: "식단", path: "/diet" },
         { label: "커뮤니티", path: "/community" }
     ];
+
+    // 경로가 /calendar로 시작하면 활성화 상태로
+    const isCalendarPage = location.pathname.startsWith('/calendar');
+
     return (
         <div>
             <header className="navbar">
@@ -26,7 +28,7 @@ const Header = () => {
                         <Link
                             key={index}
                             to={item.path}
-                            className={`nav-link ${location.pathname === item.path ? 'active' : ''}`}
+                            className={`nav-link ${item.path === '/calendar' && isCalendarPage ? 'active' : location.pathname === item.path ? 'active' : ''}`}
                         >
                             {item.label}
                         </Link>
