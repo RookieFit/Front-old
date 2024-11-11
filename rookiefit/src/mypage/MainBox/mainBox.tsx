@@ -1,6 +1,7 @@
 import { ChangeEvent, forwardRef, useEffect } from "react";
 import './MainBox.css';
 import Info_sedBox from "../infoBox/info_sedBox/info_sedBox";
+import PorfilePofile from "../porfileBox/porfilePofile/porfilePofile";
 
 interface props {
     title: string;
@@ -13,6 +14,7 @@ interface props {
 const MainBox = () => {
     return (
         <div className="mainBoxMyPage">
+            <PorfilePofile/>
             <Info_sedBox /> 
         </div>
     )

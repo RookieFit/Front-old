@@ -7,7 +7,6 @@
     justify-content: center;
     gap: 20px;
  } 
- 
 /* 회원가입 타이틀*/
 .signup_title {
     font-family: 'Inter';
@@ -16,7 +15,6 @@
     font-size: 36px;
     color: #000000;
 }
-
 .name_container {
     margin-top: 0.2%;
     flex: 1;
@@ -26,7 +24,6 @@
     justify-content: center;
     gap: 20px;
 }
-
 .underline{
     width:28%;
     height: 1px;

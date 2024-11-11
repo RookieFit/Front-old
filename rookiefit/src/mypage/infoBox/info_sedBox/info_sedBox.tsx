@@ -1,4 +1,4 @@
-import InfoLine from '../infoLine/InfoLine';
+import InfoLine from '../infoLine/infoLine';
 import './info_sedBox.css';
 import { Link } from "react-router-dom";
 
