@@ -4,16 +4,17 @@ import Header from './layout/header/header';
 import CalenderPage from './calendar/calenderPage';
 import LoginPage from './logIn/LoginPage';
 import SignUpPage from './signup/signUpPage';
+import MainBox from './mypage/topBox/mainBox';
 
 function App() {
   return (
     <BrowserRouter>
       <div>
-        <Header />
+        <Header/>
         <Routes>
+          <Route path="/mypage" element={<MainBox />} />
           <Route path="/login" element={<LoginPage />} />
-          <Route path="/signup" element={<SignUpPage />} />
-          <Route path="/mypage" element={<></>} />
+          <Route path="/signup" element={<SignUpPage/>} />
           <Route path="/calendar" element={<CalenderPage />} />
           <Route path="/calendar/write" element={<CalenderPage />} /> {/* /calendar/write 경로 추가 */}
           <Route path="/diet" element={<></>} />
