@@ -81,3 +81,14 @@ export const StyledCalendarWrapper = styled.div`
 // 캘린더를 불러옴
 export const StyledCalendar = styled(Calendar)`
 `;
+
+export const StyledDot = styled.div`
+  background-color: #000;
+  border-radius: 50%;
+  width: 0.3rem;
+  height: 0.3rem;
+  position: absolute;
+  top: 60%;
+  left: 50%;
+  transform: translateX(-50%);
+`;

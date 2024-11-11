@@ -8,12 +8,14 @@ import { UseCalendar } from '../calendarContext';
 
 type Value = Date | null;
 
-const CustomCalendar = () => {
+
+const CustomCalendar = ({ details }: { details: { date: string; /* other fields */ }[] }) => {
+    const markedDates = details.map(detail => moment(detail.date).format('YYYY-MM-DD'));
+
     const navigate = useNavigate();
     const { selectedDate, updateSelectedDate } = UseCalendar(); // useContext로 selectedDate 가져오기
 
-    // const [date, setDate] = useState<Value>(new Date());
-    const [markedDates, setMarkedDates] = useState<string[]>([]); // 일지가 있는 날짜 저장
+    // const [markedDates, setMarkedDates] = useState<string[]>([]); // 일지가 있는 날짜 저장
 
     const dayClickHandler = (newDate: Value) => {
         if (newDate) {
@@ -37,7 +39,6 @@ const CustomCalendar = () => {
         //   })
         //   .catch(error => console.error('Error:', error));
     }, []);
-
     return (
         <StyledCalendarWrapper>
             <div className='calendar-back'>
@@ -55,10 +56,7 @@ const CustomCalendar = () => {
                     minDetail="year"
                     tileClassName={({ date }) => {
                         const dateString = moment(date).format('YYYY-MM-DD');
-                        if (markedDates.includes(dateString)) {
-                            return 'marked-date'; // 일지가 있는 날짜에 스타일 추가
-                        }
-                        return '';
+                        return markedDates.includes(dateString) ? 'marked-date' : '';
                     }}
                 />
                 {!isWritePage && (
@@ -70,5 +68,4 @@ const CustomCalendar = () => {
         </StyledCalendarWrapper>
     );
 };
-
 export default CustomCalendar;

@@ -31,3 +31,20 @@
 .calendar-write:hover {
     background-color: #38d29b;
 }
+
+.marked-date {
+    position: relative;
+}
+
+.marked-date::after {
+    content: '';
+    position: absolute;
+    bottom: 4px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 6px;
+    height: 6px;
+    background-color: #3498db;
+    /* 점의 색상 */
+    border-radius: 50%;
+}

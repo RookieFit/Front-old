@@ -20,7 +20,7 @@ interface CalendarProviderProps {
 }
 
 // CalendarProvider 컴포넌트: 날짜 상태를 자식에게 제공
-export const CalendarProvider = ({ children }: CalendarProviderProps) => {
+export const CalendarProvider: React.FC<CalendarProviderProps> = ({ children }) => {
     const [selectedDate, setSelectedDate] = useState<Date>(new Date());
 
     // 날짜 업데이트 함수

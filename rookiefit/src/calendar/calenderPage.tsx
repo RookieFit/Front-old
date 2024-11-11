@@ -22,7 +22,7 @@ const CalendarPage = () => {
 
     return (
         <div className='calendarPage'>
-            <CustomCalendar />
+            <CustomCalendar details={details.entries} />
             {isWritePage ? ( // '일기 작성' 페이지일 경우 CalendarWrite 컴포넌트 표시
                 <CalendarWrite setDetails={setDetails} />
             ) : (
