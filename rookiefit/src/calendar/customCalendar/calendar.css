@@ -8,4 +8,26 @@
     border-radius: 12px;
     box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.15);
     background-color: beige;
+    position: relative;
+    /* 버튼 위치를 상대적으로 조정 */
+}
+
+.calendar-write {
+    position: absolute;
+    /* 캘린더 오른쪽 아래로 고정 */
+    bottom: 0.3vw;
+    right: 1.3vw;
+    background-color: #51F8C4;
+    padding: 0.4vw 0.4vw;
+    border-radius: 12px;
+    cursor: pointer;
+    color: rgb(85, 85, 85);
+    font-size: 1rem;
+    font-weight: bold;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.15);
+    transition: background-color 0.3s ease;
+}
+
+.calendar-write:hover {
+    background-color: #38d29b;
 }

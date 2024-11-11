@@ -1,0 +1,40 @@
+.myinfo_main {
+    display: flex;
+    flex-direction: column;
+    background-color: #ECECEC; 
+    width: 636px;
+    height: 678px;
+    border-radius: 13px; 
+}
+
+.myinfo_click {
+    font-size: 36px;
+    padding-left: 30px;
+    padding-top: 25px;
+    display: flex;
+    justify-content: left;
+}
+
+.myinfo_button { 
+    width: 74px;
+    height: 24px;
+    font-size: 18px;
+    color: rgb(0, 0, 0);
+    text-decoration-line: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: right;
+    margin-left: 270px;
+    margin-bottom: 2px;
+}
+
+.myinfo_box_info {
+    margin-bottom: 18px;
+    margin-left: 21px;
+    width: 593px;
+    height: 572px;
+    display: flex;
+    flex-direction: column;
+    border-radius: 13px;
+    background-color: #D9D9D9;
+}
