@@ -1,5 +1,6 @@
 // loginPage.tsx
 import { useState, ChangeEvent, KeyboardEvent } from 'react';
+import { useNavigate } from 'react-router-dom';  // useNavigate import
 import InputBox from '../inputbox/inputbox';
 import './loginPage.css';
 
@@ -11,6 +12,9 @@ function LoginPage() {
     const [passwordMessage, setPasswordMessage] = useState('');
     const [isIdError, setIsIdError] = useState(false);
     const [isPasswordError, setIsPasswordError] = useState(false);
+
+    // useNavigate 훅 사용
+    const navigate = useNavigate();  // 페이지 이동을 위한 navigate 훅
 
     // 정규식 패턴
     const koreanRegex = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/;
@@ -62,6 +66,16 @@ function LoginPage() {
         }
     };
 
+    // 아이디 찾기 클릭 시
+    const handleFindIdClick = () => {
+        navigate('/findId');  // 아이디 찾기 페이지로 이동
+    };
+
+    // 비밀번호 찾기 클릭 시
+    const handleFindPasswordClick = () => {
+        navigate('/findPassword');  // 비밀번호 찾기 페이지로 이동
+    };
+
     return (
         <div id="log-in-wrapper">
             <h2 className="login-title">로그인</h2>
@@ -93,9 +107,13 @@ function LoginPage() {
             </button>
 
             <div className="find-id-password-container">
-                <button className="find-id-password-button">아이디 찾기</button>
+                <button className="find-id-password-button" onClick={handleFindIdClick}>
+                    아이디 찾기
+                </button>
                 <span className="vertical-line"></span>
-                <button className="find-id-password-button">비밀번호 찾기</button>
+                <button className="find-id-password-button" onClick={handleFindPasswordClick}>
+                    비밀번호 찾기
+                </button>
             </div>
             
             <div className="underline"></div>

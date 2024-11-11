@@ -17,18 +17,6 @@
     /* 텍스트 색상 설정 */
 }
 
-/* 아이디/비밀번호 찾기 버튼 */
-.find-id-password-button {   
-    font-weight: 400;
-    font-size: 15px;
-    line-height: 18px;
-    color: #9E9E9E;
-    background: none;
-    border: 0;
-    cursor: pointer;
-    margin-top: 10px;
-}
-
 /* 회원가입 버튼 */
 .sign-in-button {
     font-weight: 400;
@@ -97,6 +85,18 @@
     align-items: center;
     justify-content: center;
     gap: 10px;
+    margin-top: 10px;
+}
+
+/* 아이디/비밀번호 찾기 버튼 */
+.find-id-password-button {   
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 18px;
+    color: #9E9E9E;
+    background: none;
+    border: 0;
+    cursor: pointer;
     margin-top: 10px;
 }
 

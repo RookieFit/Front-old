@@ -15,6 +15,9 @@ function SignUpPage() {
     const [passwordMessage, setPasswordMessage] = useState<string>('');
     const [isPasswordErrorMessage, setIsPasswordErrorMessage] = useState<boolean>(false);
 
+    const [phoneNumberMessage, setPhoneNumberMessage] = useState<string>('');
+    const [isPhoneNumberError, setIsPhoneNumberError] = useState<boolean>(false);
+
     const [certificationMessage, setCertificationMessage] = useState<string>('');
     const [isCertificationError, setIsCertificationError] = useState<boolean>(false);
 
@@ -33,6 +36,20 @@ function SignUpPage() {
             setId(value);
             setIdMessage('');
             setIsIdErrorMessage(false);
+        }
+    };
+
+    // 전화번호 입력 핸들러
+    const handlePhoneNumberChange = (e: ChangeEvent<HTMLInputElement>) => {
+        const value = e.target.value;
+
+        if (!numericRegex.test(value)) {
+            setPhoneNumberMessage('형식에 맞지 않습니다.');
+            setIsPhoneNumberError(true);
+        } else {
+            setPhoneNumber(value);
+            setPhoneNumberMessage('');
+            setIsPhoneNumberError(false);
         }
     };
 
@@ -65,7 +82,7 @@ function SignUpPage() {
 
     return (
         <div id="sign-up-wrapper">
-            <div className="signup_title">회원 가입</div>
+            <div className="signup-title">회원 가입</div>
 
             <InputBox
                 title="아이디"
@@ -113,7 +130,9 @@ function SignUpPage() {
                 placeholder="전화번호를 입력해주세요"
                 type="text"
                 value={phoneNumber}
-                onChange={(e: ChangeEvent<HTMLInputElement>) => setPhoneNumber(e.target.value)}
+                onChange={handlePhoneNumberChange}
+                message={phoneNumberMessage}
+                isErrorMessage={isPhoneNumberError}
                 buttonTitle="인증 요청"
                 onButtonClick={() => alert("인증 번호 전송 중 ---")}
                 onKeyDown={() => {}}

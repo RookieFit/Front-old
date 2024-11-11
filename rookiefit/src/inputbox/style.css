@@ -14,7 +14,7 @@
     width: 125px;
     height: 47px;
     font-weight: 400;
-    font-size: 20px;
+    font-size: 17px;
     line-height: 24px;
     border: 0;
     align-items: center;
@@ -39,28 +39,24 @@
 }
 
 .input-box-input {
-    font-size: 20px;
+    font-size: 17px;
     width: 254px;
     height: 47px;
     border: 0;
     background: #F2F2F2;
-    text-align: center;
-    padding: 0;
+    padding: 1vw; 
     box-sizing: border-box;
 }
-
 
 .input-box-button-disable {
     display: flex;
     width: 390px;
     height: 47px;
     font-weight: 400;
-    font-size: 20px;
+    font-size: 17px;
     line-height: 24px;
     border: 0;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
+    padding: 1vw; 
     color: #858585;
     background: #F2F2F2;
 }
@@ -90,7 +86,7 @@
     width: 125px;
     height: 47px;
     font-weight: 400;
-    font-size: 20px;
+    font-size: 17px;
     line-height: 24px;
     border: 0;
     align-items: center;
