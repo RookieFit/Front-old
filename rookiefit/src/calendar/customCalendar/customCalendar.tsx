@@ -4,21 +4,25 @@ import './Calendar.css';
 import moment from 'moment';
 import { StyledCalendar, StyledCalendarWrapper } from './style';
 import { useNavigate, useLocation } from 'react-router-dom';
+import { UseCalendar } from '../calendarContext';
 
-type ValuePiece = Date | null;
-type Value = ValuePiece | [ValuePiece, ValuePiece];
+type Value = Date | null;
 
 const CustomCalendar = () => {
     const navigate = useNavigate();
-    const [date, setDate] = useState<Value>(new Date());
+    const { selectedDate, updateSelectedDate } = UseCalendar(); // useContext로 selectedDate 가져오기
+
+    // const [date, setDate] = useState<Value>(new Date());
     const [markedDates, setMarkedDates] = useState<string[]>([]); // 일지가 있는 날짜 저장
 
-    const handleDateChange = (newDate: Value) => {
-        setDate(newDate);
+    const dayClickHandler = (newDate: Value) => {
+        if (newDate) {
+            updateSelectedDate(newDate); // 날짜 클릭 시 상태 업데이트
+        }
     };
 
-    const dayClickHandler = () => {
-        navigate("/calendar/write", { state: { selectedDate: date } });
+    const goToWritePage = () => {
+        navigate("/calendar/write");
     };
 
     const isWritePage = useLocation().pathname === '/calendar/write';
@@ -38,8 +42,9 @@ const CustomCalendar = () => {
         <StyledCalendarWrapper>
             <div className='calendar-back'>
                 <StyledCalendar
-                    value={date}
-                    onChange={handleDateChange}
+                    value={selectedDate}
+                    onClickDay={dayClickHandler}
+                    // onChange={handleDateChange}
                     formatDay={(locale, date) => moment(date).format("D")}
                     formatYear={(locale, date) => moment(date).format("YYYY")}
                     formatMonthYear={(locale, date) => moment(date).format("YYYY. MM")}
@@ -57,7 +62,7 @@ const CustomCalendar = () => {
                     }}
                 />
                 {!isWritePage && (
-                    <div className='calendar-write' onClick={dayClickHandler}>
+                    <div className='calendar-write' onClick={goToWritePage}>
                         운동 일지 작성하러 가기
                     </div>
                 )}

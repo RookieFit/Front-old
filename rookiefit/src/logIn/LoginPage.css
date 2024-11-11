@@ -13,7 +13,8 @@
 .login-title {
     font-weight: 400;
     font-size: 36px;
-    color: #000000;/* 텍스트 색상 설정 */
+    color: #000000;
+    /* 텍스트 색상 설정 */
 }
 
 /* 아이디/비밀번호 찾기 버튼 */

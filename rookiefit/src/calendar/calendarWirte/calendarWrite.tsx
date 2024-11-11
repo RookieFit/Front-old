@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import TextInput from './calendarInput';
 import AddedDetails from './calendarAddDetails';
 import moment from 'moment';
 import './CalendarWrite.css';
+import { UseCalendar } from '../calendarContext';
 
 interface CalendarWriteProps {
     setDetails: React.Dispatch<React.SetStateAction<{
@@ -17,9 +18,9 @@ interface CalendarWriteProps {
 }
 
 const CalendarWrite = ({ setDetails }: CalendarWriteProps) => {
-    const location = useLocation();
     const navigate = useNavigate();
-    const selectedDate = location.state?.selectedDate || new Date(); // 선택된 날짜 가져오기, 없으면 오늘 날짜
+    const { selectedDate } = UseCalendar(); // useContext로 selectedDate 가져오기
+
     const [content, setContent] = useState({
         exerciseName: '',
         repetitions: '',
