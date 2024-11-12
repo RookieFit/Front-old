@@ -2,7 +2,7 @@ import InfoLineEdit from '../infoLine/infoLineEdit';
 import './infoMiniBox.css';
 import { Link, useNavigate } from "react-router-dom";
 
-const InfoMimiBoxEdit = () => {
+const InfoMiniBoxEdit = () => {
 const navigate = useNavigate();
 const myPage = () => {
     navigate('/myPage')
@@ -28,4 +28,4 @@ const myPage = () => {
     )
 };
 
-export default InfoMimiBoxEdit;
+export default InfoMiniBoxEdit;
