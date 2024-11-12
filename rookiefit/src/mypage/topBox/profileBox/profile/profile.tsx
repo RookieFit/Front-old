@@ -9,8 +9,12 @@ const navigate = useNavigate();
 const myPageEdit = () => {
   navigate('/myPageEdit')
 };
+const main = () => {
+    navigate('/main')
+};
   return (
     <div className='profile-main'>
+        <input type='button' value="로그아웃" onClick={main} className='profilelogout'/>
       <div className='profile-image'>
         <img className='profileimage' src= {logo}></img>
       </div>
