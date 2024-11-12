@@ -3,7 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import moment from 'moment';
 import { UseCalendar } from '../calendarContext';
 import { useCalendarDetails } from '../calendarDetailContext';
-import AddedDetails from '../calendarWirte/calendarAddDetails';
+import AddedDetails from '../calendarComponents/calendarAddDetails';
+import './calendarDetailUpdate.css'
 
 const CalendarUpdate = () => {
     const navigate = useNavigate();
@@ -54,6 +55,14 @@ const CalendarUpdate = () => {
         navigate("/calendar"); // 제출 후 캘린더 페이지로 이동
     };
 
+    // 삭제 처리
+    const handleDelete = () => {
+        setDetails(prevDetails => ({
+            entries: prevDetails.entries.filter(entry => entry.date !== selectedDate.toString())
+        }));
+        navigate("/calendar"); // 삭제 후 캘린더 페이지로 이동
+    };
+
     return (
         <div className="calendar-detail-back">
             <div className="calendar-update-wrapper">
@@ -71,15 +80,19 @@ const CalendarUpdate = () => {
                 <div className="calendar-write-add-detail">
                     {/* 운동 세부사항 추가된 부분 */}
                     <AddedDetails details={workoutDetails} />
+                    <div className="diary-input-section">
+                        <textarea
+                            value={diaryContent}
+                            onChange={handleDiaryChange}
+                            placeholder="여기에 자유롭게 내용을 입력하세요."
+                        />
+                    </div>
+                    <div className="calendar-detail-update-wrapper">
+                        <button className="calendar-write-update" onClick={handleUpdate}>수정 완료</button>
+                        <div className="divider"></div>
+                        <button className="calendar-write-delete" onClick={handleDelete}>삭제</button>
+                    </div>
                 </div>
-                <div className="diary-input-section">
-                    <textarea
-                        value={diaryContent}
-                        onChange={handleDiaryChange}
-                        placeholder="여기에 자유롭게 내용을 입력하세요."
-                    />
-                </div>
-                <button onClick={handleUpdate}>수정 완료</button>
             </div>
         </div>
     );

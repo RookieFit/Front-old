@@ -1,8 +1,9 @@
-import React, { } from 'react';
+import React from 'react';
 import './customCalendarDetail.css';
 import moment from 'moment';
 import { useNavigate } from 'react-router-dom';
 import { useCalendarDetails } from '../calendarDetailContext';
+import { UseCalendar } from '../calendarContext';
 
 interface Entry {
     title: string;
@@ -13,28 +14,25 @@ interface Entry {
 
 const CustomCalendarDetail = () => {
     const { details } = useCalendarDetails(); // details를 context에서 가져오기
+    const { updateSelectedDate } = UseCalendar(); // selectedDate 업데이트 함수 가져오기
     const navigate = useNavigate();
 
-    const goToCalendarUpdate = () => {
+    const goToCalendarUpdate = (date: Date) => {
+        updateSelectedDate(date); // 선택한 날짜로 업데이트
         navigate('/calendar/detail');
     };
 
-    // 엔트리 필터링: 최신 5개만 추출
     const getRecentEntries = (entries: Entry[]) => {
-        // 날짜 기준으로 정렬 (내림차순)
         const sortedEntries = entries.sort((a, b) => moment(b.date).isBefore(moment(a.date)) ? -1 : 1);
-
-        // 최신 5개 항목만 반환
         return sortedEntries.slice(0, 5);
     };
 
-    // 모든 엔트리 필터링
     const renderEntries = (entries: Entry[]) => (
         getRecentEntries(entries).map((entry, index) => (
             <div
                 key={index}
                 className={`calendar-detail-item`}
-                onClick={goToCalendarUpdate}
+                onClick={() => goToCalendarUpdate(entry.date)} // 선택한 날짜 전달
                 tabIndex={0}
                 role="button"
             >
@@ -43,7 +41,6 @@ const CustomCalendarDetail = () => {
                     <p><strong>제목:</strong> {entry.title}</p>
                     <p><strong>일지 내용:</strong> {entry.diaryContent}</p>
                 </div>
-
             </div>
         ))
     );
@@ -53,7 +50,7 @@ const CustomCalendarDetail = () => {
             <div className="calendar-detail-cell">
                 <h3>작성된 운동 세부사항</h3>
                 {details.entries.length > 0 ? (
-                    renderEntries(details.entries) // 최신 5개 엔트리 렌더링
+                    renderEntries(details.entries)
                 ) : (
                     <p>세부사항이 없습니다.</p>
                 )}

@@ -20,6 +20,7 @@
 /* 제목 */
 .calendar-title-input {
     padding: 0 1vw;
+    margin-bottom: 0.5vw;
 }
 
 .calendar-title-input label {
@@ -64,12 +65,12 @@
 
 /* 추가하기, 일지목록 */
 .calendar-write-add-detail {
-    padding: 0.1vw 1vw;
+    padding: 0 1vw;
 }
 
 /* 일지 입력 섹션 스타일 */
 .diary-input-section {
-    padding: 0.5vw 1vw;
+    padding: 0.5vw 0;
 }
 
 .diary-input-section label {
@@ -93,4 +94,16 @@
     box-sizing: border-box;
     box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
     height: 8vw;
+}
+
+/*제출 버튼*/
+.calendar-write-submit {
+    background-color: transparent;
+    font-size: 1.2rem;
+    color: #4D4D4D;
+    border-radius: 1vw;
+    border: transparent;
+    box-sizing: border-box;
+    height: 2vw;
+    width: 100%;
 }
