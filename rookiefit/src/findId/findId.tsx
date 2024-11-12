@@ -1,6 +1,8 @@
-import { useState } from 'react';
+import { useState, ChangeEvent, KeyboardEvent } from 'react';
 import InputBox from '../inputbox/inputbox'; // InputBox 컴포넌트 임포트
 import './findId.css';
+
+const numericRegex = /^[0-9]*$/; // 숫자만 허용하는 정규식
 
 function FindId() {
     const [phonenumber, setPhonenumber] = useState('');
@@ -9,25 +11,33 @@ function FindId() {
     const [certificationNumberMessage, setCertificationNumberMessage] = useState('');
     const [isPhonenumberError, setIsPhonenumberError] = useState(false);
     const [isCertificationNumberError, setIsCertificationNumberError] = useState(false);
-    const [isSendingCertification, setIsSendingCertification] = useState(false); // 인증번호 전송 상태
-    const [completionMessage, setCompletionMessage] = useState(''); // ID 찾기 완료 메시지
+    const [isCertificationConfirmed, setIsCertificationConfirmed] = useState(false);
 
-    // 전화번호 입력 시 호출되는 핸들러
-    const handlePhonenumberChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setPhonenumber(event.target.value);
-        setIsPhonenumberError(false);  // 새로운 입력 시 오류 상태 초기화
+    // 전화번호 입력 핸들러
+    const handlePhonenumberChange = (event: ChangeEvent<HTMLInputElement>) => {
+        const input = event.target.value;
+
+        if (numericRegex.test(input)) { // 숫자만 입력되었는지 검사
+            setPhonenumber(input);
+            setPhonenumberMessage('');
+            setIsPhonenumberError(false);
+        } else {
+            setPhonenumberMessage('형식에 맞지 않습니다. 숫자만 입력하세요.');
+            setIsPhonenumberError(true);
+        }
     };
 
-    // 인증번호 입력 시 호출되는 핸들러
-    const handleCertificationNumberChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setCertificationNumber(event.target.value);
-        setIsCertificationNumberError(false);  // 새로운 입력 시 오류 상태 초기화
-    };
+    // 인증번호 입력 핸들러
+    const handleCertificationNumberChange = (event: ChangeEvent<HTMLInputElement>) => {
+        const input = event.target.value;
 
-    // Enter 키 입력 시 호출되는 핸들러
-    const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
-        if (event.key === 'Enter') {
-            handleFindIdClick();
+        if (numericRegex.test(input)) { // 숫자만 입력되었는지 검사
+            setCertificationNumber(input);
+            setCertificationNumberMessage('');
+            setIsCertificationNumberError(false);
+        } else {
+            setCertificationNumberMessage('형식에 맞지 않습니다. 숫자만 입력하세요.');
+            setIsCertificationNumberError(true);
         }
     };
 
@@ -39,27 +49,31 @@ function FindId() {
             setPhonenumberMessage('번호를 입력하세요.');
             setIsPhonenumberError(true);
             isValid = false;
-        } else {
-            setPhonenumberMessage('');
         }
 
         if (certificationnumber === '') {
             setCertificationNumberMessage('인증 번호를 입력하세요.');
             setIsCertificationNumberError(true);
             isValid = false;
-        } else {
-            setCertificationNumberMessage('');
         }
 
         if (isValid) {
-            setCompletionMessage("ID 찾기가 완료되었습니다."); // 완료 메시지 표시
+            alert("아이디 찾기 완료!"); // 팝업 창 표시
         }
     };
 
-    // 인증 요청 버튼 클릭 시 호출되는 함수
+    // 인증 확인 버튼 클릭 시 호출되는 함수
+    const handleCertificationConfirm = () => {
+        setIsCertificationConfirmed(true); // 인증 완료 메시지 표시
+    };
+
+    // 인증 요청 버튼 클릭 시 호출되는 함수 (숫자 입력 검증 추가)
     const handleCertificationRequest = () => {
-        setIsSendingCertification(true); // 인증번호 전송중 상태 설정
-        setPhonenumberMessage("인증번호 전송중...")
+        if (isPhonenumberError || phonenumber === '') {
+            setPhonenumberMessage('번호를 입력하세요.');
+            return; // 휴대전화 번호가 유효하지 않으면 함수 종료
+        }
+        setPhonenumberMessage("인증번호 전송중...");
     };
 
     return (
@@ -74,8 +88,8 @@ function FindId() {
                 isErrorMessage={isPhonenumberError}
                 buttonTitle="인증 요청"
                 onChange={handlePhonenumberChange}
-                onKeyDown={handleKeyDown}
-                onButtonClick={handleCertificationRequest} // 인증 요청 버튼에 새 함수 연결
+                onKeyDown={(event: KeyboardEvent<HTMLInputElement>) => event.key === 'Enter' && handleFindIdClick()}
+                onButtonClick={handleCertificationRequest} // 인증 요청 버튼에 함수 연결
             />
 
             <InputBox
@@ -83,15 +97,20 @@ function FindId() {
                 placeholder="번호를 입력해주세요"
                 type="text"
                 value={certificationnumber}
-                message={certificationNumberMessage}
+                message={certificationNumberMessage || (isCertificationConfirmed ? "인증 완료" : "")}
                 isErrorMessage={isCertificationNumberError}
                 buttonTitle="인증 확인"
                 onChange={handleCertificationNumberChange}
-                onKeyDown={handleKeyDown}
-                onButtonClick={handleFindIdClick}
+                onKeyDown={(event: KeyboardEvent<HTMLInputElement>) => event.key === 'Enter' && handleFindIdClick()}
+                onButtonClick={handleCertificationConfirm} // 인증 확인 버튼 클릭 시 함수 연결
             />
 
             <div className="underline"></div>
+
+            <button className="findId-button" onClick={handleFindIdClick}>
+                아이디 찾기
+            </button>
+            
         </div>
     );
 }

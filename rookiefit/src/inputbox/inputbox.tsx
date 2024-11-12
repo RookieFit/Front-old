@@ -1,4 +1,4 @@
-import { ChangeEvent, forwardRef, KeyboardEvent, useState, FocusEvent } from 'react';
+import { ChangeEvent, forwardRef, KeyboardEvent, useState } from 'react';
 import './style.css';
 
 interface Props {

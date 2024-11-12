@@ -67,7 +67,7 @@ function SignUpPage() {
         }
     };
 
-    // 패스워드와 확인 패스워드가 일치하는지 확인하는 useEffect
+    // 패스워드와 확인 패스워드가 일치하는지 확인
     useEffect(() => {
         if (confirmPassword) {
             if (password !== confirmPassword) {
