@@ -1,8 +1,6 @@
-.topMainBox{
-    min-height: 1,989px;
+.topMainBox {
     min-width: 1285px;
     display: flex;
     flex-direction: row;
     margin-top: 88px;
-    margin-left: 242px;
 }

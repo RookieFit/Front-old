@@ -1,19 +1,19 @@
 import './myPage.css';
 import React from 'react';
-import GraphBox from './bottomBox/graphBox';
-import TopMainBox from './topBox/topMainBox';
+import TopMainBoxEdit from './topBox/topMainBoxEdit';
+import GraphBoxEdit from './bottomBox/graphBoxEdit';
 
-const MyPage = () => {
+const MyPageEdit = () => {
     return (
         <div className="mainBox">
             <div className='topBox'>
-                <TopMainBox/>
+                <TopMainBoxEdit/>
             </div>
             <div className='bottomBox'>
-                <GraphBox/>
+                <GraphBoxEdit/>
             </div> 
         </div>
     )       
 };
 
-export default MyPage
+export default MyPageEdit;
