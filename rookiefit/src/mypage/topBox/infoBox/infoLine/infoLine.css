@@ -1,11 +1,11 @@
-.myinfo-box{
+.myinfo-box {
     display: flex;
     flex-direction: row;
     margin-top: 7px;
     margin-left: 31px;
 }
 
-.myinfo-little-box{
+.myinfo-little-box {
     width: 120px;
     height: 50px;
     border-radius: 5px;
@@ -17,7 +17,7 @@
     margin-top: 3px;
 }
 
-.myinfo-box-box{
+.myinfo-box-box {
     width: 385px;
     height: 50px;
     text-align: center;
@@ -29,4 +29,30 @@
     margin-left: 20px;
     margin-bottom: 1px;
     margin-top: 1px;
+}
+
+.myinfoedit-box-box {
+    width: 385px;
+    height: 50px;
+    text-align: center;
+    line-height: 50px;
+    border-style: none;
+    background-color: #D9D9D9;
+    margin-left: 20px;
+    margin-bottom: 1px;
+    margin-top: 1px;
+}
+
+.myinfoedit-message-textarea {
+    width: 385px;
+    height: 50px;
+    text-align: center;
+    line-height: 50px;
+    border-style: solid;
+    background-color: #D9D9D9;
+    border: none;
+    resize: none;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }

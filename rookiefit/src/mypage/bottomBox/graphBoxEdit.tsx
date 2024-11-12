@@ -1,7 +1,7 @@
 import './graphBox.css';
 import React from 'react';
    
-const GraphBox = () => {
+const GraphBoxEdit = () => {
     return (
         <div className="bottomMainBox">
             <div className='graph-box'>
@@ -17,4 +17,4 @@ const GraphBox = () => {
     )
 };
 
-export default GraphBox;
+export default GraphBoxEdit;
