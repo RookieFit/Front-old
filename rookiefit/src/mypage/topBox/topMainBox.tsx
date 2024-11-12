@@ -1,5 +1,5 @@
-import './MainBox.css';
-import Info_minBox from "./infoBox/info_minBox/info_minBox";
+import './topMainBox.css';
+import InfoMiniBox from "./infoBox/infoMiniBox/infoMiniBox";
 import Profile from "./profileBox/profile/profile";
 
 interface props {
@@ -10,12 +10,12 @@ interface props {
     //onChange : (event: ChangeEvent<HTMLInputElement>) => void;
     //onKeydown? : (event: KeyboardEvent<HTMLInputElement>) => void;
 }
-const MainBox = () => {
+const TopMainBox = () => {
     return (
-        <div className="mainBoxMyPage">
+        <div className="topMainBox">
             <Profile/>
-            <Info_minBox /> 
+            <InfoMiniBox /> 
         </div>
     )
 };
-export default MainBox;
+export default TopMainBox;
