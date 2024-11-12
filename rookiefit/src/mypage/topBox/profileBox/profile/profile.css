@@ -8,13 +8,33 @@
     border-radius: 13px; 
 }
 
+.profilelogout{
+    width: 70px;
+    height: 20px;
+    font-size: 15px;
+    margin-top: 10px;
+    margin-left: 20px;
+    text-align:center;
+    border-style:none ;
+}
+
 .profile-image {
     width: 380px;
     height: 380px;
     border: thin solid  rgb(153, 151, 151);
     border-radius:50%;
     text-align:center;
-    margin-top: 35px;
+    margin-left: 128px;
+    background-color: #ffffff;
+}
+
+.profile-imageedit {
+    width: 380px;
+    height: 380px;
+    border: thin solid  rgb(153, 151, 151);
+    border-radius:50%;
+    text-align:center;
+    margin-top: 30px;
     margin-left: 128px;
     background-color: #ffffff;
 }

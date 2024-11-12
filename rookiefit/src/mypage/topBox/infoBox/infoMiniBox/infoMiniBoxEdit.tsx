@@ -11,7 +11,7 @@ const myPage = () => {
         <div className="myinfo-main">
             <div className='myinfo-click'> 내 정보</div>
             <div className='myinfo-edit' >
-            <input type="button" value="수정하기" onClick={myPage} className='myinfo-button'/>
+            <input type="button" value="완료하기" onClick={myPage} className='myinfo-button'/>
             </div>          
             <div className='myinfo-box-info'>
             <InfoLineEdit />
