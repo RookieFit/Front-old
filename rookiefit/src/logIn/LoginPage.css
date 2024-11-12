@@ -10,27 +10,14 @@
 }
 
 /* 로그인 제목을 중앙에 배치 */
-.login_title {
+.login-title {
     font-weight: 400;
     font-size: 36px;
     color: #000000;
-    /* 텍스트 색상 설정 */
-}
-
-/* 아이디/비밀번호 찾기 버튼 */
-.find_id_password_button {
-    font-weight: 400;
-    font-size: 15px;
-    line-height: 18px;
-    color: #9E9E9E;
-    background: none;
-    border: 0;
-    cursor: pointer;
-    margin-top: 10px;
 }
 
 /* 회원가입 버튼 */
-.sign_in_button {
+.sign-in-button {
     font-weight: 400;
     font-size: 20px;
     line-height: 24px;
@@ -52,16 +39,14 @@
 }
 
 /* 세로 구분선 */
-.vertical_line {
+.vertical-line {
     width: 1px;
     height: 15px;
     background-color: #9C9C9C;
 }
 
 /* SNS 로그인 버튼 스타일 */
-.kakao_login,
-.google_login,
-.naver_login {
+.kakao-login, .google-login, .naver-login {
     width: 70px;
     height: 70px;
     background-size: cover;
@@ -72,20 +57,20 @@
     transition: transform 0.3s ease, filter 0.3s ease;
 }
 
-.kakao_login {
+.kakao-login {
     background-image: url(./assets/images/kakao.png);
 }
 
-.google_login {
+.google-login {
     background-image: url(./assets/images/google.png);
 }
 
-.naver_login {
+.naver-login {
     background-image: url(./assets/images/naver.png);
 }
 
 /* SNS 로그인 버튼 컨테이너 */
-.sns_login_container {
+.sns-login-container {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -94,7 +79,7 @@
 }
 
 /* 아이디/비밀번호 찾기 버튼 컨테이너 */
-.find_id_password_container {
+.find-id-password-container {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -102,8 +87,20 @@
     margin-top: 10px;
 }
 
+/* 아이디/비밀번호 찾기 버튼 */
+.find-id-password-button {   
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 18px;
+    color: #9E9E9E;
+    background: none;
+    border: 0;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
 /* 간편 로그인 텍스트 */
-.easy_login_text {
+.easy-login-text {   
     font-weight: 400;
     font-size: 20px;
     line-height: 24px;
