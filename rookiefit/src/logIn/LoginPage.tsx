@@ -1,25 +1,44 @@
 import { useState, ChangeEvent, KeyboardEvent } from 'react';
-import InputBox from '../inputbox/inputbox'; // InputBox 컴포넌트를 가져옵니다.
+import { useNavigate } from 'react-router-dom';  // useNavigate import
+import InputBox from '../inputbox/inputbox';
 import './loginPage.css';
 
 function LoginPage() {
     // 상태 변수 선언
-    const [id, setId] = useState<string>('');
-    const [password, setPassword] = useState<string>('');
-    const [idMessage, setIdMessage] = useState<string>('');
-    const [passwordMessage, setPasswordMessage] = useState<string>('');
-    const [isIdError, setIsIdError] = useState<boolean>(false);
-    const [isPasswordError, setIsPasswordError] = useState<boolean>(false);
+    const [id, setId] = useState('');
+    const [password, setPassword] = useState('');
+    const [idMessage, setIdMessage] = useState('');
+    const [passwordMessage, setPasswordMessage] = useState('');
+    const [isIdError, setIsIdError] = useState(false);
+    const [isPasswordError, setIsPasswordError] = useState(false);
+
+    // useNavigate 훅 사용
+    const navigate = useNavigate();  // 페이지 이동을 위한 navigate 훅
+
+    // 정규식 패턴
+    const koreanRegex = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/;
+    const alphanumericRegex = /^[A-Za-z0-9]*$/;
 
     // 입력 핸들러
     const handleIdChange = (event: ChangeEvent<HTMLInputElement>) => {
-        setId(event.target.value);
-        setIdMessage('');
-        setIsIdError(false);
+        const newValue = event.target.value;
+        
+        if (koreanRegex.test(newValue)) {
+            setIdMessage('형식에 맞지 않습니다.');
+            setIsIdError(true);
+            return;
+        }
+
+        if (alphanumericRegex.test(newValue) || newValue === '') {
+            setId(newValue);
+            setIdMessage('');
+            setIsIdError(false);
+        }
     };
 
     const handlePasswordChange = (event: ChangeEvent<HTMLInputElement>) => {
-        setPassword(event.target.value);
+        const newValue = event.target.value;
+        setPassword(newValue);
         setPasswordMessage('');
         setIsPasswordError(false);
     };
@@ -35,19 +54,31 @@ function LoginPage() {
             setIsPasswordError(true);
         }
         if (id && password) {
-            alert("로그인 시도 중..."); // 실제 로그인 로직이 들어갈 수 있습니다.
+            alert("로그인 시도 중...");
         }
     };
 
     // Enter 키 이벤트 핸들러
     const handleKeyDown = (event: KeyboardEvent<HTMLInputElement>) => {
-        if (event.key === 'Enter') handleLoginClick();
+        if (event.key === 'Enter') {
+            handleLoginClick();
+        }
+    };
+
+    // 아이디 찾기 클릭 시
+    const handleFindIdClick = () => {
+        navigate('/findId');  // 아이디 찾기 페이지로 이동
+    };
+
+    // 비밀번호 찾기 클릭 시
+    const handleFindPasswordClick = () => {
+        navigate('/findPassword');  // 비밀번호 찾기 페이지로 이동
     };
 
     return (
         <div id="log-in-wrapper">
-            <h2 className="login_title">로그인</h2>
-            {/* 아이디 입력 필드 */}
+            <h2 className="login-title">로그인</h2>
+            
             <InputBox
                 title="아이디"
                 placeholder="아이디를 입력하세요."
@@ -56,10 +87,9 @@ function LoginPage() {
                 message={idMessage}
                 isErrorMessage={isIdError}
                 onChange={handleIdChange}
-                onKeydown={handleKeyDown}
+                onKeyDown={handleKeyDown}
             />
 
-            {/* 비밀번호 입력 필드 */}
             <InputBox
                 title="비밀번호"
                 placeholder="비밀번호를 입력하세요."
@@ -68,29 +98,30 @@ function LoginPage() {
                 message={passwordMessage}
                 isErrorMessage={isPasswordError}
                 onChange={handlePasswordChange}
-                onKeydown={handleKeyDown}
+                onKeyDown={handleKeyDown}
             />
 
-            {/* 로그인 버튼 */}
-            <button className="sign_in_button" onClick={handleLoginClick}>
+            <button className="sign-in-button" onClick={handleLoginClick}>
                 로그인
             </button>
 
-            {/* 아이디/비밀번호 찾기 버튼 */}
-            <div className="find_id_password_container">
-                <button className="find_id_password_button">아이디 찾기</button>
-                <span className="vertical_line"></span>
-                <button className="find_id_password_button">비밀번호 찾기</button>
+            <div className="find-id-password-container">
+                <button className="find-id-password-button" onClick={handleFindIdClick}>
+                    아이디 찾기
+                </button>
+                <span className="vertical-line"></span>
+                <button className="find-id-password-button" onClick={handleFindPasswordClick}>
+                    비밀번호 찾기
+                </button>
             </div>
             
             <div className="underline"></div>
 
-            {/* SNS 간편 로그인 */}
-            <div className="easy_login_text">간편 로그인</div>
-            <div className="sns_login_container">
-                <button className="naver_login"></button>
-                <button className="kakao_login"></button>
-                <button className="google_login"></button>
+            <div className="easy-login-text">간편 로그인</div>
+            <div className="sns-login-container">
+                <button className="naver-login"></button>
+                <button className="kakao-login"></button>
+                <button className="google-login"></button>
             </div>
         </div>
     );

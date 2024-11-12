@@ -1,26 +1,16 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import TextInput from './calendarInput';
-import AddedDetails from './calendarAddDetails';
+import TextInput from '../calendarComponents/calendarInput';
+import AddedDetails from '../calendarComponents/calendarAddDetails';
 import moment from 'moment';
 import './CalendarWrite.css';
+import { useCalendarDetails } from '../calendarDetailContext';
 import { UseCalendar } from '../calendarContext';
 
-interface CalendarWriteProps {
-    setDetails: React.Dispatch<React.SetStateAction<{
-        entries: Array<{
-            title: string;
-            diaryContent: string;
-            workoutDetails: string[][];
-            date: string;
-        }>;
-    }>>;
-}
-
-const CalendarWrite = ({ setDetails }: CalendarWriteProps) => {
+const CalendarWrite = () => {
     const navigate = useNavigate();
     const { selectedDate } = UseCalendar(); // useContext로 selectedDate 가져오기
-
+    const { setDetails } = useCalendarDetails(); // CalendarDetailsProvider에서 setDetails 가져오기
     const [content, setContent] = useState({
         exerciseName: '',
         repetitions: '',
@@ -106,16 +96,16 @@ const CalendarWrite = ({ setDetails }: CalendarWriteProps) => {
                         {/* 운동 세부사항 추가 버튼 */}
                         <button className="calendar-write-add" onClick={handleAddDetail}>추가하기</button>
                         <AddedDetails details={details} /> {/* 추가된 세부사항 목록 */}
-                    </div>
-                    <div className="diary-input-section">
-                        <textarea
-                            value={diaryContent}
-                            onChange={handleDiaryChange}
-                            placeholder="여기에 자유롭게 내용을 입력하세요."
-                        />
+                        <div className="diary-input-section">
+                            <textarea
+                                value={diaryContent}
+                                onChange={handleDiaryChange}
+                                placeholder="여기에 자유롭게 내용을 입력하세요."
+                            />
+                        </div>
+                        <button className="calendar-write-submit" onClick={handleSubmit}>SUBMIT</button>
                     </div>
                 </div>
-                <button onClick={handleSubmit}>제출</button>
             </div>
         </div>
     );

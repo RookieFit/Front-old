@@ -38,7 +38,7 @@ export const StyledCalendarWrapper = styled.div`
     color: #000;
     font-size: 18px;
     font-weight: bold;
-    border-radius: 50px;
+    border-radius: 20px;
   }
 
   /* 오늘 날짜에 마우스 오버 시 색상 변경 제거 */
@@ -51,9 +51,8 @@ export const StyledCalendarWrapper = styled.div`
   .react-calendar__tile--active {
     background-color: #51F8C4;
     color: #000;
-    font-size: 18px;
     font-weight: bold;
-    border-radius: 50px;
+    border-radius: 20px;
   }
 
   .react-calendar__tile--hasActive {
@@ -68,7 +67,7 @@ export const StyledCalendarWrapper = styled.div`
   .react-calendar__tile:enabled:focus {
     background-color: #51F8C4;
     opacity: 0.7;
-    border-radius: 50px;
+    border-radius: 20px;
     color: #000;
   }
 
@@ -80,4 +79,15 @@ export const StyledCalendarWrapper = styled.div`
 `
 // 캘린더를 불러옴
 export const StyledCalendar = styled(Calendar)`
+`;
+
+export const StyledDot = styled.div`
+  background-color: #000;
+  border-radius: 50%;
+  width: 0.3rem;
+  height: 0.3rem;
+  position: absolute;
+  top: 60%;
+  left: 50%;
+  transform: translateX(-50%);
 `;
