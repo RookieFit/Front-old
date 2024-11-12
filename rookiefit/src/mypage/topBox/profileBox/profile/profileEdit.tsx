@@ -13,7 +13,7 @@ const [isprofiletextareaclicked,setIsProfileTextAreaClicked] = useState(false);
 
   return (
     <div className='profile-main'>
-      <div className='profile-image'>  
+      <div className='profile-imageedit'>  
         <img className='profileimage' src={logo} ></img>
       </div>
       <div className='profile-nickname'>닉네임자리</div>
@@ -26,7 +26,7 @@ const [isprofiletextareaclicked,setIsProfileTextAreaClicked] = useState(false);
         </input>
       </div>
       <div className='profile-edit' onClick={myPage}>
-        <input type="button" value="수정하기" className='profile-button'/>
+        <input type="button" value="완료하기" className='profile-button'/>
       </div>
     </div>
   )
