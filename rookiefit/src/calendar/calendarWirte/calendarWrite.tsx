@@ -55,7 +55,7 @@ const CalendarWrite = () => {
     };
 
     return (
-        <div className="calendar-detail-back">
+        <div className="right-back">
             <div className="calendar-write-wrapper">
                 <div className="calendar-header">
                     <h2>{moment(selectedDate).format('YYYY-MM-DD')}</h2>

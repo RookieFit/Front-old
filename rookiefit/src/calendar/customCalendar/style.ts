@@ -4,11 +4,11 @@ import "react-calendar/dist/Calendar.css";
 
 // 캘린더를 감싸주는 스타일
 export const StyledCalendarWrapper = styled.div`
-  width: 50vw;
-  height: 42vw;
-  display: flex;
-  justify-content: center;
-  position: absolute;
+  // width: 50vw;
+  // height: 42vw;
+  // display: flex;
+  // justify-content: center;
+  // position: absolute;
 
   .react-calendar { 
     margin: 1.5vw auto;

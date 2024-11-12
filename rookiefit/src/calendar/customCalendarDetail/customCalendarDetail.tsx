@@ -17,8 +17,8 @@ const CustomCalendarDetail = () => {
     const { updateSelectedDate } = UseCalendar(); // selectedDate 업데이트 함수 가져오기
     const navigate = useNavigate();
 
-    const goToCalendarUpdate = (date: Date) => {
-        updateSelectedDate(date); // 선택한 날짜로 업데이트
+    const goToCalendarUpdate = (date: string) => {
+        updateSelectedDate(moment(date).toDate()); // moment로 Date 객체로 변환 후 setSelectedDate에 전달
         navigate('/calendar/detail');
     };
 
@@ -46,7 +46,7 @@ const CustomCalendarDetail = () => {
     );
 
     return (
-        <div className="calendar-detail-back">
+        <div className="right-back">
             <div className="calendar-detail-cell">
                 <h3>작성된 운동 세부사항</h3>
                 {details.entries.length > 0 ? (

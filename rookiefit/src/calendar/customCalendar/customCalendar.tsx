@@ -49,8 +49,8 @@ const CustomCalendar = () => {
     }, []);
 
     return (
-        <StyledCalendarWrapper>
-            <div className='calendar-back'>
+        <div className='left-back'>
+            <StyledCalendarWrapper>
                 <StyledCalendar
                     value={selectedDate}
                     onClickDay={dayClickHandler}
@@ -72,8 +72,8 @@ const CustomCalendar = () => {
                         운동 일지 작성하러 가기
                     </div>
                 )}
-            </div>
-        </StyledCalendarWrapper>
+            </StyledCalendarWrapper>
+        </div>
     );
 };
 
