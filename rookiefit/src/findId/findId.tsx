@@ -1,4 +1,5 @@
 import { useState, ChangeEvent, KeyboardEvent } from 'react';
+import { useNavigate } from 'react-router-dom'; // useNavigate 훅 임포트
 import InputBox from '../inputbox/inputbox'; // InputBox 컴포넌트 임포트
 import './findId.css';
 
@@ -12,6 +13,8 @@ function FindId() {
     const [isPhonenumberError, setIsPhonenumberError] = useState(false);
     const [isCertificationNumberError, setIsCertificationNumberError] = useState(false);
     const [isCertificationConfirmed, setIsCertificationConfirmed] = useState(false);
+
+    const navigate = useNavigate(); // 페이지 이동을 위한 useNavigate 훅 사용
 
     // 전화번호 입력 핸들러
     const handlePhonenumberChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -58,7 +61,7 @@ function FindId() {
         }
 
         if (isValid) {
-            alert("아이디 찾기 완료!"); // 팝업 창 표시
+            navigate('/findidresult'); // findidresult 페이지로 이동
         }
     };
 

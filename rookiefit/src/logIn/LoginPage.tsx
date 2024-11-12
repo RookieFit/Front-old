@@ -1,4 +1,3 @@
-// loginPage.tsx
 import { useState, ChangeEvent, KeyboardEvent } from 'react';
 import { useNavigate } from 'react-router-dom';  // useNavigate import
 import InputBox from '../inputbox/inputbox';

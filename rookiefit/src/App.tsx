@@ -6,7 +6,8 @@ import LoginPage from './logIn/LoginPage';
 import SignUpPage from './signup/signUpPage';
 import MainBox from './mypage/topBox/mainBox';
 import FindId from './findId/findId';  // 아이디 찾기 페이지
-import FindPassword from './findPassword/findPassword';  // 비밀번호 찾기 페이지
+import FindPassword from './findPassword/findPassword'; 
+import FindIdResult from './findIdResult/findIdResult' // 비밀번호 찾기 페이지
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
           <Route path="/mypage" element={<MainBox />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/findid" element={<FindId />} />
+          <Route path="/findidresult" element={<FindIdResult />} />
           <Route path="/findpassword" element={<FindPassword />} />
           <Route path="/signup" element={<SignUpPage/>} />
           <Route path="/calendar" element={<CalenderPage />} />

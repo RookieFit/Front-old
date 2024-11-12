@@ -21,7 +21,6 @@ function SignUpPage() {
     const [certificationMessage, setCertificationMessage] = useState<string>('');
     const [isCertificationError, setIsCertificationError] = useState<boolean>(false);
 
-    const koreanRegex = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/;
     const idAllowedRegex = /^[A-Za-z0-9!@#$%^&*()_+=-]*$/;
     const numericRegex = /^[0-9]*$/;
 
@@ -29,7 +28,7 @@ function SignUpPage() {
     const handleIdChange = (e: ChangeEvent<HTMLInputElement>) => {
         const value = e.target.value;
 
-        if (koreanRegex.test(value) || !idAllowedRegex.test(value)) {
+        if (!idAllowedRegex.test(value)) {
             setIdMessage('형식에 맞지 않습니다.');
             setIsIdErrorMessage(true);
         } else {
