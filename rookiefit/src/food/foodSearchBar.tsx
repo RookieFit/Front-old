@@ -1,8 +1,14 @@
 import './foodSearchBar.css'
+
 const FoodSearchBar = () => {
     return (
         <div className="food-searchbar">
-            Enter
+            <input
+                type="search"
+                placeholder="검색"
+                value=''
+                onChange={ }
+            />
         </div>
     );
 }
