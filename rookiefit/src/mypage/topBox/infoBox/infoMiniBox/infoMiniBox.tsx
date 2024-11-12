@@ -14,7 +14,6 @@ interface props {
 
 
 const InfoMiniBox = () => {
-
 const navigate = useNavigate();
 const myPageEdit = () => {
     navigate('/myPageEdit')
@@ -22,8 +21,8 @@ const myPageEdit = () => {
     return (
         <div className="myinfo-main">
             <div className='myinfo-click'> 내 정보</div>
-            <div className='myinfo-edit' onClick={myPageEdit}>
-                <input type="button" value="수정하기" className='myinfo-button'/>
+            <div className='myinfo-edit' >
+                <input type="button" value="수정하기" onClick={myPageEdit} className='myinfo-button'/>
             </div>          
             <div className='myinfo-box-info'>
             <InfoLine />

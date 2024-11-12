@@ -5,7 +5,9 @@ import CalenderPage from './calendar/calenderPage';
 import LoginPage from './logIn/LoginPage';
 import SignUpPage from './signup/signUpPage';
 import MyPage from './mypage/myPage';
-import MyPageEdit from './mypageeidt/myPageEdit';
+import MyPageEdit from './mypage/myPageEdit';
+
+
 
 function App() {
   return (

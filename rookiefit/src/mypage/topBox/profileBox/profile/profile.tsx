@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link, useNavigate } from 'react-router-dom';
 import './profile.css';
+import logo from '../../../assets/user.png' 
 
 const Profile = () => {
 
@@ -11,7 +12,7 @@ const myPageEdit = () => {
   return (
     <div className='profile-main'>
       <div className='profile-image'>
-        <img src='./layout/asses/images/Person.png'></img>
+        <img className='profileimage' src= {logo}></img>
       </div>
       <div className='profile-nickname'>닉네임자리</div>
       <div className='profile-message'>

@@ -19,6 +19,15 @@
     background-color: #ffffff;
 }
 
+.profileimage {
+    width: 380px;
+    height: 380px;
+    border: thin solid  rgb(153, 151, 151);
+    border-radius:50%;
+    text-align:center;
+    background-color: #ffffff;
+}
+
 .profile-nickname {
     width: 181px;
     height: 25px;

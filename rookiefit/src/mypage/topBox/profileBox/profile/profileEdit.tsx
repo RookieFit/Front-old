@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
-import './profile2.css';
+import './profile.css';
+import logo from '../../../assets/user.png' 
 
-const Profile2 = () => {
+const ProfileEdit = () => {
 const navigate = useNavigate();
 const myPage = () => {
   navigate('/myPage')
@@ -12,24 +13,23 @@ const [isprofiletextareaclicked,setIsProfileTextAreaClicked] = useState(false);
 
   return (
     <div className='profile-main'>
-      <div className='profile-image2'>  
-        <img src='./layout/asses/images/Person.png2'></img>
+      <div className='profile-image'>  
+        <img className='profileimage' src={logo} ></img>
       </div>
-      <div className='profile-nickname2'>닉네임자리</div>
-      <div className='profile-message2'>
+      <div className='profile-nickname'>닉네임자리</div>
+      <div className='profile-message'>
         <input type='text'
-               className='profile-message-textarea2'
+               className='profile-message-textarea'
                onFocus={() => setIsProfileTextAreaClicked(true)}
                onBlur={() => setIsProfileTextAreaClicked(false)}
                placeholder={isprofiletextareaclicked === true ? "" : "input"}>
-
         </input>
       </div>
-      <div className='profile-edit2' onClick={myPage}>
-        <input type="button" value="수정하기" className='profile-button2'/>
+      <div className='profile-edit' onClick={myPage}>
+        <input type="button" value="수정하기" className='profile-button'/>
       </div>
     </div>
   )
 };
 
-export default Profile2;
+export default ProfileEdit;
