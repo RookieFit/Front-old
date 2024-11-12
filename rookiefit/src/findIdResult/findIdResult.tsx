@@ -1,4 +1,5 @@
 import './findIdResult.css'
+import '../inputbox/inputbox'
 
 function FindIdResult() {
     return (
@@ -6,7 +7,7 @@ function FindIdResult() {
 
             <button className="findId-login-button">
                 로그인하러 가기
-            </button>,,,
+            </button>
         </div>
     )
 }
