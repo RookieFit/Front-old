@@ -1,10 +1,14 @@
 /* Header.css */
-
 .navbar {
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 2vh 5vw;
+}
+
+.header-bar {
+    height: 2vw;
+    background-color: #7AB2D3;
 }
 
 .navbar-logo {

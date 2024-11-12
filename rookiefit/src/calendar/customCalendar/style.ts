@@ -4,23 +4,16 @@ import "react-calendar/dist/Calendar.css";
 
 // 캘린더를 감싸주는 스타일
 export const StyledCalendarWrapper = styled.div`
-  // width: 50vw;
-  // height: 42vw;
-  // display: flex;
-  // justify-content: center;
-  // position: absolute;
-
   .react-calendar { 
-    margin: 1.5vw auto;
+    margin: 0.8vw auto;
     width: 100%;
     max-width: 35vw;  /* 최대 크기 제한 */
     border: none;
     border-radius: 1rem;
     box-shadow: 4px 2px 10px 0px rgba(0, 0, 0, 0.13);
-    padding: 1vw 1vw;
+    padding: 0.7vw 1vw;
     background-color: white;
     font-size: 18px;
-    font-weight: bold;
     line-height: 3.5vw;
   }
 
@@ -49,23 +42,23 @@ export const StyledCalendarWrapper = styled.div`
 
   /* 선택된 날짜의 배경색 변경 */
   .react-calendar__tile--active {
-    background-color: #51F8C4;
+    background-color: #7AB2D3;
     color: #000;
     font-weight: bold;
     border-radius: 20px;
   }
 
   .react-calendar__tile--hasActive {
-    background: #51F8C4;
+    background: #7AB2D3;
   }
 
   .react-calendar__tile--active:enabled:hover, .react-calendar__tile--active:enabled:focus {
-    background: #51F8C4;
+    background: #7AB2D3;
   }
 
   .react-calendar__tile:enabled:hover,
   .react-calendar__tile:enabled:focus {
-    background-color: #51F8C4;
+    background-color: #7AB2D3;
     opacity: 0.7;
     border-radius: 20px;
     color: #000;

@@ -101,6 +101,7 @@ const CalendarWrite = () => {
                                 value={diaryContent}
                                 onChange={handleDiaryChange}
                                 placeholder="여기에 자유롭게 내용을 입력하세요."
+                                maxLength={255}
                             />
                         </div>
                         <button className="calendar-write-submit" onClick={handleSubmit}>SUBMIT</button>
