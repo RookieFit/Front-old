@@ -2,6 +2,7 @@
 .added-details {
     display: flex;
     flex-direction: column;
+    color: #4D4D4D;
     gap: 8px;
     padding: 0 1vw;
     overflow-y: auto;

@@ -23,6 +23,7 @@ function App() {
           <Route path="/signup" element={<SignUpPage />} />
           <Route path="/calendar" element={<CalenderPage />} />
           <Route path="/calendar/write" element={<CalenderPage />} /> {/* /calendar/write 경로 추가 */}
+          <Route path="/calendar/detail" element={<CalenderPage />} /> {/* /calendar/write 경로 추가 */}
           <Route path="/diet" element={<></>} />
           <Route path="/community" element={<></>} />
         </Routes>

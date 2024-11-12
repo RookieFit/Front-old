@@ -1,33 +1,23 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useLocation } from 'react-router-dom';
 import CustomCalendar from './customCalendar/customCalendar';
 import CustomCalendarDetail from './customCalendarDetail/customCalendarDetail';
 import CalendarWrite from './calendarWirte/calendarWrite';
 import './calendarPage.css';
+import CalendarUpdate from './calendarUpdate/calendarDetailUpdate';
 
 const CalendarPage = () => {
-    const location = useLocation(); // 현재 위치 정보 가져오기 (URL 경로 확인 용도)
-    const [details, setDetails] = useState<{
-        entries: Array<{
-            title: string;
-            diaryContent: string;
-            workoutDetails: string[][]; // 운동 세부사항 배열
-            date: string;
-        }>;
-    }>({
-        entries: [] // 초기 상태: 빈 entries 배열
-    });
+    const location = useLocation(); // 현재 위치 정보 가져오기
 
     const isWritePage = location.pathname === '/calendar/write'; // 현재 페이지가 '일기 작성' 페이지인지 확인
+    const isUpdatePage = location.pathname === '/calendar/detail'; // 현재 페이지가 '일기 수정' 페이지인지 확인
 
     return (
         <div className='calendarPage'>
             <CustomCalendar />
-            {isWritePage ? ( // '일기 작성' 페이지일 경우 CalendarWrite 컴포넌트 표시
-                <CalendarWrite setDetails={setDetails} />
-            ) : (
-                <CustomCalendarDetail details={details} /> // 아닌 경우 CustomCalendarDetail 컴포넌트로 세부사항 표시
-            )}
+            {isWritePage && <CalendarWrite />}
+            {isUpdatePage && <CalendarUpdate />}
+            {!isWritePage && !isUpdatePage && <CustomCalendarDetail />} {/* '일기 작성'과 '일기 수정' 페이지가 아닌 경우 */}
         </div>
     );
 };

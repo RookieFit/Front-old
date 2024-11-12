@@ -1,0 +1,26 @@
+.calendar-detail-update-wrapper {
+    display: flex;
+    flex-direction: row;
+    gap: 0.5vw;
+}
+
+.calendar-write-update,
+.calendar-write-delete {
+    background-color: transparent;
+    font-size: 1.2rem;
+    color: #4D4D4D;
+    border-radius: 1vw;
+    border: transparent;
+    box-sizing: border-box;
+    height: 2vw;
+    width: 50vw;
+}
+
+.divider {
+    width: 1px;
+    /* 구분선의 두께 */
+    height: 2vw;
+    /* 버튼과 같은 높이로 설정 */
+    background-color: #ccc;
+    /* 선의 색상 */
+}
