@@ -21,7 +21,6 @@ const Header = () => {
         <div>
             <div className="header-bar"></div>
             <header className="navbar">
-
                 <Link to="/" className="navbar-logo">
                     ROOKIE FIT
                 </Link>
@@ -51,7 +50,6 @@ const Header = () => {
                     )}
                 </div>
             </header>
-            <hr />
         </div>
     );
 };
