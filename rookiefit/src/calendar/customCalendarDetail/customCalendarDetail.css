@@ -1,7 +1,7 @@
 .calendar-detail-cell {
     display: flex;
     flex-direction: column;
-    padding: 0 0.7vw;
+    padding: 0 1vw;
 }
 
 /* 각 항목의 스타일 */

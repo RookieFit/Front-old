@@ -61,6 +61,7 @@ const CalendarWrite = () => {
                     <h2>{moment(selectedDate).format('YYYY-MM-DD')}</h2>
                 </div>
                 <div className="calendar-title-input">
+                    {/* 제목 글자수 제한 */}
                     <textarea
                         value={title}
                         onChange={handleTitleChange}

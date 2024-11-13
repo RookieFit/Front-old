@@ -42,23 +42,23 @@ export const StyledCalendarWrapper = styled.div`
 
   /* 선택된 날짜의 배경색 변경 */
   .react-calendar__tile--active {
-    background-color: #7AB2D3;
+    background-color: #89edf8;
     color: #000;
     font-weight: bold;
     border-radius: 20px;
   }
 
   .react-calendar__tile--hasActive {
-    background: #7AB2D3;
+    background: #89edf8;
   }
 
   .react-calendar__tile--active:enabled:hover, .react-calendar__tile--active:enabled:focus {
-    background: #7AB2D3;
+    background: #89edf8;
   }
 
   .react-calendar__tile:enabled:hover,
   .react-calendar__tile:enabled:focus {
-    background-color: #7AB2D3;
+    background-color: #89edf8;
     opacity: 0.7;
     border-radius: 20px;
     color: #000;

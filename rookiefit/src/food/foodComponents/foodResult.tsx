@@ -1,52 +1,65 @@
 import React from "react";
 import Chart from "react-apexcharts";
-import './foodResult.css'
+import type { ApexOptions } from "apexcharts"; // ApexOptions 가져오기
+import './foodResult.css';
 import moment from "moment";
 
 const FoodResult = () => {
+    // 차트 커스텀 내용
     const data = {
         series: [44, 33, 23],
         options: {
+            // 차트의 타입, 이벤트
             chart: {
                 type: 'donut' as const,
                 events: {
+                    //TODO: 클릭이벤트 추가
                     click: () => { }
                 },
-
             },
+            // 차트 내부 정보
             dataLabels: {
                 enabled: true,
-                textAnchor: 'middle',
+                textAnchor: 'middle' as const, // 타입 명시
                 style: {
                     fontSize: '18px',
                     fontFamily: 'Helvetica, Arial, sans-serif',
-                    color: '#000'
+                    colors: ['#fff']
                 },
-
+                dropShadow: {
+                    enabled: true,
+                    top: 1,
+                    left: 1,
+                    blur: 1,
+                    color: '#000',
+                    opacity: 0.55
+                }
             },
+            // 차트 가운데 들어가는 내용, 크기 조절
             plotOptions: {
                 pie: {
-                    expandOnClick: false, // 클릭 시 확장 방지
+                    expandOnClick: false,
                     donut: {
                         labels: {
                             show: true,
                             total: {
                                 show: true,
                                 label: '총 칼로리',
-                                formatter: () => '10000kcal' // 중앙의 값 설정
+                                formatter: () => '10000kcal'
                             }
                         },
-                        size: '50%', // 차트의 두께를 설정 (값을 높이면 원의 중앙이 더 작아짐)
-
+                        size: '50%',
                     }
                 }
             },
+            // 더미데이터
             labels: ["탄수화물", "단백질", "지방"],
-            colors: ["#88C273", "#FFF1DB", "#D4BDAC"],
+            colors: ["#BBE9FF", "#85F4FF", "#94FFD8"],
             stroke: {
-                width: 4, // 차트의 외곽선 두께 설정 (값을 조정하여 두께 변경)
-                colors: ['#ddd'] // 외곽선 색상을 흰색으로 설정
+                width: 4,
+                colors: ['#fff']
             },
+            // 아래 작게 나오는 친구들
             legend: {
                 position: 'bottom',
                 horizontalAlign: 'center',
@@ -67,11 +80,11 @@ const FoodResult = () => {
                     }
                 }
             }]
-        }
+        } as ApexOptions // 여기서 타입을 ApexOptions로 지정
     };
 
     return (
-        <div className="left-back" >
+        <div className="left-back">
             <div className="food-result-wrapper">
                 <div className="calendar-header">
                     <h2>{moment().format('YYYY-MM-DD-ddd')}</h2>
@@ -85,7 +98,7 @@ const FoodResult = () => {
                     />
                 </div>
             </div>
-        </div >
+        </div>
     );
 }
 

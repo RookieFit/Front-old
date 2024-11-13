@@ -9,8 +9,8 @@
 }
 
 .header-bar {
-    height: 2vw;
-    background-color: #7AB2D3;
+    height: 1.5vw;
+    background-color: #89edf8;
 }
 
 .navbar-logo {
@@ -42,7 +42,7 @@
 
 .nav-link:hover,
 .nav-link.active {
-    color: #ED9201;
+    color: #00d6ee;
     /* 활성화된 링크의 색상 */
 }
 
