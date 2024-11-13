@@ -1,6 +1,6 @@
-import FoodList from "./foodList";
-import FoodResult from "./foodResult";
-import FoodSearchBar from "./foodSearchBar";
+import FoodList from "./foodComponents/foodList";
+import FoodResult from "./foodComponents/foodResult";
+import FoodSearchBar from "./foodComponents/foodSearchBar";
 import './foodPage.css'
 
 const FoodPage = () => {
