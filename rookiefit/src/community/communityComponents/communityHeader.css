@@ -3,7 +3,7 @@
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    gap: 20px;
+    gap: 1px;
 }
 
 .community-title {
@@ -11,4 +11,12 @@
     font-size: 36px;
     line-height: 44px;
     color: #666666;
+    margin-bottom: 1px;
+}
+
+.community-introduction {
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 22px;
+    color: #7E7E7E;
 }
