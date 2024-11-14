@@ -10,9 +10,9 @@ import FindPassword from './findPassword/findPassword';
 import PasswordReset from './passwordReset/passwordReset';
 import MyPage from './mypage/myPage';
 import MyPageEdit from './mypage/myPageEdit';
-import { CommunityList } from './community/communityList/communityList';
-import { CommunityDetail } from './community/communityDetail/communityDetail';
-import { CommunityWrite } from './community/communityWrite/communityWrite';
+import CommunityList from './community/communityList/communityList';
+import CommunityDetail from './community/communityDetail/communityDetail';
+import CommunityWrite from './community/communityWrite/communityWrite';
 
 function App() {
   return (

@@ -3,3 +3,4 @@ export const CommunityWrite = () => {
         <div>C</div>
     )
 }
+export default CommunityWrite;
