@@ -31,6 +31,8 @@ const CalendarUpdate = () => {
             setDiaryContent('');
             setWorkoutDetails([]);
         }
+        console.log(selectedDate)
+        console.log(details)
     }, [selectedDate, details.entries]); // selectedDate와 details.entries가 변경될 때마다 실행
 
     // 제목 변경 처리
@@ -64,7 +66,7 @@ const CalendarUpdate = () => {
     };
 
     return (
-        <div className="calendar-detail-back">
+        <div className="right-back">
             <div className="calendar-update-wrapper">
                 <div className="calendar-header">
                     <h2>{moment(selectedDate).format('YYYY-MM-DD')}</h2>

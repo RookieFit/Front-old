@@ -1,0 +1,34 @@
+/* .food-list-main {
+    padding: 1vw 2vw;
+    font-size: 2vw;
+    font-weight: 1000;
+}
+
+.food-list-update {
+    margin-right: 1vw;
+} */
+
+.food-list-header {
+    display: flex;
+    padding: 1vw 2vw;
+    font-weight: 1000;
+}
+
+.food-list-main {
+    /* padding: 1vw 2vw; */
+    font-size: 2vw;
+    font-weight: 1000;
+}
+
+.food-list-update {
+    margin-left: 14.5vw;
+    margin-top: 2vw;
+    cursor: pointer;
+    color: #00d6ee;
+    /* 버튼처럼 보이게 색상 변경 */
+}
+
+.food-list-eat-today {
+    padding: 1vw 2vw;
+    font-size: 1vw;
+}
