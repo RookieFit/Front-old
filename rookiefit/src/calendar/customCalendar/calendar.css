@@ -1,35 +1,21 @@
-.calendar-back {
-    margin-left: 10vw;
-    margin-top: 2vw;
-    top: 0;
-    left: 0;
-    width: 38vw;
-    height: 37.4vw;
-    border-radius: 12px;
-    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.15);
-    background-color: beige;
-    position: relative;
-    /* 버튼 위치를 상대적으로 조정 */
-}
-
 .calendar-write {
     position: absolute;
     /* 캘린더 오른쪽 아래로 고정 */
-    bottom: 0.3vw;
+    bottom: 0.5vw;
     right: 1.3vw;
-    background-color: #51F8C4;
-    padding: 0.4vw 0.4vw;
+    background-color: #4A628A;
+    padding: 0.4vw 1vw;
     border-radius: 12px;
     cursor: pointer;
-    color: rgb(85, 85, 85);
+    color: #fff;
     font-size: 1rem;
-    font-weight: bold;
+    /* font-weight: bold; */
     box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.15);
     transition: background-color 0.3s ease;
 }
 
 .calendar-write:hover {
-    background-color: #38d29b;
+    background-color: #243642;
 }
 
 .marked-date {
