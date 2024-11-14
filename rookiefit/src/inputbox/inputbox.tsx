@@ -30,8 +30,8 @@ const InputBox = forwardRef<HTMLInputElement, Props>((props: Props, ref) => {
 
     const [inputValue, setInputValue] = useState(value);
 
-    
-	const [isInputClicked, setIsInputClicked] = useState(false);
+
+    const [isInputClicked, setIsInputClicked] = useState(false);
 
     // 버튼 스타일 및 메시지 스타일 클래스명 설정
     const buttonClassName = buttonTitle === '' ? 'input-box-button-disable' : 'input-box-button';
@@ -51,9 +51,9 @@ const InputBox = forwardRef<HTMLInputElement, Props>((props: Props, ref) => {
                             setIsInputClicked(true);
                         }}
                         onBlur={() => {
-				        	setIsInputClicked(false);
-			        	}}
-				        placeholder={isInputClicked === true ? "" : placeholder}     
+                            setIsInputClicked(false);
+                        }}
+                        placeholder={isInputClicked === true ? "" : placeholder}
                         onChange={(e) => {
                             onChange(e); // Keep the original onChange
                             setInputValue(e.target.value); // Update local input value

@@ -82,24 +82,24 @@ const GraphDate = () => {
             }
         }]
     } as ApexOptions // 여기서 타입을 ApexOptions로 지정
-};
+    };
 
-return (
-    <div className="left-back">
-        <div className="food-result-wrapper">
-            <div className="calendar-header">
-                <h2>{moment().format('YYYY-MM-DD-ddd')}</h2>
-            </div>
-            <div className="food-result-chart">
-                <Chart
-                    options={data.options}
-                    series={data.series}
-                    type="donut"
-                    width="680"
-                />
+    return (
+        <div className="left-back">
+            <div className="food-result-wrapper">
+                <div className="calendar-header">
+                    <h2>{moment().format('YYYY-MM-DD-ddd')}</h2>
+                </div>
+                <div className="food-result-chart">
+                    <Chart
+                        options={data.options}
+                        series={data.series}
+                        type="donut"
+                        width="680"
+                    />
+                </div>
             </div>
         </div>
-    </div>
-);
+    );
 };
 export default GraphDate;

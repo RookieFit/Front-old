@@ -55,12 +55,13 @@ const CalendarWrite = () => {
     };
 
     return (
-        <div className="calendar-detail-back">
+        <div className="right-back">
             <div className="calendar-write-wrapper">
                 <div className="calendar-header">
                     <h2>{moment(selectedDate).format('YYYY-MM-DD')}</h2>
                 </div>
                 <div className="calendar-title-input">
+                    {/* 제목 글자수 제한 */}
                     <textarea
                         value={title}
                         onChange={handleTitleChange}
@@ -101,6 +102,7 @@ const CalendarWrite = () => {
                                 value={diaryContent}
                                 onChange={handleDiaryChange}
                                 placeholder="여기에 자유롭게 내용을 입력하세요."
+                                maxLength={255}
                             />
                         </div>
                         <button className="calendar-write-submit" onClick={handleSubmit}>SUBMIT</button>

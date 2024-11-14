@@ -19,6 +19,7 @@ const Header = () => {
 
     return (
         <div>
+            <div className="header-bar"></div>
             <header className="navbar">
                 <Link to="/" className="navbar-logo">
                     ROOKIE FIT
@@ -49,7 +50,6 @@ const Header = () => {
                     )}
                 </div>
             </header>
-            <hr />
         </div>
     );
 };
