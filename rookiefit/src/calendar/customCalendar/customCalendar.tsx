@@ -8,6 +8,7 @@ import { UseCalendar } from '../calendarContext';
 import { useCalendarDetails } from '../calendarDetailContext';
 
 type Value = Date | null;
+moment.locale()
 
 const CustomCalendar = () => {
     const navigate = useNavigate();
