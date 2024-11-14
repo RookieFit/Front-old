@@ -22,7 +22,7 @@
     text-align: center;
     color: #858585;
     background: #F2F2F2;
-    cursor: none;
+    cursor: default;
 }
 
 .input-box-content {

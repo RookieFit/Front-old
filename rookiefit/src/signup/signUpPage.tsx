@@ -80,7 +80,7 @@ function SignUpPage() {
     }, [password, confirmPassword]);
 
     return (
-        <div id="sign-up-wrapper">
+        <div id="signup-wrapper">
             <div className="signup-title">회원 가입</div>
 
             <InputBox
@@ -110,7 +110,7 @@ function SignUpPage() {
                 type="password"
                 value={password}
                 onChange={(e: ChangeEvent<HTMLInputElement>) => setPassword(e.target.value)}
-                onKeyDown={() => {}}
+                onKeyDown={() => { }}
             />
 
             <InputBox
@@ -121,7 +121,7 @@ function SignUpPage() {
                 onChange={(e: ChangeEvent<HTMLInputElement>) => setConfirmPassword(e.target.value)}
                 message={passwordMessage}
                 isErrorMessage={isPasswordErrorMessage}
-                onKeyDown={() => {}}
+                onKeyDown={() => { }}
             />
 
             <InputBox
@@ -134,7 +134,7 @@ function SignUpPage() {
                 isErrorMessage={isPhoneNumberError}
                 buttonTitle="인증 요청"
                 onButtonClick={() => alert("인증 번호 전송 중 ---")}
-                onKeyDown={() => {}}
+                onKeyDown={() => { }}
             />
 
             <InputBox
@@ -147,19 +147,19 @@ function SignUpPage() {
                 isErrorMessage={isCertificationError}
                 buttonTitle="인증 확인"
                 onButtonClick={() => alert("인증이 완료되었습니다")}
-                onKeyDown={() => {}}
+                onKeyDown={() => { }}
             />
 
             <div className="underline"></div>
 
-            <button className="sign-up-button" onClick={() => alert("가입 완료! 환영합니다.")}>
+            <button className="signup-button" onClick={() => alert("가입 완료! 환영합니다.")}>
                 회원가입
             </button>
 
-            <div className="sns-login-container">
-                <button className="naver-login" onClick={() => alert("naver login~~")}></button>
-                <button className="kakao-login" onClick={() => alert("kakao login~~")}></button>
-                <button className="google-login" onClick={() => alert("google login~~")}></button>
+            <div className="sns-signin-container">
+                <button className="naver-signin" onClick={() => alert("naver login~~")}></button>
+                <button className="kakao-signin" onClick={() => alert("kakao login~~")}></button>
+                <button className="google-signin" onClick={() => alert("google login~~")}></button>
             </div>
         </div>
     );

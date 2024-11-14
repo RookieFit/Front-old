@@ -1,5 +1,5 @@
 /* 전체 컨테이너 */
-#log-in-wrapper {
+#signin-wrapper {
     padding: 4%;
     flex: 1;
     display: flex;
@@ -10,14 +10,14 @@
 }
 
 /* 로그인 제목을 중앙에 배치 */
-.login-title {
+.signin-title {
     font-weight: 400;
     font-size: 36px;
     color: #000000;
 }
 
 /* 회원가입 버튼 */
-.sign-in-button {
+.signup-button {
     font-weight: 400;
     font-size: 20px;
     line-height: 24px;
@@ -46,7 +46,9 @@
 }
 
 /* SNS 로그인 버튼 스타일 */
-.kakao-login, .google-login, .naver-login {
+.kakao-signin,
+.google-signin,
+.naver-signin {
     width: 70px;
     height: 70px;
     background-size: cover;
@@ -57,20 +59,20 @@
     transition: transform 0.3s ease, filter 0.3s ease;
 }
 
-.kakao-login {
+.kakao-signin {
     background-image: url(./assets/images/kakao.png);
 }
 
-.google-login {
+.google-signin {
     background-image: url(./assets/images/google.png);
 }
 
-.naver-login {
+.naver-signin {
     background-image: url(./assets/images/naver.png);
 }
 
 /* SNS 로그인 버튼 컨테이너 */
-.sns-login-container {
+.sns-signin-container {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -88,7 +90,7 @@
 }
 
 /* 아이디/비밀번호 찾기 버튼 */
-.find-id-password-button {   
+.find-id-password-button {
     font-weight: 400;
     font-size: 15px;
     line-height: 18px;
@@ -100,7 +102,7 @@
 }
 
 /* 간편 로그인 텍스트 */
-.easy-login-text {   
+.easy-sigin-text {
     font-weight: 400;
     font-size: 20px;
     line-height: 24px;
