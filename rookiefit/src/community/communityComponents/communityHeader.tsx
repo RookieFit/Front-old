@@ -1,5 +1,5 @@
 // 필요한 모듈 import
-import './Community.css';          // 스타일링을 위한 CSS 파일
+import './communityHeader.css';          // 스타일링을 위한 CSS 파일
 
 function CommunityHeader() {
 
