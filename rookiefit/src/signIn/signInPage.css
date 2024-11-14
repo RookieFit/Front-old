@@ -1,0 +1,172 @@
+/* 전체 컨테이너 */
+#sign-in-wrapper {
+    padding: 4%;
+    /* 상하좌우에 4%의 여백을 추가 */
+    flex: 1;
+    /* Flexbox 컨테이너로 설정하여 자식 요소들이 공간을 고르게 차지하도록 함 */
+    display: flex;
+    /* Flexbox 레이아웃 활성화 */
+    flex-direction: column;
+    /* 자식 요소들을 세로 방향으로 배치 */
+    align-items: center;
+    /* 자식 요소들을 가로 중앙에 정렬 */
+    justify-content: center;
+    /* 자식 요소들을 세로 중앙에 정렬 */
+    gap: 20px;
+    /* 자식 요소들 사이에 20px의 간격을 둠 */
+}
+
+/* 로그인 제목을 중앙에 배치 */
+.sign-in-title {
+    font-weight: 400;
+    /* 제목의 두께를 400 (보통 굵기)으로 설정 */
+    font-size: 36px;
+    /* 제목 폰트 크기를 36px로 설정 */
+    color: #000000;
+    /* 제목 텍스트 색상을 검정색으로 설정 */
+}
+
+/* 로그인 버튼 */
+.sign-in-button {
+    font-weight: 400;
+    /* 버튼 텍스트의 두께를 400 (보통 굵기)으로 설정 */
+    font-size: 20px;
+    /* 버튼 텍스트의 폰트 크기를 20px로 설정 */
+    line-height: 24px;
+    /* 버튼 텍스트의 줄 높이를 24px로 설정 */
+    cursor: pointer;
+    /* 버튼 위에 마우스를 올렸을 때 포인터(손가락) 커서로 변경 */
+    width: 545px;
+    /* 버튼의 너비를 545px로 설정 */
+    height: 47px;
+    /* 버튼의 높이를 47px로 설정 */
+    color: white;
+    /* 버튼 텍스트 색상을 흰색으로 설정 */
+    background-color: #343131;
+    /* 버튼의 배경 색상을 어두운 회색으로 설정 */
+    border: none;
+    /* 버튼의 기본 테두리 제거 */
+    border-radius: 5px;
+    /* 버튼의 모서리를 5px 둥글게 설정 */
+}
+
+/* 밑줄 스타일 */
+.underline {
+    width: 28%;
+    /* 밑줄의 너비를 부모 요소의 28%로 설정 */
+    height: 1px;
+    /* 밑줄의 높이를 1px로 설정 */
+    margin-bottom: 10px;
+    /* 밑줄과 그 아래 요소 사이에 10px의 여백을 추가 */
+    background-color: #9C9C9C;
+    /* 밑줄 색상을 회색으로 설정 */
+}
+
+/* 세로 구분선 */
+.vertical-line {
+    width: 1px;
+    /* 세로선의 너비를 1px로 설정 */
+    height: 15px;
+    /* 세로선의 높이를 15px로 설정 */
+    background-color: #9C9C9C;
+    /* 세로선 색상을 회색으로 설정 */
+}
+
+/* SNS 로그인 버튼 스타일 */
+.kakao-sign-in,
+.google-sign-in,
+.naver-sign-in {
+    width: 70px;
+    /* SNS 로그인 버튼의 너비를 70px로 설정 */
+    height: 70px;
+    /* SNS 로그인 버튼의 높이를 70px로 설정 */
+    background-size: cover;
+    /* 버튼의 배경 이미지 크기를 버튼 크기에 맞게 조정 */
+    background-position: center;
+    /* 배경 이미지가 버튼의 중앙에 위치하도록 설정 */
+    background-color: transparent;
+    /* 버튼 배경색을 투명하게 설정 */
+    cursor: pointer;
+    /* 버튼 위에 마우스를 올렸을 때 포인터(손가락) 커서로 변경 */
+    border: none;
+    /* 버튼의 기본 테두리 제거 */
+    transition: transform 0.3s ease, filter 0.3s ease;
+    /* 마우스를 올렸을 때 버튼의 크기나 필터 효과의 변화를 부드럽게 나타냄 */
+}
+
+.kakao-sign-in {
+    background-image: url(./assets/images/kakao.png);
+    /* 카카오 로그인 버튼에 카카오 로고 이미지 배경 설정 */
+}
+
+.google-sign-in {
+    background-image: url(./assets/images/google.png);
+    /* 구글 로그인 버튼에 구글 로고 이미지 배경 설정 */
+}
+
+.naver-sign-in {
+    background-image: url(./assets/images/naver.png);
+    /* 네이버 로그인 버튼에 네이버 로고 이미지 배경 설정 */
+}
+
+/* SNS 로그인 버튼 컨테이너 */
+.sns-sign-in-container {
+    display: flex;
+    /* Flexbox 레이아웃으로 설정 */
+    align-items: center;
+    /* SNS 로그인 버튼들을 세로 중앙에 정렬 */
+    justify-content: center;
+    /* SNS 로그인 버튼들을 가로 중앙에 정렬 */
+    gap: 20px;
+    /* SNS 로그인 버튼들 사이에 20px의 간격을 둠 */
+    margin-top: 10px;
+    /* SNS 로그인 버튼 상단에 10px의 여백 추가 */
+}
+
+/* 아이디/비밀번호 찾기 버튼 컨테이너 */
+.find-id-password-container {
+    display: flex;
+    /* Flexbox 레이아웃으로 설정 */
+    align-items: center;
+    /* 아이디/비밀번호 찾기 버튼들을 세로 중앙에 정렬 */
+    justify-content: center;
+    /* 아이디/비밀번호 찾기 버튼들을 가로 중앙에 정렬 */
+    gap: 10px;
+    /* 버튼들 사이에 10px의 간격을 둠 */
+    margin-top: 10px;
+    /* 아이디/비밀번호 찾기 버튼 상단에 10px의 여백 추가 */
+}
+
+/* 아이디/비밀번호 찾기 버튼 */
+.find-id-password-button {
+    font-weight: 400;
+    /* 버튼 텍스트의 두께를 400으로 설정 */
+    font-size: 15px;
+    /* 버튼 텍스트의 폰트 크기를 15px로 설정 */
+    line-height: 18px;
+    /* 버튼 텍스트의 줄 높이를 18px로 설정 */
+    color: #9E9E9E;
+    /* 버튼 텍스트 색상을 회색으로 설정 */
+    background: none;
+    /* 배경을 없애고 텍스트만 보이도록 설정 */
+    border: 0;
+    /* 테두리 제거 */
+    cursor: pointer;
+    /* 버튼 위에 마우스를 올렸을 때 포인터(손가락) 커서로 변경 */
+    margin-top: 10px;
+    /* 버튼 상단에 10px의 여백 추가 */
+}
+
+/* 간편 로그인 텍스트 */
+.easy-sign-in-text {
+    font-weight: 400;
+    /* 텍스트의 두께를 400으로 설정 */
+    font-size: 20px;
+    /* 텍스트 폰트 크기를 20px로 설정 */
+    line-height: 24px;
+    /* 텍스트의 줄 높이를 24px로 설정 */
+    color: #6B6B6B;
+    /* 텍스트 색상을 회색으로 설정 */
+    margin-top: 20px;
+    /* 텍스트 상단에 20px의 여백 추가 */
+}

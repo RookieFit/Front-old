@@ -1,11 +1,11 @@
 import React from 'react';
-import './Header.css';
+import './header.css';
 import { Link, useLocation } from 'react-router-dom';
 
 const Header = () => {
     const location = useLocation();
     const isHomePage = location.pathname === '/';
-    const isLoginPage = location.pathname === '/login';
+    const isLoginPage = location.pathname === '/signin';
     const isSignUpPage = location.pathname === '/signup';
 
     const menuItems = [
@@ -38,7 +38,7 @@ const Header = () => {
                 <div className="mypage-login">
                     {isHomePage || isLoginPage || isSignUpPage ? (
                         <div className="auth-links">
-                            <Link to="/login" className={`nav-link ${isLoginPage ? 'active' : ''}`}>
+                            <Link to="/signin" className={`nav-link ${isLoginPage ? 'active' : ''}`}>
                                 로그인
                             </Link>
                             <Link to="/signup" className={`nav-link ${isSignUpPage ? 'active' : ''}`}>

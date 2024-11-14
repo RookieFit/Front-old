@@ -6,16 +6,17 @@
     align-items: center;
     justify-content: center;
     gap: 20px;
- } 
+}
+
 /* 회원가입 타이틀*/
-.signup-title {
+.sign-up-title {
     font-weight: 400;
     font-size: 36px;
     color: #000000;
 }
 
 .underline {
-    width:31%;
+    width: 31%;
     height: 1px;
     margin-bottom: 10px;
     border-top: 5px solid (#9C9C9C);
