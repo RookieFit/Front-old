@@ -1,4 +1,4 @@
-#signup-wrapper {
+#sign-up-wrapper {
     padding: 4%;
     flex: 1;
     display: flex;
@@ -9,7 +9,7 @@
 }
 
 /* 회원가입 타이틀*/
-.signup-title {
+.sign-up-title {
     font-weight: 400;
     font-size: 36px;
     color: #000000;
@@ -23,7 +23,7 @@
     background-color: #9C9C9C;
 }
 
-.signup-button {
+.sign-up-button {
     font-weight: 400;
     font-size: 20px;
     line-height: 24px;

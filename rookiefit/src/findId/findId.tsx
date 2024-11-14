@@ -1,18 +1,18 @@
 import { useState, ChangeEvent, KeyboardEvent } from 'react';
 import { useNavigate } from 'react-router-dom'; // useNavigate 훅 임포트
 import InputBox from '../inputbox/inputbox'; // InputBox 컴포넌트 임포트
-import './findId.css';
+import './findId.css'; // 스타일 파일 임포트
 
 const numericRegex = /^[0-9]*$/; // 숫자만 허용하는 정규식
 
 function FindId() {
-    const [phonenumber, setPhonenumber] = useState('');
-    const [certificationnumber, setCertificationNumber] = useState('');
-    const [phonenumberMessage, setPhonenumberMessage] = useState('');
-    const [certificationNumberMessage, setCertificationNumberMessage] = useState('');
-    const [isPhonenumberError, setIsPhonenumberError] = useState(false);
-    const [isCertificationNumberError, setIsCertificationNumberError] = useState(false);
-    const [isCertificationConfirmed, setIsCertificationConfirmed] = useState(false);
+    const [phonenumber, setPhonenumber] = useState(''); // 전화번호 상태
+    const [certificationnumber, setCertificationNumber] = useState(''); // 인증번호 상태
+    const [phonenumberMessage, setPhonenumberMessage] = useState(''); // 전화번호 메시지 상태
+    const [certificationNumberMessage, setCertificationNumberMessage] = useState(''); // 인증번호 메시지 상태
+    const [isPhonenumberError, setIsPhonenumberError] = useState(false); // 전화번호 오류 여부
+    const [isCertificationNumberError, setIsCertificationNumberError] = useState(false); // 인증번호 오류 여부
+    const [isCertificationConfirmed, setIsCertificationConfirmed] = useState(false); // 인증 완료 여부
 
     const navigate = useNavigate(); // 페이지 이동을 위한 useNavigate 훅 사용
 
@@ -80,8 +80,9 @@ function FindId() {
     };
 
     return (
-        <div id="findId-wrapper">
-            <h2 className="findId-title">ID 찾기</h2>
+        <div id="find-id-wrapper">
+            <h2 className="find-id-title">ID 찾기</h2>
+            {/* 휴대전화 번호 입력 박스 */}
             <InputBox
                 title="휴대 전화"
                 placeholder="번호를 입력해주세요"
@@ -95,6 +96,7 @@ function FindId() {
                 onButtonClick={handleCertificationRequest} // 인증 요청 버튼에 함수 연결
             />
 
+            {/* 인증 번호 입력 박스 */}
             <InputBox
                 title="인증 번호"
                 placeholder="번호를 입력해주세요"
@@ -110,10 +112,9 @@ function FindId() {
 
             <div className="underline"></div>
 
-            <button className="findId-button" onClick={handleFindIdClick}>
+            <button className="find-id-button" onClick={handleFindIdClick}>
                 아이디 찾기
             </button>
-            
         </div>
     );
 }
