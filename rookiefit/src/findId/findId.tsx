@@ -1,32 +1,32 @@
 import { useState, ChangeEvent, KeyboardEvent } from 'react';
 import { useNavigate } from 'react-router-dom'; // useNavigate 훅 임포트
-import InputBox from '../inputbox/inputbox'; // InputBox 컴포넌트 임포트
+import InputBox from '../inputBox/inputBox'; // InputBox 컴포넌트 임포트
 import './findId.css'; // 스타일 파일 임포트
 
 const numericRegex = /^[0-9]*$/; // 숫자만 허용하는 정규식
 
 function FindId() {
-    const [phonenumber, setPhonenumber] = useState(''); // 전화번호 상태
+    const [phoneNumber, setphoneNumber] = useState(''); // 전화번호 상태
     const [certificationnumber, setCertificationNumber] = useState(''); // 인증번호 상태
-    const [phonenumberMessage, setPhonenumberMessage] = useState(''); // 전화번호 메시지 상태
+    const [phoneNumberMessage, setPhoneNumberMessage] = useState(''); // 전화번호 메시지 상태
     const [certificationNumberMessage, setCertificationNumberMessage] = useState(''); // 인증번호 메시지 상태
-    const [isPhonenumberError, setIsPhonenumberError] = useState(false); // 전화번호 오류 여부
+    const [isPhoneNumberError, setIsPhoneNumberError] = useState(false); // 전화번호 오류 여부
     const [isCertificationNumberError, setIsCertificationNumberError] = useState(false); // 인증번호 오류 여부
     const [isCertificationConfirmed, setIsCertificationConfirmed] = useState(false); // 인증 완료 여부
 
     const navigate = useNavigate(); // 페이지 이동을 위한 useNavigate 훅 사용
 
     // 전화번호 입력 핸들러
-    const handlePhonenumberChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const handlephoneNumberChange = (event: ChangeEvent<HTMLInputElement>) => {
         const input = event.target.value;
 
         if (numericRegex.test(input)) { // 숫자만 입력되었는지 검사
-            setPhonenumber(input);
-            setPhonenumberMessage('');
-            setIsPhonenumberError(false);
+            setphoneNumber(input);
+            setPhoneNumberMessage('');
+            setIsPhoneNumberError(false);
         } else {
-            setPhonenumberMessage('형식에 맞지 않습니다. 숫자만 입력하세요.');
-            setIsPhonenumberError(true);
+            setPhoneNumberMessage('형식에 맞지 않습니다. 숫자만 입력하세요.');
+            setIsPhoneNumberError(true);
         }
     };
 
@@ -48,9 +48,9 @@ function FindId() {
     const handleFindIdClick = () => {
         let isValid = true;
 
-        if (phonenumber === '') {
-            setPhonenumberMessage('번호를 입력하세요.');
-            setIsPhonenumberError(true);
+        if (phoneNumber === '') {
+            setPhoneNumberMessage('번호를 입력하세요.');
+            setIsPhoneNumberError(true);
             isValid = false;
         }
 
@@ -72,11 +72,11 @@ function FindId() {
 
     // 인증 요청 버튼 클릭 시 호출되는 함수 (숫자 입력 검증 추가)
     const handleCertificationRequest = () => {
-        if (isPhonenumberError || phonenumber === '') {
-            setPhonenumberMessage('번호를 입력하세요.');
+        if (isPhoneNumberError || phoneNumber === '') {
+            setPhoneNumberMessage('번호를 입력하세요.');
             return; // 휴대전화 번호가 유효하지 않으면 함수 종료
         }
-        setPhonenumberMessage("인증번호 전송중...");
+        setPhoneNumberMessage("인증번호 전송중...");
     };
 
     return (
@@ -87,11 +87,11 @@ function FindId() {
                 title="휴대 전화"
                 placeholder="번호를 입력해주세요"
                 type="text"
-                value={phonenumber}
-                message={phonenumberMessage}
-                isErrorMessage={isPhonenumberError}
+                value={phoneNumber}
+                message={phoneNumberMessage}
+                isErrorMessage={isPhoneNumberError}
                 buttonTitle="인증 요청"
-                onChange={handlePhonenumberChange}
+                onChange={handlephoneNumberChange}
                 onKeyDown={(event: KeyboardEvent<HTMLInputElement>) => event.key === 'Enter' && handleFindIdClick()}
                 onButtonClick={handleCertificationRequest} // 인증 요청 버튼에 함수 연결
             />

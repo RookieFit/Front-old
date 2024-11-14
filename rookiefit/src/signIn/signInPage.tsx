@@ -1,6 +1,6 @@
 import { useState, ChangeEvent, KeyboardEvent } from 'react';  // 상태 관리와 이벤트 처리 위한 React 훅들 임포트
 import { useNavigate } from 'react-router-dom';  // 페이지 이동을 위한 useNavigate 훅 임포트
-import InputBox from '../inputbox/inputbox';  // 사용자 정의 입력박스 컴포넌트 임포트
+import InputBox from '../inputBox/inputBox';  // 사용자 정의 입력박스 컴포넌트 임포트
 import './signInPage.css';  // 컴포넌트 스타일을 위한 CSS 임포트
 
 // 로그인 페이지 컴포넌트 정의
@@ -66,10 +66,10 @@ function SignInPage() {
     };
 
     // 아이디 찾기 페이지로 이동하는 함수
-    const handleFindIdClick = () => navigate('/findId');  // /findId 경로로 이동
+    const handleFindIdClick = () => navigate('/findid');  // /findId 경로로 이동
 
     // 비밀번호 찾기 페이지로 이동하는 함수
-    const handleFindPasswordClick = () => navigate('/findPassword');  // /findPassword 경로로 이동
+    const handleFindPasswordClick = () => navigate('/findpassword');  // /findPassword 경로로 이동
 
     return (
         <div id="sign-in-wrapper">  {/* 로그인 페이지 전체 컨테이너 */}

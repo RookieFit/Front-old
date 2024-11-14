@@ -1,6 +1,6 @@
 import { useState, ChangeEvent, KeyboardEvent } from 'react'; // React의 useState, ChangeEvent, KeyboardEvent 훅 임포트
 import { useNavigate } from 'react-router-dom'; // 페이지 이동을 위한 useNavigate 훅 임포트
-import InputBox from '../inputbox/inputbox'; // InputBox 컴포넌트 임포트
+import InputBox from '../inputBox/inputBox'; // InputBox 컴포넌트 임포트
 import './passwordReset.css'; // 스타일 시트 임포트
 
 function PasswordReset() {

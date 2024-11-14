@@ -1,16 +1,16 @@
 import { useNavigate } from 'react-router-dom';
 import './findIdResult.css';
-import '../inputbox/inputbox';
+import '../inputBox/inputBox';
 
 const FindIdResult = () => {
     const navigate = useNavigate();
 
     const handleLoginRedirect = () => {
-        navigate('/login');
+        navigate('/signin');
     };
 
     const handlePasswordResetRedirect = () => {
-        navigate('/password-reset');
+        navigate('/passwordreset');
     };
 
     return (

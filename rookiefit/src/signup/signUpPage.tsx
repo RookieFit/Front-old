@@ -1,5 +1,5 @@
 import { ChangeEvent, KeyboardEvent, useState, useEffect } from 'react';
-import InputBox from '../inputbox/inputbox';  // 'InputBox' 컴포넌트를 가져옵니다. 이 컴포넌트는 텍스트 입력 및 버튼 기능을 제공
+import InputBox from '../inputBox/inputbox';  // 'InputBox' 컴포넌트를 가져옵니다. 이 컴포넌트는 텍스트 입력 및 버튼 기능을 제공
 import './signUpPage.css';  // CSS 파일을 임포트하여 스타일을 적용합니다.
 
 function SignUpPage() {

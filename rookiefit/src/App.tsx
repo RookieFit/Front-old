@@ -23,7 +23,7 @@ function App() {
         <Routes>
           <Route path="/mypageedit" element={<MyPageEdit />} />
           <Route path="/mypage" element={<MyPage />} />
-          <Route path="/login" element={<SigninPage />} />
+          <Route path="/signin" element={<SigninPage />} />
           <Route path="/findid" element={<FindId />} />
           <Route path="/findidresult" element={<FindIdResult />} />
           <Route path="/findpassword" element={<FindPassword />} />
