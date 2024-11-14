@@ -1,0 +1,14 @@
+.community-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.community-title {
+    font-weight: 400;
+    font-size: 36px;
+    line-height: 44px;
+    color: #666666;
+}

@@ -10,7 +10,9 @@ import FindPassword from './findPassword/findPassword';
 import PasswordReset from './passwordReset/passwordReset';
 import MyPage from './mypage/myPage';
 import MyPageEdit from './mypage/myPageEdit';
-
+import { CommunityList } from './community/communityList/communityList';
+import { CommunityDetail } from './community/communityDetail/communityDetail';
+import { CommunityWrite } from './community/communityWrite/communityWrite';
 
 function App() {
   return (
@@ -30,7 +32,9 @@ function App() {
           <Route path="/calendar/write" element={<CalenderPage />} /> {/* /calendar/write 경로 추가 */}
           <Route path="/calendar/detail" element={<CalenderPage />} /> {/* /calendar/write 경로 추가 */}
           <Route path="/diet" element={<></>} />
-          <Route path="/community" element={<></>} />
+          <Route path="/community" element={<CommunityList />} />
+          <Route path="/community/write" element={<CommunityWrite />} />
+          <Route path="/community/detail" element={<CommunityDetail />} />
         </Routes>
       </div>
     </BrowserRouter>
