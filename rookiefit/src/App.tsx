@@ -8,6 +8,9 @@ import FindId from './findId/findId';
 import PasswordReset from './passwordReset/passwordReset';
 import MyPage from './mypage/myPage';
 import MyPageEdit from './mypage/myPageEdit';
+import CommunityList from './community/communityList/communityList';
+import CommunityDetail from './community/communityDetail/communityDetail';
+import CommunityWrite from './community/communityWrite/communityWrite';
 import FindPassword from './findPassword/findPassword';
 import FindIdResult from './findIdResult/findIdResult' // 비밀번호 찾기 페이지
 import FoodPage from './food/foodPage';
@@ -29,8 +32,10 @@ function App() {
           <Route path="/calendar" element={<CalenderPage />} />
           <Route path="/calendar/write" element={<CalenderPage />} /> {/* /calendar/write 경로 추가 */}
           <Route path="/calendar/detail" element={<CalenderPage />} /> {/* /calendar/write 경로 추가 */}
+          <Route path="/community" element={<CommunityList />} />
+          <Route path="/community/write" element={<CommunityWrite />} />
+          <Route path="/community/detail" element={<CommunityDetail />} />
           <Route path="/diet" element={<FoodPage />} />
-          <Route path="/community" element={<></>} />
         </Routes>
       </div>
     </BrowserRouter>
