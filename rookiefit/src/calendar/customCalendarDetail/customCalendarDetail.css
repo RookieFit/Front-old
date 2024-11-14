@@ -1,24 +1,7 @@
-/* 배경 스타일 */
-.calendar-detail-back {
-    margin-top: 2vw;
-    margin-left: 50vw;
-    justify-content: center;
-    width: 38vw;
-    max-height: 37.4vw;
-    /* 최대 높이 설정 */
-    height: 37.4vw;
-    /* 고정된 높이 */
-    border-radius: 12px;
-    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.15);
-    background-color: beige;
-    overflow-y: auto;
-    /* 셀이 추가될 때 스크롤이 생기도록 설정 */
-}
-
 .calendar-detail-cell {
     display: flex;
     flex-direction: column;
-    padding: 0 0.7vw;
+    padding: 0 1vw;
 }
 
 /* 각 항목의 스타일 */
@@ -37,23 +20,8 @@
 }
 
 /* 제목 스타일 */
-h3 {
+.calendar-detail-cell h3 {
     font-size: 1.5rem;
     margin-bottom: 1vw;
     font-weight: bold;
-}
-
-/* 초기 상태 */
-.calendar-detail-content {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.3s ease, padding 0.2s ease;
-    padding-top: 0;
-}
-
-/* 확장된 상태 */
-.calendar-detail-item.expanded .calendar-detail-content {
-    max-height: 200px;
-    /* 필요한 경우 충분히 큰 값으로 설정 */
-    padding-top: 8px;
 }
