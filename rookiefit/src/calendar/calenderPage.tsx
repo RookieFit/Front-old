@@ -3,7 +3,6 @@ import { useLocation } from 'react-router-dom';
 import CustomCalendar from './customCalendar/customCalendar';
 import CustomCalendarDetail from './customCalendarDetail/customCalendarDetail';
 import CalendarWrite from './calendarWirte/calendarWrite';
-import './calendarPage.css';
 import CalendarUpdate from './calendarUpdate/calendarDetailUpdate';
 import { CalendarProvider } from './calendarContext';
 import { CalendarDetailsProvider } from './calendarDetailContext';

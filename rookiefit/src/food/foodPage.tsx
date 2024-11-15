@@ -26,7 +26,7 @@ const FoodPage = () => {
             <FoodSearchBar />
             <div className="left-right-page">
                 <FoodChart foodDetails={foodDetails} />
-                <FoodList foodDetails={foodDetails} />
+                <FoodList foodDetails={foodDetails} setFoodDetails={setFoodDetails} />
             </div>
         </div>
     );

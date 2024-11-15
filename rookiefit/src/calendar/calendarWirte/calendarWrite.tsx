@@ -11,7 +11,7 @@ const CalendarWrite = () => {
     const navigate = useNavigate();
     const { selectedDate } = UseCalendar(); // useContext로 selectedDate 가져오기
     const { setDetails } = useCalendarDetails(); // CalendarDetailsProvider에서 setDetails 가져오기
-    const [content, setContent] = useState({
+    const [workoutDetails, setWorkoutDetails] = useState({
         exerciseName: '',
         repetitions: '',
         sets: '',
@@ -19,13 +19,13 @@ const CalendarWrite = () => {
     });
     const [title, setTitle] = useState(''); // 일기 제목 상태
     const [diaryContent, setDiaryContent] = useState(''); // 일기 내용 상태
-    const [details, setLocalDetails] = useState<string[][]>([]); // 운동 세부사항 상태
+    const [localDetails, setLocalDetails] = useState<string[][]>([]); // 운동 세부사항 상태
 
     // 운동 세부사항 추가 함수
     const handleAddDetail = () => {
-        const newDetail = [content.exerciseName, content.repetitions, content.sets, content.restTime];
+        const newDetail = [workoutDetails.exerciseName, workoutDetails.repetitions, workoutDetails.sets, workoutDetails.restTime];
         setLocalDetails((prevDetails) => [...prevDetails, newDetail]); // 세부사항 배열에 추가
-        setContent({ exerciseName: '', repetitions: '', sets: '', restTime: '' }); // 입력 필드 초기화
+        setWorkoutDetails({ exerciseName: '', repetitions: '', sets: '', restTime: '' }); // 입력 필드 초기화
     };
 
     // 일지 내용 변경 처리
@@ -46,7 +46,7 @@ const CalendarWrite = () => {
                 {
                     title,
                     diaryContent,
-                    workoutDetails: details, // 운동 세부사항 저장
+                    workoutDetails: localDetails, // 운동 세부사항 저장
                     date: selectedDate.toString(), // 선택된 날짜 저장
                 }
             ]
@@ -74,29 +74,29 @@ const CalendarWrite = () => {
                         {/* 운동명, 횟수, 세트수, 휴식시간 입력 필드 */}
                         <TextInput
                             label="운동명"
-                            value={content.exerciseName}
-                            onChange={(e) => setContent({ ...content, exerciseName: e.target.value })}
+                            value={workoutDetails.exerciseName}
+                            onChange={(e) => setWorkoutDetails({ ...workoutDetails, exerciseName: e.target.value })}
                         />
                         <TextInput
                             label="횟수"
-                            value={content.repetitions}
-                            onChange={(e) => setContent({ ...content, repetitions: e.target.value })}
+                            value={workoutDetails.repetitions}
+                            onChange={(e) => setWorkoutDetails({ ...workoutDetails, repetitions: e.target.value })}
                         />
                         <TextInput
                             label="세트수"
-                            value={content.sets}
-                            onChange={(e) => setContent({ ...content, sets: e.target.value })}
+                            value={workoutDetails.sets}
+                            onChange={(e) => setWorkoutDetails({ ...workoutDetails, sets: e.target.value })}
                         />
                         <TextInput
                             label="휴식시간"
-                            value={content.restTime}
-                            onChange={(e) => setContent({ ...content, restTime: e.target.value })}
+                            value={workoutDetails.restTime}
+                            onChange={(e) => setWorkoutDetails({ ...workoutDetails, restTime: e.target.value })}
                         />
                     </div>
                     <div className="calendar-write-add-detail">
                         {/* 운동 세부사항 추가 버튼 */}
                         <button className="calendar-write-add" onClick={handleAddDetail}>추가하기</button>
-                        <AddedDetails details={details} /> {/* 추가된 세부사항 목록 */}
+                        <AddedDetails workoutDetails={localDetails} /> {/* 추가된 세부사항 목록 */}
                         <div className="diary-input-section">
                             <textarea
                                 value={diaryContent}

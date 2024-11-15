@@ -11,6 +11,7 @@ interface Entry {
 
 interface FoodListProps {
     foodDetails: { entries: Entry[] };
+    // 상위 컴포넌트에서 useState 상태 변경 함수를 넘길 때 타입 정의
     setFoodDetails: React.Dispatch<React.SetStateAction<{ entries: Entry[] }>>;
 }
 

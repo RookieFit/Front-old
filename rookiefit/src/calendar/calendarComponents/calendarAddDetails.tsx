@@ -2,15 +2,15 @@ import React from 'react';
 import './calendarAddDetails.css';
 
 interface AddedDetailsProps {
-    details: string[][]; // 운동 세부사항 리스트 (2D 배열)
+    workoutDetails: string[][]; // 운동 세부사항 리스트 (2D 배열)
 }
 
-const AddedDetails = ({ details }: AddedDetailsProps) => {
+const AddedDetails = ({ workoutDetails }: AddedDetailsProps) => {
     return (
-        <div className="added-details">
+        <div className="added-workoutDetails">
             {/* 운동 세부사항이 있을 경우 */}
-            {details.length > 0 ? (
-                details.map((detail, index) => (
+            {workoutDetails.length > 0 ? (
+                workoutDetails.map((detail, index) => (
                     <div key={index} className="detail-item">
                         {/* 첫 번째 운동 세부사항에는 제목을 추가 */}
                         <div className="detail-header">

@@ -7,7 +7,6 @@ const FoodSearchBar = () => {
                 className='food-searchbar'
                 type="search"
                 placeholder="검색"
-            // onChange={ }
             />
         </div>
     );

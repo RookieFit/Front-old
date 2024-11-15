@@ -14,8 +14,8 @@
     margin-left: 14.5vw;
     margin-top: 2vw;
     cursor: pointer;
+    border: none;
     color: #00d6ee;
-    /* 버튼처럼 보이게 색상 변경 */
 }
 
 .food-list-eat-today {
