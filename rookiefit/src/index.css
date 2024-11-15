@@ -19,6 +19,9 @@ body {
     background-color: transparent;
     position: relative;
     /* 버튼 위치를 상대적으로 조정 */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 /* 배경 스타일 */
@@ -36,6 +39,8 @@ body {
     outline-offset: 2px;
     overflow-y: auto;
     /* 셀이 추가될 때 스크롤이 생기도록 설정 */
+    display: flex;
+    flex-direction: column;
 }
 
 .left-right-page {
@@ -44,5 +49,5 @@ body {
     justify-content: space-between;
     padding: 0 10vw;
     gap: 2vw;
-    /* margin-top: 1.8vw; */
+    margin-top: 1.8vw; 
 }

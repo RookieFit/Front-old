@@ -1,8 +1,4 @@
 .mainBox{
     display: flex;
     flex-direction: column;
-    align-items: center;
-    margin-top: 6.1vw;
-    margin-left: 21.9vw;
-    text-align:center;
 }

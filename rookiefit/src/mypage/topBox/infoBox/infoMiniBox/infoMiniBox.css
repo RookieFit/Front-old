@@ -1,36 +1,36 @@
-.myinfo-main {
+/* .myinfo-main {
     background-color: #ECECEC; 
     display: flex;
     flex-direction: column;
-    width: 44.2vw;
-    height: 47.1vh;
+    width: 636px;
+    height: 678px;
     border-radius: 0.9vw;  
-}
+} */
 
-.myinfo-click {
-    font-size: 2.5vw;
-    padding-left: 2.1vw;
-    padding-top: 1.7vw;
+.myinfo-text {
+    font-size: 36px;
+    padding-left: 30px;
+    padding-top: 25px;
     display: flex;
     justify-content: left;
 }
 
 .myinfo-button {
     text-decoration-line: none;
-    width: 5.1vw;
-    height: 1.7vh;
-    font-size: 1.0vw;
-    margin-left: 36.3vw;
+    width: 74px;
+    height: 24px;
+    font-size: 15px;
+    margin-left: 650px;
     border-style: none; 
 }
 
 .myinfo-box-info {
     background-color: #D9D9D9;
-    width: 41.2vw;
-    height: 39.7vh;
-    margin-bottom: 1.3vw;
-    margin-left: 1.5vw;
+    width: 593px;
+    height: 572px;
+    margin-bottom: 18px;
+    margin-left: 60px;
     display: flex;
     flex-direction: column;
-    border-radius: 0.9vw;
+    border-radius: 13px;
 }

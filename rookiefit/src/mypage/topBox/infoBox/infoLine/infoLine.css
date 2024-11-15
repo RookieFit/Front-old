@@ -1,35 +1,36 @@
 .myinfo-box {
     display: flex;
     flex-direction: row;
-    margin-top: 0.3vw;
-    margin-left: 2.2vw;
+    margin-top: 4px;
+    margin-left: 31px;
 }
 
 .myinfo-little-box {
     background-color: #B6B6B6;
-    width: 8.3vw;
-    height: 3.3vh;
-    font-size: 1.5vw; 
+    width: 120px;
+    height: 47px;
+    font-size: 21px; 
     text-align: center;
-    line-height: 3.5vw;
-    margin-top: 0.5vw;
-    margin-bottom: 0.1vw;
-    border-radius: 0.3vw;
+    line-height: 50px;
+    margin-top: 7px;
+    margin-bottom: 1px;
+    border-radius: 5px;
     border-style: solid;
     border-color: #9F9F9F;
     border-width: 0px 0px 2px 0px ;
+    
 }
 
 .myinfo-box-box {
     background-color: #D9D9D9;
-    width: 26.7vw;
-    height: 3.3vh;
-    font-size: 1.5vw; 
+    width: 385px;
+    height: 47px;
+    font-size: 21px; 
     text-align: center;
-    line-height: 3.5vw;
-    margin-top: 0.4vw;
-    margin-left: 1.4vw;
-    margin-bottom: 0.1vw;
+    line-height: 50px;
+    margin-top: 6px;
+    margin-left: 20px;
+    margin-bottom: 1px;
     border-style: solid;
     border-color: #000000;
     border-width: 0px 0px 2px 0px ;
@@ -37,29 +38,41 @@
 
 .myinfoedit-box-box {
     background-color: #D9D9D9;
-    width: 26.7vw;
-    height: 3.5vh;
+    width: 385px;
+    height: 50px;
     text-align: center;
-    line-height: 3.5vw;
-    margin-top: 0.1vw;
-    margin-left: 1.4vw;
-    margin-bottom: 0.1vw;
+    line-height: 50px;
+    margin-top: 1px;
+    margin-left: 20px;
+    margin-bottom: 1px;
+    border-style: none;
+}
+
+.myinfoedit-box-box {
+    background-color: #D9D9D9;
+    width: 385px;
+    height: 50px;
+    text-align: center;
+    line-height: 50px;
+    margin-top: 1px;
+    margin-left: 20px;
+    margin-bottom: 1px;
     border-style: none;
 }
 
 .myinfoedit-message-textarea {
     background-color: #F3F1F1;
-    width: 26.7vw;
-    height: 3.2vh;
+    width: 385px;
+    height: 46px;
     text-align: center;
-    line-height: 3.5vw;
+    line-height: 50px;
     resize: none;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
     border-style: solid;
-    border-radius: 0.3vw;
+    border-radius: 5px;
     border-color: #9F9F9F;
-    border-width: 0px 0px 2px 0px 
+    border-width: 0px 0px 2px 0px ;
 
 }

@@ -8,7 +8,6 @@ const GraphBox = () => {
             <GraphDate/>
             <GraphDate/>
             <GraphDate/>
-
         </div>
     )
 };

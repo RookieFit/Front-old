@@ -1,31 +1,28 @@
-import { useState } from 'react';
-import './infoLine.css';
+import { useState } from "react";
+import "./infoLine.css";
 
-interface props {
+interface Props {
     title: string;
-    placeholder: string;
-    name: string;
-    type: 'text';
-    value: string;
 }
-const InfoLineEdit = () => {
-    const [title, setTitle] = useState();
 
+const InfoLineEdit = ({ title }: Props) => {
     const [isInFotextareaclicked, setIsInFoTextAreaClicked] = useState(false);
 
     return (
         <div className="myinfo-box">
             <div className="myinfo-little-box">{title}</div>
-            <div className="myinfoedit-box-box" >
-                <input type='text'
-                    className='myinfoedit-message-textarea'
-                    onFocus={() => setIsInFoTextAreaClicked(false)}
-                    onBlur={() => setIsInFoTextAreaClicked(true)}
-                    placeholder={isInFotextareaclicked === true ? "" : "입력하세요"}>
-                </input>
+            <div className="myinfoedit-box-box">
+                <input
+                    type="text"
+                    maxLength={30}
+                    className="myinfoedit-message-textarea"
+                    onFocus={() => setIsInFoTextAreaClicked(true)}
+                    onBlur={() => setIsInFoTextAreaClicked(false)}
+                    placeholder={isInFotextareaclicked ? "" : "입력하세요"}
+                />
             </div>
         </div>
-    )
+    );
 };
 
 export default InfoLineEdit;

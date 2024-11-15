@@ -1,20 +1,16 @@
-import { useEffect, useState } from 'react';
 import './infoLine.css';
 
-interface props {
+interface Props {
     title: string;
-    placeholder: string;
-    name: string;
-    type: 'text';
-    value: DataView;
-}
-const InfoLine = () => {
-    const [title, setTitle] = useState();
+    value: string;
+
     
+}
+const InfoLine = ({ title, value, }: Props) => {
     return (
         <div className="myinfo-box">
             <div className="myinfo-little-box">{title}</div>
-            <div className="myinfo-box-box"></div>
+            <div className="myinfo-box-box">{value}</div>
         </div>
     )
 };

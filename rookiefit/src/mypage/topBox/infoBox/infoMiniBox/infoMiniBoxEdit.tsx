@@ -8,21 +8,21 @@ const InfoMiniBoxEdit = () => {
         navigate('/myPage')
     };
     return (
-        <div className="myinfo-main">
-            <div className='myinfo-click'> 내 정보</div>
+        <div className="right-back">
+            <div className='myinfo-text'> 내 정보</div>
             <div className='myinfo-edit' >
                 <input type="button" value="완료하기" onClick={myPage} className='myinfo-button' />
             </div>
             <div className='myinfo-box-info'>
-                <InfoLineEdit />
-                <InfoLineEdit />
-                <InfoLineEdit />
-                <InfoLineEdit />
-                <InfoLineEdit />
-                <InfoLineEdit />
-                <InfoLineEdit />
-                <InfoLineEdit />
-                <InfoLineEdit />
+                <InfoLineEdit title={'닉네임'} /> 
+                <InfoLineEdit title={'이름'} />
+                <InfoLineEdit title={'나이'} />
+                <InfoLineEdit title={'몸무게'} />
+                <InfoLineEdit title={'키'} />
+                <InfoLineEdit title={'근육량'} />
+                <InfoLineEdit title={'체지방량'} />
+                <InfoLineEdit title={'주소'} />
+                <InfoLineEdit title={'헬스장명'} />
             </div>
         </div>
     )
