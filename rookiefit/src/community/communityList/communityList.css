@@ -19,7 +19,7 @@
     /* 최대 너비 1200px로 제한 */
 }
 
-.search-wrapper {
+.community-search-wrapper {
     position: relative;
     /* 내부 요소의 위치를 상대적으로 설정 */
     display: flex;
