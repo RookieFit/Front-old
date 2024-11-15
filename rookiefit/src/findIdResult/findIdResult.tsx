@@ -16,8 +16,7 @@ const FindIdResult = () => {
     return (
         <div className="find-id-result-wrapper">
             <div className="find-id-result-content">
-                <h2 className="find-id-result-text">당신의 아이디는</h2>
-                <h2 className="find-id-result-text">입니다.</h2>
+                <h2 className="find-id-result-text">당신의 아이디는 입니다.</h2>
                 <div className="button-container"> {/* 버튼들을 가로로 정렬할 컨테이너 */}
                     <button
                         className="find-id-result-button"

@@ -71,6 +71,9 @@ function SignInPage() {
     // 비밀번호 찾기 페이지로 이동하는 함수
     const handleFindPasswordClick = () => navigate('/findpassword');  // /findPassword 경로로 이동
 
+    // 회원가입 페이지로 이동하는 함수
+    const handleSignUpClick = () => navigate('/signup');  // /signup 경로로 이동
+
     return (
         <div id="sign-in-wrapper">  {/* 로그인 페이지 전체 컨테이너 */}
             <h2 className="sign-in-title">로그인</h2>  {/* 페이지 제목 */}
@@ -104,8 +107,12 @@ function SignInPage() {
                 로그인
             </button>
 
-            {/* 아이디 찾기 및 비밀번호 찾기 링크 */}
-            <div className="find-id-password-container">
+            {/* 회원가입 /아이디 찾기 / 비밀번호 찾기 링크 */}
+            <div className="find-id-password-sign-up-container">
+                <button className="find-id-password-button" onClick={handleSignUpClick}>
+                    회원 가입
+                </button>
+                <span className="vertical-line"></span>
                 <button className="find-id-password-button" onClick={handleFindIdClick}>
                     아이디 찾기
                 </button>
@@ -118,7 +125,7 @@ function SignInPage() {
             <div className="underline"></div>  {/* 페이지 하단의 구분선 */}
 
             {/* 간편 로그인 섹션 */}
-            <div className="easy-sign-in-text">간편 로그인</div>  {/* 간편 로그인 안내 텍스트 */}
+            <div className="easy-sign-in-text">간편 로그인 및 회원가입</div>  {/* 간편 로그인 안내 텍스트 */}
 
             {/* SNS 로그인 버튼들 */}
             <div className="sns-sign-in-container">
@@ -130,4 +137,4 @@ function SignInPage() {
     );
 }
 
-export default SignInPage;  // 컴포넌트 내보내기
+export default SignInPage;

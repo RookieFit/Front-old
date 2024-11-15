@@ -1,116 +1,116 @@
-import { useState, ChangeEvent, KeyboardEvent } from 'react'; // React의 useState, ChangeEvent, KeyboardEvent 훅 임포트
-import { useNavigate } from 'react-router-dom'; // 페이지 이동을 위한 useNavigate 훅 임포트
-import InputBox from '../inputBox/inputBox'; // InputBox 컴포넌트 임포트
-import './passwordReset.css'; // 스타일 시트 임포트
+import { useState, ChangeEvent, KeyboardEvent } from 'react';
+import { useNavigate } from 'react-router-dom';
+import InputBox from '../inputBox/inputBox';
+import './passwordReset.css';
 
 function PasswordReset() {
-    const navigate = useNavigate(); // 페이지 이동을 위한 navigate 함수
+    const navigate = useNavigate();
+
+    // 기존 비밀번호 더미 데이터로 설정
+    const previousPassword = '1234'; // 더미 비밀번호
 
     // 비밀번호 관련 상태
-    const [password, setPassword] = useState(''); // 새 비밀번호 상태
-    const [confirmPassword, setConfirmPassword] = useState(''); // 새 비밀번호 확인 상태
-    const [passwordMessage, setPasswordMessage] = useState(''); // 비밀번호 유효성 메시지
-    const [confirmPasswordMessage, setConfirmPasswordMessage] = useState(''); // 비밀번호 확인 유효성 메시지
-    const [isPasswordError, setIsPasswordError] = useState(false); // 비밀번호 오류 상태
-    const [isConfirmPasswordError, setIsConfirmPasswordError] = useState(false); // 비밀번호 확인 오류 상태
+    const [password, setPassword] = useState('');
+    const [confirmPassword, setConfirmPassword] = useState('');
+    const [passwordMessage, setPasswordMessage] = useState('');
+    const [confirmPasswordMessage, setConfirmPasswordMessage] = useState('');
+    const [isPasswordError, setIsPasswordError] = useState(false);
+    const [isConfirmPasswordError, setIsConfirmPasswordError] = useState(false);
 
     // 비밀번호 입력 핸들러
     const handlePasswordChange = (event: ChangeEvent<HTMLInputElement>) => {
-        const input = event.target.value; // 비밀번호 입력값 가져오기
-        setPassword(input); // 비밀번호 상태 업데이트
+        const input = event.target.value;
+        setPassword(input);
 
-        if (!input) { // 비밀번호가 비어 있을 경우
-            setPasswordMessage('비밀번호를 입력해주세요.'); // 메시지 업데이트
-            setIsPasswordError(true); // 오류 상태 true
+        if (!input) {
+            setPasswordMessage('비밀번호를 입력해주세요.');
+            setIsPasswordError(true);
+        } else if (input === previousPassword) { // 이전 비밀번호와 동일한지 검사
+            setPasswordMessage('이전과 동일한 비밀번호는 사용할 수 없습니다.');
+            setIsPasswordError(true);
         } else {
-            setPasswordMessage('사용 가능한 비밀번호입니다.'); // 메시지 업데이트
-            setIsPasswordError(false); // 오류 상태 false
+            setPasswordMessage('사용 가능한 비밀번호입니다.');
+            setIsPasswordError(false);
         }
     };
 
     // 비밀번호 확인 입력 핸들러
     const handleConfirmPasswordChange = (event: ChangeEvent<HTMLInputElement>) => {
-        const input = event.target.value; // 비밀번호 확인 입력값 가져오기
-        setConfirmPassword(input); // 비밀번호 확인 상태 업데이트
+        const input = event.target.value;
+        setConfirmPassword(input);
 
-        if (!input) { // 비밀번호 확인이 비어 있을 경우
-            setConfirmPasswordMessage('비밀번호를 한번 더 입력해주세요.'); // 메시지 업데이트
-            setIsConfirmPasswordError(true); // 오류 상태 true
-        } else if (input !== password) { // 비밀번호 확인이 원래 비밀번호와 다를 경우
-            setConfirmPasswordMessage('비밀번호가 일치하지 않습니다.'); // 메시지 업데이트
-            setIsConfirmPasswordError(true); // 오류 상태 true
+        if (!input) {
+            setConfirmPasswordMessage('비밀번호를 한번 더 입력해주세요.');
+            setIsConfirmPasswordError(true);
+        } else if (input !== password) {
+            setConfirmPasswordMessage('비밀번호가 일치하지 않습니다.');
+            setIsConfirmPasswordError(true);
         } else {
-            setConfirmPasswordMessage('비밀번호가 일치합니다.'); // 메시지 업데이트
-            setIsConfirmPasswordError(false); // 오류 상태 false
+            setConfirmPasswordMessage('비밀번호가 일치합니다.');
+            setIsConfirmPasswordError(false);
         }
     };
 
     // 비밀번호 재설정 버튼 클릭 핸들러
     const handleResetPasswordClick = () => {
-        let isValid = true; // 유효성 검사 플래그
+        let isValid = true;
 
-        // 비밀번호 입력 확인
-        if (!password) { // 비밀번호가 비어 있을 경우
-            setPasswordMessage('비밀번호를 입력해주세요.'); // 메시지 업데이트
-            setIsPasswordError(true); // 오류 상태 true
-            isValid = false; // 유효성 검사 실패
+        if (!password) {
+            setPasswordMessage('비밀번호를 입력해주세요.');
+            setIsPasswordError(true);
+            isValid = false;
+        } else if (password === previousPassword) { // 이전 비밀번호와 동일한지 확인
+            setPasswordMessage('이전과 동일한 비밀번호는 사용할 수 없습니다.');
+            setIsPasswordError(true);
+            isValid = false;
         }
 
-        // 비밀번호 확인 입력 확인
-        if (!confirmPassword) { // 비밀번호 확인이 비어 있을 경우
-            setConfirmPasswordMessage('비밀번호를 한번 더 입력해주세요.'); // 메시지 업데이트
-            setIsConfirmPasswordError(true); // 오류 상태 true
-            isValid = false; // 유효성 검사 실패
+        if (!confirmPassword) {
+            setConfirmPasswordMessage('비밀번호를 한번 더 입력해주세요.');
+            setIsConfirmPasswordError(true);
+            isValid = false;
         }
 
-        // 모든 검증을 통과한 경우
-        if (isValid && !isPasswordError && !isConfirmPasswordError) { // 오류가 없을 경우
-            alert('비밀번호가 성공적으로 변경되었습니다.'); // 비밀번호 변경 성공 메시지
-            navigate('/login'); // 로그인 페이지로 이동
+        if (isValid && !isPasswordError && !isConfirmPasswordError) {
+            alert('비밀번호가 성공적으로 변경되었습니다.');
+            navigate('/login');
         }
     };
 
     // Enter 키 입력 핸들러
     const handleKeyDown = (event: KeyboardEvent<HTMLInputElement>) => {
-        if (event.key === 'Enter') { // Enter 키 입력 시
-            handleResetPasswordClick(); // 비밀번호 재설정 함수 호출
+        if (event.key === 'Enter') {
+            handleResetPasswordClick();
         }
     };
 
     return (
-        <div id="reset-password-wrapper"> {/* 비밀번호 재설정 화면 */}
-            <h2 className="reset-password-title">비밀번호 재설정</h2> {/* 제목 */}
-
-            {/* 새 비밀번호 입력 박스 */}
+        <div id="reset-password-wrapper">
+            <h2 className="reset-password-title">비밀번호 재설정</h2>
             <InputBox
                 title="새 비밀번호"
                 placeholder="새 비밀번호를 입력해주세요"
                 type="password"
                 value={password}
-                onChange={handlePasswordChange} // 비밀번호 입력 핸들러
-                message={passwordMessage} // 비밀번호 메시지
-                isErrorMessage={isPasswordError} // 비밀번호 오류 여부
-                onKeyDown={handleKeyDown} // Enter 키 입력 핸들러
+                onChange={handlePasswordChange}
+                message={passwordMessage}
+                isErrorMessage={isPasswordError}
+                onKeyDown={handleKeyDown}
             />
-
-            {/* 새 비밀번호 확인 입력 박스 */}
             <InputBox
                 title={"새 비밀번호\n확인"}
                 placeholder="새 비밀번호를 다시 입력해주세요"
                 type="password"
                 value={confirmPassword}
-                onChange={handleConfirmPasswordChange} // 비밀번호 확인 입력 핸들러
-                message={confirmPasswordMessage} // 비밀번호 확인 메시지
-                isErrorMessage={isConfirmPasswordError} // 비밀번호 확인 오류 여부
-                onKeyDown={handleKeyDown} // Enter 키 입력 핸들러
+                onChange={handleConfirmPasswordChange}
+                message={confirmPasswordMessage}
+                isErrorMessage={isConfirmPasswordError}
+                onKeyDown={handleKeyDown}
             />
-
-            <div className="underline"></div> {/* 하단 구분선 */}
-
-            {/* 비밀번호 재설정 버튼 */}
+            <div className="underline"></div>
             <button
                 className="reset-password-button"
-                onClick={handleResetPasswordClick} // 비밀번호 재설정 클릭 시 핸들러 호출
+                onClick={handleResetPasswordClick}
             >
                 비밀번호 재설정
             </button>
@@ -118,4 +118,4 @@ function PasswordReset() {
     );
 }
 
-export default PasswordReset; // PasswordReset 컴포넌트 내보내기
+export default PasswordReset;
