@@ -7,13 +7,13 @@ interface AddedDetailsProps {
 
 const AddedDetails = ({ workoutDetails }: AddedDetailsProps) => {
     return (
-        <div className="added-workoutDetails">
+        <div className="added-workout-details">
             {/* 운동 세부사항이 있을 경우 */}
             {workoutDetails.length > 0 ? (
                 workoutDetails.map((detail, index) => (
-                    <div key={index} className="detail-item">
+                    <div key={index} className="workout-detail-item">
                         {/* 첫 번째 운동 세부사항에는 제목을 추가 */}
-                        <div className="detail-header">
+                        <div className="workout-detail-header">
                             {index === 0 && (
                                 <>
                                     <p>운동명</p>
@@ -24,7 +24,7 @@ const AddedDetails = ({ workoutDetails }: AddedDetailsProps) => {
                             )}
                         </div>
                         {/* 운동 세부사항 표시 */}
-                        <div className="detail-content">
+                        <div className="workout-detail-content">
                             <p>{detail[0]}</p>
                             <p>{detail[1]}</p>
                             <p>{detail[2]}</p>
@@ -34,7 +34,7 @@ const AddedDetails = ({ workoutDetails }: AddedDetailsProps) => {
                 ))
             ) : (
                 // 운동 세부사항이 없을 경우 표시
-                <div className='detail-item'>
+                <div className='workout-detail-item'>
                     <p>추가된 운동 세부사항이 없습니다.</p>
                 </div>
             )}

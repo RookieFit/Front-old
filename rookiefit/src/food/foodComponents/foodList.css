@@ -1,48 +1,57 @@
 .food-list-header {
     display: flex;
     padding: 1vw 2vw;
+    justify-content: space-between;
     font-weight: 1000;
+    align-items: center;
+    /* 세로 중앙 정렬 추가 */
 }
 
 .food-list-main {
-    /* padding: 1vw 2vw; */
     font-size: 2vw;
     font-weight: 1000;
+    color: #303030;
 }
 
 .food-list-update {
-    margin-left: 14.5vw;
+    background-color: transparent;
     margin-top: 2vw;
+    font-size: 1vw;
     cursor: pointer;
     border: none;
-    color: #00d6ee;
+    color: #818181;
+    min-width: 100px;
+    /* 최소 너비 설정 */
+    visibility: hidden;
+    /* 버튼이 보이지 않게 숨기기 */
+}
+
+.food-list-update.visible {
+    visibility: visible;
+    /* 검색어가 없을 때 버튼을 보이게 설정 */
 }
 
 .food-list-eat-today {
     padding: 1vw 2vw;
-    font-size: 1vw;
+    font-size: 1.5vw;
 }
 
-.food-item {
+.delete-button-wrapper {
     display: flex;
-    align-items: center;
-    margin-bottom: 8px;
-}
-
-.food-item input[type="checkbox"] {
-    margin-right: 10px;
+    justify-content: center;
+    margin-top: 20px;
 }
 
 .delete-button {
-    background-color: #ff4d4f;
+    padding: 10px 20px;
+    background-color: #e74c3c;
     color: white;
-    padding: 8px 16px;
     border: none;
-    border-radius: 4px;
+    border-radius: 5px;
     cursor: pointer;
-    margin-top: 16px;
+    width: 150px;
 }
 
 .delete-button:hover {
-    background-color: #ff7875;
+    background-color: #c0392b;
 }

@@ -14,9 +14,7 @@ const CalendarPage = () => {
     const isUpdatePage = location.pathname === '/calendar/detail'; // 현재 페이지가 '일기 수정' 페이지인지 확인
 
     return (
-        <div className='left-right-page' style={{
-            marginTop: '2vw'
-        }}>
+        <div className='left-right-page'>
             <CalendarProvider>
                 <CalendarDetailsProvider>
                     <CustomCalendar />

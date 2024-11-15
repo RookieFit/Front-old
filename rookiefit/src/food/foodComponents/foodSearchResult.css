@@ -1,0 +1,54 @@
+.food-search-result-detail {
+    margin: 10px 0;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: transparent;
+}
+
+.food-search-result-detail h3 {
+    margin: 0 0 5px;
+}
+
+.food-search-result-detail p {
+    font-size: 1vw;
+    /* 상세 정보 크기 조금 더 줄임 */
+}
+
+.food-search-result-no-results {
+    color: #888;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.food-search-result-add-food-button-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.food-search-result-food-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1vw;
+    color: #555555;
+}
+
+.food-search-result-food-item input[type="checkbox"] {
+    margin-right: 10px;
+}
+
+.food-search-result-add-food-button {
+    background-color: #4CAF50;
+    /* 초록색 배경 */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.food-search-result-add-food-button:hover {
+    background-color: #45a049;
+}

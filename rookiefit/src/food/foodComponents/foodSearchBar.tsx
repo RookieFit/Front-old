@@ -1,12 +1,18 @@
-import './foodSearchBar.css'
+import React from 'react';
+import './foodSearchBar.css';
 
-const FoodSearchBar = () => {
+interface FoodSearchBarProps {
+    onSearch: (term: string) => void;
+}
+
+const FoodSearchBar = ({ onSearch }: FoodSearchBarProps) => {
     return (
         <div className="food-searchbar-wrapper">
             <input
-                className='food-searchbar'
+                className="food-searchbar"
                 type="search"
-                placeholder="검색"
+                placeholder="음식 목록 추가"
+                onChange={(e) => onSearch(e.target.value)}
             />
         </div>
     );

@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import './foodList.css';
+import FoodSearchBar from "./foodSearchBar";
+import FoodSearchResultsProps from "./foodSearchResult"; // FoodSearchResultsProps 임포트
 
-interface Entry {
+export interface Entry {
     foodName: string;
     cal: number;
     chobo: number;
@@ -11,18 +13,27 @@ interface Entry {
 
 interface FoodListProps {
     foodDetails: { entries: Entry[] };
-    // 상위 컴포넌트에서 useState 상태 변경 함수를 넘길 때 타입 정의
     setFoodDetails: React.Dispatch<React.SetStateAction<{ entries: Entry[] }>>;
 }
 
 const FoodList = ({ foodDetails, setFoodDetails }: FoodListProps) => {
     const [isEditing, setIsEditing] = useState(false);
     const [selectedItems, setSelectedItems] = useState<string[]>([]);
+    const [searchResult, setSearchResult] = useState("");
+    const [debouncedSearch, setDebouncedSearch] = useState("");
+    const [selectedFood, setSelectedFood] = useState<Entry | null>(null);
 
-    // 편집 모드 토글
+    // Debouncing search input
+    useEffect(() => {
+        const timeoutId = setTimeout(() => {
+            setDebouncedSearch(searchResult); // Reflect search input after 500ms
+        }, 500); // 500ms delay
+
+        return () => clearTimeout(timeoutId); // Clean up timeout when component unmounts
+    }, [searchResult]);
+
     const toggleEditMode = () => setIsEditing(!isEditing);
 
-    // 항목 선택
     const handleSelectItem = (foodName: string) => {
         setSelectedItems((prevSelected) =>
             prevSelected.includes(foodName)
@@ -31,43 +42,76 @@ const FoodList = ({ foodDetails, setFoodDetails }: FoodListProps) => {
         );
     };
 
-    // 선택된 항목 삭제
     const handleDeleteSelected = () => {
         const updatedEntries = foodDetails.entries.filter(
             (item) => !selectedItems.includes(item.foodName)
         );
         setFoodDetails({ entries: updatedEntries });
-        setSelectedItems([]); // 선택 목록 초기화
-        setIsEditing(false); // 편집 모드 종료
+        setSelectedItems([]);
+        setIsEditing(false);
+    };
+
+    const filteredEntries = foodDetails.entries.filter((item) =>
+        item.foodName.toLowerCase().includes(debouncedSearch.toLowerCase())
+    );
+
+    const handleFoodClick = (food: Entry) => {
+        setSelectedFood(food);
+    };
+
+    // Update search term and reset selectedFood when search changes
+    const handleSearchChange = (term: string) => {
+        setSearchResult(term);
+        setSelectedFood(null);  // Reset selected food when search term changes
+    };
+
+    // '추가하기' 버튼 클릭 시 처리
+    const handleAddFood = () => {
+        if (selectedItems.length > 0) {
+            const newFoodItems = foodDetails.entries.filter((entry) =>
+                selectedItems.includes(entry.foodName)
+            );
+            // 원하는 로직을 추가하여 foodDetails에 항목을 추가
+            setFoodDetails({ entries: [...foodDetails.entries, ...newFoodItems] });
+            setSelectedItems([]);  // 추가 후 선택된 항목 초기화
+        }
     };
 
     return (
         <div className="right-back">
             <div className="food-list-header">
-                <div className="food-list-main">오늘 먹은 음식 목록</div>
-                <button onClick={toggleEditMode} className="food-list-update">
+                <div className="food-list-main">
+                    {debouncedSearch ? `${debouncedSearch} 검색 결과` : "오늘 먹은 음식 목록"}
+                </div>
+                {/* 검색어가 있으면 수정하기 버튼이 보이지 않도록 */}
+                <button
+                    onClick={toggleEditMode}
+                    className={`food-list-update ${!debouncedSearch ? "visible" : ""}`}
+                >
                     {isEditing ? "완료" : "수정하기"}
                 </button>
             </div>
             <hr />
+            <FoodSearchBar
+                onSearch={handleSearchChange}
+            />
             <div className="food-list-eat-today">
-                {foodDetails.entries.map((item, index) => (
-                    <div key={index} className="food-item">
-                        {isEditing && (
-                            <input
-                                type="checkbox"
-                                checked={selectedItems.includes(item.foodName)}
-                                onChange={() => handleSelectItem(item.foodName)}
-                            />
-                        )}
-                        {item.foodName}
-                    </div>
-                ))}
+                <FoodSearchResultsProps
+                    filteredEntries={filteredEntries}
+                    isEditing={isEditing}
+                    selectedItems={selectedItems}
+                    handleFoodClick={handleFoodClick}
+                    handleSelectItem={handleSelectItem}
+                    selectedFood={selectedFood}
+                    handleAddFood={handleAddFood}  // handleAddFood 함수 전달
+                />
             </div>
             {isEditing && (
-                <button onClick={handleDeleteSelected} className="delete-button">
-                    삭제하기
-                </button>
+                <div className="delete-button-wrapper">
+                    <button onClick={handleDeleteSelected} className="delete-button">
+                        삭제하기
+                    </button>
+                </div>
             )}
         </div>
     );

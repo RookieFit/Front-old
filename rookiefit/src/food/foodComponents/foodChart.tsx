@@ -45,7 +45,7 @@ const FoodChart = ({ foodDetails }: FoodChartProps) => {
                             show: true,
                             total: {
                                 show: true,
-                                label: '총 칼로리',
+                                label: '',
                                 formatter: () => `${totalCalories} kcal`
                             }
                         },
@@ -53,7 +53,7 @@ const FoodChart = ({ foodDetails }: FoodChartProps) => {
                 }
             },
             labels: ["탄수화물", "단백질", "지방"],
-            colors: ["#BBE9FF", "#85F4FF", "#94FFD8"],
+            colors: ["#FFE31A", "#000B58", "#FF2929"],
             stroke: {
                 width: 4,
                 colors: ['#fff']
