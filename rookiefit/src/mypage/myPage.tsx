@@ -5,11 +5,11 @@ import TopMainBox from './topBox/topMainBox';
 
 const MyPage = () => {
     return (
-        <div className="mainBox">
-            <div className='topBox'>
+        <div className="main-box">
+            <div className='top-box'>
                 <TopMainBox/>
             </div>
-            <div className='bottomBox'>
+            <div className='bottom-box'>
                 <GraphBox/>
             </div> 
         </div>

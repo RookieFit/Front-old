@@ -8,20 +8,20 @@ const ProfileEdit = () => {
   const myPage = () => {
     navigate('/myPage')
   };
-  const [isprofiletextareaclicked, setIsProfileTextAreaClicked] = useState(false);
+  const [isProfileTextareaClicked, setIsProfileTextareaClicked] = useState(false);
   return (
-    <div className='left-back'>
-      <div className='profile-imageedit'>
-        <img className='profileimage' src={logo} ></img>
+    <div className='profile-left-back'>
+      <div className='profile-image-edit'>
+        <img className='profile-image' src={logo} ></img>
       </div>
       <div className='profile-nickname'>닉네임자리</div>
       <div className='profile-message'>
         <input type='text'
           maxLength={19}
           className='profile-message-textarea'
-          onFocus={() => setIsProfileTextAreaClicked(true)}
-          onBlur={() => setIsProfileTextAreaClicked(false)}
-          placeholder={isprofiletextareaclicked === true ? "" : "input"}>
+          onFocus={() => setIsProfileTextareaClicked(true)}
+          onBlur={() => setIsProfileTextareaClicked(false)}
+          placeholder={isProfileTextareaClicked === true ? "" : "input"}>
         </input>
       </div>
       <div className='profile-edit' onClick={myPage}>

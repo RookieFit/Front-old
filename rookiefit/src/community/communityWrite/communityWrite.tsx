@@ -8,10 +8,10 @@ const CommunityWrite = () => {
     const [isDropdownView, setDropdownView] = useState(false);
     const [selectedMenu, setSelectedMenu] = useState("말머리");
 
-    const toggleDropdown = () => {
+    const handletoggleDropdown = () => {
         setDropdownView(!isDropdownView);
     };
-    const handlewrieBlur = () => {
+    const handlewriteBlur = () => {
         setTimeout(() => {
             setDropdownView(false);
         }, 200);
@@ -20,24 +20,25 @@ const CommunityWrite = () => {
         setSelectedMenu(item);
         setDropdownView(false);
     };
-//내용 없애기
-const [iscommunitywrititleclicked, setiscommunitywrititleclicked] = useState(false);
-const [iscommunitywritedetailclicked, setiscommunitywritedetailclicked] = useState(false);
+    //내용 없애기
+    const [isCommunityWriteTitleclicked, setIsCommunityWriteTitleclicked] = useState(false);
+    const [isCommunitywriteDetailClicked, setIsCommunitywriteDetailClicked] = useState(false);
 
     return (
         <div className="writetopbox">
-            <CommunityHeader title="커뮤니티" content="다마코치의 커뮤니티 공간입니다." />
-            <div className="communitywriteinbox">
-                <div className="communitywritetitlebox">
+            <CommunityHeader title="커뮤니티" content="모든 헬스인들을 위한 커뮤니티" />
+            <div className="communitywrite-inbox">
+                <div className="communitywrite-title-box">
                     <div>
                         <button type="button"
-                            onClick={toggleDropdown}
-                            onBlur={handlewrieBlur}
-                            className="communitywritetitledrop">
+                            onClick={handletoggleDropdown}
+                            onBlur={handlewriteBlur}
+                            className="communitywrite-title-drop">
                             {selectedMenu}
                         </button>
+                        {/* 이건 나중에 고쳐볼께요 */}
                         {isDropdownView && (
-                            <ul className="dropdownwritemenu">
+                            <ul className="dropdownwrite-menu">
                                 {menuItems.map((item, index) => (
                                     <li key={index} onClick={() => handleMenuSelect(item)}>
                                         {item}
@@ -48,28 +49,29 @@ const [iscommunitywritedetailclicked, setiscommunitywritedetailclicked] = useSta
                     </div>
                     <input
                         type="text"
-                        className="communitywrititle"
-                        onFocus={() => setiscommunitywrititleclicked(true)}
-                        onBlur={() => setiscommunitywrititleclicked(false)}
-                        placeholder={iscommunitywrititleclicked === true ? "" : "입력하세요"}
+                        className="communitywri-title"
+                        onFocus={() => setIsCommunityWriteTitleclicked(true)}
+                        onBlur={() => setIsCommunityWriteTitleclicked(false)}
+                        placeholder={isCommunityWriteTitleclicked === true ? "" : "입력하세요"}
                     />
                 </div>
                 <input
                     type="text"
-                    className="communitywritedetail"
-                    onFocus={() => setiscommunitywritedetailclicked(true)}
-                        onBlur={() => setiscommunitywritedetailclicked(false)}
-                        placeholder={iscommunitywritedetailclicked === true ? "" : "입력하세요"}
+                    className="communitywrite-detail"
+                    onFocus={() => setIsCommunitywriteDetailClicked(true)}
+                    onBlur={() => setIsCommunitywriteDetailClicked(false)}
+                    placeholder={isCommunitywriteDetailClicked === true ? "" : "입력하세요"}
                 />
-                <div className="communitywriteunder">
+                {/* 구현중임 */}
+                <div className="communitywrite-under">
                     <input
                         type="button"
-                        className="communitywritefileupload"
+                        className="communitywrite-file-upload"
                         placeholder="파일 업로드"
                     />
                     <input
                         type="button"
-                        className="communitywriteupcontentsload"
+                        className="communitywrite-upload-contents"
                     />
                 </div>
             </div>

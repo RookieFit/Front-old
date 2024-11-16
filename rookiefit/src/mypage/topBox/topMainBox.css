@@ -1,5 +1,8 @@
-/* .topMainBox {
+.top-mainmbox-left-right-page {
     display: flex;
     flex-direction: row;
-    margin-top: 6.1vh;
-} */
+    justify-content: space-between;
+    padding: 0 10vw;
+    gap: 2vw;
+    margin-top: 1.8vw; 
+}

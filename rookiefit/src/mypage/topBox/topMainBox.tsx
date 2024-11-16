@@ -1,13 +1,13 @@
 import './topMainBox.css';
-import InfoMiniBox from "./infoBox/infoMiniBox/infoMiniBox";
 import Profile from "./profileBox/profile/profile";
 import '../../index.css'
+import InformationMiniBox from './informationBox/informationMiniBox/informationMiniBox';
 
 const TopMainBox = () => {
     return (
-        <div className="left-right-page">
+        <div className="top-mainmbox-left-right-page">
             <Profile/>
-            <InfoMiniBox /> 
+            <InformationMiniBox /> 
         </div>
     )
 };

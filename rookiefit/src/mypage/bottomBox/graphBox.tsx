@@ -4,10 +4,10 @@ import GraphDate from './graphDate';
 
 const GraphBox = () => {
     return (
-        <div className="bottomMainBox">
-            <GraphDate/>
-            <GraphDate/>
-            <GraphDate/>
+        <div className="bottom-main-box">
+            <GraphDate />
+            <GraphDate />
+            <GraphDate />
         </div>
     )
 };

@@ -4,7 +4,7 @@ import type { ApexOptions } from "apexcharts";
 
 const GraphDate = () => {
     const data = {
-        series: [10, 41, 35, 51, 49, 62, 69, 91, 148 ],
+        series: [10, 41, 35, 51, 49, 62, 69, 91, 148],
         options: {
             chart: {
                 height: 350,
@@ -29,11 +29,9 @@ const GraphDate = () => {
                     color: '#000',
                     opacity: 0.55
                 }
-                
             },
         } as ApexOptions
     };
-
 
     return (
         <div className="graph-box">

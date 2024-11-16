@@ -12,10 +12,11 @@ const Profile = () => {
   const main = () => {
     navigate('/main')
   };
+
   return (
-    <div className='left-back'>
-      <input type='button' value="로그아웃" onClick={main} className='profilelogout' />
-      <img className='profileimage' src={logo}></img>
+    <div className='profile-left-back'>
+      <input type='button' value="로그아웃" onClick={main} className='profile-logout' />
+      <img className='profile-image' src={logo}></img>
 
       <div className='profile-nickname'>닉네임자리</div>
       <textarea className='profile-message-textarea' disabled>"메시지를 입력하세요"
