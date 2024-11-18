@@ -1,15 +1,15 @@
-.myinfo-box {
+.my-information-box {
     display: flex;
     flex-direction: row;
     margin-top: 4px;
     margin-left: 31px;
 }
 
-.myinfo-little-box {
+.my-information-little-box {
     background-color: #B6B6B6;
     width: 120px;
     height: 47px;
-    font-size: 21px; 
+    font-size: 21px;
     text-align: center;
     line-height: 50px;
     margin-top: 7px;
@@ -17,38 +17,33 @@
     border-radius: 5px;
     border-style: solid;
     border-color: #9F9F9F;
-    border-width: 0px 0px 2px 0px ;
-    
+    border-width: 0px 0px 2px 0px;
 }
 
-.myinfo-box-box {
+.my-information-box-textbox {
     background-color: #D9D9D9;
     width: 385px;
     height: 47px;
-    font-size: 21px; 
+    font-size: 21px;
     text-align: center;
     line-height: 50px;
-    margin-top: 6px;
-    margin-left: 20px;
-    margin-bottom: 1px;
+    margin: 6px 0 1px 20px;
     border-style: solid;
     border-color: #000000;
-    border-width: 0px 0px 2px 0px ;
+    border-width: 0px 0px 2px 0px;
 }
 
-.myinfoedit-box-box {
+.my-information-edit-box-textbox {
     background-color: #D9D9D9;
     width: 385px;
     height: 50px;
     text-align: center;
     line-height: 50px;
-    margin-top: 1px;
-    margin-left: 20px;
-    margin-bottom: 1px;
+    margin: 1px 0 1px 20px;
     border-style: none;
 }
 
-.myinfoedit-message-textarea {
+.my-information-edit-message-textarea {
     background-color: #F3F1F1;
     width: 385px;
     height: 46px;
@@ -61,6 +56,5 @@
     border-style: solid;
     border-radius: 5px;
     border-color: #9F9F9F;
-    border-width: 0px 0px 2px 0px ;
-
+    border-width: 0px 0px 2px 0px;
 }
