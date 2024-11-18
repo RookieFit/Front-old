@@ -1,26 +1,20 @@
 import React from "react";
-import { Entry } from "./foodList"; // Entry 타입 가져오기
+import { Entry } from "./foodList"; // Entry 타입 임포트
 import './foodSearchResult.css';
 
-interface SearchResultsProps {
-    filteredEntries: Entry[];
-    isEditing: boolean;
-    selectedItems: string[];
-    handleFoodClick: (food: Entry) => void;
-    handleSelectItem: (foodName: string) => void;
-    selectedFood: Entry | null;
-    handleAddFood: () => void; // '추가하기' 버튼 클릭 시 처리할 함수 추가
+interface SearchResultProps {
+    filteredEntries: Entry[]; // 필터링된 음식 목록
+    handleFoodClick: (food: Entry) => void; // 음식 항목 클릭 시 호출되는 함수
+    selectedFood: Entry | null; // 선택된 음식
+    handleAddFood: () => void; // "추가하기" 버튼 클릭 시 호출되는 함수
 }
 
-const FoodSearchResultsProps = ({
+const FoodSearchResult = ({
     filteredEntries,
-    isEditing,
-    selectedItems,
     handleFoodClick,
-    handleSelectItem,
     selectedFood,
-    handleAddFood, // '추가하기' 함수 받기
-}: SearchResultsProps) => {
+    handleAddFood,
+}: SearchResultProps) => {
     return (
         <div>
             {selectedFood ? (
@@ -31,7 +25,7 @@ const FoodSearchResultsProps = ({
                     <p>단백질: {selectedFood.prot} g</p>
                     <p>지방: {selectedFood.fat} g</p>
 
-                    {/* 상세 정보가 나올 때만 '추가하기' 버튼이 보이도록 */}
+                    {/* 선택된 음식에 대해 "추가하기" 버튼 표시 */}
                     <div className="food-search-result-add-food-button-container">
                         <button
                             onClick={handleAddFood}
@@ -42,19 +36,12 @@ const FoodSearchResultsProps = ({
                     </div>
                 </div>
             ) : filteredEntries.length > 0 ? (
-                filteredEntries.map((item, index) => (
+                filteredEntries.map((item) => (
                     <div
-                        key={index}
+                        key={item.foodName} // 음식 이름을 고유 키로 사용
                         className="food-search-result-food-item"
-                        onClick={() => handleFoodClick(item)}
+                        onClick={() => handleFoodClick(item)} // 클릭 시 상세보기
                     >
-                        {isEditing && (
-                            <input
-                                type="checkbox"
-                                checked={selectedItems.includes(item.foodName)}
-                                onChange={() => handleSelectItem(item.foodName)}
-                            />
-                        )}
                         {item.foodName}
                     </div>
                 ))
@@ -65,4 +52,4 @@ const FoodSearchResultsProps = ({
     );
 };
 
-export default FoodSearchResultsProps;
+export default FoodSearchResult;

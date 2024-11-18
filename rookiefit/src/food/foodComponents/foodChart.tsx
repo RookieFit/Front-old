@@ -3,20 +3,11 @@ import Chart from "react-apexcharts";
 import type { ApexOptions } from "apexcharts";
 import './FoodChart.css';
 import moment from "moment";
+import { useFoodContext } from "../FoodContext";  // useFoodContext 임포트
 
-interface Entry {
-    foodName: string;
-    cal: number;
-    chobo: number;
-    prot: number;
-    fat: number;
-}
+const FoodChart = () => {
+    const { foodDetails } = useFoodContext();  // context 사용
 
-interface FoodChartProps {
-    foodDetails: { entries: Entry[] };
-}
-
-const FoodChart = ({ foodDetails }: FoodChartProps) => {
     // 영양 성분 합계 계산
     const totalCalories = foodDetails.entries.reduce((sum, item) => sum + item.cal, 0);
     const totalCarbs = foodDetails.entries.reduce((sum, item) => sum + item.chobo, 0);
