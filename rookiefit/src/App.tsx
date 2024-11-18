@@ -2,8 +2,8 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.css';
 import Header from './layout/header/header';
 import CalenderPage from './calendar/calenderPage';
-import LoginPage from './logIn/LoginPage';
-import SignUpPage from './signup/signUpPage';
+import SigninPage from './signIn/signInPage';
+import SignUpPage from './signUp/signUpPage';
 import FindId from './findId/findId';
 import PasswordReset from './passwordReset/passwordReset';
 import MyPage from './mypage/myPage';
@@ -23,7 +23,7 @@ function App() {
         <Routes>
           <Route path="/mypageedit" element={<MyPageEdit />} />
           <Route path="/mypage" element={<MyPage />} />
-          <Route path="/login" element={<LoginPage />} />
+          <Route path="/signin" element={<SigninPage />} />
           <Route path="/findid" element={<FindId />} />
           <Route path="/findidresult" element={<FindIdResult />} />
           <Route path="/findpassword" element={<FindPassword />} />

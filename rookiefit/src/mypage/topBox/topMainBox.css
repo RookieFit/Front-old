@@ -1,6 +1,8 @@
-.topMainBox {
-    min-width: 1285px;
-    display: flex;
-    flex-direction: row;
-    margin-top: 88px;
+.top-mainbox-left-right-page {
+    display: flex ;
+    flex-direction: row ;
+    justify-content: space-between ;
+    padding: 0 10vw ;
+    gap: 2vw ;
+    margin-top: 1.8vw ; 
 }

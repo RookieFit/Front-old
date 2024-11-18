@@ -21,8 +21,8 @@ function SignUpPage() {
     const [passwordMessage, setPasswordMessage] = useState<string>('');
     const [isPasswordErrorMessage, setIsPasswordErrorMessage] = useState<boolean>(false);
 
-    const [phoneNumberMessage, setPhoneNumberMessage] = useState<string>('');
-    const [isPhoneNumberError, setIsPhoneNumberError] = useState<boolean>(false);
+    const [phoneNumberMessage, setPhoneNumberMessage] = useState<string>('');  // 전화번호 입력란의 에러 메시지
+    const [isPhoneNumberError, setIsPhoneNumberError] = useState<boolean>(false);  // 전화번호 오류 상태
 
     const [certificationMessage, setCertificationMessage] = useState<string>('');
     const [isCertificationError, setIsCertificationError] = useState<boolean>(false);
@@ -50,13 +50,14 @@ function SignUpPage() {
         setIsIdCheck(true);
     };
 
-    // 아이디 입력 핸들러
+    // 아이디 입력란의 값이 변경될 때 호출되는 함수
     const handleIdChange = (e: ChangeEvent<HTMLInputElement>) => {
         const value = e.target.value;
 
+        // 아이디 값이 정규식에 맞지 않으면 오류 메시지 설정
         if (!idAllowedRegex.test(value)) {
             setIdMessage('형식에 맞지 않습니다.');
-            setIsIdErrorMessage(true);
+            setIsIdErrorMessage(true);  // 오류 상태를 true로 설정
         } else {
             setUserId(value);
             setIdMessage('');
@@ -64,42 +65,44 @@ function SignUpPage() {
         }
     };
 
-    // 전화번호 입력 핸들러
+    // 전화번호 입력란의 값이 변경될 때 호출되는 함수
     const handlePhoneNumberChange = (e: ChangeEvent<HTMLInputElement>) => {
         const value = e.target.value;
 
+        // 전화번호가 숫자 외의 문자가 포함되면 오류 메시지를 설정
         if (!numericRegex.test(value)) {
             setPhoneNumberMessage('형식에 맞지 않습니다.');
             setIsPhoneNumberError(true);
         } else {
-            setPhoneNumber(value);
-            setPhoneNumberMessage('');
-            setIsPhoneNumberError(false);
+            setPhoneNumber(value);  // 전화번호 값을 상태에 저장
+            setPhoneNumberMessage('');  // 오류 메시지를 비웁니다.
+            setIsPhoneNumberError(false);  // 오류 상태를 false로 설정
         }
     };
 
-    // 인증번호 입력 핸들러
+    // 인증번호 입력란의 값이 변경될 때 호출되는 함수
     const handleCertificationNumberChange = (e: ChangeEvent<HTMLInputElement>) => {
         const value = e.target.value;
 
+        // 인증번호가 숫자 외의 문자가 포함되면 오류 메시지를 설정
         if (!numericRegex.test(value)) {
             setCertificationMessage('형식에 맞지 않습니다.');
             setIsCertificationError(true);
         } else {
-            setCertificationNumber(value);
-            setCertificationMessage('');
-            setIsCertificationError(false);
+            setCertificationNumber(value);  // 인증번호 값을 상태에 저장
+            setCertificationMessage('');  // 오류 메시지를 비웁니다.
+            setIsCertificationError(false);  // 오류 상태를 false로 설정
         }
     };
 
-    // 패스워드와 확인 패스워드가 일치하는지 확인
+    // 패스워드와 비밀번호 확인 입력이 일치하는지 검사합니다.
     useEffect(() => {
-        if (confirmPassword) {
+        if (confirmPassword) {  // 비밀번호 확인란이 비어있지 않으면 검사 시작
             if (password !== confirmPassword) {
-                setPasswordMessage("패스워드를 다시 입력해주세요.");
+                setPasswordMessage("패스워드를 다시 입력해주세요.");  // 일치하지 않으면 메시지 설정
                 setIsPasswordErrorMessage(true);
             } else {
-                setPasswordMessage("패스워드가 일치합니다.");
+                setPasswordMessage("패스워드가 일치합니다.");  // 일치하면 메시지 업데이트
                 setIsPasswordErrorMessage(false);
             }
         }
@@ -113,8 +116,9 @@ function SignUpPage() {
 
     return (
         <div id="sign-up-wrapper">
-            <div className="signup-title">회원 가입</div>
+            <div className="sign-up-title">회원 가입</div>  {/* 회원 가입 제목 */}
 
+            {/* 아이디 입력란 */}
             <InputBox
                 title="아이디"
                 placeholder="아이디를 입력해주세요"
@@ -133,6 +137,7 @@ function SignUpPage() {
                 }}
             />
 
+            {/* 패스워드 입력란 */}
             <InputBox
                 title="패스워드"
                 placeholder="패스워드를 입력해주세요"
@@ -142,8 +147,9 @@ function SignUpPage() {
                 onKeyDown={() => { }}
             />
 
+            {/* 패스워드 확인 입력란 */}
             <InputBox
-                title={"패스워드\n확인"}
+                title={"패스워드\n확인"}  // 패스워드 확인란
                 placeholder="패스워드를 다시 입력해주세요"
                 type="password"
                 value={confirmPassword}
@@ -153,6 +159,7 @@ function SignUpPage() {
                 onKeyDown={() => { }}
             />
 
+            {/* 휴대전화 입력란 */}
             <InputBox
                 title="휴대전화"
                 placeholder="전화번호를 입력해주세요"
@@ -166,6 +173,7 @@ function SignUpPage() {
                 onKeyDown={() => { }}
             />
 
+            {/* 인증번호 입력란 */}
             <InputBox
                 title="인증번호"
                 placeholder="인증번호를 입력해주세요"
@@ -179,17 +187,12 @@ function SignUpPage() {
                 onKeyDown={() => { }}
             />
 
-            <div className="underline"></div>
+            <div className="underline"></div>  {/* 입력란 아래에 밑줄을 표시하는 div */}
 
+            {/* 회원가입 버튼 */}
             <button className="sign-up-button" onClick={() => alert("가입 완료! 환영합니다.")}>
                 회원가입
             </button>
-
-            <div className="sns-login-container">
-                <button className="naver-login" onClick={() => alert("naver login~~")}></button>
-                <button className="kakao-login" onClick={() => alert("kakao login~~")}></button>
-                <button className="google-login" onClick={() => alert("google login~~")}></button>
-            </div>
         </div>
     );
 }

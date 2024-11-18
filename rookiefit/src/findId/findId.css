@@ -1,28 +1,48 @@
-#findId-wrapper {
+#find-id-wrapper {
     padding: 4%;
+    /* 상위 컨테이너에 4%의 여백을 줍니다. */
     flex: 1;
+    /* flexbox 레이아웃을 사용하여 다른 항목들과 함께 공간을 나눕니다. */
     display: flex;
+    /* flexbox 레이아웃을 활성화합니다. */
     flex-direction: column;
+    /* 아이템들이 세로로 정렬되도록 합니다. */
     align-items: center;
+    /* 가로 방향으로 중앙 정렬합니다. */
     justify-content: center;
+    /* 세로 방향으로 중앙 정렬합니다. */
     gap: 20px;
+    /* 각 요소 간의 간격을 20px로 설정합니다. */
 }
 
-.findId-title {
+.find-id-title {
     font-weight: 400;
+    /* 일반적인 글꼴 두께 (정상 굵기) */
     font-size: 36px;
+    /* 글꼴 크기를 36px로 설정합니다. */
     color: #000000;
+    /* 글자 색을 검정색으로 설정합니다. */
 }
 
-.findId-button {
+.find-id-button {
     font-weight: 400;
+    /* 버튼 텍스트의 굵기를 일반으로 설정합니다. */
     font-size: 20px;
+    /* 버튼 텍스트 크기를 20px로 설정합니다. */
     line-height: 24px;
+    /* 버튼 텍스트의 줄 높이를 24px로 설정합니다. */
     cursor: pointer;
+    /* 마우스를 올리면 커서가 포인터로 변하도록 설정하여 클릭 가능함을 나타냅니다. */
     width: 545px;
+    /* 버튼의 너비를 545px로 설정합니다. */
     height: 47px;
+    /* 버튼의 높이를 47px로 설정합니다. */
     color: #858585;
+    /* 텍스트 색을 회색으로 설정합니다. */
     background-color: #d9d9d9;
+    /* 배경색을 연회색으로 설정합니다. */
     border: none;
+    /* 버튼의 기본 테두리를 없앱니다. */
     border-radius: 5px;
+    /* 버튼의 모서리를 5px로 둥글게 설정합니다. */
 }

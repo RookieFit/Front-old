@@ -20,9 +20,9 @@
     align-items: center;
     justify-content: center;
     text-align: center;
-    color: #858585;
-    background: #F2F2F2;
-    cursor: none;
+    color: rgb(0, 0, 0);
+    background: transparent;
+    cursor: default;
 }
 
 .input-box-content {
@@ -93,7 +93,7 @@
     align-items: center;
     justify-content: center;
     text-align: center;
-    color: #858585;
-    background: #F2F2F2;
+    color: #000000;
+    background: transparent;
     cursor: pointer;
 }
