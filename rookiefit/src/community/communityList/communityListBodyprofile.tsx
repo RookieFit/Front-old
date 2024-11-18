@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import CommunityHeader from '../communityComponents/communityHeader';
-import CommunitySearchBar from '../communityComponents/CommunitySearchBar';
+import CommunitySearchBar from '../communityComponents/communitySearchBar';
 import CommunityCategories from '../communityComponents/communityCategories';
 import CommunityPostsTable from '../communityComponents/communityPostTable';
 import CommunityPagination from '../communityComponents/communityPagination';
@@ -26,11 +26,14 @@ const CommunityListBodyprofile = () => {
         // 바프 카테고리에 해당하는 게시글만 추가
     ];
 
-    const handleSearch = () => {
-        if (!searchQuery.trim()) {
+    // 검색 실행 로직
+    const handleSearch = (query: string) => {
+        if (!query.trim()) {
             alert('검색어를 입력해주세요');
             return;
         }
+        setSearchQuery(query); // 실제 검색어 상태 업데이트
+        setPage(1); // 검색 시 페이지를 첫 페이지로
     };
 
     const filteredPosts = posts.filter(post => {

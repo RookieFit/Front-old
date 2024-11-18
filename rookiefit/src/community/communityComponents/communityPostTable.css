@@ -1,0 +1,79 @@
+/* 게시글 테이블 컨테이너 */
+.community-posts {
+    background: transparent;
+    border-radius: 8px;
+    overflow: hidden;
+    display: flex;
+    flex: 10;
+    height: 100%;
+    margin: 20px 100px 100px 0px;
+}
+
+/* 제목 열 */
+.community-posts-title {
+    width: 50%;
+    border-collapse: collapse;
+    table-layout: fixed;
+}
+
+.community-posts-title th,
+.community-posts-title td {
+    padding: 0.75rem;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.community-posts-title th {
+    background-color: #f8f9fa;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.875rem;
+    color: #6c757d;
+    text-align: center;
+    vertical-align: middle;
+}
+
+/* 작성 날짜 열 */
+.community-posts-date {
+    width: 25%;
+    border-collapse: collapse;
+    table-layout: fixed;
+}
+
+.community-posts-date th,
+.community-posts-date td {
+    padding: 0.75rem;
+    border-bottom: 1px solid #dee2e6;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.community-posts-date th {
+    background-color: #f8f9fa;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.875rem;
+    color: #6c757d;
+}
+
+/* 작성자 열 */
+.community-posts-author {
+    width: 25%;
+    border-collapse: collapse;
+    table-layout: fixed;
+}
+
+.community-posts-author th,
+.community-posts-author td {
+    padding: 0.75rem;
+    border-bottom: 1px solid #dee2e6;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.community-posts-author th {
+    background-color: #f8f9fa;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.875rem;
+    color: #6c757d;
+}

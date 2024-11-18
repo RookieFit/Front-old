@@ -53,12 +53,14 @@ const CommunityListFriendShip = () => {
         }
     };
 
-    const handleSearch = () => {
-        if (!searchQuery.trim()) {
+    // 검색 실행 로직
+    const handleSearch = (query: string) => {
+        if (!query.trim()) {
             alert('검색어를 입력해주세요');
             return;
         }
-        console.log('Searching for:', searchQuery);
+        setSearchQuery(query); // 실제 검색어 상태 업데이트
+        setPage(1); // 검색 시 페이지를 첫 페이지로
     };
 
     const filteredPosts = posts.filter(post => {

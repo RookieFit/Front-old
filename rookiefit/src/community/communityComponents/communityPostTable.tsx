@@ -1,3 +1,4 @@
+import './communityPostTable.css'
 
 interface Post {
     id: number;

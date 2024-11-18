@@ -10,7 +10,7 @@
 
 /* 검색 입력창 */
 .community-search-input {
-    border: 1px solid #dee2e6;
+    border: 0px solid #dee2e6;
     border-radius: 100px;
     width: clamp(200px, 30%, 300px);
     height: 40px;
@@ -22,8 +22,7 @@
 
 .community-search-input:focus {
     outline: none;
-    border-color: #000000;
-    box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+    border: 0px;
     background: #ffffff;
 }
 
