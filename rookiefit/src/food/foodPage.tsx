@@ -1,18 +1,20 @@
+import React from "react";
+import { FoodProvider } from "./foodContext";  // FoodProvider 임포트
 import FoodList from "./foodComponents/foodList";
-import FoodResult from "./foodComponents/foodResult";
-import FoodSearchBar from "./foodComponents/foodSearchBar";
-import './foodPage.css'
+import FoodChart from "./foodComponents/foodChart";
+import './foodPage.css';
 
 const FoodPage = () => {
     return (
-        <div className="food-section">
-            <FoodSearchBar />
-            <div className="left-right-page">
-                <FoodResult />
-                <FoodList />
-            </div >
-        </div>
+        <FoodProvider>
+            <div className="food-section">
+                <div className="left-right-page">
+                    <FoodChart />
+                    <FoodList />
+                </div>
+            </div>
+        </FoodProvider>
     );
-}
+};
 
 export default FoodPage;

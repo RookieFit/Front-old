@@ -6,7 +6,7 @@ import { useCalendarDetails } from '../calendarDetailContext';
 import AddedDetails from '../calendarComponents/calendarAddDetails';
 import './calendarDetailUpdate.css'
 
-const CalendarUpdate = () => {
+const CalendarDetailUpdate = () => {
     const navigate = useNavigate();
 
     const { selectedDate } = UseCalendar(); // useContext로 selectedDate 가져오기
@@ -59,8 +59,8 @@ const CalendarUpdate = () => {
 
     // 삭제 처리
     const handleDelete = () => {
-        setDetails(prevDetails => ({
-            entries: prevDetails.entries.filter(entry => entry.date !== selectedDate.toString())
+        setDetails(previousDetails => ({
+            entries: previousDetails.entries.filter(entry => entry.date !== selectedDate.toString())
         }));
         navigate("/calendar"); // 삭제 후 캘린더 페이지로 이동
     };
@@ -81,7 +81,7 @@ const CalendarUpdate = () => {
                 </div>
                 <div className="calendar-write-add-detail">
                     {/* 운동 세부사항 추가된 부분 */}
-                    <AddedDetails details={workoutDetails} />
+                    <AddedDetails workoutDetails={workoutDetails} />
                     <div className="diary-input-section">
                         <textarea
                             value={diaryContent}
@@ -100,4 +100,4 @@ const CalendarUpdate = () => {
     );
 };
 
-export default CalendarUpdate;
+export default CalendarDetailUpdate;
