@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import CommunityHeader from '../communityComponents/communityHeader';
-import CommunitySearchBar from '../communityComponents/communitySearchBar';
+import CommunitySearchBar from '../communityComponents/CommunitySearchBar';
 import CommunityCategories from '../communityComponents/communityCategories';
 import CommunityPostsTable from '../communityComponents/communityPostTable';
 import CommunityPagination from '../communityComponents/communityPagination';
