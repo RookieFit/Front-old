@@ -27,9 +27,7 @@
     font-size: 21px;
     text-align: center;
     line-height: 50px;
-    margin-top: 6px;
-    margin-left: 20px;
-    margin-bottom: 1px;
+    margin: 6px 0 1px 20px;
     border-style: solid;
     border-color: #000000;
     border-width: 0px 0px 2px 0px;
@@ -41,9 +39,7 @@
     height: 50px;
     text-align: center;
     line-height: 50px;
-    margin-top: 1px;
-    margin-left: 20px;
-    margin-bottom: 1px;
+    margin: 1px 0 1px 20px;
     border-style: none;
 }
 
@@ -61,5 +57,4 @@
     border-radius: 5px;
     border-color: #9F9F9F;
     border-width: 0px 0px 2px 0px;
-
 }

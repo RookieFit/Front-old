@@ -1,4 +1,4 @@
-.communitywrite-inbox {
+.community-write-inbox {
     background-color: #ffffff;
     width: 77.4vw;
     height: 55.0vh;
@@ -10,12 +10,12 @@
     border-style: none;
 }
 
-.communitywrite-title-box {
+.community-write-title-box {
     display: flex;
     flex-direction: row;
 }
 
-.communitywrite-title-drop{
+.community-write-title-drop{
     background-color: #F0F0F0;
     width: 9.1vw;
     height: 5.0vh;
@@ -28,16 +28,17 @@
     border-radius: 5px;
 }
 
-.dropdownwrite-menu{
+.dropdown-write-menu{
     text-align: center;
     border-style: none;
     position: absolute;
     margin-left: 4.3vw;
     text-align: center;
     border-style: none;
+
 }
 
-.communitywri-title {
+.community-write-title {
     background-color: #F0F0F0;
     width: 60.3vw;
     height: 5.0vh;
@@ -50,7 +51,7 @@
     border-radius: 5px;
 }
 
-.communitywrite-detail {
+.community-write-detail {
     background-color: #F0F0F0;
     width: 70.9vw;
     height: 33.1vh;
@@ -61,12 +62,12 @@
     border-style: none;
 }
 
-.communitywrite-under {
+.community-write-under {
     display: flex;
     flex-direction: row;
 }
 
-.communitywrite-file-upload {
+.community-write-file-upload {
     background-color: #BDBDBD;
     width: 5.3vw;
     height: 1.7vh;

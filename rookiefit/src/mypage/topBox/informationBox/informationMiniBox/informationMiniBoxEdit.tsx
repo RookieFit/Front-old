@@ -1,7 +1,7 @@
 
 import InformationLineEdit from '../informationLine/informationLineEdit';
 import './informationMiniBox.css';
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const InformationMiniBoxEdit = () => {
     const navigate = useNavigate();
