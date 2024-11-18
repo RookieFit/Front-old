@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import './communityCategories.css'
+import './communityCategories.css';
 
 // Category 타입 정의
 export type Category = '전체' | '바프' | '고민' | '정보' | '친목';
@@ -11,20 +11,29 @@ interface CommunityCategoriesProps {
     onCategoryClick: (category: Category) => void; // onCategoryClick은 Category 타입
 }
 
-const CommunityCategories: React.FC<CommunityCategoriesProps> = ({ categories, activeCategory, onCategoryClick }) => {
+function CommunityCategories({ categories, activeCategory, onCategoryClick }: CommunityCategoriesProps) {
     const navigate = useNavigate(); // navigate 훅 사용
 
     const CATEGORY_ROUTES: Record<Category, string> = {
-        '전체': '',
-        '바프': 'bodyprofile',
-        '고민': 'concern',
-        '정보': 'information',
-        '친목': 'friendship'
+        '전체': '/community', // 전체는 /community
+        '바프': '/community/bodyprofile', // 바프는 /community/bodyprofile
+        '고민': '/community/concern', // 고민은 /community/concern
+        '정보': '/community/information', // 정보는 /community/information
+        '친목': '/community/friendship' // 친목은 /community/friendship
     };
 
     const handleCategoryClick = (category: Category) => {
+        const newPath = CATEGORY_ROUTES[category]; // 해당 카테고리의 경로 설정
         onCategoryClick(category); // 부모 컴포넌트에서 카테고리 업데이트
-        navigate(`/community/${CATEGORY_ROUTES[category]}`); // 클릭한 카테고리에 맞는 경로로 이동
+
+        // 현재 경로와 새 경로가 다르면 이동
+        if (newPath !== window.location.pathname) {
+            if (category === '전체') {
+                navigate(newPath, { replace: true }); // '전체'는 히스토리를 교체
+            } else {
+                navigate(newPath); // 다른 카테고리는 기본 이동
+            }
+        }
     };
 
     return (
@@ -40,6 +49,6 @@ const CommunityCategories: React.FC<CommunityCategoriesProps> = ({ categories, a
             ))}
         </div>
     );
-};
+}
 
 export default CommunityCategories;

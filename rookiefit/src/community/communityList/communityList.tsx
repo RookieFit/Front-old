@@ -1,10 +1,11 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import CommunityHeader from '../communityComponents/communityHeader';
-import CommunitySearchBar from '../communityComponents/CommunitySearchBar';
+import CommunitySearchBar from '../communityComponents/communitySearchBar';
 import CommunityCategories from '../communityComponents/communityCategories';
 import CommunityPostsTable from '../communityComponents/communityPostTable';
 import CommunityPagination from '../communityComponents/communityPagination';
+import CommunityListWriteButton from '../communityComponents/communityListWriteButton';
 import './communityList.css';
 
 type Category = '전체' | '바프' | '고민' | '정보' | '친목';
@@ -80,7 +81,7 @@ const CommunityList = () => {
     };
 
     return (
-        <div className="community-list-wrapper">
+        <div>
             <CommunityHeader title="커뮤니티" content="모든 헬스인들을 위한 커뮤니티" />
 
             <CommunitySearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} onSearch={handleSearch} />
@@ -91,9 +92,12 @@ const CommunityList = () => {
                     activeCategory={selectedCategory}  // 선택된 카테고리 전달
                     onCategoryClick={handleCategoryClick}  // 카테고리 클릭 시 처리 함수
                 />
-
                 <CommunityPostsTable posts={currentPosts} />
+
+
             </div>
+
+            <CommunityListWriteButton />
 
             <CommunityPagination currentPage={page} totalPages={totalPages} onPageChange={handlePageChange} />
         </div>

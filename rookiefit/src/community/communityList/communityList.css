@@ -1,111 +1,20 @@
-/* 상위 컨테이너 */
-.community-list-wrapper {
-    padding: min(4%, 2rem);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: 0 auto;
-    gap: 1rem;
-}
-
 /* 검색창과 게시글 목록 컨테이너 */
 .community-search-posts-wrapper {
     display: flex;
     flex-direction: column;
     width: 100%;
-    justify-content: center;
-    /* 중앙 정렬 */
-    align-items: center;
-    /* 세로 중앙 정렬 */
+    justify-content: flex-start;
+    /* 왼쪽 정렬 */
+    align-items: flex-start;
+    /* 세로로 왼쪽 정렬 */
+    margin-top: 20px;
+    /* 테이블과의 간격을 두기 위한 여백 */
 }
 
 /* 검색창과 게시글 목록을 나누는 영역 */
 .community-content-container {
     display: flex;
     justify-content: center;
-    /* 중앙 정렬 */
-    /* 세로 중앙 정렬 */
-}
-
-
-/* 게시글 테이블 컨테이너 */
-.community-posts {
-    background: transparent;
-    border-radius: 8px;
-    overflow: hidden;
-    display: flex;
-    flex: 10;
-    height: 100%;
-    margin: 20px 100px 100px 0px;
-}
-
-/* 제목 열 */
-.community-posts-title {
-    width: 50%;
-    border-collapse: collapse;
-    table-layout: fixed;
-}
-
-.community-posts-title th,
-.community-posts-title td {
-    padding: 0.75rem;
-    border-bottom: 1px solid #dee2e6;
-}
-
-.community-posts-title th {
-    background-color: #f8f9fa;
-    font-weight: 600;
-    text-transform: uppercase;
-    font-size: 0.875rem;
-    color: #6c757d;
-    text-align: center;
-    vertical-align: middle;
-}
-
-/* 작성 날짜 열 */
-.community-posts-date {
-    width: 25%;
-    border-collapse: collapse;
-    table-layout: fixed;
-}
-
-.community-posts-date th,
-.community-posts-date td {
-    padding: 0.75rem;
-    border-bottom: 1px solid #dee2e6;
-    text-align: center;
-    vertical-align: middle;
-}
-
-.community-posts-date th {
-    background-color: #f8f9fa;
-    font-weight: 600;
-    text-transform: uppercase;
-    font-size: 0.875rem;
-    color: #6c757d;
-}
-
-/* 작성자 열 */
-.community-posts-author {
-    width: 25%;
-    border-collapse: collapse;
-    table-layout: fixed;
-}
-
-.community-posts-author th,
-.community-posts-author td {
-    padding: 0.75rem;
-    border-bottom: 1px solid #dee2e6;
-    text-align: center;
-    vertical-align: middle;
-}
-
-.community-posts-author th {
-    background-color: #f8f9fa;
-    font-weight: 600;
-    text-transform: uppercase;
-    font-size: 0.875rem;
-    color: #6c757d;
 }
 
 /* 페이지 네비게이션을 테이블 밑으로 이동하여 중앙 배치 */
@@ -115,11 +24,9 @@
     align-items: center;
     width: 100%;
     margin-top: 0;
-    /* 테이블 아래 여백 */
 }
 
 .community-pagination button {
-
     background-color: transparent;
     color: rgb(0, 0, 0);
     border: none;

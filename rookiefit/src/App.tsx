@@ -10,6 +10,9 @@ import MyPage from './mypage/myPage';
 import MyPageEdit from './mypage/myPageEdit';
 import CommunityList from './community/communityList/communityList';
 import CommunityListBodyProfile from './community/communityList/communityListBodyprofile'
+import CommunityListConcern from './community/communityList/communityListConcern';
+import CommunityListInformation from './community/communityList/communityListInformation';
+import CommunityListFriendship from './community/communityList/communityListFriendship.tsx';
 import CommunityDetail from './community/communityDetail/communityDetail';
 import CommunityWrite from './community/communityWrite/communityWrite';
 import FindPassword from './findPassword/findPassword';
@@ -35,6 +38,9 @@ function App() {
           <Route path="/calendar/detail" element={<CalenderPage />} /> {/* /calendar/write 경로 추가 */}
           <Route path="/community" element={<CommunityList />} />
           <Route path="/community/bodyprofile" element={<CommunityListBodyProfile />} />
+          <Route path="/community/concern" element={<CommunityListConcern />} />
+          <Route path="/community/information" element={<CommunityListInformation />} />
+          <Route path="/community/friendship" element={<CommunityListFriendship />} />
           <Route path="/community/write" element={<CommunityWrite />} />
           <Route path="/community/detail" element={<CommunityDetail />} />
           <Route path="/diet" element={<FoodPage />} />

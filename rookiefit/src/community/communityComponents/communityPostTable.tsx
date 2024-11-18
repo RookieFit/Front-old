@@ -1,3 +1,4 @@
+
 interface Post {
     id: number;
     author: string;
