@@ -3,7 +3,7 @@ import Chart from "react-apexcharts";
 import type { ApexOptions } from "apexcharts";
 import './FoodChart.css';
 import moment from "moment";
-import { useFoodContext } from "../FoodContext";  // useFoodContext 임포트
+import { useFoodContext } from "../foodContext";  // useFoodContext 임포트
 
 const FoodChart = () => {
     const { foodDetails } = useFoodContext();  // context 사용
