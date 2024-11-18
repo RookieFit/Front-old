@@ -1,17 +1,17 @@
 import { ChangeEvent, KeyboardEvent, useState, useEffect } from 'react';
-import InputBox from '../inputbox/inputbox';
+import InputBox from '../inputBox/inputBox';
 import './signUpPage.css';
-import { IdCheckRequestDto } from '../apis/request/auth';
+import { CheckCertificationRequestDto, IdCheckRequestDto, SmsCertificationRequestDto } from '../apis/request/auth';
 import { ResponseCode } from '../apis/types/enums';
-import { IdCheckResponseDto } from '../apis/response/auth';
+import { CheckCertificationResponseDto, IdCheckResponseDto, SmsCertificationResponseDto } from '../apis/response/auth';
 import { ResponseBody } from '../apis/types';
-import { IdCheckRequest } from '../apis/apiClient';
+import { CheckCertificationRequest, IdCheckRequest, SmsCertificationRequest } from '../apis/apiClient';
 
 function SignUpPage() {
     const [userId, setUserId] = useState<string>('');
     const [password, setPassword] = useState<string>('');
     const [confirmPassword, setConfirmPassword] = useState<string>('');
-    const [phoneNumber, setPhoneNumber] = useState<string>('');
+    const [userPhoneNumber, setUserPhoneNumber] = useState<string>('');
     const [certificationNumber, setCertificationNumber] = useState<string>('');
 
     const [idMessage, setIdMessage] = useState<string>('');
@@ -26,12 +26,16 @@ function SignUpPage() {
 
     const [certificationMessage, setCertificationMessage] = useState<string>('');
     const [isCertificationError, setIsCertificationError] = useState<boolean>(false);
+
     const [isIdCheck, setIsIdCheck] = useState<boolean>(false);
+    const [isCertificationCheck, setIsCertificationCheck] = useState<boolean>(false);
 
     const idAllowedRegex = /^[A-Za-z0-9!@#$%^&*()_+=-]*$/;
     const numericRegex = /^[0-9]*$/;
+
     const idCheckResponse = (responseBody: ResponseBody<IdCheckResponseDto>) => {
         if (!responseBody) return;
+
         const { code } = responseBody;
 
         if (code === ResponseCode.VALIDATION_ERROR) alert('아이디를 입력하세요.');
@@ -43,11 +47,62 @@ function SignUpPage() {
             setIdMessage('이미 사용중인 아이디 입니다.');
             setIsIdCheck(false);
         };
+
         if (code !== ResponseCode.SUCCESS) return;
 
         setIsIdError(false);
         setIdMessage('사용 가능한 아이디 입니다.');
         setIsIdCheck(true);
+    };
+
+    const smsCertificationResponse = (responseBody: ResponseBody<SmsCertificationResponseDto>) => {
+        if (!responseBody) return;
+        const { code } = responseBody;
+
+        if (code === ResponseCode.VALIDATION_ERROR) alert('아이디와 이메일을 입력하세요.');
+
+        if (code === ResponseCode.DATABASE_ERROR) alert('데이터베이스 오류입니다.');
+
+        if (code === ResponseCode.SMS_FAIL) alert('이메일 전송에 실패했습니다.');
+
+        if (code === ResponseCode.DUPLICATE_ID) {
+            setIsIdError(true);
+            setIdMessage('이미 사용중인 아이디 입니다.');
+            setIsIdCheck(false);
+        };
+
+        if (code !== ResponseCode.SUCCESS) return;
+
+        setIsPhoneNumberError(false);
+        setPhoneNumberMessage('인증 번호가 전송 되었습니다.');
+        console.log('SmsCertificationResponse:', responseBody);
+    };
+
+    const checkCertificationResponse = (responseBody: ResponseBody<CheckCertificationResponseDto>) => {
+        if (!responseBody) return;
+        const { code } = responseBody;
+
+        if (code === ResponseCode.VALIDATION_ERROR) alert('아이디, 이메일, 인증번호를 입력하세요.');
+
+        if (code === ResponseCode.DATABASE_ERROR) alert('데이터베이스 오류입니다.');
+
+        if (code === ResponseCode.CERTIFICATION_FAIL) {
+            setIsCertificationError(true);
+            setCertificationMessage('이미 사용중인 아이디 입니다.');
+            setIsCertificationCheck(false);
+        };
+
+        if (code === ResponseCode.DUPLICATE_ID) {
+            setIsIdError(true);
+            setIdMessage('이미 사용중인 아이디 입니다.');
+            setIsIdCheck(false);
+        };
+
+        if (code !== ResponseCode.SUCCESS) return;
+
+        setIsCertificationError(false);
+        setCertificationMessage('인증이 완료되었습니다.');
+        setIsCertificationCheck(true);
     };
 
     // 아이디 입력란의 값이 변경될 때 호출되는 함수
@@ -74,7 +129,7 @@ function SignUpPage() {
             setPhoneNumberMessage('형식에 맞지 않습니다.');
             setIsPhoneNumberError(true);
         } else {
-            setPhoneNumber(value);  // 전화번호 값을 상태에 저장
+            setUserPhoneNumber(value);  // 전화번호 값을 상태에 저장
             setPhoneNumberMessage('');  // 오류 메시지를 비웁니다.
             setIsPhoneNumberError(false);  // 오류 상태를 false로 설정
         }
@@ -107,11 +162,49 @@ function SignUpPage() {
             }
         }
     }, [password, confirmPassword]);
+
     const onIdButtonClickHandler = () => {
         if (!userId) return;
         const requestBody: IdCheckRequestDto = { userId };
 
         IdCheckRequest(requestBody).then(idCheckResponse);
+    };
+
+    const onCertificationNumberButtonClickHandler = () => {
+        if (!userId || !userPhoneNumber || !certificationNumber) return;
+
+        const requestBody: CheckCertificationRequestDto = {
+            userId,
+            user_phonenumber: userPhoneNumber, // 변환
+            certificationNumber,
+        };
+
+        CheckCertificationRequest(requestBody).then(checkCertificationResponse);
+    };
+
+    const smsCertificationButtonClickHandler = async () => {
+        if (!userId || !userPhoneNumber) {
+            setPhoneNumberMessage('아이디와 전화번호를 입력하세요.');
+            setIsPhoneNumberError(true);
+            return;
+        }
+
+        const requestBody: SmsCertificationRequestDto = {
+            userId,
+            user_phonenumber: userPhoneNumber,
+        };
+
+        setPhoneNumberMessage('인증 번호 전송 중...');
+        setIsPhoneNumberError(false);
+
+        try {
+            const response = await SmsCertificationRequest(requestBody);
+            smsCertificationResponse(response);
+            // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        } catch (error) {
+            setPhoneNumberMessage('인증 번호 전송에 실패했습니다.');
+            setIsPhoneNumberError(true);
+        }
     };
 
     return (
@@ -164,12 +257,12 @@ function SignUpPage() {
                 title="휴대전화"
                 placeholder="전화번호를 입력해주세요"
                 type="text"
-                value={phoneNumber}
+                value={userPhoneNumber}
                 onChange={handlePhoneNumberChange}
                 message={phoneNumberMessage}
                 isErrorMessage={isPhoneNumberError}
                 buttonTitle="인증 요청"
-                onButtonClick={() => alert("인증 번호 전송 중 ---")}
+                onButtonClick={smsCertificationButtonClickHandler}
                 onKeyDown={() => { }}
             />
 
@@ -183,7 +276,7 @@ function SignUpPage() {
                 message={certificationMessage}
                 isErrorMessage={isCertificationError}
                 buttonTitle="인증 확인"
-                onButtonClick={() => alert("인증이 완료되었습니다")}
+                onButtonClick={onCertificationNumberButtonClickHandler}
                 onKeyDown={() => { }}
             />
 
