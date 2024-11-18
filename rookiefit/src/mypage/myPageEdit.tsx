@@ -5,11 +5,11 @@ import GraphBoxEdit from './bottomBox/graphBoxEdit';
 
 const MyPageEdit = () => {
     return (
-        <div className="mainBox">
-            <div className='topBox'>
+        <div className="main-box">
+            <div className='top-box'>
                 <TopMainBoxEdit/>
             </div>
-            <div className='bottomBox'>
+            <div className='bottom-box'>
                 <GraphBoxEdit/>
             </div> 
         </div>

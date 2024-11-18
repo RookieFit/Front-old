@@ -124,7 +124,7 @@
 }
 
 /* 아이디/비밀번호 찾기 버튼 컨테이너 */
-.find-id-password-container {
+.find-id-password-sign-up-container {
     display: flex;
     /* Flexbox 레이아웃으로 설정 */
     align-items: center;

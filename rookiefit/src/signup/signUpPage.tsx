@@ -167,13 +167,6 @@ function SignUpPage() {
             <button className="sign-up-button" onClick={() => alert("가입 완료! 환영합니다.")}>
                 회원가입
             </button>
-
-            {/* SNS 로그인 버튼들 */}
-            <div className="sns-sign-in-container">
-                <button className="naver-sign-in" onClick={() => alert("naver login~~")}></button>
-                <button className="kakao-sign-in" onClick={() => alert("kakao login~~")}></button>
-                <button className="google-sign-in" onClick={() => alert("google login~~")}></button>
-            </div>
         </div>
     );
 }
