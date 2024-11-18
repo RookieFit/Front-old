@@ -5,7 +5,7 @@ import InformationMiniBox from './informationBox/informationMiniBox/informationM
 
 const TopMainBox = () => {
     return (
-        <div className="top-mainmbox-left-right-page">
+        <div className="top-mainbox-left-right-page">
             <Profile/>
             <InformationMiniBox /> 
         </div>
