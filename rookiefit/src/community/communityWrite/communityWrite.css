@@ -1,0 +1,80 @@
+.community-write-inbox {
+    background-color: #ffffff;
+    width: 77.4vw;
+    height: 55.0vh;
+    /*width: 1486PX;
+    height: 594px;*/
+    margin-top: 48px;
+    margin-left: 143px;
+    border-radius: 13px;  
+    border-style: none;
+}
+
+.community-write-title-box {
+    display: flex;
+    flex-direction: row;
+}
+
+.community-write-title-drop{
+    background-color: #F0F0F0;
+    width: 9.1vw;
+    height: 5.0vh;
+    /*width: 175px;
+    height: 55px;*/
+    margin-top: 4.3vh;
+    margin-left: 4.3vw;
+    text-align: center;
+    border-style: none;
+    border-radius: 5px;
+}
+
+.dropdown-write-menu{
+    text-align: center;
+    border-style: none;
+    position: absolute;
+    margin-left: 4.3vw;
+    text-align: center;
+    border-style: none;
+
+}
+
+.community-write-title {
+    background-color: #F0F0F0;
+    width: 60.3vw;
+    height: 5.0vh;
+    /*width: 1198px;
+    height: 55px;*/
+    margin-top: 4.3vh;
+    margin-left: 1.4vw; 
+    text-align: center;
+    border-style: none;
+    border-radius: 5px;
+}
+
+.community-write-detail {
+    background-color: #F0F0F0;
+    width: 70.9vw;
+    height: 33.1vh;
+    /*width: 1400px;
+    height: 358px;*/
+    margin-top: 1.4vh;
+    margin-left: 4.0vw;
+    border-style: none;
+}
+
+.community-write-under {
+    display: flex;
+    flex-direction: row;
+}
+
+.community-write-file-upload {
+    background-color: #BDBDBD;
+    width: 5.3vw;
+    height: 1.7vh;
+    /*width: 103px;
+    height: 29px;*/
+    margin-top: 1.9vh;
+    margin-left: 3.9vw;
+    text-align: center;
+    border-style: none;
+}
