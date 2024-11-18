@@ -11,9 +11,7 @@ const ProfileEdit = () => {
   const [isProfileTextareaClicked, setIsProfileTextareaClicked] = useState(false);
   return (
     <div className='profile-left-back'>
-      <div className='profile-image-edit'>
-        <img className='profile-image' src={logo} ></img>
-      </div>
+      <img className='profile-edit-image' src={logo} ></img>
       <div className='profile-nickname'>닉네임자리</div>
       <div className='profile-message'>
         <input type='text'

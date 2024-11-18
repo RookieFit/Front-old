@@ -5,7 +5,7 @@ import InformationMiniBoxEdit from './informationBox/informationMiniBox/informat
 
 const TopMainBoxEdit = () => {
     return (
-        <div className="top-mainmbox-left-right-page">
+        <div className="top-mainbox-left-right-page">
             <ProfileEdit/>
             <InformationMiniBoxEdit /> 
         </div>

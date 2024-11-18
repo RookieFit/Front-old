@@ -16,8 +16,17 @@
     border-radius: 50%;
 }
 
+.profile-edit-image {
+    border: thin solid  rgb(153, 151, 151);
+    background-color: #ffffff;
+    width: 380px;
+    height: 380px;
+    margin-top: 57px;
+    border-radius: 50%;
+}
+
 .profile-nickname {
-    width: 181px;
+    width: 181px; 
     height: 25px;
     margin: 22px auto;
     font-size: 32px;
