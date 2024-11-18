@@ -4,38 +4,58 @@
     height: 55.0vh;
     /*width: 1486PX;
     height: 594px;*/
-    margin-top: 48px;
-    margin-left: 143px;
-    border-radius: 13px;  
+    margin-top: 30px;
+    margin-left: 190px;
+    border-radius: 13px;
     border-style: none;
 }
 
 .community-write-title-box {
     display: flex;
     flex-direction: row;
+    position: relative;
 }
 
-.community-write-title-drop{
+.community-write-title-drop {
     background-color: #F0F0F0;
-    width: 9.1vw;
-    height: 5.0vh;
-    /*width: 175px;
-    height: 55px;*/
+    /* width: 9.1vw;
+    height: 5.0vh; */
     margin-top: 4.3vh;
     margin-left: 4.3vw;
     text-align: center;
     border-style: none;
     border-radius: 5px;
+    transition: background-color 0.3s ease;
 }
 
-.dropdown-write-menu{
-    text-align: center;
-    border-style: none;
+.drop-down-write-menu {
     position: absolute;
-    margin-left: 4.3vw;
-    text-align: center;
-    border-style: none;
+    top: calc(100% + 8px);
+    left: 0;
+    background-color: white;
+    min-width: 100%;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+    z-index: 1;                     /* 다른 요소들보다 위에 표시되도록 설정 */
+    border-radius: 4px;
+    opacity: 0;                     /* 초기에는 보이지 않도록 설정 */
+    visibility: hidden;             /* 드롭다운 메뉴 숨기기 */
+    transform: translateY(-10px);   /* 드롭다운 메뉴가 위쪽으로 이동한 상태로 설정 */
+    transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
+    /* 부드러운 애니메이션 설정 */
+}
 
+.community-write-menu.open {
+    opacity: 1;
+    /* 열린 상태에서는 보이도록 설정 */
+    visibility: visible;
+    /* 열린 상태에서는 가시성 설정 */
+    transform: translateY(0);
+    /* 드롭다운 메뉴가 원래 위치로 이동 */
+}
+
+.cdrop-down-write-item {
+    cursor: pointer;
+    /* 커서를 포인터로 설정 */
 }
 
 .community-write-title {
@@ -45,7 +65,7 @@
     /*width: 1198px;
     height: 55px;*/
     margin-top: 4.3vh;
-    margin-left: 1.4vw; 
+    margin-left: 1.4vw;
     text-align: center;
     border-style: none;
     border-radius: 5px;
@@ -70,11 +90,28 @@
 .community-write-file-upload {
     background-color: #BDBDBD;
     width: 5.3vw;
-    height: 1.7vh;
-    /*width: 103px;
-    height: 29px;*/
+    height: 2.8vh;
     margin-top: 1.9vh;
     margin-left: 3.9vw;
-    text-align: center;
+    font-size: 9px;
+    border-style: none;
+    border-radius: 5px;
+}
+
+.community-write-file-name {
+    width: 5.1vw;
+    height: 2.8vh;
+    margin-top: 1.9vh;
+    margin-left: 0.3vw;
+    font-size: 9px;
+    border-style: none;
+}
+
+.community-write-upload-contents {
+    width: 18.4vw;
+    height: 5.3vh;
+    margin-top: 2.0vh;
+    margin-left: 16vw;
+    border-radius: 5px;
     border-style: none;
 }

@@ -84,7 +84,7 @@ const GraphDate = ({ title, name, values, graphMinHight, graphMaxHight }: Props)
                 max: graphMaxHight, // Y축 최대값 설정
             }
         } as ApexOptions
-    };
+    }
 
     return (
         <div className="graph-box">
