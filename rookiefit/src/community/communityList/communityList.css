@@ -1,154 +1,134 @@
+/* 상위 컨테이너 */
 .community-list-wrapper {
-    padding: 4%;
-    /* 상위 컨테이너에 여백 추가 */
-    flex: 1;
-    /* flexbox의 크기를 1로 설정하여 남은 공간을 채움 */
+    padding: min(4%, 2rem);
     display: flex;
-    /* flexbox 레이아웃 설정 */
     flex-direction: column;
-    /* 자식 요소들을 수직 방향으로 정렬 */
     align-items: center;
-    /* 자식 요소들을 가로로 중앙 정렬 */
-    justify-content: center;
-    /* 자식 요소들을 세로로 중앙 정렬 */
-    gap: 20px;
-    /* 자식 요소들 사이에 간격 추가 */
-    width: 90%;
-    /* 너비를 부모의 90%로 설정 */
-    max-width: 1200px;
-    /* 최대 너비 1200px로 제한 */
+    margin: 0 auto;
+    gap: 1rem;
 }
 
-.search-wrapper {
-    position: relative;
-    /* 내부 요소의 위치를 상대적으로 설정 */
+/* 검색창과 게시글 목록 컨테이너 */
+.community-search-posts-wrapper {
     display: flex;
-    /* flexbox 레이아웃 사용 */
-    align-items: center;
-    /* 아이템들을 세로로 중앙 정렬 */
-    margin-left: 59vw;
-    /* 왼쪽 여백을 화면 너비의 59%로 설정 */
-    gap: 8px;
-    /* 자식 요소들 사이에 8px 간격 추가 */
+    flex-direction: column;
     width: 100%;
-    /* 전체 너비 설정 */
-    margin-right: calc(4% + 40px);
-    /* 오른쪽 여백을 4% + 40px로 설정 */
+    justify-content: center;
+    /* 중앙 정렬 */
+    align-items: center;
+    /* 세로 중앙 정렬 */
 }
 
-.community-dropdown {
-    position: relative;
-    /* 드롭다운 메뉴의 상대적인 위치 설정 */
-}
-
-.community-search-filter {
-    background-color: #D5D5D5;
-    /* 배경색 설정 */
-    color: #333;
-    /* 텍스트 색 설정 */
-    padding: 10px 20px;
-    /* 내부 여백 설정 */
-    font-size: 16px;
-    /* 텍스트 크기 설정 */
-    border: none;
-    /* 테두리 없애기 */
-    cursor: pointer;
-    /* 커서를 포인터로 변경 */
-    border-radius: 100px;
-    /* 둥근 테두리 설정 */
-    transition: background-color 0.3s ease;
-    /* 배경색 변화 시 부드럽게 전환 */
-    width: 70px;
-    /* 너비 고정 */
-    text-align: center;
-    /* 텍스트 가운데 정렬 */
-}
-
-.community-dropdown-button:hover {
-    background-color: #B0B0B0;
-    /* 드롭다운 버튼 hover 시 배경색 변경 */
-}
-
-.community-dropdown-menu {
-    position: absolute;
-    /* 절대 위치 설정 */
-    top: calc(100% + 8px);
-    /* 드롭다운 메뉴가 필터 버튼 아래 8px 간격으로 배치 */
-    left: 0;
-    /* 왼쪽 정렬 */
-    background-color: white;
-    /* 배경색 흰색 */
-    min-width: 100%;
-    /* 너비를 부모의 100%로 설정 */
-    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
-    /* 그림자 효과 추가 */
-    z-index: 1;
-    /* 다른 요소들보다 위에 표시되도록 설정 */
-    border-radius: 4px;
-    /* 둥근 테두리 설정 */
-    opacity: 0;
-    /* 초기에는 보이지 않도록 설정 */
-    visibility: hidden;
-    /* 드롭다운 메뉴 숨기기 */
-    transform: translateY(-10px);
-    /* 드롭다운 메뉴가 위쪽으로 이동한 상태로 설정 */
-    transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
-    /* 부드러운 애니메이션 설정 */
-}
-
-.community-dropdown-menu.open {
-    opacity: 1;
-    /* 열린 상태에서는 보이도록 설정 */
-    visibility: visible;
-    /* 열린 상태에서는 가시성 설정 */
-    transform: translateY(0);
-    /* 드롭다운 메뉴가 원래 위치로 이동 */
-}
-
-.community-dropdown-item {
-    padding: 8px 12px;
-    /* 각 항목에 여백 추가 */
-    cursor: pointer;
-    /* 커서를 포인터로 설정 */
-}
-
-.community-dropdown-item:hover {
-    background-color: #f1f1f1;
-    /* hover 시 배경색 변경 */
-}
-
-.community-search-input {
-    border: 1px solid #ccc;
-    /* 테두리 설정 */
-    border-radius: 100px;
-    /* 둥근 테두리 설정 */
-    width: 212px;
-    /* 고정 너비 설정 */
-    height: 33px;
-    /* 고정 높이 설정 */
-    font-size: 16px;
-    /* 글자 크기 설정 */
-    background: #D5D5D5;
-    /* 배경색 설정 */
-    text-align: center;
-    /* 텍스트 가운데 정렬 */
-}
-
-.community-search-button {
+/* 검색창과 게시글 목록을 나누는 영역 */
+.community-content-container {
     display: flex;
-    /* 플렉스박스로 설정하여 버튼을 flex 항목으로 만듦 */
-    width: 1.5vw;
-    /* 너비를 뷰포트 너비의 1%로 설정 */
-    height: 1.5vw;
-    /* 높이를 뷰포트 너비의 2%로 설정 */
-    background-image: url(./assets/search-icon.png);
-    /* 검색 아이콘 이미지 설정 */
-    background-size: cover;
-    /* 이미지를 요소의 크기에 맞게 커버 */
-    background-position: center;
-    /* 이미지가 중앙에 오도록 설정 */
+    justify-content: center;
+    /* 중앙 정렬 */
+    /* 세로 중앙 정렬 */
+}
+
+
+/* 게시글 테이블 컨테이너 */
+.community-posts {
+    background: transparent;
+    border-radius: 8px;
+    overflow: hidden;
+    display: flex;
+    flex: 10;
+    height: 100%;
+    margin: 20px 100px 100px 0px;
+}
+
+/* 제목 열 */
+.community-posts-title {
+    width: 50%;
+    border-collapse: collapse;
+    table-layout: fixed;
+}
+
+.community-posts-title th,
+.community-posts-title td {
+    padding: 0.75rem;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.community-posts-title th {
+    background-color: #f8f9fa;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.875rem;
+    color: #6c757d;
+    text-align: center;
+    vertical-align: middle;
+}
+
+/* 작성 날짜 열 */
+.community-posts-date {
+    width: 25%;
+    border-collapse: collapse;
+    table-layout: fixed;
+}
+
+.community-posts-date th,
+.community-posts-date td {
+    padding: 0.75rem;
+    border-bottom: 1px solid #dee2e6;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.community-posts-date th {
+    background-color: #f8f9fa;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.875rem;
+    color: #6c757d;
+}
+
+/* 작성자 열 */
+.community-posts-author {
+    width: 25%;
+    border-collapse: collapse;
+    table-layout: fixed;
+}
+
+.community-posts-author th,
+.community-posts-author td {
+    padding: 0.75rem;
+    border-bottom: 1px solid #dee2e6;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.community-posts-author th {
+    background-color: #f8f9fa;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.875rem;
+    color: #6c757d;
+}
+
+/* 페이지 네비게이션을 테이블 밑으로 이동하여 중앙 배치 */
+.community-pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-top: 0;
+    /* 테이블 아래 여백 */
+}
+
+.community-pagination button {
+
+    background-color: transparent;
+    color: rgb(0, 0, 0);
+    border: none;
+    border-radius: 4px;
     cursor: pointer;
-    /* 클릭 시 포인터 커서로 변경 */
-    transition: transform 0.3s ease, filter 0.3s ease;
-    /* 클릭 시 부드러운 전환 효과 설정 */
+    margin: 0 10px;
+}
+
+.community-pagination span {
+    font-size: 16px;
+    margin: 0 10px;
 }

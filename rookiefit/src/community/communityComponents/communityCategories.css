@@ -1,0 +1,31 @@
+.community-category-button {
+    padding: 0.75rem;
+    font-size: 1rem;
+    text-align: center;
+    color: #212529;
+    background: transparent;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.community-category-button:hover {
+    background-color: transparent;
+    color: rgb(0, 154, 243);
+}
+
+.community-category-button.active {
+    background-color: transparent;
+    color: rgb(0, 154, 243);
+}
+
+/* 카테고리 영역 */
+.community-categories {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    padding: 1rem;
+    flex: 1;
+    height: 100%;
+}

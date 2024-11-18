@@ -9,6 +9,7 @@ import PasswordReset from './passwordReset/passwordReset';
 import MyPage from './mypage/myPage';
 import MyPageEdit from './mypage/myPageEdit';
 import CommunityList from './community/communityList/communityList';
+import CommunityListBodyProfile from './community/communityList/communityListBodyprofile'
 import CommunityDetail from './community/communityDetail/communityDetail';
 import CommunityWrite from './community/communityWrite/communityWrite';
 import FindPassword from './findPassword/findPassword';
@@ -33,6 +34,7 @@ function App() {
           <Route path="/calendar/write" element={<CalenderPage />} /> {/* /calendar/write 경로 추가 */}
           <Route path="/calendar/detail" element={<CalenderPage />} /> {/* /calendar/write 경로 추가 */}
           <Route path="/community" element={<CommunityList />} />
+          <Route path="/community/bodyprofile" element={<CommunityListBodyProfile />} />
           <Route path="/community/write" element={<CommunityWrite />} />
           <Route path="/community/detail" element={<CommunityDetail />} />
           <Route path="/diet" element={<FoodPage />} />
