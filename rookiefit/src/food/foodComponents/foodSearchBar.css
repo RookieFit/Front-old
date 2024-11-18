@@ -2,20 +2,19 @@
     align-content: center;
     justify-content: center;
     text-align: center;
-    padding: 0.7vw 0;
 }
 
 .food-searchbar {
     background-color: transparent;
-    width: 25vw;
-    height: 2vw;
-    border-radius: 1vw;
+    width: 35vw;
+    height: 5vh;
     border: transparent;
-    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.25);
-
+    box-shadow: 0px 2px 0px rgb(0, 0, 0);
+    font-size: 16px;
+    color: #888787;
 }
 
 .food-searchbar:focus {
-    outline: 1px solid rgba(0, 0, 0, 0.1);
+    outline: 0px solid rgba(0, 0, 0, 1);
     outline-offset: 2px;
 }

@@ -1,34 +1,94 @@
-/* .food-list-main {
-    padding: 1vw 2vw;
-    font-size: 2vw;
-    font-weight: 1000;
-}
-
-.food-list-update {
-    margin-right: 1vw;
-} */
-
 .food-list-header {
     display: flex;
     padding: 1vw 2vw;
+    justify-content: space-between;
     font-weight: 1000;
+    align-items: center;
+    /* 세로 중앙 정렬 추가 */
 }
 
 .food-list-main {
-    /* padding: 1vw 2vw; */
     font-size: 2vw;
     font-weight: 1000;
+    color: #303030;
 }
 
 .food-list-update {
-    margin-left: 14.5vw;
+    background-color: transparent;
     margin-top: 2vw;
+    font-size: 1vw;
     cursor: pointer;
-    color: #00d6ee;
-    /* 버튼처럼 보이게 색상 변경 */
+    border: none;
+    color: #818181;
+    min-width: 100px;
+    /* 최소 너비 설정 */
+    visibility: hidden;
+    /* 버튼이 보이지 않게 숨기기 */
+}
+
+.food-list-update.visible {
+    visibility: visible;
+    /* 검색어가 없을 때 버튼을 보이게 설정 */
 }
 
 .food-list-eat-today {
-    padding: 1vw 2vw;
-    font-size: 1vw;
+    padding: 1vw;
+    font-size: 1.2vw;
+}
+
+.food-list-items {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5vw;
+}
+
+.food-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 1vw;
+    border: 1px solid #ddd;
+    border-radius: 14px;
+    background-color: #f9f9f9;
+    font-size: 1.2vw;
+}
+
+.food-item-left {
+    display: flex;
+    flex-direction: column;
+    /* 음식 이름과 칼로리를 세로로 배치 */
+    justify-content: flex-start;
+}
+
+.food-item-name {
+    font-weight: bold;
+    margin-bottom: 0.5vw;
+    /* 음식 이름과 칼로리 사이에 여백 추가 */
+}
+
+.food-item-calories {
+    color: #555;
+    font-size: 0.8vw;
+}
+
+.delete-button-wrapper {
+    display: flex;
+    align-items: center;
+    /* 버튼을 세로로 가운데 정렬 */
+}
+
+.delete-button {
+    padding: 10px 20px;
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100px;
+    /* 버튼의 너비를 적당히 설정 */
+    text-align: center;
+}
+
+.delete-button:hover {
+    background-color: #c0392b;
 }
