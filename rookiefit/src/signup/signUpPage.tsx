@@ -1,13 +1,16 @@
 import { ChangeEvent, KeyboardEvent, useState, useEffect } from 'react';
 import InputBox from '../inputBox/inputBox';
 import './signUpPage.css';
-import { CheckCertificationRequestDto, IdCheckRequestDto, SmsCertificationRequestDto } from '../apis/request/auth';
+import { CheckCertificationRequestDto, IdCheckRequestDto, SignUpRequestDto, SmsCertificationRequestDto } from '../apis/request/auth';
 import { ResponseCode } from '../apis/types/enums';
-import { CheckCertificationResponseDto, IdCheckResponseDto, SmsCertificationResponseDto } from '../apis/response/auth';
+import { CheckCertificationResponseDto, IdCheckResponseDto, SignUpResponseDto, SmsCertificationResponseDto } from '../apis/response/auth';
 import { ResponseBody } from '../apis/types';
-import { CheckCertificationRequest, IdCheckRequest, SmsCertificationRequest } from '../apis/apiClient';
+import { CheckCertificationRequest, IdCheckRequest, SignUpRequest, SmsCertificationRequest } from '../apis/apiClient';
+import { useNavigate } from 'react-router-dom';
 
 function SignUpPage() {
+    const navigate = useNavigate()
+
     const [userId, setUserId] = useState<string>('');
     const [password, setPassword] = useState<string>('');
     const [confirmPassword, setConfirmPassword] = useState<string>('');
@@ -103,6 +106,30 @@ function SignUpPage() {
         setIsCertificationError(false);
         setCertificationMessage('인증이 완료되었습니다.');
         setIsCertificationCheck(true);
+    };
+
+    const signUpResponse = (responseBody: ResponseBody<SignUpResponseDto>) => {
+        if (!responseBody) return;
+        const { code } = responseBody;
+
+        if (code === ResponseCode.VALIDATION_ERROR) alert('모든 항목을 입력하세요.');
+
+        if (code === ResponseCode.DATABASE_ERROR) alert('데이터베이스 오류입니다.');
+
+        if (code === ResponseCode.CERTIFICATION_FAIL) {
+            setIsCertificationError(true);
+            setCertificationMessage('이미 사용중인 아이디 입니다.');
+            setIsCertificationCheck(false);
+        };
+
+        if (code === ResponseCode.DUPLICATE_ID) {
+            setIsIdError(true);
+            setIdMessage('이미 사용중인 아이디 입니다.');
+            setIsIdCheck(false);
+        };
+
+        if (code !== ResponseCode.SUCCESS) return;
+        navigate("/auth/sign-in");
     };
 
     // 아이디 입력란의 값이 변경될 때 호출되는 함수
@@ -207,6 +234,17 @@ function SignUpPage() {
         }
     };
 
+    const onSignUpButtonClickHandler = () => {
+        if (!userId || !password || !certificationNumber) return;
+
+        const requestBody: SignUpRequestDto = {
+            userId,
+            user_password: password,
+            user_phonenumber: userPhoneNumber,
+        };
+        SignUpRequest(requestBody).then(signUpResponse);
+    };
+
     return (
         <div id="sign-up-wrapper">
             <div className="sign-up-title">회원 가입</div>  {/* 회원 가입 제목 */}
@@ -283,7 +321,7 @@ function SignUpPage() {
             <div className="underline"></div>  {/* 입력란 아래에 밑줄을 표시하는 div */}
 
             {/* 회원가입 버튼 */}
-            <button className="sign-up-button" onClick={() => alert("가입 완료! 환영합니다.")}>
+            <button className="sign-up-button" onClick={onSignUpButtonClickHandler}>
                 회원가입
             </button>
         </div>
