@@ -11,7 +11,7 @@ const CommunityWrite = () => {
     const handleToggleDropdown = () => {
         setDropdownView(!isDropdownView);
     };
-    const handleWrieBlur = () => {
+    const handleWriteBlur = () => {
         setTimeout(() => {
             setDropdownView(false);
         }, 200);
@@ -20,9 +20,9 @@ const CommunityWrite = () => {
         setIsSelectedMenu(item);
         setDropdownView(false);
     };
-//내용 없애기
-const [isCommunityWriteTitleClicked, setIsCommunityWriteTitleClicked] = useState(false);
-const [isCommunityWriteDetailClicked, setIssCommunityWriteDetailClicked] = useState(false);
+    //내용 없애기
+    const [isCommunityWriteTitleClicked, setIsCommunityWriteTitleClicked] = useState(false);
+    const [isCommunityWriteDetailClicked, setIsCommunityWriteDetailClicked] = useState(false);
 
     return (
         <div className="write-top-box">
@@ -32,7 +32,7 @@ const [isCommunityWriteDetailClicked, setIssCommunityWriteDetailClicked] = useSt
                     <div>
                         <button type="button"
                             onClick={handleToggleDropdown}
-                            onBlur={handleWrieBlur}
+                            onBlur={handleWriteBlur}
                             className="community-write-title-drop">
                             {isSelectedMenu}
                         </button>
@@ -57,9 +57,9 @@ const [isCommunityWriteDetailClicked, setIssCommunityWriteDetailClicked] = useSt
                 <input
                     type="text"
                     className="community-write-detail"
-                    onFocus={() => setIssCommunityWriteDetailClicked(true)}
-                        onBlur={() => setIssCommunityWriteDetailClicked(false)}
-                        placeholder={isCommunityWriteDetailClicked === true ? "" : "입력하세요"}
+                    onFocus={() => setIsCommunityWriteDetailClicked(true)}
+                    onBlur={() => setIsCommunityWriteDetailClicked(false)}
+                    placeholder={isCommunityWriteDetailClicked === true ? "" : "입력하세요"}
                 />
                 <div className="community-write-under">
                     <input
@@ -69,7 +69,7 @@ const [isCommunityWriteDetailClicked, setIssCommunityWriteDetailClicked] = useSt
                     />
                     <input
                         type="button"
-                        className="community-write-upcontents-load"
+                        className="community-write-upload-contents"
                     />
                 </div>
             </div>
