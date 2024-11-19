@@ -81,7 +81,7 @@ const CustomCalendarDetail = () => {
                 {details.entries.length > 0 ? (
                     renderEntries(details.entries)
                 ) : (
-                    <p>세부사항이 없습니다.</p>
+                    <p>세부사항이 없습니다. <br /> 날짜를 클릭하여 기록을 해보세유</p>
                 )}
             </div>
         </div>

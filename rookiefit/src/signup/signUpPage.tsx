@@ -129,7 +129,7 @@ function SignUpPage() {
         };
 
         if (code !== ResponseCode.SUCCESS) return;
-        navigate("/auth/sign-in");
+        navigate("/signin");
     };
 
     // 아이디 입력란의 값이 변경될 때 호출되는 함수

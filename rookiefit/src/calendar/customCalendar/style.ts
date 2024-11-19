@@ -67,7 +67,7 @@ export const StyledCalendarWrapper = styled.div`
   /* 네비게이션 폰트 설정 */
   .react-calendar__navigation button {
     font-weight: 800;
-    font-size: 1rem;
+    font-size: 1.5rem;
   }
 `
 // 캘린더를 불러옴
