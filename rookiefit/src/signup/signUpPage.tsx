@@ -66,7 +66,7 @@ function SignUpPage() {
 
         if (code === ResponseCode.DATABASE_ERROR) alert('데이터베이스 오류입니다.');
 
-        if (code === ResponseCode.SMS_FAIL) alert('이메일 전송에 실패했습니다.');
+        if (code === ResponseCode.SMS_FAIL) alert('SMS 전송에 실패했습니다.');
 
         if (code === ResponseCode.DUPLICATE_ID) {
             setIsIdError(true);
@@ -241,6 +241,7 @@ function SignUpPage() {
             userId,
             user_password: password,
             user_phonenumber: userPhoneNumber,
+            user_email: "asd@asd.com"
         };
         SignUpRequest(requestBody).then(signUpResponse);
     };
