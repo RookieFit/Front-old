@@ -1,33 +1,31 @@
 import './graphBox.css';
 import Chart from "react-apexcharts";
 import type { ApexOptions } from "apexcharts";
+import { useEffect, useState } from 'react';
 
 interface Props {
     name: string;
-    values: number[]; // values should be a number array
+    values: number[];
     title: string;
     graphMinHight: number;
     graphMaxHight: number;
-    daysInMonth: number[];
 }
 
-const getDaysInMonth = (month: number, year: number): number[] => {
-    const date = new Date(year, month, 0);
-    const daysInMonth = date.getDate();
-    const daysArray = [];
-    for (let i = 1; i <= daysInMonth; i++) {
-        daysArray.push(i);
-    }
-    return daysArray;
-};
+const GraphDate = ({ title, name, values, graphMinHight, graphMaxHight }: Props) => {   
+    const [dates, setDates] = useState<string[]>([]);
 
-const currentDate = new Date();
-const currentYear = currentDate.getFullYear();
-const currentMonth = currentDate.getMonth() + 1; // 0-based, so add 1
+    useEffect(() => {
+        // 오늘부터 30일 전까지의 날짜 배열 생성
+        const today = new Date();
+        const dateArray: string[] = [];
+        for (let i = 0; i < 30; i++) {
+            const date = new Date(today);
+            date.setDate(today.getDate() - i);
+            dateArray.push(date.toISOString().split('T')[0]); // 'YYYY-MM-DD' 형식
+        }
+        setDates(dateArray.reverse()); // 배열을 반전하여 오래된 날짜부터 나열
+    }, []);
 
-const daysInMonth = getDaysInMonth(currentMonth, currentYear);
-
-const GraphDate = ({ title, name, values, graphMinHight, graphMaxHight }: Props) => {
     const data = {
         series: [{
             name: name,
@@ -59,32 +57,28 @@ const GraphDate = ({ title, name, values, graphMinHight, graphMaxHight }: Props)
             },
             grid: {
                 row: {
-                    colors: ['#f3f3f3', 'transparent'], // takes an array which will be repeated on columns
+                    colors: ['#f3f3f3', 'transparent'],
                     opacity: 0.5
                 },
             },
             xaxis: {
-                type: "datetime", // Make sure to use datetime type
-                categories: daysInMonth.map((day) => {
-                    // Create a timestamp for each day of the month
-                    const date = new Date(currentYear, currentMonth - 1, day);
-                    return date.getTime(); // Return the timestamp (milliseconds)
-                }),
+                type: "datetime",
+                categories: dates, // 생성된 날짜 배열 전달
                 labels: {
-                    formatter: (value: any) => {
+                    formatter: (value: string) => {
                         const date = new Date(value);
-                        const month = date.toLocaleString('default', { month: 'short' }); // 'MMM'
+                        const month = date.toLocaleString('default', { month: 'short' });
                         const day = date.getDate();
-                        return `${month} ${day}일`; // 'MMM dd' format
+                        return `${month} ${day}일`; // 'MMM dd' 형식
                     }
                 },
             },
             yaxis: {
-                min: graphMinHight, // Y축 최소값 설정
-                max: graphMaxHight, // Y축 최대값 설정
+                min: graphMinHight,
+                max: graphMaxHight,
             }
         } as ApexOptions
-    }
+    };
 
     return (
         <div className="graph-box">

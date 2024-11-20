@@ -1,10 +1,15 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import './profile.css';
 import logo from '../../../assets/user.png'
 
-const Profile = () => {
+const dummyData = {
+  nickname: " 뚱인데요?",
+  message: "나 짱짱쎔"
+};
 
+
+const Profile = () => {
   const navigate = useNavigate();
   const myPageEdit = () => {
     navigate('/myPageEdit')
@@ -18,7 +23,7 @@ const Profile = () => {
       <input type='button' value="로그아웃" onClick={main} className='profile-logout' />
       <img className='profile-image' src={logo}></img>
 
-      <div className='profile-nickname'>닉네임자리</div>
+      <div className='profile-nickname'>{dummyData.nickname}</div>
       <textarea className='profile-message-textarea' disabled>"메시지를 입력하세요"
       </textarea>
       <div className='profile-edit' onClick={myPageEdit}>
