@@ -1,6 +1,6 @@
 import { useState, ChangeEvent, KeyboardEvent } from 'react';  // 상태 관리와 이벤트 처리 위한 React 훅들 임포트
 import { useNavigate } from 'react-router-dom';  // 페이지 이동을 위한 useNavigate 훅 임포트
-import InputBox from '../inputBox/inputBox';  // 사용자 정의 입력박스 컴포넌트 임포트
+import InputBox from '../inputBox2/inputBox';  // 사용자 정의 입력박스 컴포넌트 임포트
 import './signInPage.css';  // 컴포넌트 스타일을 위한 CSS 임포트
 
 // 로그인 페이지 컴포넌트 정의
