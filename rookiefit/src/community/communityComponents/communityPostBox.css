@@ -1,0 +1,111 @@
+/* 전체 게시글 박스 스타일 */
+.post-box {
+    position: relative;
+    width: 1282px;
+    height: auto;
+    max-width: 100%;
+    margin: 20px auto;
+    background-color: #F4F4F4;
+    border-radius: 12px;
+    padding: 30px;
+    box-sizing: border-box;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* 게시글 카테고리 */
+.post-category {
+    font-size: 1rem;
+    font-weight: bold;
+    color: #161616;
+    /* 카테고리 색상 */
+    margin-bottom: 10px;
+    /* 제목과 카테고리 간의 간격 */
+    text-transform: uppercase;
+    /* 카테고리를 대문자로 */
+}
+
+/* 게시글 제목 */
+.post-title {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 15px;
+    color: #2C3E50;
+    line-height: 1.4;
+    text-align: center;
+}
+
+/* 작성자와 날짜 스타일 */
+.post-header {
+    display: flex;
+    justify-content: space-between;
+    font-size: 1rem;
+    color: #8E8E8E;
+    margin-bottom: 20px;
+}
+
+.author {
+    font-weight: bold;
+    color: #34495E;
+}
+
+.date {
+    font-style: italic;
+}
+
+/* 이미지 스타일 */
+.post-images {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.post-image {
+    width: 32%;
+    height: 220px;
+    background-size: cover;
+    background-position: center;
+    border-radius: 10px;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+
+/* 게시글 본문 */
+.post-content {
+    font-size: 1.1rem;
+    color: #555;
+    margin-bottom: 20px;
+    line-height: 1.6;
+    text-align: justify;
+}
+
+/* 댓글 버튼 */
+.comment-button {
+    position: absolute;
+    /* 위치를 절대값으로 설정하여 오른쪽에 고정 */
+    right: 30px;
+    /* 오른쪽에서 30px 거리 */
+    bottom: 20px;
+    /* 하단에서 20px 거리 */
+    background-color: #505152;
+    color: #fff;
+    border: none;
+    padding: 8px 15px;
+    /* 크기를 줄임 */
+    font-size: 0.9rem;
+    /* 폰트 크기 줄임 */
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    display: block;
+}
+
+.comment-button:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+}
+
+.comment-button:focus {
+    outline: none;
+}
