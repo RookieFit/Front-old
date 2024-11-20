@@ -2,7 +2,7 @@
     display: flex;
     gap: 0.5vw;
     /* 입력 필드 간격 */
-    padding: 0.1vw 1vw;
+    padding: 0 1vw;
     /* 좌우 여백 */
 }
 
@@ -20,7 +20,7 @@
 /* 제목 */
 .calendar-title-input {
     padding: 0 1vw;
-    margin-bottom: 0.5vw;
+    /* margin-bottom: 0.5vw; */
 }
 
 .calendar-title-input label {
@@ -36,14 +36,14 @@
 
 .calendar-title-input textarea {
     padding: 10px;
-    font-size: 1rem;
+    font-size: 0.8rem;
     border: 1px solid #ddd;
     border-radius: 0.7vw;
     resize: none;
     width: 100%;
     box-sizing: border-box;
     box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
-    height: 2.8vw;
+    height: 2vw;
     /* 텍스트 입력 필드 높이 설정 */
 }
 
