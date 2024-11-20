@@ -1,4 +1,72 @@
-.food-result-chart {
-    display: flex;
-    padding: 0 1vw;
+/* 캘린더 팝업 스타일 */
+.calendar-popup {
+    position: absolute;
+    z-index: 1000;
+    top: 60px;
+    left: 50%;
+    transform: translateX(-50%);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    background-color: white;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+/* 버튼 스타일 */
+button {
+    padding: 5px 15px;
+    background-color: transparent;
+    color: #000;
+    border: none;
+    border-radius: 5px;
+    font-size: 1vw;
+    cursor: pointer;
+}
+
+/* react-calendar 기본 스타일 수정 */
+.react-calendar {
+    border-radius: 1rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    background-color: #fff;
+    font-size: 14px;
+    color: #333;
+    /* 글자색을 어두운 색으로 변경 */
+}
+
+.react-calendar__tile {
+    color: #333;
+    /* 일반 날짜 글자색 */
+}
+
+/* 오늘 날짜 스타일 */
+.react-calendar__tile--now {
+    background-color: #F05650;
+    color: #fff;
+    font-weight: bold;
+}
+
+/* 오늘 날짜에 마우스 오버 시 스타일 */
+.react-calendar__tile--now:hover {
+    background-color: #292929;
+    color: #fff;
+}
+
+/* 선택된 날짜 스타일 */
+.react-calendar__tile--active {
+    background-color: #77E4C8;
+    color: #000;
+    font-weight: bold;
+}
+
+.react-calendar__tile--active:enabled:hover,
+.react-calendar__tile--active:enabled:focus {
+    background-color: #77E4C8;
+    color: #000;
+}
+
+.react-calendar__tile:enabled:hover,
+.react-calendar__tile:enabled:focus {
+    background-color: #77E4C8;
+    opacity: 0.7;
+    color: #000;
 }

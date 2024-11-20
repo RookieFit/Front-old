@@ -6,6 +6,7 @@ import moment from 'moment';
 import './CalendarWrite.css';
 import { useCalendarDetails } from '../calendarDetailContext';
 import { UseCalendar } from '../calendarContext';
+import ImageUploader from '../../components/imageUploader';
 
 const CalendarWrite = () => {
     const navigate = useNavigate();
@@ -20,6 +21,11 @@ const CalendarWrite = () => {
     const [title, setTitle] = useState(''); // 일기 제목 상태
     const [diaryContent, setDiaryContent] = useState(''); // 일기 내용 상태
     const [localDetails, setLocalDetails] = useState<string[][]>([]); // 운동 세부사항 상태
+    const [uploadedImage, setUploadedImage] = useState<File | null>(null); // 업로드된 이미지 상태
+
+    const handleImageUpload = (image: File | null) => {
+        setUploadedImage(image);
+    };
 
     // 운동 세부사항 추가 함수
     const handleAddDetail = () => {
@@ -40,6 +46,8 @@ const CalendarWrite = () => {
 
     // 제출 시 일기 저장 처리
     const handleSubmit = () => {
+        const imageData = uploadedImage ? URL.createObjectURL(uploadedImage) : null;
+
         setDetails((prevDetails) => ({
             entries: [
                 ...prevDetails.entries,
@@ -48,6 +56,7 @@ const CalendarWrite = () => {
                     diaryContent,
                     workoutDetails: localDetails, // 운동 세부사항 저장
                     date: selectedDate.toString(), // 선택된 날짜 저장
+                    image: imageData, // 업로드된 이미지 URL 저장
                 }
             ]
         }));
@@ -104,6 +113,8 @@ const CalendarWrite = () => {
                                 placeholder="여기에 자유롭게 내용을 입력하세요."
                                 maxLength={255}
                             />
+                            {/* 이미지 추가 버튼을 따로 만들어서... */}
+                            <ImageUploader onImageUpload={handleImageUpload} maxSizeMB={5} />
                         </div>
                         <button className="calendar-write-submit" onClick={handleSubmit}>SUBMIT</button>
                     </div>
