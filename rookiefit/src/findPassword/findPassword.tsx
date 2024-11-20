@@ -1,6 +1,6 @@
 import React, { useState, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
-import InputBox from '../inputBox2/inputBox';
+import InputBox from '../inputBox/inputBox';
 import './findPassword.css';
 
 function FindPassword() {

@@ -1,6 +1,6 @@
 import { useState, ChangeEvent, KeyboardEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
-import InputBox from '../inputBox2/inputBox';
+import InputBox from '../inputBox/inputBox';
 import './passwordReset.css';
 
 function PasswordReset() {

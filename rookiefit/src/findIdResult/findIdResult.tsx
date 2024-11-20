@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import './findIdResult.css';
-import '../inputBox2/inputBox';
+import '../inputBox/inputBox';
 
 const FindIdResult = () => {
     const navigate = useNavigate();

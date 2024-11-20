@@ -1,6 +1,6 @@
 import { useState, ChangeEvent, KeyboardEvent } from 'react';
 import { useNavigate } from 'react-router-dom'; // useNavigate 훅 임포트
-import InputBox from '../inputBox2/inputBox'; // InputBox 컴포넌트 임포트
+import InputBox from '../inputBox/inputBox'; // InputBox 컴포넌트 임포트
 import './findId.css'; // 스타일 파일 임포트
 
 const numericRegex = /^[0-9]*$/; // 숫자만 허용하는 정규식
