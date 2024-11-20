@@ -3,6 +3,10 @@ import axios, { AxiosResponse } from "axios";
 import { CheckCertificationRequestDto, IdCheckRequestDto, SignInRequestDto, SignUpRequestDto, SmsCertificationRequestDto } from "./request/auth";
 import { CheckCertificationResponseDto, IdCheckResponseDto, SignInResponseDto, SignUpResponseDto, SmsCertificationResponseDto } from "./response/auth";
 import ResponseDto from "./response/response.dto";
+import FindUserIdRequestDto from "./request/account/findUserIdRequest.dto";
+import FindUserIdResponseDto from "./response/account/findUserIdResponse.dto";
+import { CheckFindUserIdRequestDto } from "./request/account";
+import { CheckFindUserIdResponseDto } from "./response/account";
 
 const responseHandler = <T>(response: AxiosResponse<any, any>) => {
     const responseBody: T = response.data;
@@ -24,6 +28,8 @@ const SMS_CERTIFICATION_URL = () => `${API_DOMAIN}/auth/sms-certification`;
 const CHECK_CERTIFICATION_URL = () => `${API_DOMAIN}/auth/check-certification`;
 const SIGN_UP_URL = () => `${API_DOMAIN}/auth/sign-up`;
 const SIGN_IN_URL = () => `${API_DOMAIN}/auth/sign-in`;
+const FIND_USER_ID_URL = () => `${API_DOMAIN}/auth/find-id`;
+const CHECK_FIND_USER_ID_URL = () => `${API_DOMAIN}/auth/check-find-id`;
 
 export const IdCheckRequest = async (requestBody: IdCheckRequestDto) => {
     const result = await axios.post(ID_CHECK_URL(), requestBody)
@@ -56,6 +62,20 @@ export const SignUpRequest = async (requestBody: SignUpRequestDto) => {
 export const SignInRequest = async (requestBody: SignInRequestDto) => {
     const result = await axios.post(SIGN_IN_URL(), requestBody)
         .then(responseHandler<SignInResponseDto>)
+        .catch(errorHandler)
+    return result;
+}
+
+export const FindUserIdRequest = async (requestBody: FindUserIdRequestDto) => {
+    const result = await axios.post(FIND_USER_ID_URL(), requestBody)
+        .then(responseHandler<FindUserIdResponseDto>)
+        .catch(errorHandler)
+    return result;
+}
+
+export const CheckFindUserIdRequest = async (requestBody: CheckFindUserIdRequestDto) => {
+    const result = await axios.post(CHECK_FIND_USER_ID_URL(), requestBody)
+        .then(responseHandler<CheckFindUserIdResponseDto>)
         .catch(errorHandler)
     return result;
 }
