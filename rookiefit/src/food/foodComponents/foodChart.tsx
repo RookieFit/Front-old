@@ -64,7 +64,6 @@ const FoodChart = () => {
         } as ApexOptions
     };
 
-
     const handleDateChange = (newDate: Date) => {
         setSelectedDate(newDate);  // 날짜 선택 시 상태 업데이트
         setShowCalendar(false);  // 달력 닫기
