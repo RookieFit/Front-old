@@ -1,84 +1,180 @@
-import { SetStateAction, useState } from 'react'; // useState를 사용하기 위한 import
-import './communityList.css'; // 스타일시트 불러오기
-import CommunityHeader from '../communityComponents/communityHeader'; // 커뮤니티 헤더 컴포넌트 불러오기
+import React, { useState, useEffect, useCallback } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
+import CommunityHeader from '../communityComponents/communityHeader';
+import CommunityCategories from '../communityComponents/communityCategories';
+import CommunityPostBox from '../communityComponents/communityPostBox';
+import CommunityGridPost from '../communityComponents/communityPostGrid'; // 그리드 뷰 컴포넌트 임포트
+import { dummyPosts } from './dummydata';
+import './communityList.css';
+import { debounce } from 'lodash';
+
+// 카테고리 타입 정의
+type Category = '전체' | '바프' | '고민' | '정보' | '친목' | '공지';
+
+// 카테고리 목록 상수
+const CATEGORIES: Category[] = ['전체', '바프', '고민', '정보', '친목', '공지'];
+const POSTS_PER_PAGE = 8;
+const LOADING_DELAY = 500; // 로딩 지연 시간 (ms)
 
 const CommunityList = () => {
-    // 주제 목록 (필터링 가능한 항목들)
-    const subjectItems = ['전체', '바프', '운동 고민', '일상 고민', '정보', '친목'];
-    // 드롭다운 메뉴 상태 관리 (열림/닫힘)
-    const [isOpen, setIsOpen] = useState(false);
-    // 검색창 placeholder 상태
-    const [placeholder, setPlaceholder] = useState("검색어를 입력하세요"); // 초기 placeholder 설정
-    // 선택된 필터 상태
-    const [selectedFilter, setSelectedFilter] = useState("검색 필터"); // 선택된 필터 텍스트 상태
-    // 검색어 상태 추가
-    const [searchQuery, setSearchQuery] = useState(''); // 검색어 상태 관리
+    const location = useLocation();
+    const navigate = useNavigate();
 
-    // 드롭다운 열기/닫기 토글 함수
-    const toggleDropdown = () => {
-        setIsOpen(!isOpen); // 현재 상태의 반대로 설정
+    const isGridMode = location.pathname.includes('/grid'); // 현재 모드 확인
+    const toggleMode = () => {
+        const newPath = isGridMode ? '/community' : '/community/grid';
+        navigate(`${newPath}?category=${selectedCategory}`);
     };
 
-    // 검색창에 포커스가 들어갔을 때 placeholder 지우기
-    const handleFocus = () => {
-        setPlaceholder(""); // 포커스 시 placeholder 삭제
+    const getInitialCategory = (): Category => {
+        const params = new URLSearchParams(location.search);
+        const categoryFromUrl = params.get('category') as Category;
+        return CATEGORIES.includes(categoryFromUrl) ? categoryFromUrl : '전체';
     };
 
-    // 검색창에서 포커스가 벗어났을 때 placeholder 복원
-    const handleBlur = () => {
-        setPlaceholder("검색어를 입력하세요"); // 포커스 벗어나면 placeholder 복원
+    const [selectedCategory, setSelectedCategory] = useState<Category>(getInitialCategory());
+    const [currentPosts, setCurrentPosts] = useState<typeof dummyPosts>([]);
+    const [page, setPage] = useState(0);
+    const [loading, setLoading] = useState(false);
+    const [hasMore, setHasMore] = useState(true);
+
+    const getFilteredPosts = useCallback(() => {
+        return selectedCategory === '전체'
+            ? dummyPosts
+            : dummyPosts.filter(post => post.category === selectedCategory);
+    }, [selectedCategory]);
+
+    const loadPosts = useCallback(() => {
+        if (loading || !hasMore) return;
+
+        setLoading(true);
+
+        // 로딩 지연 추가
+        setTimeout(() => {
+            const filteredPosts = getFilteredPosts();
+            const startIndex = page * POSTS_PER_PAGE;
+            const endIndex = startIndex + POSTS_PER_PAGE;
+            const newPosts = filteredPosts.slice(startIndex, endIndex);
+
+            if (newPosts.length > 0) {
+                setCurrentPosts(prev => [...prev, ...newPosts]);
+                setPage(prev => prev + 1);
+                setHasMore(endIndex < filteredPosts.length);
+            } else {
+                setHasMore(false);
+            }
+            setLoading(false);
+        }, LOADING_DELAY);
+    }, [page, loading, hasMore, getFilteredPosts]);
+
+    // 디바운스된 스크롤 이벤트 핸들러
+    const handleScroll = useCallback(
+        debounce(() => {
+            if (loading || !hasMore) return;
+
+            const scrollHeight = document.documentElement.scrollHeight;
+            const scrollTop = document.documentElement.scrollTop;
+            const clientHeight = document.documentElement.clientHeight;
+
+            if (scrollHeight - scrollTop - clientHeight < 100) {
+                loadPosts();
+            }
+        }, 150), // 디바운스 딜레이를 150ms로 설정
+        [loading, hasMore, loadPosts]
+    );
+
+    useEffect(() => {
+        const categoryFromUrl = getInitialCategory();
+        if (categoryFromUrl !== selectedCategory) {
+            setSelectedCategory(categoryFromUrl);
+        }
+    }, [location.search]);
+
+    useEffect(() => {
+        setCurrentPosts([]);  // 리스트 초기화
+        setPage(0);
+        setHasMore(true);
+        loadPosts();
+    }, [selectedCategory]);
+
+    useEffect(() => {
+        if (!isGridMode) {
+            window.addEventListener('scroll', handleScroll);
+        }
+
+        return () => {
+            if (!isGridMode) {
+                window.removeEventListener('scroll', handleScroll);
+            }
+        };
+    }, [handleScroll, isGridMode]);
+
+    useEffect(() => {
+        if (currentPosts.length === 0) {
+            loadPosts();
+        }
+    }, []); // 초기 로딩
+
+    const handleCategoryClick = (category: Category) => {
+        setSelectedCategory(category);
+        navigate(`/community?category=${category}`);
     };
 
-    // 드롭다운에서 항목을 선택했을 때 필터 상태 업데이트
-    const handleFilterSelect = (subjectItems: SetStateAction<string>) => {
-        setSelectedFilter(subjectItems); // 필터 선택 시 해당 아이템 텍스트로 설정
-        setIsOpen(false); // 드롭다운 닫기
+    const scrollToTop = () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
     };
 
-    // 검색 버튼 클릭 시 alert로 입력된 검색어 표시
-    const handleSearchClick = () => {
-        alert(selectedFilter + searchQuery); // 검색어가 포함된 alert 표시
+    const handleWritePost = () => {
+        navigate('/community/write'); // 글 작성 페이지로 이동
+    };
+
+    const handleSearch = () => {
+        console.log('검색 버튼 클릭됨');
     };
 
     return (
-        <div id="community-list-wrapper">
-            {/* 커뮤니티 헤더 표시 */}
-            <CommunityHeader
-                title="커뮤니티"
-                content="모든 헬스인들을 위한 커뮤니티"
-            />
-            <div className="community-search-wrapper">
-                <div className="community-dropdown">
-                    {/* 드롭다운 필터 버튼 */}
-                    <div onClick={toggleDropdown} className="community-search-filter">
-                        {selectedFilter} {/* 선택된 필터 텍스트 출력 */}
+        <div>
+            <CommunityHeader title="커뮤니티" content="모든 헬스인들을 위한 커뮤니티" />
+            <div className="community-divider"></div> {/* 구분선 추가 */}
+
+            <div className="community-content-container">
+                <div className="community-list">
+                    <div className="community-categories">
+                        <CommunityCategories
+                            categories={CATEGORIES}
+                            activeCategory={selectedCategory}
+                            onCategoryClick={handleCategoryClick}
+                        />
                     </div>
-                    {/* 드롭다운 메뉴 (열리면 'open' 클래스 추가) */}
-                    <div className={`community-dropdown-menu ${isOpen ? 'open' : ''}`}>
-                        {/* 드롭다운 항목 출력 */}
-                        {subjectItems.map((item, index) => (
-                            <div
-                                key={index}
-                                className="community-dropdown-item"
-                                onClick={() => handleFilterSelect(item)} // 아이템 선택 시 동작
-                            >
-                                {item}
-                            </div>
-                        ))}
+                    {/* 목록 전환 버튼 */}
+                    <button onClick={toggleMode} className="toggle-mode-button">
+                        {isGridMode ? '리스트 보기' : '그리드 보기'}
+                    </button>
+                    <div className="post-list">
+                        {isGridMode ? (
+                            // 그리드 모드일 경우 CommunityGridPost 컴포넌트 사용
+                            <CommunityGridPost posts={currentPosts} />
+                        ) : (
+                            // 리스트 모드일 경우 기존 CommunityPostBox 컴포넌트 사용
+                            currentPosts.map((post, index) => (
+                                <CommunityPostBox key={`${post.id}-${index}`} post={post} />
+                            ))
+                        )}
                     </div>
+                    {loading && (
+                        <div className="loading">Loading...</div>
+                    )}
+                    {!hasMore && currentPosts.length > 0 && (
+                        <div className="no-more-posts">더 이상 게시물이 없습니다</div>
+                    )}
                 </div>
-                {/* 검색창 (사용자가 검색어 입력 가능) */}
-                <input
-                    type="text"
-                    placeholder={placeholder} // placeholder 상태에 따라 변경
-                    className="community-search-input"
-                    onFocus={handleFocus} // 포커스 시 placeholder 삭제
-                    onBlur={handleBlur} // 포커스 벗어날 시 placeholder 복원
-                    value={searchQuery} // 검색어 상태 값 설정
-                    onChange={(e) => setSearchQuery(e.target.value)} // 검색어 입력 시 상태 업데이트
-                />
-                {/* 검색 버튼 (스타일만 적용됨, 동작은 구현되지 않음) */}
-                <div className="community-search-button" onClick={handleSearchClick}></div> {/* 버튼 클릭 시 동작 */}
+            </div>
+
+            {/* 오른쪽 버튼 */}
+            <div className="community-floating-buttons">
+                <button onClick={scrollToTop} className="community-floating-up-button"></button> {/* 상단으로 가기 버튼 */}
+                <button onClick={handleSearch} className="community-floating-search-button"></button> {/* 검색하기 버튼 */}
+                <button onClick={handleWritePost} className="community-floating-plus-button"></button> {/* 글작성하기 버튼 */}
             </div>
         </div>
     );
