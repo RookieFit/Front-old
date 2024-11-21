@@ -14,7 +14,8 @@ import CommunityWrite from './community/communityWrite/communityWrite';
 import FindPassword from './findPassword/findPassword';
 import FindIdResult from './findIdResult/findIdResult'
 import FoodPage from './food/foodPage';
-import SeenProfile from './mypage/seenPage/seenProfile/seenProfile';
+import SeenPage from './mypage/seenPage/seenPage';
+
 
 function App() {
   return (
@@ -22,7 +23,7 @@ function App() {
       <div>
         <Header />
         <Routes>
-          <Route path="/seenProfile" element={<SeenProfile />} />
+          <Route path="/seenPage" element={<SeenPage/>} />
           <Route path="/mypageedit" element={<MyPageEdit />} />
           <Route path="/mypage" element={<MyPage />} />
           <Route path="/signin" element={<SigninPage />} />

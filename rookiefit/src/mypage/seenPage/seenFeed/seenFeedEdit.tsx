@@ -1,7 +1,10 @@
 import React from 'react'
 
-export default function seenFeedEdit() {
+ const SeenFeedEdit = () => {
   return (
-    <div>seenFeedEdit</div>
+    <div className='seen-feed-right-back'>
+        seenFeed
+    </div>
   )
-}
+};
+export default SeenFeedEdit

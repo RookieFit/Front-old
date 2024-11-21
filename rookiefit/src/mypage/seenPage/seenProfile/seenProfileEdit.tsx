@@ -1,34 +1,47 @@
-import { useState } from 'react'
-import {useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import './seenProfile.css';
-import logo from '../../assets/user.png'
+import logo from '../assets/Larry.png'
 
-const SeenProfileEdit = () => {
+interface Props {
+  smallvalueReview: number;
+  smallvalueClass: number;
+}
 
-  const dummyData = {
-    nickname: " 뚱인데요?",
-    message: "나 짱짱쎔"
-  };
+const dummyData = {
+  name: "나불끈",
+  message: "근육이든 사람이든 확실히 조저드립니다~~"
+};
 
+const SeenProfile = ({smallvalueReview, smallvalueClass}: Props) => {
   const navigate = useNavigate();
-  const myPage = () => {
-    navigate('/myPage')
+  const seenProfileEdit = () => {
+    navigate('/seenProfileEdit')
   };
-  const [isProfileTextareaClicked, setIsProfileTextareaClicked] = useState(false);
+  const main = () => {
+    navigate('/main')
+  };
+  const communityList = () => {
+    navigate('/communityList')
+  }
+
   return (
     <div className='seen-profile-left-back'>
-      <img className='seen-profile-edit-image' src={logo}></img>
-      <div className='seen-profile-nickname'>{dummyData.nickname}</div>
-      <input type='text'
-        maxLength={19}
-        className='seen-profile-message-textarea'
-        onFocus={() => setIsProfileTextareaClicked(true)}
-        onBlur={() => setIsProfileTextareaClicked(false)}
-        placeholder={isProfileTextareaClicked === true ? "" : dummyData.message}>
-      </input>
-      <input type="button" value="완료하기" onClick={myPage} className='seen-profile-button' />
+      <input type='button' value="로그아웃" onClick={main} className='seen-profile-logout' />
+      <img className='seen-profile-image' src={logo}></img>
+      <div className='seen-profile-nickname'>{dummyData.name}</div>
+      <div className='seen-profile-small-box'>
+       후기
+        <input type='text' value={smallvalueReview} />개
+        <input type='button' value='보러가기' onClick={communityList}/>
+        |
+        운영 글래스
+        <input type='text' value={smallvalueClass} />개
+        <input type='button' value='보러가기' onClick={communityList}/>
+      </div>
+      <input type='text' className='seen-profile-message-textarea' value={dummyData.message} disabled />
+      <input type="button" value="수정하기" onClick={seenProfileEdit} className='seen-profile-button' />
     </div>
   )
 };
 
-export default SeenProfileEdit;
+export default SeenProfile;
