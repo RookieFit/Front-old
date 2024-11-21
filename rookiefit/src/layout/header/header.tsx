@@ -9,9 +9,10 @@ const Header = () => {
     const isSignUpPage = location.pathname === '/signup';
 
     const menuItems = [
-        { label: "캘린더", path: "/calendar" },
-        { label: "식단", path: "/diet" },
-        { label: "커뮤니티", path: "/community" }
+        { label: "FitLog", path: "/calendar" },
+        { label: "Eats", path: "/diet" },
+        { label: "Forum", path: "/community" },
+        { label: "Market", path: "/market" },  // 마켓 항목 추가
     ];
 
     // 경로가 /calendar로 시작하면 활성화 상태로

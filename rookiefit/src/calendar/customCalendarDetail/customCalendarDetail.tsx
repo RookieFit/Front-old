@@ -8,8 +8,9 @@ import { UseCalendar } from '../calendarContext';
 interface Entry {
     title: string;
     diaryContent: string;
-    workoutDetails: string[][];
+    workoutDetails: string[][]; // 운동 세부사항
     date: string;
+    image?: string | null; // 이미지 URL을 저장할 필드를 선택 사항으로 변경
 }
 
 const CustomCalendarDetail = () => {
@@ -59,16 +60,21 @@ const CustomCalendarDetail = () => {
             <div
                 key={index}
                 className="calendar-detail-item"
-                onMouseDown={handleMouseDown} // 마우스 다운 처리
-                onMouseUp={() => handleMouseUp(entry.date)} // 마우스 업 처리
-                onMouseMove={handleMouseMove} // 마우스 이동 처리
+                onMouseDown={handleMouseDown}
+                onMouseUp={() => handleMouseUp(entry.date)}
+                onMouseMove={handleMouseMove}
                 tabIndex={0}
                 role="button"
             >
                 <div className="calendar-detail-header">
-                    <p><strong>작성 날짜:</strong> {moment(entry.date).format('YYYY-MM-DD')}</p>
-                    <p><strong>제목:</strong> {entry.title}</p>
-                    <p><strong>일지 내용:</strong> {sliceContent(entry.diaryContent)}</p> {/* 잘린 콘텐츠 적용 */}
+                    {entry.image && (
+                        <img src={entry.image} alt="Entry Thumbnail" className="entry-thumbnail" />
+                    )}
+                    <div className="calendar-detail-text">
+                        <p><strong>작성 날짜:</strong> {moment(entry.date).format('YYYY-MM-DD')}</p>
+                        <p><strong>제목:</strong> {entry.title}</p>
+                        <p><strong>일지 내용:</strong> {sliceContent(entry.diaryContent)}</p>
+                    </div>
                 </div>
             </div>
         ))

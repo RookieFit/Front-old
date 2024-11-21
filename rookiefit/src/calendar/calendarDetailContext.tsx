@@ -5,6 +5,7 @@ interface Entry {
     diaryContent: string;
     workoutDetails: string[][];
     date: string;
+    image?: string | null; // 이미지 경로 또는 null일 수 있음
 }
 
 interface CalendarDetailsContextProps {

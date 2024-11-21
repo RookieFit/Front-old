@@ -1,4 +1,3 @@
-/* Header.css */
 .navbar {
     display: flex;
     align-items: center;
@@ -28,7 +27,7 @@
 
 .nav-links {
     display: flex;
-    margin-left: 25vw;
+    margin-left: 15vw;
     gap: 10vw;
     font-size: 1.6rem;
 }
@@ -42,10 +41,9 @@
 
 .nav-link:hover,
 .nav-link.active {
-    color: #229799;
+    color: #8b8a8a;
     /* 활성화된 링크의 색상 */
 }
-
 
 /* 오른쪽 정렬을 위해 mypage-login에 margin-left: auto 추가 */
 .mypage-login {

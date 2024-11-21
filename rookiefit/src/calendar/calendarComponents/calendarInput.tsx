@@ -1,4 +1,3 @@
-// TextInput.tsx
 import React from 'react';
 import './calendarInput.css';
 
