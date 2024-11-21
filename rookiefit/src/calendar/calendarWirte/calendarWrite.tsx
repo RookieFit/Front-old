@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
+import './CalendarWrite.css';
 import { useNavigate } from 'react-router-dom';
 import TextInput from '../calendarComponents/calendarInput';
 import AddedDetails from '../calendarComponents/calendarAddDetails';
 import moment from 'moment';
-import './CalendarWrite.css';
 import { useCalendarDetails } from '../calendarDetailContext';
 import { UseCalendar } from '../calendarContext';
 import ImageUploader from '../../components/imageUploader';
@@ -63,10 +63,17 @@ const CalendarWrite = () => {
         navigate("/calendar"); // 제출 후 캘린더 페이지로 이동
     };
 
+    // 취소 버튼 클릭 시 처리
+    const handleCancel = () => {
+        navigate("/calendar"); // 취소 시 캘린더 페이지로 돌아감
+    };
+
     return (
         <div className="right-back">
             <div className="calendar-write-wrapper">
                 <div className="calendar-header">
+                    {/* 날짜 왼쪽에 취소 버튼 추가 */}
+                    <div className="calendar-write-cancel-button" onClick={handleCancel}>취소</div>
                     <h2>{moment(selectedDate).format('YYYY-MM-DD')}</h2>
                 </div>
                 <div className="calendar-title-input">
@@ -112,6 +119,7 @@ const CalendarWrite = () => {
                                 onChange={handleDiaryChange}
                                 placeholder="여기에 자유롭게 내용을 입력하세요."
                                 maxLength={255}
+
                             />
                             {/* 이미지 추가 버튼을 따로 만들어서... */}
                             <ImageUploader onImageUpload={handleImageUpload} maxSizeMB={5} />

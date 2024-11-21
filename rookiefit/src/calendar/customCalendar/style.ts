@@ -22,6 +22,7 @@ export const StyledCalendarWrapper = styled.div`
     font-size: 18px;
     font-weight: bold;
     margin-bottom: 0.7vw;
+    border-bottom: none;
   }
 
   /* 오늘 날짜 */
