@@ -1,7 +1,10 @@
 import './myPage.css';
 import React from 'react';
-import GraphBox from './bottomBox/graphBox';
-import TopMainBox from './topBox/topMainBox';
+import TopMainBox from './myPage/topBox/topMainBox/topMainBox';
+import GraphBox from './myPage/bottomBox/graphBox';
+
+
+
 
 const MyPage = () => {
     return (

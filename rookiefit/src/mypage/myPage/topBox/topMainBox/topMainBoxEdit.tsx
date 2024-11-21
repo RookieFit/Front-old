@@ -1,12 +1,12 @@
-import ProfileEdit from './profileBox/profile/profileEdit';
+import InformationMiniBoxEdit from '../informationBox/informationMiniBox/informationMiniBoxEdit';
+import MyProfileEdit from '../profileBox/myProfile/myProfileEdit';
 import './topMainBox.css';
-import '../../index.css'
-import InformationMiniBoxEdit from './informationBox/informationMiniBox/informationMiniBoxEdit';
+
 
 const TopMainBoxEdit = () => {
     return (
         <div className="top-mainbox-left-right-page">
-            <ProfileEdit/>
+            <MyProfileEdit/>
             <InformationMiniBoxEdit /> 
         </div>
     )

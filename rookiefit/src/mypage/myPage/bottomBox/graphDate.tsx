@@ -7,11 +7,9 @@ interface Props {
     name: string;
     values: number[];
     title: string;
-    graphMinHight: number;
-    graphMaxHight: number;
 }
 
-const GraphDate = ({ title, name, values, graphMinHight, graphMaxHight }: Props) => {   
+const GraphDate = ({ title, name, values, }: Props) => {
     const [dates, setDates] = useState<string[]>([]);
 
     useEffect(() => {
@@ -25,6 +23,10 @@ const GraphDate = ({ title, name, values, graphMinHight, graphMaxHight }: Props)
         }
         setDates(dateArray.reverse()); // 배열을 반전하여 오래된 날짜부터 나열
     }, []);
+
+    const minValue = Math.floor(Math.min(...values, ...values) - 25); // 내림 처리
+    const maxValue = Math.ceil(Math.max(...values, ...values) + 25); // 올림 처리
+
 
     const data = {
         series: [{
@@ -74,9 +76,12 @@ const GraphDate = ({ title, name, values, graphMinHight, graphMaxHight }: Props)
                 },
             },
             yaxis: {
-                min: graphMinHight,
-                max: graphMaxHight,
-            }
+                min: minValue,
+                max: maxValue,
+                labels: {
+                    formatter: (value: number) => Math.round(value).toString(), // 값을 정수로 변환
+                },
+            },
         } as ApexOptions
     };
 

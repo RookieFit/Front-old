@@ -14,6 +14,7 @@ import CommunityWrite from './community/communityWrite/communityWrite';
 import FindPassword from './findPassword/findPassword';
 import FindIdResult from './findIdResult/findIdResult' // 비밀번호 찾기 페이지
 import FoodPage from './food/foodPage';
+import SeenProfile from './mypage/seenPage/seenProfile/seenProfile';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
       <div>
         <Header />
         <Routes>
+          <Route path="/seenProfile" element={<SeenProfile />} />
           <Route path="/mypageedit" element={<MyPageEdit />} />
           <Route path="/mypage" element={<MyPage />} />
           <Route path="/signin" element={<SigninPage />} />

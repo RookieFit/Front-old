@@ -1,7 +1,8 @@
 import './myPage.css';
 import React from 'react';
-import TopMainBoxEdit from './topBox/topMainBoxEdit';
-import GraphBoxEdit from './bottomBox/graphBoxEdit';
+import TopMainBoxEdit from './myPage/topBox/topMainBox/topMainBoxEdit';
+import GraphBoxEdit from './myPage/bottomBox/graphBoxEdit';
+
 
 const MyPageEdit = () => {
     return (
