@@ -71,13 +71,13 @@
     font-size: 0.8vw;
 }
 
-.delete-button-wrapper {
+.food-list-delete-button-wrapper {
     display: flex;
     align-items: center;
     /* 버튼을 세로로 가운데 정렬 */
 }
 
-.delete-button {
+.food-list-delete-button {
     padding: 10px 20px;
     background-color: #e74c3c;
     color: white;
@@ -89,6 +89,31 @@
     text-align: center;
 }
 
-.delete-button:hover {
+.food-list-delete-button:hover {
     background-color: #c0392b;
+}
+
+/* 수정하기 버튼과 동일한 스타일로 변경 */
+.food-list-complete-button,
+.food-list-cancel-button {
+    background-color: transparent;
+    /* 배경색 제거 */
+    border: none;
+    margin-top: 2vw;
+    font-size: 1vw;
+    cursor: pointer;
+    color: #818181;
+    min-width: 100px;
+    /* 최소 너비 설정 */
+}
+
+.food-list-complete-button:hover,
+.food-list-cancel-button:hover {
+    color: #303030;
+}
+
+.food-list-edit-buttons {
+    display: flex;
+    /* 버튼이 수정하기 버튼과 비슷한 위치로 정렬 */
+    align-items: center;
 }

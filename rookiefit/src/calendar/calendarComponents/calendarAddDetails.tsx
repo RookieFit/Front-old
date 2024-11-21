@@ -8,33 +8,29 @@ interface AddedDetailsProps {
 const AddedDetails = ({ workoutDetails }: AddedDetailsProps) => {
     return (
         <div className="added-workout-details">
-            {/* 운동 세부사항이 있을 경우 */}
             {workoutDetails.length > 0 ? (
-                workoutDetails.map((detail, index) => (
-                    <div key={index} className="workout-detail-item">
-                        {/* 첫 번째 운동 세부사항에는 제목을 추가 */}
-                        <div className="workout-detail-header">
-                            {index === 0 && (
-                                <>
-                                    <p>운동명</p>
-                                    <p>횟수</p>
-                                    <p>세트수</p>
-                                    <p>휴식시간</p>
-                                </>
-                            )}
-                        </div>
-                        {/* 운동 세부사항 표시 */}
-                        <div className="workout-detail-content">
-                            <p>{detail[0]}</p>
-                            <p>{detail[1]}</p>
-                            <p>{detail[2]}</p>
-                            <p>{detail[3]}</p>
-                        </div>
-                    </div>
-                ))
+                <table className="workout-details-table">
+                    <thead>
+                        <tr>
+                            <th>운동명</th>
+                            <th>횟수</th>
+                            <th>세트수</th>
+                            <th>휴식시간</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {workoutDetails.map((detail, index) => (
+                            <tr key={index}>
+                                <td>{detail[0]}</td>
+                                <td>{detail[1]}</td>
+                                <td>{detail[2]}</td>
+                                <td>{detail[3]}</td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
             ) : (
-                // 운동 세부사항이 없을 경우 표시
-                <div className='workout-detail-item'>
+                <div className="workout-detail-empty">
                     <p>추가된 운동 세부사항이 없습니다.</p>
                 </div>
             )}
