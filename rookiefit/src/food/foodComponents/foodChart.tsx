@@ -84,7 +84,7 @@ const FoodChart = () => {
                     <div className="calendar-popup">
                         <Calendar
                             value={selectedDate}
-                            onChange={handleDateChange}
+                            onChange={handleDateChange}     // 오류나는건 아님
                             formatDay={(locale, date) => moment(date).format("D")}
                             formatYear={(locale, date) => moment(date).format("YYYY")}
                             formatMonthYear={(locale, date) => moment(date).format("YYYY. MM")}

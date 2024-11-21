@@ -12,7 +12,7 @@ import CommunityList from './community/communityList/communityList';
 import CommunityDetail from './community/communityDetail/communityDetail';
 import CommunityWrite from './community/communityWrite/communityWrite';
 import FindPassword from './findPassword/findPassword';
-import FindIdResult from './findIdResult/findIdResult' // 비밀번호 찾기 페이지
+import FindIdResult from './findIdResult/findIdResult'
 import FoodPage from './food/foodPage';
 
 function App() {
@@ -30,8 +30,8 @@ function App() {
           <Route path="/passwordreset" element={<PasswordReset />} />
           <Route path="/signup" element={<SignUpPage />} />
           <Route path="/calendar" element={<CalenderPage />} />
-          <Route path="/calendar/write" element={<CalenderPage />} /> {/* /calendar/write 경로 추가 */}
-          <Route path="/calendar/detail" element={<CalenderPage />} /> {/* /calendar/write 경로 추가 */}
+          <Route path="/calendar/write" element={<CalenderPage />} />
+          <Route path="/calendar/detail" element={<CalenderPage />} />
           <Route path="/community" element={<CommunityList />} />
           <Route path="/community/write" element={<CommunityWrite />} />
           <Route path="/community/detail" element={<CommunityDetail />} />
