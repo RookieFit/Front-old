@@ -1,8 +1,9 @@
-import { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import CommunityHeader from '../communityComponents/communityHeader';
 import CommunityCategories from '../communityComponents/communityCategories';
 import CommunityPostBox from '../communityComponents/communityPostBox';
+import CommunityGridPost from '../communityComponents/communityPostGrid'; // 그리드 뷰 컴포넌트 임포트
 import { dummyPosts } from './dummydata';
 import './communityList.css';
 import { debounce } from 'lodash';
@@ -18,6 +19,12 @@ const LOADING_DELAY = 500; // 로딩 지연 시간 (ms)
 const CommunityList = () => {
     const location = useLocation();
     const navigate = useNavigate();
+
+    const isGridMode = location.pathname.includes('/grid'); // 현재 모드 확인
+    const toggleMode = () => {
+        const newPath = isGridMode ? '/community' : '/community/grid';
+        navigate(`${newPath}?category=${selectedCategory}`);
+    };
 
     const getInitialCategory = (): Category => {
         const params = new URLSearchParams(location.search);
@@ -84,16 +91,23 @@ const CommunityList = () => {
     }, [location.search]);
 
     useEffect(() => {
-        setCurrentPosts([]);
+        setCurrentPosts([]);  // 리스트 초기화
         setPage(0);
         setHasMore(true);
         loadPosts();
     }, [selectedCategory]);
 
     useEffect(() => {
-        window.addEventListener('scroll', handleScroll);
-        return () => window.removeEventListener('scroll', handleScroll);
-    }, [handleScroll]);
+        if (!isGridMode) {
+            window.addEventListener('scroll', handleScroll);
+        }
+
+        return () => {
+            if (!isGridMode) {
+                window.removeEventListener('scroll', handleScroll);
+            }
+        };
+    }, [handleScroll, isGridMode]);
 
     useEffect(() => {
         if (currentPosts.length === 0) {
@@ -132,11 +146,20 @@ const CommunityList = () => {
                             onCategoryClick={handleCategoryClick}
                         />
                     </div>
-
+                    {/* 목록 전환 버튼 */}
+                    <button onClick={toggleMode} className="toggle-mode-button">
+                        {isGridMode ? '리스트 보기' : '그리드 보기'}
+                    </button>
                     <div className="post-list">
-                        {currentPosts.map((post, index) => (
-                            <CommunityPostBox key={`${post.id}-${index}`} post={post} />
-                        ))}
+                        {isGridMode ? (
+                            // 그리드 모드일 경우 CommunityGridPost 컴포넌트 사용
+                            <CommunityGridPost posts={currentPosts} />
+                        ) : (
+                            // 리스트 모드일 경우 기존 CommunityPostBox 컴포넌트 사용
+                            currentPosts.map((post, index) => (
+                                <CommunityPostBox key={`${post.id}-${index}`} post={post} />
+                            ))
+                        )}
                     </div>
                     {loading && (
                         <div className="loading">Loading...</div>

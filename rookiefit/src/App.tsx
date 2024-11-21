@@ -40,6 +40,7 @@ function App() {
           <Route path="/community/announcement" element={<CommunityList />} /> {/* 공지 경로 추가 */}
           <Route path="/community/write" element={<CommunityWrite />} />
           <Route path="/community/detail" element={<CommunityDetail />} />
+          <Route path="/community/grid" element={<CommunityList />} />
           <Route path="/diet" element={<FoodPage />} />
         </Routes>
       </div>
