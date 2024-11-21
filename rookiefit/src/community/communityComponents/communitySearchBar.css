@@ -1,0 +1,54 @@
+/* 검색창 컨테이너 */
+.community-search-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 0.5rem;
+    width: 100%;
+    padding-right: 1rem;
+}
+
+/* 검색 입력창 */
+.community-search-input {
+    border: 0px solid #dee2e6;
+    border-radius: 100px;
+    width: clamp(200px, 30%, 300px);
+    height: 40px;
+    padding: 0 1.5rem;
+    font-size: 1rem;
+    background: #f8f9fa;
+    transition: all 0.3s ease;
+}
+
+.community-search-input:focus {
+    outline: none;
+    border: 0px;
+    background: #ffffff;
+}
+
+.floating-button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 15px;
+    cursor: pointer;
+    font-size: 14px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s;
+    display: flex;
+    /* 아이콘과 텍스트 정렬 */
+    align-items: center;
+    gap: 8px;
+    /* 아이콘과 텍스트 사이 간격 */
+}
+
+.floating-button img.icon {
+    width: 16px;
+    /* 아이콘 크기 */
+    height: 16px;
+}
+
+.floating-button:hover {
+    background-color: #0056b3;
+}

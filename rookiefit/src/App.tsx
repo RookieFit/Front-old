@@ -33,6 +33,11 @@ function App() {
           <Route path="/calendar/write" element={<CalenderPage />} />
           <Route path="/calendar/detail" element={<CalenderPage />} />
           <Route path="/community" element={<CommunityList />} />
+          <Route path="/community/bodyprofile" element={<CommunityList />} />
+          <Route path="/community/concern" element={<CommunityList />} />
+          <Route path="/community/information" element={<CommunityList />} />
+          <Route path="/community/friendship" element={<CommunityList />} />
+          <Route path="/community/announcement" element={<CommunityList />} /> {/* 공지 경로 추가 */}
           <Route path="/community/write" element={<CommunityWrite />} />
           <Route path="/community/detail" element={<CommunityDetail />} />
           <Route path="/diet" element={<FoodPage />} />

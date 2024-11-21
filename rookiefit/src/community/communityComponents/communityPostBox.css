@@ -1,0 +1,141 @@
+/* 전체 게시글 박스 스타일 */
+.post-box {
+    position: relative;
+    width: 1282px;
+    height: auto;
+    max-width: 100%;
+    margin: 20px auto;
+    background-color: #f4f4f4;
+    border-radius: 12px;
+    padding: 30px;
+    box-sizing: border-box;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* 게시글 카테고리 */
+.post-category {
+    font-size: 1rem;
+    font-weight: bold;
+    color: #161616;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+}
+
+/* 게시글 제목 */
+.post-title {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 15px;
+    color: #2c3e50;
+    line-height: 1.4;
+    text-align: center;
+}
+
+/* 작성자와 날짜 스타일 */
+.post-header {
+    display: flex;
+    justify-content: space-between;
+    font-size: 1rem;
+    color: #8e8e8e;
+    margin-bottom: 20px;
+}
+
+.author {
+    font-weight: bold;
+    color: #34495e;
+}
+
+.date {
+    font-style: italic;
+}
+
+/* 이미지 스타일 */
+.post-images {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.post-image {
+    width: 32%;
+    height: 220px;
+    background-size: cover;
+    background-position: center;
+    border-radius: 10px;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+/* 게시글 본문 */
+.post-content {
+    font-size: 1.1rem;
+    color: #555;
+    margin-bottom: 20px;
+    line-height: 1.6;
+    text-align: justify;
+}
+
+/* 댓글 버튼 */
+.comment-button {
+    background-color: #505152;
+    color: #fff;
+    border: none;
+    padding: 8px 15px;
+    font-size: 0.9rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    display: block;
+    margin-left: auto;
+    /* 버튼을 오른쪽으로 정렬 */
+}
+
+.comment-button:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+}
+
+.comment-button:focus {
+    outline: none;
+}
+
+/* 댓글 영역 */
+.comments-section {
+    margin-top: 10px;
+    /* 버튼과 댓글 영역 간 간격 */
+    padding: 10px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    max-height: 0;
+    /* 기본 상태에서 댓글창 크기 */
+    overflow: hidden;
+    /* 댓글창이 보이지 않도록 숨김 */
+    opacity: 0;
+    /* 기본 상태에서 댓글창을 투명하게 설정 */
+    transition: max-height 0.5s ease-out, opacity 0.3s ease-out;
+    /* 애니메이션 추가 */
+}
+
+.comments-section.open {
+    max-height: 500px;
+    /* 댓글창이 열리면 최대 높이 설정 */
+    opacity: 1;
+    /* 댓글창을 보이게 만듬 */
+}
+
+/* 댓글 내용 스타일 */
+.comment {
+    padding: 5px;
+    border-bottom: 1px solid #ddd;
+}
+
+.comment:last-child {
+    border-bottom: none;
+}
+
+.comment p {
+    margin: 0;
+    font-size: 1rem;
+    color: #333;
+}
