@@ -26,21 +26,29 @@
     background: #ffffff;
 }
 
-.community-search-button {
-    width: 24px;
-    height: 24px;
-    background-image: url(./assets/search-icon.png);
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-    cursor: pointer;
-    opacity: 0.7;
-    transition: opacity 0.3s ease;
+.floating-button {
+    background-color: #007bff;
+    color: #fff;
     border: none;
-    background-color: transparent;
-    margin-right: 100px;
+    border-radius: 4px;
+    padding: 10px 15px;
+    cursor: pointer;
+    font-size: 14px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s;
+    display: flex;
+    /* 아이콘과 텍스트 정렬 */
+    align-items: center;
+    gap: 8px;
+    /* 아이콘과 텍스트 사이 간격 */
 }
 
-.community-search-button:hover {
-    opacity: 1;
+.floating-button img.icon {
+    width: 16px;
+    /* 아이콘 크기 */
+    height: 16px;
+}
+
+.floating-button:hover {
+    background-color: #0056b3;
 }

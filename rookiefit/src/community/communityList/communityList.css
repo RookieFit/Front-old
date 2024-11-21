@@ -8,6 +8,16 @@
     padding: 20px;
 }
 
+/* 커뮤니티 구분선 */
+.community-divider {
+    width: 100%;
+    height: 1px;
+    background-color: #ddd;
+    /* 연한 회색으로 설정 */
+    margin: 16px 0;
+    /* 위아래 여백 추가 */
+}
+
 /* 커뮤니티 리스트 */
 .community-list {
     display: flex;
@@ -67,4 +77,57 @@
 .community-pagination span {
     font-size: 16px;
     margin: 0 10px;
+}
+
+.community-floating-buttons {
+    position: fixed;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    z-index: 1000;
+}
+
+.community-floating-search-button {
+    background-image: url(./assets/search-icon.png);
+    background-size: contain;
+    /* 이미지 크기 조정 */
+    background-repeat: no-repeat;
+    /* 반복 방지 */
+    background-position: center;
+    /* 중앙 정렬 */
+    width: 40px;
+    /* 버튼 크기 지정 */
+    height: 40px;
+    /* 버튼 크기 지정 */
+}
+
+.community-floating-up-button {
+    background-image: url(./assets/up-icon.png);
+    background-size: contain;
+    /* 이미지 크기 조정 */
+    background-repeat: no-repeat;
+    /* 반복 방지 */
+    background-position: center;
+    /* 중앙 정렬 */
+    width: 40px;
+    /* 버튼 크기 지정 */
+    height: 40px;
+    /* 버튼 크기 지정 */
+}
+
+.community-floating-plus-button {
+    background-image: url(./assets/plus-icon.png);
+    background-size: contain;
+    /* 이미지 크기 조정 */
+    background-repeat: no-repeat;
+    /* 반복 방지 */
+    background-position: center;
+    /* 중앙 정렬 */
+    width: 40px;
+    /* 버튼 크기 지정 */
+    height: 40px;
+    /* 버튼 크기 지정 */
 }

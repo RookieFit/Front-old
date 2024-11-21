@@ -2,13 +2,15 @@ import { useState, useEffect, useCallback } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import CommunityHeader from '../communityComponents/communityHeader';
 import CommunityCategories from '../communityComponents/communityCategories';
-import CommunityPostBox from '../communityComponents/CommunityPostBox';
+import CommunityPostBox from '../communityComponents/communityPostBox';
 import { dummyPosts } from './dummydata';
 import './communityList.css';
 import { debounce } from 'lodash';
 
+// 카테고리 타입 정의
 type Category = '전체' | '바프' | '고민' | '정보' | '친목' | '공지';
 
+// 카테고리 목록 상수
 const CATEGORIES: Category[] = ['전체', '바프', '고민', '정보', '친목', '공지'];
 const POSTS_PER_PAGE = 8;
 const LOADING_DELAY = 500; // 로딩 지연 시간 (ms)
@@ -104,9 +106,22 @@ const CommunityList = () => {
         navigate(`/community?category=${category}`);
     };
 
+    const scrollToTop = () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    };
+
+    const handleWritePost = () => {
+        navigate('/community/write'); // 글 작성 페이지로 이동
+    };
+
+    const handleSearch = () => {
+        console.log('검색 버튼 클릭됨');
+    };
+
     return (
         <div>
             <CommunityHeader title="커뮤니티" content="모든 헬스인들을 위한 커뮤니티" />
+            <div className="community-divider"></div> {/* 구분선 추가 */}
 
             <div className="community-content-container">
                 <div className="community-list">
@@ -130,6 +145,13 @@ const CommunityList = () => {
                         <div className="no-more-posts">더 이상 게시물이 없습니다</div>
                     )}
                 </div>
+            </div>
+
+            {/* 오른쪽 버튼 */}
+            <div className="community-floating-buttons">
+                <button onClick={scrollToTop} className="community-floating-up-button"></button> {/* 상단으로 가기 버튼 */}
+                <button onClick={handleSearch} className="community-floating-search-button"></button> {/* 검색하기 버튼 */}
+                <button onClick={handleWritePost} className="community-floating-plus-button"></button> {/* 글작성하기 버튼 */}
             </div>
         </div>
     );
