@@ -124,9 +124,14 @@ function CommunityPostBox({ post, currentUser }: CommunityPostBoxProps) {
                                     type="text"
                                     value={editedContent}
                                     onChange={(e) => setEditedContent(e.target.value)}
+                                    className="edit-input"
                                 />
-                                <button onClick={handleSaveEdit}>저장</button>
-                                <button onClick={handleCancelEdit}>취소</button>
+                                <button onClick={handleSaveEdit} className="edit-save-button">
+                                    저장
+                                </button>
+                                <button onClick={handleCancelEdit} className="edit-cancel-button">
+                                    취소
+                                </button>
                             </div>
                         ) : (
                             <p>
@@ -144,7 +149,9 @@ function CommunityPostBox({ post, currentUser }: CommunityPostBoxProps) {
                                 >
                                     수정
                                 </button>
-                                <button onClick={() => handleDeleteComment(comment.id)}>
+                                <button
+                                    onClick={() => handleDeleteComment(comment.id)}
+                                >
                                     삭제
                                 </button>
                             </div>
@@ -154,7 +161,7 @@ function CommunityPostBox({ post, currentUser }: CommunityPostBoxProps) {
 
                 {/* 새 댓글 입력 */}
                 <div className="new-comment">
-                    <input
+                    <input className="new-comment-input"
                         type="text"
                         placeholder="댓글을 입력하세요"
                         value={newComment}
@@ -164,8 +171,11 @@ function CommunityPostBox({ post, currentUser }: CommunityPostBoxProps) {
                                 handleAddComment();
                             }
                         }}
+
                     />
-                    <button onClick={handleAddComment}>댓글 작성</button>
+                    <button className="comment-button" onClick={handleAddComment} >
+                        댓글 작성
+                    </button>
                 </div>
             </div>
         </div>

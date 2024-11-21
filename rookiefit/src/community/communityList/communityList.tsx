@@ -5,6 +5,7 @@ import CommunityCategories from '../communityComponents/communityCategories';
 import CommunityPostBox from '../communityComponents/communityPostBox';
 import { dummyPosts } from './dummydata';
 import './communityList.css';
+import './assets/search-icon.png'
 import { debounce } from 'lodash';
 
 // 카테고리 타입 정의
@@ -149,9 +150,9 @@ const CommunityList = () => {
 
             {/* 오른쪽 버튼 */}
             <div className="community-floating-buttons">
-                <button onClick={scrollToTop} className="community-floating-up-button"></button> {/* 상단으로 가기 버튼 */}
-                <button onClick={handleSearch} className="community-floating-search-button"></button> {/* 검색하기 버튼 */}
-                <button onClick={handleWritePost} className="community-floating-plus-button"></button> {/* 글작성하기 버튼 */}
+                <button onClick={scrollToTop} className="community-floating-up-button"></button>
+                <button onClick={handleWritePost} className="community-floating-plus-button"></button>
+                <button onClick={handleSearch} className="community-floating-search-button"></button>
             </div>
         </div>
     );
