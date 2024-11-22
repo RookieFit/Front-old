@@ -57,8 +57,8 @@ const CommunityPostGrid = ({ posts }: CommunityPostGridProps) => {
                             )}
                             <div className="post-grid-text">
                                 <p><strong>작성 날짜:</strong> {post.date}</p>
-                                <p><strong>제목:</strong> {post.title}</p>
                                 <p><strong>카테고리:</strong> {post.category}</p>
+                                <p><strong>제목:</strong> {post.title}</p>
                                 <p><strong>일지 내용:</strong> {post.content.slice(0, 50)}...</p>
 
                                 {/* 댓글 표시 */}

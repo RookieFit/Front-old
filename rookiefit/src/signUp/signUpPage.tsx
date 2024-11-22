@@ -78,7 +78,6 @@ function SignUpPage() {
 
         setIsPhoneNumberError(false);
         setPhoneNumberMessage('인증 번호가 전송 되었습니다.');
-        console.log('SmsCertificationResponse:', responseBody);
     };
 
     const checkCertificationResponse = (responseBody: ResponseBody<CheckCertificationResponseDto>) => {
