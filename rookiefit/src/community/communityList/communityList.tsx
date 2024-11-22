@@ -16,24 +16,21 @@ const CommunityList = () => {
     const location = useLocation(); // 현재 URL 정보 가져오기
     const navigate = useNavigate(); // 페이지 이동을 위한 네비게이트 함수
 
-    // 현재 URL이 그리드 모드인지 확인
-    const isGridMode = location.pathname.includes('/grid');
-
-    // 리스트/그리드 모드를 전환하는 함수
-    const toggleMode = () => {
-        const newPath = isGridMode ? '/community' : '/community/grid';
-        navigate(`${newPath}?category=${selectedCategory}`);
-    };
-
-    // URL에서 카테고리 가져오기
+    // URL에서 초기 카테고리 및 모드 가져오기
     const getInitialCategory = (): Category => {
         const params = new URLSearchParams(location.search);
         const categoryFromUrl = params.get('category') as Category;
         return CATEGORIES.includes(categoryFromUrl) ? categoryFromUrl : '전체'; // 유효하지 않은 카테고리면 '전체' 반환
     };
 
+    const getInitialMode = (): boolean => {
+        const params = new URLSearchParams(location.search);
+        return params.get('mode') === 'grid'; // 'grid'면 true, 아니면 false
+    };
+
     // 상태 관리
     const [selectedCategory, setSelectedCategory] = useState<Category>(getInitialCategory()); // 선택된 카테고리
+    const [isGridMode, setIsGridMode] = useState<boolean>(getInitialMode()); // 리스트/그리드 모드
     const [currentPosts, setCurrentPosts] = useState<typeof dummyPosts>([]); // 화면에 표시되는 게시물
     const [page, setPage] = useState(0); // 현재 페이지 번호
     const [hasMore, setHasMore] = useState(true); // 더 표시할 게시물이 있는지 여부
@@ -78,11 +75,17 @@ const CommunityList = () => {
         [hasMore, loadPosts]
     );
 
-    // URL 카테고리가 변경되면 상태 업데이트
+    // URL 카테고리 및 모드 동기화
     useEffect(() => {
-        const categoryFromUrl = getInitialCategory();
-        if (categoryFromUrl !== selectedCategory) {
-            setSelectedCategory(categoryFromUrl); // 선택된 카테고리 변경
+        const params = new URLSearchParams(location.search);
+        const categoryFromUrl = params.get('category') as Category;
+        const modeFromUrl = params.get('mode');
+
+        if (categoryFromUrl && CATEGORIES.includes(categoryFromUrl)) {
+            setSelectedCategory(categoryFromUrl); // URL 카테고리 반영
+        }
+        if (modeFromUrl === 'grid' || modeFromUrl === 'list') {
+            setIsGridMode(modeFromUrl === 'grid'); // URL 모드 반영
         }
     }, [location.search]);
 
@@ -105,7 +108,13 @@ const CommunityList = () => {
     // 카테고리 클릭 이벤트 처리
     const handleCategoryClick = (category: Category) => {
         setSelectedCategory(category); // 선택된 카테고리 업데이트
-        navigate(`/community/${category}`); // URL 변경
+        navigate(`/community?category=${category}&mode=${isGridMode ? 'grid' : 'list'}`); // URL 업데이트
+    };
+
+    // 모드 전환 함수
+    const toggleMode = () => {
+        const newMode = isGridMode ? 'list' : 'grid';
+        navigate(`/community?category=${selectedCategory}&mode=${newMode}`);
     };
 
     // 페이지 상단으로 스크롤하는 함수
