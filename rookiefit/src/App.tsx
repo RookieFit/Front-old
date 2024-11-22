@@ -41,6 +41,11 @@ function App() {
           <Route path="/community/write" element={<CommunityWrite />} />
           <Route path="/community/detail" element={<CommunityDetail />} />
           <Route path="/community/grid" element={<CommunityList />} />
+          <Route path="/community/grid/bodyprofile" element={<CommunityList />} />
+          <Route path="/community/grid/concern" element={<CommunityList />} />
+          <Route path="/community/grid/information" element={<CommunityList />} />
+          <Route path="/community/grid/friendship" element={<CommunityList />} />
+          <Route path="/community/grid/announcement" element={<CommunityList />} />
           <Route path="/diet" element={<FoodPage />} />
         </Routes>
       </div>
