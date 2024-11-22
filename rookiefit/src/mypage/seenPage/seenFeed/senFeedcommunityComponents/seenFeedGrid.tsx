@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import CommunityCategories from '../../../../community/communityComponents/communityCategories';
+import CommunityGridPost from '../communityComponents/communityPostGrid';
 import { dummyPosts } from '../../../../community/communityList/dummydata';
 
 type Category = '전체' | '바프' | '고민' | '정보' | '친목' | '공지';
@@ -8,7 +9,7 @@ const CATEGORIES: Category[] = ['전체', '바프', '고민', '정보', '친목'
 const POSTS_PER_PAGE = 8;
 const LOADING_DELAY = 500;
 
-const CommunityList = () => {
+const SeenFeedGrid = () => {
     const location = useLocation();
     const navigate = useNavigate();
 
@@ -109,4 +110,4 @@ const CommunityList = () => {
     );
 };
 
-export default CommunityList;
+export default SeenFeedGrid;
