@@ -2,7 +2,8 @@ import { useNavigate } from 'react-router-dom';
 import './informationMiniBox.css';
 import InformationLine from '../informationLine/informationLine';
 import { useState } from 'react';
-import SeenFeedEdit from '../../../../seenPage/seenFeed/seenFeedEdit';
+import SeenFeed from '../../../../seenPage/seenFeed/seenFeed';
+import CommunityPostGrid from '../../../../../community/communityComponents/communityPostGrid';
 
 const InformationMiniBox = () => {
     const navigate = useNavigate();
@@ -87,8 +88,7 @@ const InformationMiniBox = () => {
                             onClick={communityList}
                             className='my-information-button'
                         />
-                        <h3>작성 글 내용</h3>
-                        <p>작성한 글 목록을 여기에 표시할 수 있습니다.</p>
+                        <CommunityPostGrid posts={[]} />
                     </div>
                 </div>
             )}
@@ -101,7 +101,7 @@ const InformationMiniBox = () => {
                             onClick={seenFeedEdit}
                             className='my-information-button'
                         />
-                        <SeenFeedEdit />
+                        <SeenFeed />
                     </div>
                 </div>
             )}

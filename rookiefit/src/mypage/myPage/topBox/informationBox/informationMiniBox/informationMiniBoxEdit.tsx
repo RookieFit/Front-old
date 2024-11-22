@@ -1,9 +1,9 @@
 import { useNavigate } from 'react-router-dom';
 import './informationMiniBox.css';
 import { useState } from 'react';
-import SeenFeedEdit from '../../../../seenPage/seenFeed/seenFeedEdit';
 import InformationLineEdit from '../informationLine/informationLineEdit';
 import InformationLine from '../informationLine/informationLine';
+import SeenFeedGrid from '../../../../seenPage/seenFeed/senFeedcommunityComponents/seenFeedGrid';
 
 const InformationMiniBoxEdit = () => {
     const navigate = useNavigate();
@@ -63,7 +63,7 @@ const InformationMiniBoxEdit = () => {
                     <div className='my-information-box-information'>
                         <input
                             type="button"
-                            value="수정하기"
+                            value="수정완료"
                             onClick={myPage}
                             className='my-information-button'
                         />
@@ -102,7 +102,7 @@ const InformationMiniBoxEdit = () => {
                             onClick={seenFeedEdit}
                             className='my-information-button'
                         />
-                        <SeenFeedEdit />
+                        <SeenFeedGrid posts={[]} />
                     </div>
                 </div>
             )}

@@ -3,8 +3,8 @@ import './informationLine.css';
 interface Props {
     title: string;
     value: string;
-
 }
+
 const InformationLine = ({ title, value, }: Props) => {
     return (
         <div className="my-information-box">

@@ -6,9 +6,12 @@ import './seenPage.css';
 const TopMainBox = () => {
     return (
         <div className="seen-page-left-right-page">
-            <SeenProfile smallvalueReview={50} smallvalueClass={100}/>
-            <SeenFeed /> 
+            <SeenProfile smallvalueReview={50} smallvalueClass={100} />
+            <div className='seen-page-right-back'>
+                <SeenFeed />
+            </div>
         </div>
     )
 };
 export default TopMainBox;
+
