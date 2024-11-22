@@ -117,7 +117,13 @@ const CommunityList = () => {
 
     const handleCategoryClick = (category: Category) => {
         setSelectedCategory(category);
-        navigate(`/community?category=${category}`);
+
+        // 경로를 모드에 따라 동적으로 설정
+        const newPath = isGridMode ? `/community/grid` : `/community`;
+        const categoryQuery = category === '전체' ? '' : `?category=${category}`;
+        const fullPath = `${newPath}${categoryQuery}`;
+
+        navigate(fullPath, { replace: true });
     };
 
     const scrollToTop = () => {
