@@ -27,6 +27,15 @@
     /* 화면에 적당한 크기로 제한 */
 }
 
+.post-list {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 10px;
+    width: 100%;
+    /* 화면에 적당한 크기로 제한 */
+}
+
 /* 카테고리 영역 */
 .community-categories {
     display: flex;
@@ -134,13 +143,10 @@
 
 /* 버튼 호버 상태 */
 .community-floating-buttons button:hover {
-    cursor: pointer;
-
-    /* 중앙 정렬 */
-    width: 40px;
-    /* 버튼 크기 지정 */
-    height: 40px;
-    /* 버튼 크기 지정 */
+    transform: scale(1.1);
+    /* 버튼 살짝 확대 */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    /* 부드러운 전환 */
 }
 
 /* 목록 전환 버튼 스타일 */

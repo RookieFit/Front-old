@@ -3,132 +3,122 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import CommunityHeader from '../communityComponents/communityHeader';
 import CommunityCategories from '../communityComponents/communityCategories';
 import CommunityPostBox from '../communityComponents/communityPostBox';
-import CommunityGridPost from '../communityComponents/communityPostGrid'; // 그리드 뷰 컴포넌트 임포트
+import CommunityGridPost from '../communityComponents/communityPostGrid';
 import { dummyPosts } from './dummydata';
 import './communityList.css';
-import './assets/search-icon.png'
 import { debounce } from 'lodash';
 
-// 카테고리 타입 정의
 type Category = '전체' | '바프' | '고민' | '정보' | '친목' | '공지';
-
-// 카테고리 목록 상수
 const CATEGORIES: Category[] = ['전체', '바프', '고민', '정보', '친목', '공지'];
-const POSTS_PER_PAGE = 8;
-const LOADING_DELAY = 500; // 로딩 지연 시간 (ms)
+const POSTS_PER_PAGE = 10; // 한 번에 표시할 게시물 개수
 
 const CommunityList = () => {
-    const location = useLocation();
-    const navigate = useNavigate();
+    const location = useLocation(); // 현재 URL 정보 가져오기
+    const navigate = useNavigate(); // 페이지 이동을 위한 네비게이트 함수
 
-    const isGridMode = location.pathname.includes('/grid'); // 현재 모드 확인
+    // 현재 URL이 그리드 모드인지 확인
+    const isGridMode = location.pathname.includes('/grid');
+
+    // 리스트/그리드 모드를 전환하는 함수
     const toggleMode = () => {
         const newPath = isGridMode ? '/community' : '/community/grid';
         navigate(`${newPath}?category=${selectedCategory}`);
     };
 
+    // URL에서 카테고리 가져오기
     const getInitialCategory = (): Category => {
         const params = new URLSearchParams(location.search);
         const categoryFromUrl = params.get('category') as Category;
-        return CATEGORIES.includes(categoryFromUrl) ? categoryFromUrl : '전체';
+        return CATEGORIES.includes(categoryFromUrl) ? categoryFromUrl : '전체'; // 유효하지 않은 카테고리면 '전체' 반환
     };
 
-    const [selectedCategory, setSelectedCategory] = useState<Category>(getInitialCategory());
-    const [currentPosts, setCurrentPosts] = useState<typeof dummyPosts>([]);
-    const [page, setPage] = useState(0);
-    const [loading, setLoading] = useState(false);
-    const [hasMore, setHasMore] = useState(true);
+    // 상태 관리
+    const [selectedCategory, setSelectedCategory] = useState<Category>(getInitialCategory()); // 선택된 카테고리
+    const [currentPosts, setCurrentPosts] = useState<typeof dummyPosts>([]); // 화면에 표시되는 게시물
+    const [page, setPage] = useState(0); // 현재 페이지 번호
+    const [hasMore, setHasMore] = useState(true); // 더 표시할 게시물이 있는지 여부
 
+    // 선택된 카테고리에 따라 게시물 필터링
     const getFilteredPosts = useCallback(() => {
         return selectedCategory === '전체'
-            ? dummyPosts
-            : dummyPosts.filter(post => post.category === selectedCategory);
+            ? dummyPosts // '전체'는 모든 게시물 반환
+            : dummyPosts.filter((post) => post.category === selectedCategory); // 선택된 카테고리의 게시물만 반환
     }, [selectedCategory]);
 
+    // 게시물을 페이지 단위로 로드하는 함수
     const loadPosts = useCallback(() => {
-        if (loading || !hasMore) return;
+        const filteredPosts = getFilteredPosts(); // 필터링된 게시물 가져오기
+        const startIndex = page * POSTS_PER_PAGE; // 시작 인덱스 계산
+        const endIndex = startIndex + POSTS_PER_PAGE; // 끝 인덱스 계산
+        const newPosts = filteredPosts.slice(startIndex, endIndex); // 현재 페이지에 해당하는 게시물 슬라이스
 
-        setLoading(true);
+        if (newPosts.length > 0) {
+            setCurrentPosts((prev) => [...prev, ...newPosts]); // 기존 게시물에 새 게시물 추가
+            setPage((prev) => prev + 1); // 페이지 증가
+            setHasMore(endIndex < filteredPosts.length); // 더 표시할 게시물이 있는지 확인
+        } else {
+            setHasMore(false); // 더 이상 표시할 게시물이 없으면 false 설정
+        }
+    }, [page, getFilteredPosts]);
 
-        // 로딩 지연 추가
-        setTimeout(() => {
-            const filteredPosts = getFilteredPosts();
-            const startIndex = page * POSTS_PER_PAGE;
-            const endIndex = startIndex + POSTS_PER_PAGE;
-            const newPosts = filteredPosts.slice(startIndex, endIndex);
-
-            if (newPosts.length > 0) {
-                setCurrentPosts(prev => [...prev, ...newPosts]);
-                setPage(prev => prev + 1);
-                setHasMore(endIndex < filteredPosts.length);
-            } else {
-                setHasMore(false);
-            }
-            setLoading(false);
-        }, LOADING_DELAY);
-    }, [page, loading, hasMore, getFilteredPosts]);
-
-    // 디바운스된 스크롤 이벤트 핸들러
+    // 스크롤 이벤트 처리 함수 (디바운스를 사용하여 성능 최적화)
     const handleScroll = useCallback(
         debounce(() => {
-            if (loading || !hasMore) return;
+            if (hasMore) {
+                const scrollHeight = document.documentElement.scrollHeight; // 문서 전체 높이
+                const scrollTop = document.documentElement.scrollTop; // 현재 스크롤 위치
+                const clientHeight = document.documentElement.clientHeight; // 화면 높이
 
-            const scrollHeight = document.documentElement.scrollHeight;
-            const scrollTop = document.documentElement.scrollTop;
-            const clientHeight = document.documentElement.clientHeight;
-
-            if (scrollHeight - scrollTop - clientHeight < 100) {
-                loadPosts();
+                // 스크롤이 하단에 도달했는지 확인
+                if (scrollHeight - scrollTop - clientHeight < 100) {
+                    loadPosts(); // 추가 게시물 로드
+                }
             }
         }, 150), // 디바운스 딜레이를 150ms로 설정
-        [loading, hasMore, loadPosts]
+        [hasMore, loadPosts]
     );
 
+    // URL 카테고리가 변경되면 상태 업데이트
     useEffect(() => {
         const categoryFromUrl = getInitialCategory();
         if (categoryFromUrl !== selectedCategory) {
-            setSelectedCategory(categoryFromUrl);
+            setSelectedCategory(categoryFromUrl); // 선택된 카테고리 변경
         }
     }, [location.search]);
 
+    // 선택된 카테고리가 변경되면 게시물 초기화 및 첫 페이지 로드
     useEffect(() => {
-        setCurrentPosts([]);  // 리스트 초기화
-        setPage(0);
-        setHasMore(true);
-        loadPosts();
+        setCurrentPosts([]); // 기존 게시물 초기화
+        setPage(0); // 페이지 번호 초기화
+        setHasMore(true); // 더 표시할 게시물이 있다고 설정
+        loadPosts(); // 첫 페이지 게시물 로드
     }, [selectedCategory]);
 
+    // 스크롤 이벤트 등록 및 해제
     useEffect(() => {
         if (!isGridMode) {
-            window.addEventListener('scroll', handleScroll);
+            window.addEventListener('scroll', handleScroll); // 스크롤 이벤트 등록
+            return () => window.removeEventListener('scroll', handleScroll); // 컴포넌트 언마운트 시 이벤트 해제
         }
-
-        return () => {
-            if (!isGridMode) {
-                window.removeEventListener('scroll', handleScroll);
-            }
-        };
     }, [handleScroll, isGridMode]);
 
-    useEffect(() => {
-        if (currentPosts.length === 0) {
-            loadPosts();
-        }
-    }, []); // 초기 로딩
-
+    // 카테고리 클릭 이벤트 처리
     const handleCategoryClick = (category: Category) => {
-        setSelectedCategory(category);
-        navigate(`/community?category=${category}`);
+        setSelectedCategory(category); // 선택된 카테고리 업데이트
+        navigate(`/community/${category}`); // URL 변경
     };
 
+    // 페이지 상단으로 스크롤하는 함수
     const scrollToTop = () => {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+        window.scrollTo({ top: 0, behavior: 'smooth' }); // 부드럽게 상단으로 이동
     };
 
+    // 글 작성 페이지로 이동하는 함수
     const handleWritePost = () => {
-        navigate('/community/write'); // 글 작성 페이지로 이동
+        navigate('/community/write');
     };
 
+    // 검색 버튼 클릭 시 처리 함수
     const handleSearch = () => {
         console.log('검색 버튼 클릭됨');
     };
@@ -136,7 +126,7 @@ const CommunityList = () => {
     return (
         <div>
             <CommunityHeader title="커뮤니티" content="모든 헬스인들을 위한 커뮤니티" />
-            <div className="community-divider"></div> {/* 구분선 추가 */}
+            <div className="community-divider"></div>
 
             <div className="community-content-container">
                 <div className="community-list">
@@ -147,31 +137,21 @@ const CommunityList = () => {
                             onCategoryClick={handleCategoryClick}
                         />
                     </div>
-                    {/* 목록 전환 버튼 */}
                     <button onClick={toggleMode} className="toggle-mode-button">
                         {isGridMode ? '리스트 보기' : '그리드 보기'}
                     </button>
                     <div className="post-list">
                         {isGridMode ? (
-                            // 그리드 모드일 경우 CommunityGridPost 컴포넌트 사용
                             <CommunityGridPost posts={currentPosts} />
                         ) : (
-                            // 리스트 모드일 경우 기존 CommunityPostBox 컴포넌트 사용
                             currentPosts.map((post, index) => (
                                 <CommunityPostBox key={`${post.id}-${index}`} post={post} />
                             ))
                         )}
                     </div>
-                    {loading && (
-                        <div className="loading">Loading...</div>
-                    )}
-                    {!hasMore && currentPosts.length > 0 && (
-                        <div className="no-more-posts">더 이상 게시물이 없습니다</div>
-                    )}
                 </div>
             </div>
 
-            {/* 오른쪽 버튼 */}
             <div className="community-floating-buttons">
                 <button onClick={scrollToTop} className="community-floating-up-button"></button>
                 <button onClick={handleWritePost} className="community-floating-plus-button"></button>
