@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import CommunityCategories from '../../../../community/communityComponents/communityCategories';
-import CommunityGridPost from '../communityComponents/communityPostGrid';
+import CommunityGridPost from '../../../../community/communityComponents/communityPostGrid';
 import { dummyPosts } from '../../../../community/communityList/dummydata';
 
 type Category = '전체' | '바프' | '고민' | '정보' | '친목' | '공지';
@@ -71,40 +71,12 @@ const SeenFeedGrid = () => {
         navigate(`/community?category=${category}`);
     };
 
-    const scrollToTop = () => {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    };
-
-    const handleWritePost = () => {
-        navigate('/community/write');
-    };
-
-    const handleSearch = () => {
-        console.log('검색 버튼 클릭됨');
-    };
-
     return (
-        <div className="community-content-container">
-            <div className="community-list">
-                <div className="community-categories">
-                    <CommunityCategories
-                        categories={CATEGORIES}
-                        activeCategory={selectedCategory}
-                        onCategoryClick={handleCategoryClick}
-                    />
-                </div>
-                <div className="post-grid">
-                    <CommunityGridPost posts={currentPosts} />
-                </div>
-                {!hasMore && currentPosts.length > 0 && (
-                    <div className="no-more-posts">더 이상 게시물이 없습니다</div>
-                )}
+        <div>
+            <div className="community-categories">
             </div>
-
-            <div className="community-floating-buttons">
-                <button onClick={scrollToTop} className="community-floating-up-button"></button>
-                <button onClick={handleSearch} className="community-floating-search-button"></button>
-                <button onClick={handleWritePost} className="community-floating-plus-button"></button>
+            <div className="post-grid">
+                <CommunityGridPost posts={currentPosts} />
             </div>
         </div>
     );
