@@ -2,7 +2,7 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import CommunityHeader from '../communityComponents/communityHeader';
 import CommunityCategories from '../communityComponents/communityCategories';
-import CommunityPostBox from '../communityComponents/communityPostBox';
+import CommunityPostBox from '../communityComponents/communityPostBox/communityPostBox';
 import CommunityGridPost from '../communityComponents/communityPostGrid';
 import { dummyPosts } from './dummydata';
 import './communityList.css';
