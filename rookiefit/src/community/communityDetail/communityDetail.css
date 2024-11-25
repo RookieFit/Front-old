@@ -1,0 +1,75 @@
+.community-detail-container {
+    width: 60%;
+    margin: auto;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+}
+
+.community-detail-header {
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+}
+
+.community-detail-category {
+    font-size: 18px;
+    color: #555;
+}
+
+.community-detail-title {
+    font-size: 24px;
+    margin: 10px 0;
+}
+
+.community-detail-author-time {
+    font-size: 14px;
+    color: #999;
+}
+
+.community-detail-body .content {
+    margin: 20px 0;
+    line-height: 1.6;
+}
+
+.community-detail-image-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.community-detail-post-image {
+    max-width: 100%;
+    border-radius: 5px;
+}
+
+.community-detail-comment-section {
+    margin-top: 30px;
+}
+
+.community-detail-comment {
+    border-top: 1px solid #ddd;
+    padding: 10px 0;
+}
+
+.community-detail-footer-buttons {
+    display: flex;
+    justify-content: end;
+    gap: 0.5vw;
+    margin-top: 1vw;
+}
+
+.community-detail-go-back-button,
+.community-detail-top-button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.community-detail-go-back-button:hover,
+.community-detail-top-button:hover {
+    background-color: #0056b3;
+}
