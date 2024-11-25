@@ -56,7 +56,8 @@ const MarketPost = () => {
                     />
                 </div>
 
-                <div className="market-post-price">
+                <div className="market-detail-row">
+                    <span className="detail-label">가격</span>
                     <input
                         type="number"
                         name="price"

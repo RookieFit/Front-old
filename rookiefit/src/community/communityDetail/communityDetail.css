@@ -1,9 +1,18 @@
+.community-detail-wrapper {
+    display: flex;
+    flex-direction: column;
+    padding: 2vw 10vw;
+    background-color: #f8f8f8;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+}
+
 .community-detail-container {
     width: 60%;
-    /* 60%에서 80%로 증가 */
     margin: auto;
-    padding: 20px;
-    font-family: Arial, sans-serif;
+    padding: 40px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
 }
 
 .community-detail-header {
