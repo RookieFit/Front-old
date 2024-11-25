@@ -1,91 +1,71 @@
 .community-detail-container {
-    width: 50vw;
-    /* 60% → 50vw (1920 * 0.6 = 1152px에 해당) */
+    width: 60%;
     margin: auto;
-    padding: 1.85vh;
-    /* 20px → 약 2% */
+    padding: 20px;
     font-family: Arial, sans-serif;
 }
 
 .community-detail-header {
-    border-bottom: 0.09vh solid #ddd;
-    /* 1px → 약 0.1% */
-    margin-bottom: 1.85vh;
-    /* 20px → 약 2% */
-    padding-bottom: 0.93vh;
-    /* 10px → 약 1% */
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
 }
 
 .community-detail-category {
-    font-size: 0.93vh;
-    /* 18px → 약 1% */
+    font-size: 18px;
     color: #555;
 }
 
 .community-detail-title {
-    font-size: 1.24vh;
-    /* 24px → 약 1.25% */
-    margin: 0.93vh 0;
-    /* 10px → 약 1% */
+    font-size: 24px;
+    margin: 10px 0;
 }
 
 .community-detail-author-time {
-    font-size: 0.72vh;
-    /* 14px → 약 0.7% */
+    font-size: 14px;
     color: #999;
 }
 
 .community-detail-body .content {
-    margin: 1.85vh 0;
-    /* 20px → 약 2% */
+    margin: 20px 0;
     line-height: 1.6;
 }
 
 .community-detail-image-container {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.93vh;
-    /* 10px → 약 1% */
-    margin-bottom: 1.85vh;
-    /* 20px → 약 2% */
+    gap: 10px;
+    margin-bottom: 20px;
 }
 
 .community-detail-post-image {
     max-width: 100%;
-    border-radius: 0.46vh;
-    /* 5px → 약 0.5% */
+    border-radius: 5px;
 }
 
 .community-detail-comment-section {
-    margin-top: 2.78vh;
-    /* 30px → 약 2.8% */
+    margin-top: 30px;
 }
 
 .community-detail-comment {
-    border-top: 0.09vh solid #ddd;
-    /* 1px → 약 0.1% */
-    padding: 0.93vh 0;
-    /* 10px → 약 1% */
+    border-top: 1px solid #ddd;
+    padding: 10px 0;
 }
 
 .community-detail-footer-buttons {
     display: flex;
     justify-content: end;
     gap: 0.5vw;
-    /* 기존 0.5vw 그대로 유지 */
-    margin-top: 0.93vh;
-    /* 1vw → 약 0.9% */
+    margin-top: 1vw;
 }
 
 .community-detail-go-back-button,
 .community-detail-top-button {
-    padding: 0.93vh 1.85vw;
-    /* 10px 20px → 약 1% 2% */
+    padding: 10px 20px;
     background-color: #007bff;
     color: white;
     border: none;
-    border-radius: 0.46vh;
-    /* 5px → 약 0.5% */
+    border-radius: 5px;
     cursor: pointer;
 }
 
