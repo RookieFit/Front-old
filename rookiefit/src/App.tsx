@@ -15,7 +15,7 @@ import FindPassword from './findPassword/findPassword';
 import FindIdResult from './findIdResult/findIdResult'
 import FoodPage from './food/foodPage';
 import SeenPage from './mypage/seenPage/seenPage';
-
+import SeedPostGridProps from './mypage/seenPage/seenFeed/senFeedcommunityComponents/seedPostGridProps';
 
 function App() {
   return (
@@ -23,7 +23,8 @@ function App() {
       <div>
         <Header />
         <Routes>
-          <Route path="/seenPage" element={<SeenPage/>} />
+        <Route path="/" element={<SeedPostGridProps posts={Comment.postId} />} />
+          <Route path="/seenPage" element={<SeenPage />} />
           <Route path="/mypageedit" element={<MyPageEdit />} />
           <Route path="/mypage" element={<MyPage />} />
           <Route path="/signin" element={<SigninPage />} />

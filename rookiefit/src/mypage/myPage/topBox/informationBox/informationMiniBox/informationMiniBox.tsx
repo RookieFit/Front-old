@@ -4,7 +4,7 @@ import InformationLine from '../informationLine/informationLine';
 import { useState } from 'react';
 import SeenFeed from '../../../../seenPage/seenFeed/seenFeed';
 import CommunityPostGrid from '../../../../../community/communityComponents/communityPostGrid';
-import SeenFeedGrid from '../../../../seenPage/seenFeed/senFeedcommunityComponents/seenFeedGrid';
+import SeenFeedGrid from '../../../../seenPage/seenFeed/senFeedcommunityComponents/seenFeedGridBox';
 
 const InformationMiniBox = () => {
     const navigate = useNavigate();
@@ -89,7 +89,9 @@ const InformationMiniBox = () => {
                             onClick={communityList}
                             className='my-information-button'
                         />
-                       <SeenFeedGrid/>
+                        <div className='my-information-seen-grid'>
+                            <SeenFeedGrid/>
+                        </div>
                     </div>
                 </div>
             )}

@@ -3,27 +3,11 @@
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    width: 94%;
+    width: 94.5%;
 }
 
-.my-information-info {
-    font-size: 30px;
-    width: 144px;
-    height: 77px;
-    margin-left: 30px;
-    margin-top: 15px;
-    border-style: none;
-}
-
-.my-information-post {
-    font-size: 30px;
-    width: 144px;
-    height: 77px;
-    margin-left: 30px;
-    margin-top: 15px;
-    border-style: none;
-}
-
+.my-information-info,
+.my-information-post,
 .my-information-photo {
     font-size: 30px;
     width: 144px;
@@ -31,6 +15,8 @@
     margin-left: 30px;
     margin-top: 15px;
     border-style: none;
+    border-top-left-radius: 13px;
+    border-top-right-radius: 13px;
 }
 
 .my-information-push {
@@ -54,7 +40,8 @@
     margin: 0px 9px 9px 30px;
     display: flex;
     flex-direction: column;
-    border-radius: 13px;
+    border-end-start-radius: 13px;
+    border-end-end-radius: 13px;
 }
 
 .information-right-back {

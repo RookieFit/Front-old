@@ -3,7 +3,6 @@ import './informationMiniBox.css';
 import { useState } from 'react';
 import InformationLineEdit from '../informationLine/informationLineEdit';
 import InformationLine from '../informationLine/informationLine';
-import SeenFeedGrid from '../../../../seenPage/seenFeed/senFeedcommunityComponents/seenFeedGrid';
 
 const InformationMiniBoxEdit = () => {
     const navigate = useNavigate();
@@ -102,7 +101,7 @@ const InformationMiniBoxEdit = () => {
                             onClick={seenFeedEdit}
                             className='my-information-button'
                         />
-                        <SeenFeedGrid posts={[]} />
+                        {/* <CommunityGridPost posts={currentPosts} /> */}
                     </div>
                 </div>
             )}

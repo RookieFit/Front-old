@@ -10,13 +10,17 @@ const MyPage = () => {
     return (
         <div className="main-box">
             <div className='top-box'>
-                <TopMainBox/>
+                <TopMainBox />
             </div>
             <div className='bottom-box'>
-                <GraphBox/>
-            </div> 
+                <GraphBox />
+            </div>
+            <footer>
+                어쩔 ㅠㅠ
+            </footer>
         </div>
-    )       
+
+    )
 };
 
 export default MyPage
