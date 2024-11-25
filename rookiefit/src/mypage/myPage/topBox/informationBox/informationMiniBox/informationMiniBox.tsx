@@ -6,6 +6,7 @@ import SeenFeed from '../../../../seenPage/seenFeed/seenFeed';
 import SeenFeedGridBox from '../../../../seenPage/seenFeed/senFeedcommunityComponents/seenFeedGridBox';
 
 const InformationMiniBox = () => {
+    
     const navigate = useNavigate();
     const myPageEdit = () => {
         navigate('/myPageEdit')

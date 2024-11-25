@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
-import './SeedPostGridProps.css'; // 스타일 파일
+import './SeedPostGridProps.css';
 import CommunityPagination from '../../../../community/communityComponents/communityPagination';
 import { useNavigate } from 'react-router-dom';
 
 export type Category = '전체' | '바프' | '고민' | '정보' | '친목' | '공지';
-const navigate = useNavigate();
 
 export interface Comment {
     id: number;
@@ -30,31 +29,56 @@ interface SeedPostGridProps {
 }
 
 const SeedPostGridProps = ({ posts }: SeedPostGridProps) => {
+    const navigate = useNavigate();
+    const [isMouseDown, setIsMouseDown] = useState(false);
+    const [isDragging, setIsDragging] = useState(false);
     const [seenPage, setSeenPage] = useState(1);
-    const postsPerPage = 3; // 한 페이지에 3개의 게시글 표시
 
-    // 페이지에 해당하는 게시글을 가져오는 함수
+    const postsPerPage = 3;
+
     const indexOfLastPost = seenPage * postsPerPage;
     const indexOfFirstPost = indexOfLastPost - postsPerPage;
     const seenPosts = posts.slice(indexOfFirstPost, indexOfLastPost);
 
-    // 페이지 변경 핸들러
+    const handleSeenPostClick = (postId: number) => {
+        if (!isDragging) { // 드래그가 아닌 경우에만 실행
+            navigate(`/community/communityDetail/${postId}`);
+        }
+        setIsDragging(false); // 드래그 상태 초기화
+    };
+
     const handlePageChange = (newPage: number) => {
         setSeenPage(newPage);
     };
 
-    const handleSeenPostClick = (_id: number) => {
-        navigate(`../../../../community/communityDetail/communityDetail${Post.id}`); // 해당 게시물 ID로 경로 이동
+    const handleMouseDown = () => {
+        setIsMouseDown(true);
+        setIsDragging(false);
+    };
+
+    const handleMouseUp = (postId: number) => {
+        if (!isDragging && isMouseDown) { // 드래그가 아닌 경우에만 실행
+            handleSeenPostClick(postId);
+        }
+        setIsMouseDown(false);
+        setIsDragging(false); // 드래그 상태 초기화
+    };
+
+    const handleMouseMove = () => {
+        if (isMouseDown) {
+            setIsDragging(true);
+        }
     };
 
     return (
         <div>
-            {/* 그리드 레이아웃 */}
-            <div className="seen-feed-post-grid" >
+            <div className="seen-feed-post-grid">
                 {seenPosts.map((post) => (
                     <div key={post.id}
                         className="seen-feed-post-grid-item"
-                        onClick={() => handleSeenPostClick(post.id)}
+                        onMouseDown={handleMouseDown}
+                        onMouseUp={() => handleMouseUp(post.id)}
+                        onMouseMove={handleMouseMove}
                     >
                         <div className="seen-feed-post-grid-header">
                             {post.images[0] && (
@@ -74,7 +98,6 @@ const SeedPostGridProps = ({ posts }: SeedPostGridProps) => {
                     </div>
                 ))}
             </div>
-            {/* 페이지네이션 */}
             <CommunityPagination
                 currentPage={seenPage}
                 totalPages={Math.ceil(posts.length / postsPerPage)}

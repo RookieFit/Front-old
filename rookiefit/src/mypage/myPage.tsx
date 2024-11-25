@@ -4,21 +4,20 @@ import TopMainBox from './myPage/topBox/topMainBox/topMainBox';
 import GraphBox from './myPage/bottomBox/graphBox';
 import MyPageFooter from './components/myPageFooter';
 
-
-
-
 const MyPage = () => {
     return (
         <div className="main-box">
-            <div className='top-box'>
-                <TopMainBox />
+            <div>
+                <div className='top-box'>
+                    <TopMainBox />
+                </div>
+                <div className='bottom-box'>
+                    <GraphBox />
+                </div>
             </div>
-            <div className='bottom-box'>
-                <GraphBox />
+            <div className='mypage-footer-cirle'>
+                <MyPageFooter />
             </div>
-            <footer>
-                <MyPageFooter/>
-            </footer>
         </div>
 
     )

@@ -4,7 +4,6 @@ import TopMainBoxEdit from './myPage/topBox/topMainBox/topMainBoxEdit';
 import GraphBoxEdit from './myPage/bottomBox/graphBoxEdit';
 import MyPageFooter from './components/myPageFooter';
 
-
 const MyPageEdit = () => {
     return (
         <div className="main-box">
@@ -14,7 +13,7 @@ const MyPageEdit = () => {
             <div className='bottom-box'>
                 <GraphBoxEdit />
             </div>
-            <footer>
+            <footer className='mypage-footer-cirle'>
                 <MyPageFooter />
             </footer>
         </div>

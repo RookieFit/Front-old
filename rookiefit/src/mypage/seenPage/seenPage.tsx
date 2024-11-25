@@ -3,8 +3,7 @@ import SeenProfile from './seenProfile/seenProfile';
 import './seenPage.css';
 import MyPageFooter from '../components/myPageFooter';
 
-
-const TopMainBox = () => {
+const SeenPage = () => {
     return (
         <div className="seen-page-left-right-page">
             <SeenProfile smallvalueReview={50} smallvalueClass={100} />
@@ -12,10 +11,10 @@ const TopMainBox = () => {
                 <SeenFeed />
             </div>
             <footer>
-                <MyPageFooter/>
+                <MyPageFooter />
             </footer>
         </div>
     )
 };
-export default TopMainBox;
+export default SeenPage;
 
