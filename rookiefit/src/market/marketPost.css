@@ -1,0 +1,145 @@
+.market-post-wrapper {
+    background-color: #f8f8f8;
+    min-height: 100vh;
+    padding: 40px 0;
+}
+
+.market-post-form {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 40px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.market-post-header {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.market-category-select {
+    width: 100px;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.market-post-header input {
+    flex: 1;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.market-post-price input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.market-post-details {
+    margin: 20px 0;
+}
+
+.market-detail-row {
+    display: flex;
+    align-items: center;
+    padding: 12px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.detail-label {
+    width: 120px;
+    color: #666;
+}
+
+.market-detail-row select,
+.market-detail-row input {
+    flex: 1;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.market-post-description {
+    width: 100%;
+    min-height: 200px;
+    margin-top: 20px;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    resize: vertical;
+}
+
+.market-post-submit {
+    width: 100%;
+    padding: 12px;
+    margin-top: 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.market-post-submit:hover {
+    background-color: #0056b3;
+}
+
+/* 이미지 업로더 스타일 */
+.image-uploader {
+    margin: 20px 0;
+    display: flex;
+    flex-direction: column-reverse;
+    /* 업로드 버튼을 아래로 */
+}
+
+.image-preview-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-bottom: 16px;
+    /* 상단 마진을 하단으로 변경 */
+}
+
+.image-preview {
+    position: relative;
+    aspect-ratio: 1;
+    border-radius: 8px;
+    overflow: hidden;
+    background-color: #f8f8f8;
+    border: 1px solid #eee;
+}
+
+.image-preview img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.image-preview button {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 4px 8px;
+    cursor: pointer;
+}
+
+.image-upload-label {
+    display: inline-block;
+    width: 100%;
+    padding: 12px;
+    background-color: #f0f0f0;
+    border: 1px dashed #ddd;
+    border-radius: 4px;
+    text-align: center;
+    cursor: pointer;
+    color: #666;
+}
