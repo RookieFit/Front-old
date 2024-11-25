@@ -1,4 +1,4 @@
-type Category = '전체' | '바프' | '고민' | '정보' | '친목' | '공지';
+type Category = '바프' | '고민' | '정보' | '친목' | '공지'; // '전체'를 제외한 카테고리
 
 type Comment = {
     id: number;
@@ -28,7 +28,7 @@ const funComments = [
 ];
 
 export const dummyPosts = Array.from({ length: 100 }, (_, index) => {
-    const categories: Category[] = ['전체', '바프', '고민', '정보', '친목', '공지'];
+    const categories: Category[] = ['바프', '고민', '정보', '친목', '공지']; // '전체' 카테고리 제외
     const randomCategory = categories[Math.floor(Math.random() * categories.length)];
 
     // 댓글 생성 (최소 1개 이상)
@@ -59,7 +59,15 @@ export const dummyPosts = Array.from({ length: 100 }, (_, index) => {
         date: `2024-11-${(index % 30) + 1}`,
         images, // 랜덤 이미지 배열
         content: `여기에 게시글 내용 ${index + 1}이 들어갑니다. 글의 본문을 여기에 작성합니다. 
-        이 글은 카테고리 "${randomCategory}"에 속합니다.`,
+        이 글은 카테고리 "${randomCategory}"에 속합니다.
+        피크민은 닌텐도의 인기 게임 시리즈로, 
+        귀여운 식물 생명체 '피크민'을 주인공으로 합니다. 
+        다양한 색깔의 피크민이 각각 고유한 능력을 가지고 있으며,
+         플레이어는 이들을 지휘하여 탐험하고 문제를 해결합니다. 
+         최신작 '피크민 4'는 닌텐도 스위치용으로 출시되었고, 
+         모바일 AR 게임 '피크민 블룸'은 현실 세계를 걸으며 즐기는 방식을 채택했습니다. 
+         이 게임 시리즈는 전략적 요소와 힐링 요소를 동시에 갖추고 있어 다양한 연령층에게 인기가 있습니다.
+`,
         comments, // 댓글 배열
     };
 });

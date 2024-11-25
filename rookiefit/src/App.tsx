@@ -14,7 +14,8 @@ import CommunityWrite from './community/communityWrite/communityWrite';
 import FindPassword from './findPassword/findPassword';
 import FindIdResult from './findIdResult/findIdResult';
 import FoodPage from './food/foodPage';
-import CommunitySearch from './community/communityComponents/communitySearch'; // CommunitySearch import 추가
+import CommunitySearch from './community/communitySearch/communitySearch'; // CommunitySearch import 추가
+import CommunitySearchResult from './community/communitySearch/communitySearchResult'; // 검색 결과 페이지 추가
 
 function App() {
   return (
@@ -38,7 +39,7 @@ function App() {
           <Route path="/community/concern" element={<CommunityList />} />
           <Route path="/community/information" element={<CommunityList />} />
           <Route path="/community/friendship" element={<CommunityList />} />
-          <Route path="/community/announcement" element={<CommunityList />} /> {/* 공지 경로 추가 */}
+          <Route path="/community/announcement" element={<CommunityList />} />
           <Route path="/community/write" element={<CommunityWrite />} />
           <Route path="/community/detail/:id" element={<CommunityDetail />} />
           <Route path="/community/grid" element={<CommunityList />} />
@@ -48,6 +49,7 @@ function App() {
           <Route path="/community/grid/friendship" element={<CommunityList />} />
           <Route path="/community/grid/announcement" element={<CommunityList />} />
           <Route path="/community/search" element={<CommunitySearch />} /> {/* CommunitySearch 경로 추가 */}
+          <Route path="/community/searchresult" element={<CommunitySearchResult />} /> {/* CommunitySearchResult 경로 추가 */}
           <Route path="/diet" element={<FoodPage />} />
         </Routes>
       </div>
