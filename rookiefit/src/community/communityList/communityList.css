@@ -23,8 +23,6 @@
     display: flex;
     gap: 20px;
     width: 100%;
-    max-width: 1280px;
-    /* 화면에 적당한 크기로 제한 */
 }
 
 .post-list {

@@ -31,9 +31,9 @@
 
 /* 카테고리 영역 */
 .community-categories {
-    position: sticky;
+    position: fixed;
     /* 스크롤을 따라 고정 */
-    top: 20px;
+    top: 30%;
     /* 화면 상단에서 20px 떨어져 고정 */
     display: flex;
     flex-direction: column;

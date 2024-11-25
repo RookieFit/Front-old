@@ -1,83 +1,23 @@
-/* 전체 게시글 박스 스타일 */
-.post-box {
-    position: relative;
-    width: 1282px;
-    height: auto;
-    max-width: 100%;
-    margin: 20px auto;
-    background-color: #f4f4f4;
-    border-radius: 12px;
-    padding: 30px;
-    box-sizing: border-box;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+.comment-actions button {
+    background-color: #505152;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 14px;
+    cursor: pointer;
+    margin: 0 5px;
+    padding: 8px 16px;
+    /* 버튼에 더 많은 패딩 추가 */
+    transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
-/* 게시글 카테고리 */
-.post-category {
-    font-size: 1rem;
-    font-weight: bold;
-    color: #161616;
-    margin-bottom: 10px;
-    text-transform: uppercase;
-}
-
-/* 게시글 제목 */
-.post-title {
-    font-size: 2rem;
-    font-weight: 700;
-    margin-bottom: 15px;
-    color: #2c3e50;
-    line-height: 1.4;
-    text-align: center;
-}
-
-/* 작성자와 날짜 스타일 */
-.post-header {
-    display: flex;
-    justify-content: space-between;
-    font-size: 1rem;
-    color: #8e8e8e;
-    margin-bottom: 20px;
-}
-
-.author {
-    font-weight: bold;
-    color: #34495e;
-}
-
-.date {
-    font-style: italic;
-}
-
-/* 이미지 스타일 */
-.post-images {
-    display: flex;
-    justify-content: space-between;
-    gap: 15px;
-    margin-bottom: 20px;
-}
-
-.post-image {
-    width: 32%;
-    height: 220px;
-    background-size: cover;
-    background-position: center;
-    border-radius: 10px;
-    transition: opacity 0.3s ease, transform 0.3s ease;
-}
-
-/* 게시글 본문 */
-.post-content {
-    font-size: 1.1rem;
-    color: #555;
-    margin-bottom: 20px;
-    line-height: 1.6;
-    text-align: justify;
+.comment-actions button:hover {
+    background-color: #3a3e3e;
+    /* hover 시 색상 변경 */
 }
 
 /* 댓글 버튼 */
-.comment-button {
+.community-comment-button {
     background-color: #505152;
     color: #fff;
     border: none;
@@ -91,12 +31,12 @@
     /* 버튼을 오른쪽으로 정렬 */
 }
 
-.comment-button:focus {
+.community-comment-button:focus {
     outline: none;
 }
 
 /* 댓글 영역 */
-.comments-section {
+.community-comments-section {
     margin-top: 10px;
     /* 버튼과 댓글 영역 간 간격 */
     padding: 10px;
@@ -120,23 +60,23 @@
 }
 
 /* 댓글 내용 스타일 */
-.comment {
+.community-comment {
     padding: 5px;
     border-bottom: 1px solid #ddd;
 }
 
-.comment:last-child {
+.community-comment:last-child {
     border-bottom: none;
 }
 
-.comment p {
+.community-comment p {
     margin: 0;
     font-size: 1rem;
     color: #333;
 }
 
 /* 작성자 스타일 */
-.comment .author {
+.community-comment .author {
     font-weight: bold;
     color: #2c3e50;
     font-size: 1.1rem;
@@ -144,7 +84,7 @@
 }
 
 /* 댓글 작성 시간 스타일 */
-.comment .date {
+.community-comment .date {
     font-style: italic;
     font-size: 0.9rem;
     color: #7f8c8d;
@@ -152,7 +92,7 @@
 }
 
 /* 댓글 입력창 스타일 */
-.comment-input-wrapper {
+.community-comment-input-wrapper {
     margin-top: 20px;
     padding: 10px;
     background-color: #fff;
@@ -160,7 +100,7 @@
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
-.new-comment-input {
+.community-new-comment-input {
     width: 100%;
     font-size: 1rem;
     color: #333;
@@ -172,36 +112,16 @@
     min-height: 30px;
 }
 
-.new-comment-input::placeholder {
+.community-new-comment-input::placeholder {
     color: #aaa;
 }
 
-.submit-comment-button:focus {
+.submit-community-comment-button:focus {
     outline: none;
 }
 
-/* 댓글 수정/삭제 버튼 영역 */
-.comment-actions button {
-    background-color: #505152;
-    /* 기본 배경 */
-    color: white;
-    /* 텍스트 흰색 */
-    border: none;
-    /* 테두리 제거 */
-    border-radius: 4px;
-    /* 모서리 둥글게 */
-    font-size: 14px;
-    /* 텍스트 크기 */
-    cursor: pointer;
-    /* 클릭 가능한 커서 */
-    margin: 0 5px;
-    /* 버튼 간 간격 */
-    transition: background-color 0.3s ease, transform 0.2s ease;
-    /* 부드러운 전환 */
-}
-
 /* 댓글 수정 입력 영역 */
-.edit-input {
+.community-comment-edit-input {
     width: calc(100% - 120px);
     /* 수정 버튼과 잘 배치되도록 크기 조정 */
     padding: 6px 10px;
