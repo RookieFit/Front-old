@@ -129,7 +129,7 @@ const CommunityList = () => {
 
     // 검색 버튼 클릭 시 처리 함수
     const handleSearch = () => {
-        console.log('검색 버튼 클릭됨');
+        navigate('/community/search'); // 검색 페이지로 이동
     };
 
     return (
