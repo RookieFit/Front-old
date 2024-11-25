@@ -1,0 +1,98 @@
+/* 전체 게시글 박스 스타일 */
+.post-box {
+    position: relative;
+    width: 1282px;
+    height: auto;
+    max-width: 100%;
+    margin: 20px auto;
+    background-color: #f4f4f4;
+    border-radius: 12px;
+    padding: 30px;
+    box-sizing: border-box;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* 게시글 카테고리 */
+.post-category {
+    font-size: 1rem;
+    font-weight: bold;
+    color: #161616;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+}
+
+/* 게시글 제목 */
+.post-title {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 15px;
+    color: #2c3e50;
+    line-height: 1.4;
+    text-align: center;
+}
+
+/* 작성자와 날짜 스타일 */
+.post-header {
+    display: flex;
+    justify-content: space-between;
+    font-size: 1rem;
+    color: #8e8e8e;
+    margin-bottom: 20px;
+}
+
+.author {
+    font-weight: bold;
+    color: #34495e;
+}
+
+.date {
+    font-style: italic;
+}
+
+/* 이미지 스타일 - 좌우 스크롤 가능 */
+.post-images-wrapper {
+    display: flex;
+    overflow-x: auto;
+    /* 가로 스크롤 가능 */
+    gap: 15px;
+    margin-bottom: 20px;
+    white-space: nowrap;
+    /* 이미지가 중간에 비지 않도록 설정 */
+}
+
+.post-image {
+    flex-shrink: 0;
+    /* 이미지가 축소되지 않도록 설정 */
+    width: 32%;
+    /* 이미지 크기 */
+    height: 220px;
+    background-size: cover;
+    background-position: center;
+    border-radius: 10px;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.post-images-wrapper::-webkit-scrollbar {
+    height: 8px;
+    /* 스크롤바 높이 */
+}
+
+.post-images-wrapper::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.5);
+    /* 스크롤바 색상 */
+    border-radius: 4px;
+}
+
+.post-images-wrapper::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+/* 게시글 본문 */
+.post-content {
+    font-size: 1.1rem;
+    color: #555;
+    margin-bottom: 20px;
+    line-height: 1.6;
+    text-align: justify;
+}
