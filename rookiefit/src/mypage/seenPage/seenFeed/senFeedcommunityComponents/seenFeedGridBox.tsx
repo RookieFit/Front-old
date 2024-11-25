@@ -10,7 +10,6 @@ const LOADING_DELAY = 500;
 
 const SeenFeedGrid = () => {
     const location = useLocation();
-
     const getInitialCategory = (): Category => {
         const params = new URLSearchParams(location.search);
         const categoryFromUrl = params.get('category') as Category;

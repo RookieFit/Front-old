@@ -4,6 +4,7 @@ import CommunityPagination from '../../../../community/communityComponents/commu
 import { useNavigate } from 'react-router-dom';
 
 export type Category = '전체' | '바프' | '고민' | '정보' | '친목' | '공지';
+const navigate = useNavigate();
 
 export interface Comment {
     id: number;
@@ -42,9 +43,8 @@ const SeedPostGridProps = ({ posts }: SeedPostGridProps) => {
         setSeenPage(newPage);
     };
 
-    const navigate = useNavigate();
     const handleSeenPostClick = (_id: number) => {
-        navigate(`../../../../community/communityDetail/communityDetail${Comment.postId}`); // 해당 게시물 ID로 경로 이동
+        navigate(`../../../../community/communityDetail/communityDetail${Post.id}`); // 해당 게시물 ID로 경로 이동
     };
 
     return (
@@ -54,7 +54,7 @@ const SeedPostGridProps = ({ posts }: SeedPostGridProps) => {
                 {seenPosts.map((post) => (
                     <div key={post.id}
                         className="seen-feed-post-grid-item"
-                        onClick={() => handleSeenPostClick(Comment.postId)}
+                        onClick={() => handleSeenPostClick(post.id)}
                     >
                         <div className="seen-feed-post-grid-header">
                             {post.images[0] && (

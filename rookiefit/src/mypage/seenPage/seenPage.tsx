@@ -1,6 +1,7 @@
 import SeenFeed from './seenFeed/seenFeed';
 import SeenProfile from './seenProfile/seenProfile';
 import './seenPage.css';
+import MyPageFooter from '../components/myPageFooter';
 
 
 const TopMainBox = () => {
@@ -10,6 +11,9 @@ const TopMainBox = () => {
             <div className='seen-page-right-back'>
                 <SeenFeed />
             </div>
+            <footer>
+                <MyPageFooter/>
+            </footer>
         </div>
     )
 };

@@ -2,6 +2,7 @@ import './myPage.css';
 import React from 'react';
 import TopMainBox from './myPage/topBox/topMainBox/topMainBox';
 import GraphBox from './myPage/bottomBox/graphBox';
+import MyPageFooter from './components/myPageFooter';
 
 
 
@@ -16,7 +17,7 @@ const MyPage = () => {
                 <GraphBox />
             </div>
             <footer>
-                어쩔 ㅠㅠ
+                <MyPageFooter/>
             </footer>
         </div>
 
