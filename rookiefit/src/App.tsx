@@ -39,7 +39,7 @@ function App() {
           <Route path="/community/friendship" element={<CommunityList />} />
           <Route path="/community/announcement" element={<CommunityList />} /> {/* 공지 경로 추가 */}
           <Route path="/community/write" element={<CommunityWrite />} />
-          <Route path="/community/detail" element={<CommunityDetail />} />
+          <Route path="/community/detail/:id" element={<CommunityDetail />} />
           <Route path="/community/grid" element={<CommunityList />} />
           <Route path="/community/grid/bodyprofile" element={<CommunityList />} />
           <Route path="/community/grid/concern" element={<CommunityList />} />

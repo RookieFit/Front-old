@@ -13,8 +13,6 @@
 .calendar-detail-item {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    /* 수직 가운데 정렬 */
     padding: 1vw;
     margin-bottom: 1vw;
     border-radius: 0.7vw;
