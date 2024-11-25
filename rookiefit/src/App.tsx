@@ -16,6 +16,8 @@ import FindIdResult from './findIdResult/findIdResult';
 import FoodPage from './food/foodPage';
 import MarketPage from './market/marketPage';
 import CommunitySearch from './community/communityComponents/communitySearch'; // CommunitySearch import 추가
+import MarketDetail from './market/marketDetail';
+import MarketPost from './market/marketPost';
 
 function App() {
   return (
@@ -51,6 +53,9 @@ function App() {
           <Route path="/community/search" element={<CommunitySearch />} /> {/* CommunitySearch 경로 추가 */}
           <Route path="/diet" element={<FoodPage />} />
           <Route path="/market" element={<MarketPage />} />
+          <Route path="/market/detail/:id" element={<MarketDetail />} />
+          <Route path="/market/write" element={<MarketPost />} />
+
         </Routes>
       </div>
     </BrowserRouter>
