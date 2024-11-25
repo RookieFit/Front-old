@@ -12,8 +12,9 @@ import CommunityList from './community/communityList/communityList';
 import CommunityDetail from './community/communityDetail/communityDetail';
 import CommunityWrite from './community/communityWrite/communityWrite';
 import FindPassword from './findPassword/findPassword';
-import FindIdResult from './findIdResult/findIdResult'
+import FindIdResult from './findIdResult/findIdResult';
 import FoodPage from './food/foodPage';
+import CommunitySearch from './community/communityComponents/communitySearch'; // CommunitySearch import 추가
 
 function App() {
   return (
@@ -46,6 +47,7 @@ function App() {
           <Route path="/community/grid/information" element={<CommunityList />} />
           <Route path="/community/grid/friendship" element={<CommunityList />} />
           <Route path="/community/grid/announcement" element={<CommunityList />} />
+          <Route path="/community/search" element={<CommunitySearch />} /> {/* CommunitySearch 경로 추가 */}
           <Route path="/diet" element={<FoodPage />} />
         </Routes>
       </div>
