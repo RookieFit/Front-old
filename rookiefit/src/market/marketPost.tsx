@@ -93,8 +93,6 @@ const MarketPost = () => {
                         </select>
                     </div>
                 </div>
-
-
                 <textarea
                     name="description"
                     value={formData.description}

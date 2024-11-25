@@ -1,24 +1,21 @@
 import React, { useState } from 'react';
-import './marketItemList.css'; // 스타일 파일
-import CommunityPagination from '../community/communityComponents/communityPagination'; // 기존 페이지네이션 컴포넌트 사용
+import './marketItemList.css';
+import CommunityPagination from '../community/communityComponents/communityPagination';
 import { useNavigate } from 'react-router-dom';
-// MarketItemList.tsx
 import { marketItems } from './marketData';
 
 // 마켓 아이템 타입 정의
 export interface MarketItem {
     id: number;
-    category: '판매' | '구매'; // 카테고리
-    title: string; // 제목
-    location: string; // 지역
-    price: number; // 가격
-    image: string; // 이미지 URL
+    category: '판매' | '구매';
+    title: string;
+    location: string;
+    price: number;
+    image: string;
 }
 
 const MarketItemList = () => {
     const navigate = useNavigate();
-
-    // 더미 데이터 생성
 
     // 상태 관리
     const [currentPage, setCurrentPage] = useState(1);

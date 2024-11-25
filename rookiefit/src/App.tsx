@@ -55,7 +55,6 @@ function App() {
           <Route path="/market" element={<MarketPage />} />
           <Route path="/market/detail/:id" element={<MarketDetail />} />
           <Route path="/market/write" element={<MarketPost />} />
-
         </Routes>
       </div>
     </BrowserRouter>
