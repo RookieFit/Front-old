@@ -13,7 +13,7 @@ interface CommentProps {
     onEdit: (id: number, newContent: string) => void; // 수정 처리 함수
 }
 
-function Comment({ comment, currentUser, onDelete, onEdit }: CommentProps) {
+function CommunityComment({ comment, currentUser, onDelete, onEdit }: CommentProps) {
     const [isEditing, setIsEditing] = useState(false);
     const [editedContent, setEditedContent] = useState(comment.content);
 
@@ -30,7 +30,7 @@ function Comment({ comment, currentUser, onDelete, onEdit }: CommentProps) {
     const canEditOrDelete = comment.author === currentUser;
 
     return (
-        <div className="comment">
+        <div className="community-comment">
             <p>
                 <strong>{comment.author}</strong> ({comment.date}):
             </p>
@@ -59,4 +59,4 @@ function Comment({ comment, currentUser, onDelete, onEdit }: CommentProps) {
     );
 }
 
-export default Comment;
+export default CommunityComment;

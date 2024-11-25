@@ -67,7 +67,7 @@ function CommunityPostBox({ post, currentUser }: CommunityPostBoxProps) {
 
             <p className="post-content">{truncateContent(post.content, 150)}</p>
 
-            <button className="comment-button" onClick={handleCommentToggle}>
+            <button className="community-comment-button" onClick={handleCommentToggle}>
                 {isCommentOpen ? '댓글 닫기' : '댓글 보기'}
             </button>
 
@@ -82,15 +82,15 @@ function CommunityPostBox({ post, currentUser }: CommunityPostBoxProps) {
                     />
                 ))}
 
-                <div className="new-comment">
+                <div className="community-new-comment">
                     <input
-                        className="new-comment-input"
+                        className="community-new-comment-input"
                         type="text"
                         placeholder="댓글을 입력하세요"
                         value={newComment}
                         onChange={(e) => setNewComment(e.target.value)}
                     />
-                    <button className="comment-button" onClick={handleAddComment}>
+                    <button className="community-comment-button" onClick={handleAddComment}>
                         댓글 작성
                     </button>
                 </div>
