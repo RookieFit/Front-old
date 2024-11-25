@@ -14,6 +14,7 @@ import CommunityWrite from './community/communityWrite/communityWrite';
 import FindPassword from './findPassword/findPassword';
 import FindIdResult from './findIdResult/findIdResult'
 import FoodPage from './food/foodPage';
+import MarketPage from './market/marketPage';
 
 function App() {
   return (
@@ -47,6 +48,7 @@ function App() {
           <Route path="/community/grid/friendship" element={<CommunityList />} />
           <Route path="/community/grid/announcement" element={<CommunityList />} />
           <Route path="/diet" element={<FoodPage />} />
+          <Route path="/market" element={<MarketPage />} />
         </Routes>
       </div>
     </BrowserRouter>
