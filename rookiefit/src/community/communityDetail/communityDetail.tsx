@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { dummyPosts } from '../communityList/dummydata';
+import CommunityComment from '../communityComponents/communityPostBox/communityComment';
 import './communityDetail.css';
 
 const CommunityDetail = () => {
@@ -12,25 +13,41 @@ const CommunityDetail = () => {
 
     // 댓글 상태 관리
     const [comments, setComments] = useState(post?.comments || []);
-    const [newComment, setNewComment] = useState({ author: '', content: '' });
+    const [newComment, setNewComment] = useState('');
+    const currentUser = '현재사용자이름'; // 현재 로그인한 사용자 (예시)
 
-    // 댓글 작성 핸들러
+    // 댓글 추가 핸들러
     const handleAddComment = () => {
-        if (newComment.author.trim() === '' || newComment.content.trim() === '') {
-            alert('작성자와 내용을 모두 입력해주세요.');
+        if (newComment.trim() === '') {
+            alert('댓글 내용을 입력해주세요.');
             return;
         }
 
-        const newCommentEntry = {
-            id: comments.length + 1, // 새로운 댓글 ID
-            postId: Number(id),
-            author: newComment.author,
-            date: new Date().toLocaleString(), // 현재 시간
-            content: newComment.content,
+        const newCommentObj = {
+            id: Date.now(),
+            postId: post?.id || 0, // post가 undefined일 경우 기본값 0 사용
+            author: currentUser,
+            date: new Date().toLocaleString(),
+            content: newComment,
         };
 
-        setComments([...comments, newCommentEntry]); // 댓글 추가
-        setNewComment({ author: '', content: '' }); // 입력 필드 초기화
+
+        setComments((prevComments) => [...prevComments, newCommentObj]);
+        setNewComment(''); // 입력 필드 초기화
+    };
+
+    // 댓글 삭제 핸들러
+    const handleDeleteComment = (id: number) => {
+        setComments((prevComments) => prevComments.filter((comment) => comment.id !== id));
+    };
+
+    // 댓글 수정 핸들러
+    const handleEditComment = (id: number, newContent: string) => {
+        setComments((prevComments) =>
+            prevComments.map((comment) =>
+                comment.id === id ? { ...comment, content: newContent } : comment
+            )
+        );
     };
 
     // 게시물이 없을 경우 처리
@@ -81,38 +98,32 @@ const CommunityDetail = () => {
                 <h4>댓글</h4>
                 {comments.length > 0 ? (
                     comments.map((comment) => (
-                        <div key={comment.id} className="comment">
-                            <p>
-                                <strong>{comment.author}</strong> - {comment.date}
-                            </p>
-                            <p>{comment.content}</p>
-                        </div>
+                        <CommunityComment
+                            key={comment.id}
+                            comment={comment}
+                            currentUser={currentUser}
+                            onDelete={handleDeleteComment}
+                            onEdit={handleEditComment}
+                        />
                     ))
                 ) : (
                     <p>댓글이 없습니다.</p>
                 )}
 
                 {/* 댓글 작성 섹션 */}
-                <div className="comment-form">
+                <div className="community-new-comment">
                     <h4>댓글 작성</h4>
-                    <input
-                        type="text"
-                        placeholder="작성자 이름"
-                        value={newComment.author}
-                        onChange={(e) =>
-                            setNewComment((prev) => ({ ...prev, author: e.target.value }))
+                    <textarea style={
+                        {
+                            resize: 'none'
                         }
-                        className="comment-input"
-                    />
-                    <textarea
+                    }
                         placeholder="댓글 내용을 입력하세요"
-                        value={newComment.content}
-                        onChange={(e) =>
-                            setNewComment((prev) => ({ ...prev, content: e.target.value }))
-                        }
-                        className="comment-textarea"
+                        value={newComment}
+                        onChange={(e) => setNewComment(e.target.value)}
+                        className="community-new-comment-input"
                     />
-                    <button onClick={handleAddComment} className="submit-comment-button">
+                    <button onClick={handleAddComment} className="community-comment-button">
                         댓글 작성
                     </button>
                 </div>

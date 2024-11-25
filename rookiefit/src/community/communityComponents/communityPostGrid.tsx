@@ -77,21 +77,8 @@ const CommunityPostGrid = ({ posts }: CommunityPostGridProps) => {
                                     <strong>제목:</strong> {post.title}
                                 </p>
                                 <p>
-                                    <strong>일지 내용:</strong> {post.content.slice(0, 50)}...
+                                    {post.content.slice(0, 50)}...
                                 </p>
-
-                                {/* 댓글 표시 */}
-                                <div className="comments-section">
-                                    <h4>댓글</h4>
-                                    {post.comments.map((comment) => (
-                                        <div key={comment.id} className="comment">
-                                            <p>
-                                                <strong>{comment.author}</strong> - {comment.date}
-                                            </p>
-                                            <p>{comment.content}</p>
-                                        </div>
-                                    ))}
-                                </div>
                             </div>
                         </div>
                     </div>
