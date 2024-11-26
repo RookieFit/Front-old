@@ -33,7 +33,11 @@ const MarketItemList = () => {
     };
 
     // 카드 클릭 핸들러
-    const handleCardClick = (id: number) => {
+    const handleCardClick = (e: React.MouseEvent, id: number) => {
+        // 텍스트가 선택되어 있다면 클릭 이벤트 무시
+        if (window.getSelection()?.toString()) {
+            return;
+        }
         navigate(`/market/detail/${id}`);
     };
 
@@ -44,7 +48,7 @@ const MarketItemList = () => {
                     <div
                         key={item.id}
                         className="market-item-list-grid-card"
-                        onClick={() => handleCardClick(item.id)}
+                        onClick={(e) => handleCardClick(e, item.id)}
                     >
                         <img
                             src={item.image}
