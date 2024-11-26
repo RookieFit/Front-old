@@ -12,6 +12,7 @@ export interface MarketItem {
     location: string;
     price: number;
     image: string;
+    timestamp: string;
 }
 
 const MarketItemList = () => {
@@ -31,6 +32,7 @@ const MarketItemList = () => {
         setCurrentPage(newPage);
     };
 
+    // 카드 클릭 핸들러
     const handleCardClick = (e: React.MouseEvent, id: number) => {
         // 텍스트가 선택되어 있다면 클릭 이벤트 무시
         if (window.getSelection()?.toString()) {
@@ -48,14 +50,21 @@ const MarketItemList = () => {
                         className="market-item-list-grid-card"
                         onClick={(e) => handleCardClick(e, item.id)}
                     >
-                        <img src={item.image} alt={item.title} className="market-item-list-grid-image" />
+                        <img
+                            src={item.image}
+                            alt={item.title}
+                            className="market-item-list-grid-image"
+                        />
                         <div className="market-item-list-grid-details">
-                            <p className="market-item-category">{item.category}</p>
+                            <span className="market-item-category">{item.category}</span>
                             <h3>{item.title}</h3>
                             <p className="market-item-timestamp">{item.timestamp}</p>
                             <p className="market-item-location">{item.location}</p>
                             <p className="market-item-price">
-                                <strong>₩{item.price.toLocaleString()}</strong>
+                                {new Intl.NumberFormat('ko-KR', {
+                                    style: 'currency',
+                                    currency: 'KRW',
+                                }).format(item.price)}
                             </p>
                         </div>
                     </div>

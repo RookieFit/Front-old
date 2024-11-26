@@ -32,6 +32,13 @@ const MarketPost = () => {
             [name]: value
         }));
     };
+    const handleSubmit = () => {
+        if (!formData.title || !formData.price || !formData.location) {
+            alert('모든 필드를 채워주세요.');
+            return;
+        }
+        console.log('등록된 데이터:', formData);
+    };
 
     return (
         <div className="market-post-wrapper">
@@ -103,7 +110,7 @@ const MarketPost = () => {
                 />
                 <ImageUploaderMany maxImages={6} />
 
-                <button className="market-post-submit">등록하기</button>
+                <button className="market-post-submit" onClick={handleSubmit}>등록하기</button>
             </div>
         </div>
     );

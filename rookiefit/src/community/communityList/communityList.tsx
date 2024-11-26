@@ -4,7 +4,7 @@ import CommunityHeader from '../communityComponents/communityHeader';
 import CommunityCategories from '../communityComponents/communityCategories';
 import CommunityPostBox from '../communityComponents/communityPostBox/communityPostBox';
 import CommunityGridPost from '../communityComponents/communityPostGrid';
-import CommunityFloatingButtons from '../communityComponents/CommunityFloatingButtons'; // 추가된 import
+import CommunityFloatingButtons from '../communityComponents/communityFloatingButtons'; // 추가된 import
 import { dummyPosts } from './dummydata';
 import './communityList.css';
 

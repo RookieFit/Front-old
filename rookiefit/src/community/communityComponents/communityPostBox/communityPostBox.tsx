@@ -51,7 +51,10 @@ function CommunityPostBox({ post, currentUser }: CommunityPostBoxProps) {
         setNewComment('');  // 새 댓글 입력창 초기화
     };
 
-    const handleClick = (id: number) => {
+    const handleClick = (e: React.MouseEvent, id: number) => {
+        if (window.getSelection()?.toString()) {
+            return;
+        }
         navigate(`/community/detail/${id}`);
     };
 
@@ -76,7 +79,7 @@ function CommunityPostBox({ post, currentUser }: CommunityPostBoxProps) {
 
     return (
         <div className="post-box" >
-            <div className="post-details" onClick={() => handleClick(post.id)}>
+            <div className="post-details" onClick={(e) => handleClick(e, post.id)}>
                 {/* 게시물 카테고리 */}
                 <p className="post-category">{post.category}</p>
                 {/* 게시물 제목 */}
