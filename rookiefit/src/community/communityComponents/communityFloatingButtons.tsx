@@ -1,11 +1,10 @@
-import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
 interface CommunityFloatingButtonsProps {
     onScrollToTop: () => void;
 }
 
-const CommunityFloatingButtons: React.FC<CommunityFloatingButtonsProps> = ({ onScrollToTop }) => {
+function CommunityFloatingButtons({ onScrollToTop }: CommunityFloatingButtonsProps) {
     const navigate = useNavigate();
 
     const handleWritePost = () => {
@@ -23,6 +22,6 @@ const CommunityFloatingButtons: React.FC<CommunityFloatingButtonsProps> = ({ onS
             <button onClick={handleSearch} className="community-floating-search-button"></button>
         </div>
     );
-};
+}
 
 export default CommunityFloatingButtons;
