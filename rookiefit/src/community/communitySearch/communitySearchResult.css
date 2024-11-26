@@ -1,0 +1,18 @@
+.search-result-title {
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.no-result-message,
+.loading-message,
+.error-message {
+    text-align: center;
+    font-size: 18px;
+    color: #666;
+    margin-top: 40px;
+}
+
+.error-message {
+    color: #ff4444;
+}

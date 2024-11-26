@@ -54,18 +54,14 @@
 .post-images-wrapper {
     display: flex;
     overflow-x: auto;
-    /* 가로 스크롤 가능 */
     gap: 15px;
     margin-bottom: 20px;
     white-space: nowrap;
-    /* 이미지가 중간에 비지 않도록 설정 */
 }
 
 .post-image {
     flex-shrink: 0;
-    /* 이미지가 축소되지 않도록 설정 */
     width: 32%;
-    /* 이미지 크기 */
     height: 220px;
     background-size: cover;
     background-position: center;
@@ -75,12 +71,10 @@
 
 .post-images-wrapper::-webkit-scrollbar {
     height: 8px;
-    /* 스크롤바 높이 */
 }
 
 .post-images-wrapper::-webkit-scrollbar-thumb {
     background-color: rgba(0, 0, 0, 0.5);
-    /* 스크롤바 색상 */
     border-radius: 4px;
 }
 
@@ -95,4 +89,86 @@
     margin-bottom: 20px;
     line-height: 1.6;
     text-align: justify;
+}
+
+/* 댓글 열고 닫기 버튼 스타일 */
+.community-comment-slide-button {
+    background-color: #000000;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-size: 1rem;
+    border: none;
+    cursor: pointer;
+    position: absolute;
+    right: 25px;
+    bottom: 10px;
+}
+
+/* 댓글 섹션 */
+.comments-section {
+    display: none;
+    /* 기본적으로 댓글 섹션을 숨김 */
+    margin-top: 20px;
+}
+
+/* 댓글 섹션 열렸을 때 */
+.comments-section.open {
+    display: block;
+    /* 'open' 클래스가 있을 때만 댓글 섹션을 표시 */
+}
+
+/* 댓글 입력창 스타일 */
+.community-new-comment-input {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    font-size: 1rem;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    box-sizing: border-box;
+}
+
+/* 댓글 목록 */
+.comment {
+    background-color: #e8e8e8;
+    border-radius: 10px;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+/* 댓글 수정, 삭제 버튼 스타일 */
+.comment-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+/* 댓글 섹션 열림 시 */
+.comments-section.open {
+    display: block;
+    /* 댓글 섹션을 보여줌 */
+    padding-top: 15px;
+    /* 댓글 섹션과 버튼 사이의 여백 */
+}
+
+/* 댓글 버튼 스타일 */
+.community-comment-write-button {
+    background-color: #000000;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-size: 1rem;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 0.5vw;
+}
+
+.community-comment-button:hover {
+    background-color: #000000;
+}
+
+.comment-actions button:hover {
+    background-color: #c0392b;
 }
