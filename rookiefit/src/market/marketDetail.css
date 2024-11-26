@@ -128,19 +128,19 @@
 .market-detail-info-label {
     flex: 0.3;
     color: #666;
-    font-size: 14px;
+    font-size: 0.8vw;
 }
 
 .market-detail-info-value {
     flex: 0.7;
     color: #333;
-    font-size: 14px;
+    font-size: 0.8vw;
 }
 
 .market-detail-description {
     margin: 16px 0;
     color: #333;
-    font-size: 14px;
+    font-size: 1vw;
     line-height: 1.6;
 }
 
@@ -150,7 +150,7 @@
     background-color: #f0f0f0;
     border: none;
     border-radius: 8px;
-    font-size: 16px;
+    font-size: 1.2vw;
     font-weight: bold;
     cursor: pointer;
     margin-top: auto;

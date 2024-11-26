@@ -31,8 +31,11 @@ const MarketItemList = () => {
         setCurrentPage(newPage);
     };
 
-    // 아이템 클릭 핸들러
-    const handleClick = (id: number) => {
+    const handleCardClick = (e: React.MouseEvent, id: number) => {
+        // 텍스트가 선택되어 있다면 클릭 이벤트 무시
+        if (window.getSelection()?.toString()) {
+            return;
+        }
         navigate(`/market/detail/${id}`);
     };
 
@@ -43,14 +46,17 @@ const MarketItemList = () => {
                     <div
                         key={item.id}
                         className="market-item-list-grid-card"
-                        onClick={() => handleClick(item.id)} // 각 아이템의 ID 전달
+                        onClick={(e) => handleCardClick(e, item.id)}
                     >
                         <img src={item.image} alt={item.title} className="market-item-list-grid-image" />
                         <div className="market-item-list-grid-details">
                             <p className="market-item-category">{item.category}</p>
                             <h3>{item.title}</h3>
+                            <p className="market-item-timestamp">{item.timestamp}</p>
                             <p className="market-item-location">{item.location}</p>
-                            <p className="market-item-price"><strong>₩{item.price.toLocaleString()}</strong></p>
+                            <p className="market-item-price">
+                                <strong>₩{item.price.toLocaleString()}</strong>
+                            </p>
                         </div>
                     </div>
                 ))}

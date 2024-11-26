@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import './imageUploaderMany.css'
 interface ImageUploaderProps {
     maxImages: number;
 }
@@ -19,8 +20,8 @@ const ImageUploaderMany = ({ maxImages }: ImageUploaderProps) => {
     };
 
     return (
-        <div className="image-uploader">
-            <label className="image-upload-label">
+        <div className="image-uploader-many">
+            <label className="image-uploader-many-label">
                 <input
                     type="file"
                     multiple
@@ -29,11 +30,11 @@ const ImageUploaderMany = ({ maxImages }: ImageUploaderProps) => {
                     disabled={images.length >= maxImages}
                     style={{ display: 'none' }}
                 />
-                <span>이미지 업로드 ({images.length}/{maxImages})</span>
+                <span className="upload-icon">이미지 업로드 ({images.length}/{maxImages})</span>
             </label>
-            <div className="image-preview-grid">
+            <div className="image-uploader-many-preview-grid">
                 {images.map((image, index) => (
-                    <div key={index} className="image-preview">
+                    <div key={index} className="image-uploader-many-preview">
                         <img src={URL.createObjectURL(image)} alt={`Preview ${index}`} />
                         <button onClick={() => handleImageRemove(index)}>삭제</button>
                     </div>
