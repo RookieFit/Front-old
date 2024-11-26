@@ -42,6 +42,10 @@ const MarketDetail = () => {
         }
     }
 
+    const handleChat = () => {
+        navigate('/market/chat')
+    }
+
     if (!selectedItem) {
         return <div className="market-detail-error">상품을 찾을 수 없습니다.</div>;
     }
@@ -90,7 +94,7 @@ const MarketDetail = () => {
 
                     <div className="market-detail-description">{selectedItem.description}</div>
 
-                    <button className="market-detail-inquiry-button">
+                    <button className="market-detail-inquiry-button" onClick={handleChat}>
                         거래 문의 및 채팅
                     </button>
 

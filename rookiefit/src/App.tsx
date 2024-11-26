@@ -19,6 +19,7 @@ import MarketDetail from './market/marketDetail';
 import MarketPost from './market/marketPost';
 import CommunitySearch from './community/communitySearch/communitySearch'; // CommunitySearch import 추가
 import CommunitySearchResult from './community/communitySearch/communitySearchResult'; // 검색 결과 페이지 추가
+import MarketChatPage from './market/marketChatPage';
 
 function App() {
   return (
@@ -57,6 +58,7 @@ function App() {
           <Route path="/market" element={<MarketPage />} />
           <Route path="/market/detail/:id" element={<MarketDetail />} />
           <Route path="/market/write" element={<MarketPost />} />
+          <Route path="/market/chat" element={<MarketChatPage />} />
         </Routes>
       </div>
     </BrowserRouter>

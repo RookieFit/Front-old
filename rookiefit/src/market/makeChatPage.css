@@ -1,0 +1,75 @@
+.market-chat-page-wrapper {
+    width: 80%;
+    height: 60%;
+    margin: 0 auto;
+    background-color: #fff;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.chat-wrapper {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    background-color: #f8f8f8;
+}
+
+.chat-header {
+    padding: 16px;
+    background-color: #fff;
+    border-bottom: 1px solid #eee;
+}
+
+.chat-messages {
+    flex: 1;
+    padding: 16px;
+    overflow-y: auto;
+    /* 스크롤 가능하도록 설정 */
+    max-height: calc(100vh - 140px);
+    /* 헤더와 입력창 높이를 제외한 나머지 */
+}
+
+.chat-input-area {
+    padding: 16px;
+    background-color: #fff;
+    border-top: 1px solid #eee;
+    position: sticky;
+    /* 입력창 고정 */
+    bottom: 0;
+    /* 하단에 고정 */
+}
+
+.chat-message {
+    margin-bottom: 16px;
+}
+
+.message-content {
+    background-color: #fff;
+    padding: 12px;
+    border-radius: 8px;
+    max-width: 70%;
+    word-break: break-word;
+}
+
+.chat-input-area {
+    padding: 16px;
+    background-color: #fff;
+    border-top: 1px solid #eee;
+    display: flex;
+    gap: 8px;
+}
+
+.chat-input {
+    flex: 1;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    resize: none;
+}
+
+.chat-send-button {
+    padding: 8px 16px;
+    background-color: #f0f0f0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
