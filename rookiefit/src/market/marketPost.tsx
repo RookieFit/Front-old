@@ -5,7 +5,7 @@ import './marketPost.css';
 interface MarketPostForm {
     category: '판매' | '구매';
     title: string;
-    price: number;
+    price: number | string;
     condition: string;
     location: string;
     delivery: string;
@@ -17,7 +17,7 @@ const MarketPost = () => {
     const [formData, setFormData] = useState<MarketPostForm>({
         category: '판매',
         title: '',
-        price: 0,
+        price: '',
         condition: '새상품',
         location: '',
         delivery: '직거래',
@@ -56,7 +56,8 @@ const MarketPost = () => {
                     />
                 </div>
 
-                <div className="market-post-price">
+                <div className="market-detail-row">
+                    <span className="detail-label">가격</span>
                     <input
                         type="number"
                         name="price"
