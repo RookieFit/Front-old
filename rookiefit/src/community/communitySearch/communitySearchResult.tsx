@@ -1,27 +1,33 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import CommunityPostGrid from '../communityComponents/communityPostGrid';
-import { dummyPosts } from '../communityList/dummydata'; // dummyPosts 데이터 import
+import { dummyPosts } from '../communityList/dummydata';
+import './CommunitySearchResult.css';
 
 const CommunitySearchResult = (): JSX.Element => {
     const location = useLocation();
     const [filteredPosts, setFilteredPosts] = useState(dummyPosts);
     const [loading, setLoading] = useState<boolean>(false);
     const [error, setError] = useState<string | null>(null);
+    const [searchTerm, setSearchTerm] = useState('');
+    const [category, setCategory] = useState('전체');
 
     useEffect(() => {
         const searchParams = new URLSearchParams(location.search);
-        const searchTerm = searchParams.get('search') || '';
-        const category = searchParams.get('category') || '전체';
+        const searchTermFromUrl = searchParams.get('search') || '';
+        const categoryFromUrl = searchParams.get('category') || '전체';
+
+        setSearchTerm(searchTermFromUrl);
+        setCategory(categoryFromUrl);
 
         const fetchSearchResults = () => {
             setLoading(true);
             try {
                 const filtered = dummyPosts.filter((post) => {
-                    const matchesCategory = category === '전체' || post.category === category;
+                    const matchesCategory = categoryFromUrl === '전체' || post.category === categoryFromUrl;
                     const matchesSearchTerm =
-                        post.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                        post.content.toLowerCase().includes(searchTerm.toLowerCase());
+                        post.title.toLowerCase().includes(searchTermFromUrl.toLowerCase()) ||
+                        post.content.toLowerCase().includes(searchTermFromUrl.toLowerCase());
                     return matchesCategory && matchesSearchTerm;
                 });
                 setFilteredPosts(filtered);
@@ -36,13 +42,19 @@ const CommunitySearchResult = (): JSX.Element => {
         fetchSearchResults();
     }, [location.search]);
 
-    if (loading) return <p>로딩 중...</p>;
-    if (error) return <p>{error}</p>;
+    if (loading) return <p className="loading-message">로딩 중...</p>;
+    if (error) return <p className="error-message">{error}</p>;
 
     return (
         <div>
-            <h2>검색 결과</h2>
-            <CommunityPostGrid posts={filteredPosts} />
+            <h2 className="search-result-title">
+                "{category}" 카테고리에서 "{searchTerm}" 검색 결과입니다.
+            </h2>
+            {filteredPosts.length > 0 ? (
+                <CommunityPostGrid posts={filteredPosts} />
+            ) : (
+                <p className="no-result-message">검색 결과가 없습니다.</p>
+            )}
         </div>
     );
 };

@@ -6,8 +6,6 @@
     /* 상단 정렬 */
     align-items: center;
     /* 수평 중앙 정렬 */
-    padding: 2rem 1rem;
-    /* 더 넓은 여백 추가 */
     min-height: 100vh;
     /* 화면 전체 높이 설정 */
     text-align: center;

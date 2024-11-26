@@ -154,7 +154,7 @@ const CommunityList = () => {
                             <CommunityGridPost posts={currentPosts} />
                         ) : (
                             currentPosts.map((post, index) => (
-                                <CommunityPostBox key={`${post.id}-${index}`} post={post} />
+                                <CommunityPostBox key={`${post.id}-${index}`} post={post} currentUser={''} />
                             ))
                         )}
                     </div>

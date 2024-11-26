@@ -1,8 +1,8 @@
-type Category = '바프' | '고민' | '정보' | '친목' | '공지'; // '전체'를 제외한 카테고리
+type Category = '바프' | '고민' | '정보' | '친목' | '공지';
 
 type Comment = {
     id: number;
-    postId: number;
+    postId: string; // postId도 string으로 변경
     author: string;
     date: string;
     content: string;
@@ -36,7 +36,7 @@ export const dummyPosts = Array.from({ length: 100 }, (_, index) => {
         { length: Math.max(1, Math.floor(Math.random() * 5) + 1) },
         (_, commentIndex) => ({
             id: commentIndex + 1,
-            postId: index + 1,
+            postId: (index + 1).toString(), // postId를 string으로 변경
             author: `운동러 ${Math.floor(Math.random() * 100) + 1}`,
             date: `2024-11-${(commentIndex % 30) + 1}`,
             content: funComments[Math.floor(Math.random() * funComments.length)],
@@ -52,7 +52,7 @@ export const dummyPosts = Array.from({ length: 100 }, (_, index) => {
     );
 
     return {
-        id: index + 1,
+        id: (index + 1).toString(), // id를 string으로 변경
         category: randomCategory,
         title: `게시글 제목 ${index + 1}`,
         author: `작성자 ${index + 1}`,
@@ -66,8 +66,7 @@ export const dummyPosts = Array.from({ length: 100 }, (_, index) => {
          플레이어는 이들을 지휘하여 탐험하고 문제를 해결합니다. 
          최신작 '피크민 4'는 닌텐도 스위치용으로 출시되었고, 
          모바일 AR 게임 '피크민 블룸'은 현실 세계를 걸으며 즐기는 방식을 채택했습니다. 
-         이 게임 시리즈는 전략적 요소와 힐링 요소를 동시에 갖추고 있어 다양한 연령층에게 인기가 있습니다.
-`,
+         이 게임 시리즈는 전략적 요소와 힐링 요소를 동시에 갖추고 있어 다양한 연령층에게 인기가 있습니다.`,
         comments, // 댓글 배열
     };
 });

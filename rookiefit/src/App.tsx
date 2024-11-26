@@ -15,7 +15,6 @@ import FindPassword from './findPassword/findPassword';
 import FindIdResult from './findIdResult/findIdResult';
 import FoodPage from './food/foodPage';
 import MarketPage from './market/marketPage';
-import CommunitySearch from './community/communityComponents/communitySearch'; // CommunitySearch import 추가
 import MarketDetail from './market/marketDetail';
 import MarketPost from './market/marketPost';
 import CommunitySearch from './community/communitySearch/communitySearch'; // CommunitySearch import 추가

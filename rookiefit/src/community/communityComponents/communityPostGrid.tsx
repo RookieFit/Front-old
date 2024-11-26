@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './communityPostGrid.css'; // 스타일 파일
 import CommunityPagination from './communityPagination';
+import { useNavigate } from 'react-router-dom';
 
 export type Category = '전체' | '바프' | '고민' | '정보' | '친목' | '공지';
 
@@ -28,6 +29,8 @@ interface CommunityPostGridProps {
 }
 
 const CommunityPostGrid = ({ posts }: CommunityPostGridProps) => {
+    const navigate = useNavigate();
+
     const [currentPage, setCurrentPage] = useState(1);
     const postsPerPage = 9; // 한 페이지에 9개의 게시글 표시
 
@@ -35,6 +38,10 @@ const CommunityPostGrid = ({ posts }: CommunityPostGridProps) => {
     const indexOfLastPost = currentPage * postsPerPage;
     const indexOfFirstPost = indexOfLastPost - postsPerPage;
     const currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost);
+
+    const handleClick = (id: number) => {
+        navigate(`/community/detail/${id}`);
+    };
 
     // 페이지 변경 핸들러
     const handlePageChange = (newPage: number) => {
@@ -46,7 +53,11 @@ const CommunityPostGrid = ({ posts }: CommunityPostGridProps) => {
             {/* 그리드 레이아웃 */}
             <div className="post-grid">
                 {currentPosts.map((post) => (
-                    <div key={post.id} className="post-grid-item">
+                    <div
+                        key={post.id}
+                        className="post-grid-item"
+                        onClick={() => handleClick(post.id)} // 게시글의 id를 전달
+                    >
                         <div className="post-grid-header">
                             {post.images[0] && (
                                 <img
