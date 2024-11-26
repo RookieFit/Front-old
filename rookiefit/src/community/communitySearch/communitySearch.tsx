@@ -1,17 +1,20 @@
 import React, { useState } from 'react';
-import './CommunitySearch.css'; // 스타일 파일 import
+import { useNavigate } from 'react-router-dom';
+import './CommunitySearch.css';
 
 const CommunitySearch = () => {
     const [searchTerm, setSearchTerm] = useState('');
     const [category, setCategory] = useState('전체');
+    const navigate = useNavigate();
 
-    const handleSearch = () => {
-        console.log(`검색어: ${searchTerm}, 카테고리: ${category}`);
-        // 검색 로직 구현
+    // e의 타입을 명시적으로 지정
+    const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        navigate(`/community/searchresult?search=${encodeURIComponent(searchTerm)}&category=${encodeURIComponent(category)}`);
     };
 
     return (
-        <div className="community-search">
+        <form className="community-search" onSubmit={handleSearch}>
             <div className="search-bar">
                 <select
                     value={category}
@@ -30,10 +33,9 @@ const CommunitySearch = () => {
                     onChange={(e) => setSearchTerm(e.target.value)}
                     className="search-input"
                 />
-                <button onClick={handleSearch} className="search-button">
-                </button>
+                <button type="submit" className="search-button"></button>
             </div>
-        </div>
+        </form>
     );
 };
 

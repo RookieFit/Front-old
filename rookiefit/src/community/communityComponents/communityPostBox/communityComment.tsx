@@ -32,7 +32,7 @@ function CommunityComment({ comment, currentUser, onDelete, onEdit }: CommentPro
     return (
         <div className="community-comment">
             <p>
-                <strong>{comment.author}</strong> ({comment.date}):
+                <strong>{comment.author}</strong> ({comment.date})
             </p>
 
             {isEditing ? (

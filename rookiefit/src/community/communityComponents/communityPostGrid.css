@@ -13,11 +13,6 @@
     overflow: hidden;
     background-color: #fff;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease;
-}
-
-.post-grid-item:hover {
-    transform: translateY(-5px);
 }
 
 .post-grid-header {
