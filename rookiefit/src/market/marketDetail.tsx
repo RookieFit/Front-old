@@ -1,74 +1,114 @@
 import React from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import './marketDetail.css';
-import { marketItems } from './marketData';
+import { deleteMarketItem, marketItems } from './marketData';
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+
+interface InfoRowProps {
+    label: string;
+    value: string;
+}
+
+const InfoRow = ({ label, value }: InfoRowProps) => (
+    <div className="market-detail-info-row">
+        <span className="market-detail-info-label">{label}</span>
+        <span className="market-detail-info-value">{value}</span>
+    </div>
+);
 
 const MarketDetail = () => {
-    // URL 파라미터에서 상품 ID를 가져옴
     const { id } = useParams<{ id: string }>();
-    // ID와 일치하는 상품 정보를 찾음
+    const navigate = useNavigate();  // 페이지 이동을 위한 navigate 훅
     const selectedItem = marketItems.find(item => item.id === Number(id));
 
-    // 상품이 없을 경우 에러 메시지 표시
+    const settings = {
+        dots: true,
+        infinite: true,
+        speed: 500,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        arrows: true
+    };
+
+    const handleDelete = () => {
+        if (selectedItem) {
+            deleteMarketItem(selectedItem.id);  // 데이터 삭제
+            alert("상품이 삭제되었습니다.");
+            navigate('/market');  // 삭제 후 시장 목록 페이지로 이동
+        }
+    }
+
     if (!selectedItem) {
-        return <div>상품을 찾을 수 없습니다.</div>;
+        return <div className="market-detail-error">상품을 찾을 수 없습니다.</div>;
     }
 
     return (
-        // 전체 페이지 래퍼
         <div className="market-detail-wrapper">
-            {/* 상단 헤더 영역 */}
             <div className="market-detail-header">
+                <h1>상품 상세 정보</h1>
             </div>
 
-            {/* 메인 컨텐츠 영역 */}
             <div className="market-detail-content">
-                {/* 상품 이미지 영역 */}
+                {/* 이미지 영역 */}
                 <div className="market-detail-image">
-                    <img src={selectedItem.image} alt={selectedItem.title} />
+                    <Slider {...settings}>
+                        {selectedItem.images?.map((image: string, index: number) => (
+                            <div key={index}>
+                                <img src={image} alt={`${selectedItem.title} ${index + 1}`} />
+                            </div>
+                        ))}
+                    </Slider>
                 </div>
 
-                {/* 상품 정보 영역 */}
+                {/* 정보 영역 */}
                 <div className="market-detail-info">
-                    {/* 기본 정보 (카테고리, 제목, 유저정보, 가격) */}
                     <div className="market-detail-main-info">
                         <div className="market-detail-title-section">
-                            <span className="market-detail-category-tag">{selectedItem.category}</span>
+                            <span className="market-detail-category-tag">
+                                {selectedItem.category}
+                            </span>
                             <h2>{selectedItem.title}</h2>
                         </div>
-                        {/* 판매자 정보와 등록 시간 */}
                         <div className="market-detail-user-info">
                             <div className="market-detail-user-name">{selectedItem.userName}</div>
                             <div className="market-detail-timestamp">{selectedItem.timestamp}</div>
                         </div>
-                        <h3 className="market-detail-price">₩{selectedItem.price.toLocaleString()}</h3>
+                        <h3 className="market-detail-price">
+                            ₩{selectedItem.price.toLocaleString()}
+                        </h3>
                     </div>
 
-                    {/* 상품 상세 정보 테이블 */}
                     <div className="market-detail-info-table">
-                        <div className="market-detail-info-row">
-                            <span className="market-detail-info-label">상품상태</span>
-                            <span className="market-detail-info-value">{selectedItem.condition}</span>
-                        </div>
-                        <div className="market-detail-info-row">
-                            <span className="market-detail-info-label">배송방법</span>
-                            <span className="market-detail-info-value">{selectedItem.delivery}</span>
-                        </div>
-                        <div className="market-detail-info-row">
-                            <span className="market-detail-info-label">거래지역</span>
-                            <span className="market-detail-info-value">{selectedItem.location}</span>
-                        </div>
+                        <InfoRow label="상품상태" value={selectedItem.condition} />
+                        <InfoRow label="배송방법" value={selectedItem.delivery} />
+                        <InfoRow label="거래지역" value={selectedItem.location} />
                     </div>
 
-                    {/* 상품 설명 */}
-                    <div className="market-detail-description">
-                        {selectedItem.description}
-                    </div>
+                    <div className="market-detail-description">{selectedItem.description}</div>
 
-                    {/* 채팅 버튼 */}
                     <button className="market-detail-inquiry-button">
                         거래 문의 및 채팅
                     </button>
+
+                    {/* 수정/삭제 버튼 */}
+                    <div className="market-detail-author-buttons">
+                        <button
+                            className="market-detail-edit-button"
+                            onClick={() => alert("수정 페이지로 이동합니다.")}
+                        >
+                            수정
+                        </button>
+                        <button
+                            className="market-detail-delete-button"
+                            onClick={handleDelete}
+                        >
+                            삭제
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
