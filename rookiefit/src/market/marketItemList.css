@@ -49,27 +49,41 @@
     /* 이미지와 텍스트 간격 */
     width: 100%;
     /* 텍스트 영역이 남은 공간 차지 */
+    user-select: text;
+    /* 텍스트 선택 허용 */
 }
 
 .market-item-category {
-    font-size: 0.9rem;
-    font-weight: bold;
-    color: #555;
-    margin-bottom: 8px;
-    /* 카테고리와 제목 간격 */
+    display: inline-block;
+    padding: 4px 8px;
+    margin: 13px 0 5px 2px;
+    background-color: #e8fff3;
+    /* 연두색 배경으로 변경 */
+    color: #00b56f;
+    /* 연두색 텍스트로 변경 */
+    border-radius: 4px;
+    font-size: 14px;
+    width: fit-content;
 }
 
 .market-item-list-grid-details h3 {
     font-size: 1.2rem;
-    margin: 0 0 8px;
+    margin: 0 0 2px;
     /* 제목과 위치 간격 */
     color: #333;
+}
+
+.market-item-timestamp {
+    font-size: 12px;
+    color: #666;
+    margin-top: 1px;
 }
 
 .market-item-location {
     font-size: 0.9rem;
     color: #777;
-    margin-bottom: 16px;
+    margin-top: 1px;
+    margin-bottom: 4px;
     /* 위치와 가격 간격 */
 }
 

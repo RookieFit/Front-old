@@ -23,7 +23,7 @@ export const marketItems: MarketItem[] = [
         condition: '거의 새것',
         delivery: '직거래 및 택배',
         description: '웨이트 전용 아령 팝니다.\n딱 웨이트룸 왔어나 갈까 되었습니다 거의 새 제품이에요\n부산에서 직거래나 택배면 택배비 희망합니다! 채팅주세요',
-        timestamp: '2024.11.04 오전 11:41 57분',
+        timestamp: '2024.11.04',
         userName: '똥똥한 토끼'
     },
     {
@@ -36,7 +36,7 @@ export const marketItems: MarketItem[] = [
         condition: '거의 새것',
         delivery: '직거래 및 택배',
         description: '맥북 프로 16인치 판매합니다. 구매한지 3개월 되었고 상태 매우 좋습니다.',
-        timestamp: '2024.11.25 오후 11:57',
+        timestamp: '2024.11.25',
         userName: '행복한 사자'
     },
     {
@@ -49,7 +49,7 @@ export const marketItems: MarketItem[] = [
         condition: '중고',
         delivery: '택배만 가능',
         description: '따뜻한 겨울 코트입니다. 작년에 구매했고 몇 번 착용했습니다.',
-        timestamp: '2024.11.25 오후 10:30',
+        timestamp: '2024.11.25',
         userName: '즐거운 곰돌이'
     },
     {
@@ -62,7 +62,7 @@ export const marketItems: MarketItem[] = [
         condition: '새제품',
         delivery: '직거래',
         description: '원목 책상 판매합니다. 조립은 했지만 사용하지 않은 새제품입니다.',
-        timestamp: '2024.11.25 오후 09:15',
+        timestamp: '2024.11.25',
         userName: '신나는 판다'
     },
     {
@@ -75,7 +75,7 @@ export const marketItems: MarketItem[] = [
         condition: '중고',
         delivery: '직거래만 가능',
         description: '러닝머신 판매합니다. 6개월 사용했고 상태 좋습니다.',
-        timestamp: '2024.11.25 오후 08:45',
+        timestamp: '2024.11.25',
         userName: '건강한 기린'
     },
     {
@@ -88,7 +88,7 @@ export const marketItems: MarketItem[] = [
         condition: '중고',
         delivery: '직거래 및 택배',
         description: '벽걸이 에어컨 판매합니다. 작동 상태 좋습니다.',
-        timestamp: '2024.11.25 오후 07:30',
+        timestamp: '2024.11.25',
         userName: '시원한 펭귄'
     },
     {
@@ -101,7 +101,7 @@ export const marketItems: MarketItem[] = [
         condition: '무관',
         delivery: '직거래 선호',
         description: '스탠드 조명 구매하고 싶습니다. 상태 좋은 제품이면 좋겠습니다.',
-        timestamp: '2024.11.25 오후 06:20',
+        timestamp: '2024.11.25',
         userName: '밝은 햇님'
     },
     {
@@ -114,7 +114,7 @@ export const marketItems: MarketItem[] = [
         condition: '중고가능',
         delivery: '직거래',
         description: '통기타 구매합니다. 초급자용으로 적당한 제품 찾습니다.',
-        timestamp: '2024.11.25 오후 05:10',
+        timestamp: '2024.11.25',
         userName: '음악하는 고양이'
     },
     {
@@ -127,7 +127,7 @@ export const marketItems: MarketItem[] = [
         condition: '거의 새것',
         delivery: '택배만 가능',
         description: '소설책 세트 판매합니다. 한 번씩만 읽은 상태입니다.',
-        timestamp: '2024.11.25 오후 04:00',
+        timestamp: '2024.11.25',
         userName: '책읽는 여우'
     },
     {
@@ -140,7 +140,7 @@ export const marketItems: MarketItem[] = [
         condition: '새제품만',
         delivery: '직거래',
         description: '금목걸이 구매합니다. 새제품만 구매하고 싶습니다.',
-        timestamp: '2024.11.25 오후 03:45',
+        timestamp: '2024.11.25',
         userName: '반짝이는 별'
     },
     {
@@ -153,7 +153,7 @@ export const marketItems: MarketItem[] = [
         condition: '거의 새것',
         delivery: '직거래 및 택배',
         description: '아이패드 프로 최신형 판매합니다. 구매한지 1개월 되었습니다.',
-        timestamp: '2024.11.25 오후 02:30',
+        timestamp: '2024.11.25',
         userName: '디지털 달인'
     },
     {
@@ -166,7 +166,7 @@ export const marketItems: MarketItem[] = [
         condition: '중고',
         delivery: '직거래',
         description: '감귤 100Kg 팝니다. 맛있어요',
-        timestamp: '2024.11.26 오전 02:30',
+        timestamp: '2024.11.26',
         userName: '감귤싫어'
     }
 ];

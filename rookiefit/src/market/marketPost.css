@@ -15,12 +15,12 @@
 
 .market-post-header {
     display: flex;
-    gap: 12px;
+    gap: 10px;
     margin-bottom: 20px;
 }
 
 .market-category-select {
-    width: 100px;
+    width: 110px;
     padding: 8px;
     border: 1px solid #ddd;
     border-radius: 4px;
@@ -60,20 +60,24 @@
 .market-post-description {
     width: 100%;
     min-height: 200px;
-    margin-top: 20px;
+    margin-top: 5px;
     border: 1px solid #ddd;
     border-radius: 4px;
+    /*기본padding 제거*/
+    padding: 12px;
+    /* 내부 여백 추가 */
     resize: none;
+    box-sizing: border-box;
 }
 
 .market-post-submit {
     width: 100%;
     padding: 12px;
-    margin-top: 20px;
+    margin-top: 5px;
     background-color: #007bff;
     color: white;
     border: none;
-    border-radius: 4px;
+    border-radius: 8px;
     cursor: pointer;
 }
 
