@@ -19,7 +19,7 @@
     margin-bottom: 20px;
 }
 
-.market-category-select {
+.market-post-category-select {
     width: 110px;
     padding: 8px;
     border: 1px solid #ddd;
@@ -37,20 +37,20 @@
     margin: 20px 0;
 }
 
-.market-detail-row {
+.market-post-detail-row {
     display: flex;
     align-items: center;
     padding: 12px 0;
     border-bottom: 1px solid #eee;
 }
 
-.detail-label {
+.market-post-detail-label {
     width: 120px;
     color: #666;
 }
 
-.market-detail-row select,
-.market-detail-row input {
+.market-post-detail-row select,
+.market-post-detail-row input {
     flex: 1;
     padding: 8px;
     border: 1px solid #ddd;

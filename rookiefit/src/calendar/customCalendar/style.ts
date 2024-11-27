@@ -3,26 +3,41 @@ import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 
 // 캘린더를 감싸주는 스타일
+// StyledCalendarWrapper 수정
 export const StyledCalendarWrapper = styled.div`
   .react-calendar { 
     margin: 0.8vw auto;
     width: 100%;
     max-width: 35vw;  /* 최대 크기 제한 */
+    height: 32vw; /* 고정된 높이 */
     border: none;
     border-radius: 1rem;
     box-shadow: 4px 2px 10px 0px rgba(0, 0, 0, 0.13);
     padding: 0.7vw 1vw;
     background-color: white;
-    font-size: 18px;
-    line-height: 3.5vw;
+    font-size: 1.1rem;
+    line-height: 3.3rem; /* 텍스트 크기 조정 */
+    display: flex;
+    flex-direction: column;
   }
 
   .react-calendar__month-view__weekdays__weekday {
     color: #000;
-    font-size: 18px;
+    font-size: 1rem;
     font-weight: bold;
-    margin-bottom: 0.7vw;
-    border-bottom: none;
+    margin-bottom: 0.5vw;
+  }
+
+  .react-calendar__month-view__days__day {
+    height: calc((100% - 4rem) / 6); /* 높이를 6주 기준으로 계산 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+
+  .react-calendar__navigation {
+    margin-bottom: 0.5rem;
   }
 
   /* 오늘 날짜 */
@@ -30,31 +45,17 @@ export const StyledCalendarWrapper = styled.div`
     background-color: #F05650;
     opacity: 0.6;
     color: #000;
-    font-size: 18px;
+    font-size: 1rem;
     font-weight: bold;
     border-radius: 20px;
   }
 
-  /* 오늘 날짜에 마우스 오버 시 색상 변경 제거 */
-  .react-calendar__tile--now:hover {
-    background-color: #292929;
-    color: #000;
-  }
-
-  /* 선택된 날짜의 배경색 변경 */
+  /* 선택된 날짜 */
   .react-calendar__tile--active {
     background-color: #77E4C8;
     color: #000;
     font-weight: bold;
     border-radius: 20px;
-  }
-
-  .react-calendar__tile--hasActive {
-    background: #77E4C8;
-  }
-
-  .react-calendar__tile--active:enabled:hover, .react-calendar__tile--active:enabled:focus {
-    background: #77E4C8;
   }
 
   .react-calendar__tile:enabled:hover,
@@ -70,18 +71,21 @@ export const StyledCalendarWrapper = styled.div`
     font-weight: 800;
     font-size: 1.5rem;
   }
-`
-// 캘린더를 불러옴
-export const StyledCalendar = styled(Calendar)`
 `;
 
+// 타일에 마커 스타일 추가
 export const StyledDot = styled.div`
   background-color: #000;
   border-radius: 50%;
   width: 0.3rem;
   height: 0.3rem;
   position: absolute;
-  top: 60%;
+  top: 70%;
   left: 50%;
   transform: translateX(-50%);
+`;
+
+
+// 캘린더를 불러옴
+export const StyledCalendar = styled(Calendar)`
 `;

@@ -51,7 +51,7 @@ function CommunityPostBox({ post, currentUser }: CommunityPostBoxProps) {
         setNewComment('');  // 새 댓글 입력창 초기화
     };
 
-    const handleClick = (e: React.MouseEvent, id: number) => {
+    const handleClick = (_e: React.MouseEvent, id: number) => {
         if (window.getSelection()?.toString()) {
             return;
         }
