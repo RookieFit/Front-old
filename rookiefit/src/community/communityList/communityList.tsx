@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import CommunityHeader from '../communityComponents/communityHeader';
 import CommunityCategories from '../communityComponents/communityCategories';
 import CommunityPostBox from '../communityComponents/communityPostBox/communityPostBox';
 import CommunityGridPost from '../communityComponents/communityPostGrid';
-import CommunityFloatingButtons from '../communityComponents/communityFloatingButtons'; // 추가된 import
+import CommunityFloatingButtons from '../communityComponents/communityFloatingButtons';
 import { dummyPosts } from './dummydata';
 import './communityList.css';
 
@@ -28,27 +28,55 @@ const CommunityList = () => {
 
     const [selectedCategory, setSelectedCategory] = useState<Category>(getInitialCategory());
     const [isGridMode, setIsGridMode] = useState<boolean>(getInitialMode());
-    const [filteredPosts, setFilteredPosts] = useState<typeof dummyPosts>([]);
+    const [loadedPosts, setLoadedPosts] = useState<typeof dummyPosts>([]); // 현재 로드된 게시물
+    const [isLoading, setIsLoading] = useState<boolean>(false); // 로딩 상태
 
+    // 게시물을 카테고리별로 필터링
     useEffect(() => {
         const filtered = selectedCategory === '전체'
-            ? dummyPosts
-            : dummyPosts.filter((post) => post.category === selectedCategory);
-        setFilteredPosts(filtered);
+            ? dummyPosts.slice(0, 10) // 처음 10개만
+            : dummyPosts.filter((post) => post.category === selectedCategory).slice(0, 10);
+        setLoadedPosts(filtered);
     }, [selectedCategory]);
 
-    useEffect(() => {
-        const params = new URLSearchParams(location.search);
-        const categoryFromUrl = params.get('category') as Category;
-        const modeFromUrl = params.get('mode');
+    // 스크롤바가 바닥에 도달했을 때 게시물 추가 로딩
+    const loadMorePosts = useCallback(() => {
+        if (isLoading) return; // 로딩 중이면 추가 로딩 방지
+        setIsLoading(true);
 
-        if (categoryFromUrl && CATEGORIES.includes(categoryFromUrl)) {
-            setSelectedCategory(categoryFromUrl);
+        setTimeout(() => {
+            const startIdx = loadedPosts.length;
+            const newPosts = selectedCategory === '전체'
+                ? dummyPosts.slice(startIdx, startIdx + 10)
+                : dummyPosts.filter((post) => post.category === selectedCategory).slice(startIdx, startIdx + 10);
+
+            setLoadedPosts((prevPosts) => [...prevPosts, ...newPosts]);
+            setIsLoading(false);
+        }, 3000); // 3초 지연
+    }, [isLoading, loadedPosts, selectedCategory]);
+
+    // IntersectionObserver를 사용하여 스크롤이 끝에 도달했을 때 추가 로드
+    useEffect(() => {
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                if (entry.isIntersecting) {
+                    loadMorePosts(); // 스크롤이 끝에 도달했을 때 게시물 추가
+                }
+            },
+            {
+                rootMargin: '100px', // 스크롤이 100px 남았을 때 로드 시작
+            }
+        );
+        const sentinel = document.getElementById('sentinel');
+        if (sentinel) {
+            observer.observe(sentinel);
         }
-        if (modeFromUrl === 'grid' || modeFromUrl === 'list') {
-            setIsGridMode(modeFromUrl === 'grid');
-        }
-    }, [location.search]);
+        return () => {
+            if (sentinel) {
+                observer.unobserve(sentinel);
+            }
+        };
+    }, [loadMorePosts]);
 
     const handleCategoryClick = (category: Category) => {
         setSelectedCategory(category);
@@ -61,13 +89,16 @@ const CommunityList = () => {
         navigate(`/community?category=${selectedCategory}&mode=${newMode}`);
     };
 
-    // 게시글 클릭 시 상세 페이지로 이동하는 코드 제거
-    // const handlePostClick = (id: number) => {
-    //     navigate(`/community/detail/${id}`);
-    // };
-
     const scrollToTop = () => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
+    };
+
+    const handleWritePost = () => {
+        navigate('/community/write');
+    };
+
+    const handleSearch = () => {
+        navigate('/community/search');
     };
 
     return (
@@ -89,20 +120,26 @@ const CommunityList = () => {
                     </button>
                     <div className="post-list">
                         {isGridMode ? (
-                            <CommunityGridPost posts={filteredPosts} />
+                            <CommunityGridPost posts={loadedPosts} />
                         ) : (
-                            filteredPosts.map((post) => (
+                            loadedPosts.map((post) => (
                                 <div key={post.id}>
                                     <CommunityPostBox post={post} currentUser={''} />
                                 </div>
                             ))
                         )}
                     </div>
+                    {isLoading && <div className="loading">로딩 중...</div>}
                 </div>
             </div>
 
-            {/* CommunityFloatingButtons 컴포넌트 추가 */}
-            <CommunityFloatingButtons onScrollToTop={scrollToTop} />
+            <div id="sentinel"></div> {/* IntersectionObserver의 타겟 */}
+
+            <CommunityFloatingButtons
+                onScrollToTop={scrollToTop}
+                onWritePost={handleWritePost}
+                onSearch={handleSearch}
+            />
         </div>
     );
 };

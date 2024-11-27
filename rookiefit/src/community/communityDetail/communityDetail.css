@@ -1,87 +1,200 @@
+/* 전체 게시글 박스 스타일 */
 .community-detail-wrapper {
-    display: flex;
-    flex-direction: column;
-    padding: 2vw 10vw;
-    background-color: #f8f8f8;
+    width: 1282px;
+    max-width: 100%;
+    margin: 20px auto;
 }
 
 .community-detail-container {
-    width: 60%;
-    margin: auto;
-    padding: 40px;
-    background-color: #ffffff;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+    background-color: #f4f4f4;
+    border-radius: 12px;
+    padding: 30px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
 }
 
-.community-detail-header {
-    border-bottom: 1px solid #ddd;
-    margin-bottom: 20px;
-    padding-bottom: 10px;
-}
-
+/* 게시글 카테고리 */
 .community-detail-category {
-    font-size: 18px;
-    color: #555;
+    font-size: 1rem;
+    font-weight: bold;
+    color: #161616;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+}
+
+/* 게시글 제목 */
+.community-detail-title-edit {
+    width: 100%;
+    font-size: 1.5rem;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background-color: #f7f7f7;
+    /* 수정모드 배경색 */
+    color: #333;
+    margin-bottom: 20px;
+    outline: none;
+    box-sizing: border-box;
+    transition: all 0.3s ease;
 }
 
 .community-detail-title {
-    font-size: 24px;
-    margin: 10px 0;
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 15px;
+    color: #2c3e50;
+    line-height: 1.4;
+    text-align: center;
 }
 
-.community-detail-author-time {
-    font-size: 14px;
-    color: #999;
-}
-
-.community-detail-body .content {
-    margin: 20px 0;
-    line-height: 1.6;
-}
-
-.community-detail-image-container {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    /* 한 줄에 3개의 이미지 */
-    gap: 20px;
+/* 게시물 본문 */
+.community-detail-content {
+    font-size: 1.1rem;
+    color: #555;
     margin-bottom: 20px;
+    line-height: 1.6;
+    text-align: justify;
+}
+
+.community-detail-content-edit {
+    display: block;
+    width: 100%;
+    min-height: 150px;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background-color: #f7f7f7;
+    /* 수정모드 배경색 */
+    font-size: 1.1rem;
+    color: #333;
+    box-sizing: border-box;
+    resize: none;
+    margin-bottom: 20px;
+    transition: all 0.3s ease;
+}
+
+/* 이미지 스타일 */
+.community-detail-image-container {
+    display: flex;
+    overflow-x: auto;
+    gap: 15px;
+    margin-bottom: 20px;
+    white-space: nowrap;
 }
 
 .community-detail-post-image {
-    width: 100%;
-    height: 100%;
+    flex-shrink: 0;
+    width: 32%;
+    height: 220px;
     object-fit: cover;
+    border-radius: 10px;
+}
+
+/* 수정 및 삭제 버튼 */
+.community-detail-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.community-detail-edit-button,
+.community-detail-delete-button {
+    background-color: #000000;
+    color: white;
+    padding: 10px 15px;
     border-radius: 5px;
+    font-size: 1rem;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
+.community-detail-edit-button:hover,
+.community-detail-delete-button:hover {
+    background-color: #333333;
+}
+
+/* 수정 모드일 때 제목과 본문 스타일 */
+.editing-mode .community-detail-title {
+    display: none;
+    /* 제목 텍스트를 숨기고, 입력창으로 변경 */
+}
+
+.editing-mode .community-detail-content {
+    display: none;
+    /* 본문 텍스트를 숨기고, 입력창으로 변경 */
+}
+
+/* 댓글 섹션 */
 .community-detail-comment-section {
-    margin-top: 30px;
+    margin-top: 20px;
 }
 
-.community-detail-comment {
-    border-top: 1px solid #ddd;
-    padding: 10px 0;
+/* 댓글 입력창 스타일 */
+.community-new-comment-input {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    font-size: 1rem;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    box-sizing: border-box;
 }
 
+/* 댓글 작성 버튼 */
+.community-comment-button {
+    background-color: #000000;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-size: 1rem;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.community-comment-button:hover {
+    background-color: #333333;
+}
+
+/* 하단 버튼 스타일 */
 .community-detail-footer-buttons {
     display: flex;
-    justify-content: end;
-    gap: 0.5vw;
-    margin-top: 1vw;
+    justify-content: space-between;
+    margin-top: 20px;
 }
 
 .community-detail-go-back-button,
 .community-detail-top-button {
-    padding: 10px 20px;
-    background-color: #007bff;
+    background-color: #000000;
     color: white;
-    border: none;
+    padding: 10px 15px;
     border-radius: 5px;
+    font-size: 1rem;
+    border: none;
     cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
 .community-detail-go-back-button:hover,
 .community-detail-top-button:hover {
-    background-color: #0056b3;
+    background-color: #333333;
+}
+
+/* 수정 모드 버튼 스타일 */
+.community-detail-save-button {
+    background-color: #3498db;
+    /* 저장 버튼은 파란색 */
+    color: white;
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-size: 1rem;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.community-detail-save-button:hover {
+    background-color: #2980b9;
+    /* 호버시 색상 변경 */
 }

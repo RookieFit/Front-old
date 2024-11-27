@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import Comment from './communityComment';
-import PostImages from './postImages';
-import './communityPostBox.css';
+import Slider from 'react-slick';
 import { useNavigate } from 'react-router-dom';
+import Comment from './communityComment';
+import './communityPostBox.css';
 
 // Post 인터페이스 정의
 interface Post {
@@ -26,20 +26,30 @@ function CommunityPostBox({ post, currentUser }: CommunityPostBoxProps) {
     const navigate = useNavigate();
 
     // 댓글 섹션 열림/닫힘 상태 관리
-    const [isCommentOpen, setIsCommentOpen] = useState(false);  // 처음에 댓글 섹션은 닫혀 있음
-    // 댓글 목록 상태 관리
+    const [isCommentOpen, setIsCommentOpen] = useState(false);
     const [comments, setComments] = useState(post.comments);
-    // 새 댓글 입력 상태 관리
     const [newComment, setNewComment] = useState('');
+
+    // 슬라이더 설정
+    const settings = {
+        dots: true,
+        infinite: true,
+        speed: 500,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        arrows: true,
+        adaptiveHeight: true, // 이미지 크기에 맞게 슬라이드 높이 자동 조정
+    };
 
     // 댓글 섹션 토글 함수
     const handleCommentToggle = (e: React.MouseEvent<HTMLButtonElement>) => {
-        e.preventDefault();  // 기본 동작 방지 (페이지 이동 방지)
-        setIsCommentOpen((prev) => !prev);  // 댓글 열기/닫기 상태를 반전시킴
+        e.preventDefault();
+        setIsCommentOpen((prev) => !prev);
     };
 
     // 새 댓글 추가 함수
-    const handleAddComment = () => {
+    const handleAddComment = (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
         if (newComment.trim() === '') return;
         const newCommentObj = {
             id: Date.now(),
@@ -48,59 +58,71 @@ function CommunityPostBox({ post, currentUser }: CommunityPostBoxProps) {
             content: newComment,
         };
         setComments((prevComments) => [...prevComments, newCommentObj]);
-        setNewComment('');  // 새 댓글 입력창 초기화
+        setNewComment('');
     };
 
-    const handleClick = (_e: React.MouseEvent, id: number) => {
-        if (window.getSelection()?.toString()) {
-            return;
-        }
+
+    // 게시물 클릭 시 상세 페이지로 이동
+    const handleClick = (id: number) => {
         navigate(`/community/detail/${id}`);
     };
 
-    // 댓글 삭제 함수
-    const handleDeleteComment = (id: number) => {
-        setComments((prevComments) => prevComments.filter((comment) => comment.id !== id));
-    };
-
-    // 댓글 수정 함수
-    const handleEditComment = (id: number, newContent: string) => {
-        setComments((prevComments) =>
-            prevComments.map((comment) =>
-                comment.id === id ? { ...comment, content: newContent } : comment
-            )
-        );
-    };
-
-    // 내용 축약 함수
     const truncateContent = (content: string, maxLength: number) => {
         return content.length > maxLength ? content.slice(0, maxLength) + '...' : content;
     };
 
     return (
-        <div className="post-box" >
-            <div className="post-details" onClick={(e) => handleClick(e, post.id)}>
+        <div className="post-box">
+            <div className="post-details">
                 {/* 게시물 카테고리 */}
-                <p className="post-category">{post.category}</p>
+                <p
+                    className="post-category"
+                    onDoubleClick={() => handleClick(post.id)} // 더블클릭 시 상세 페이지로 이동
+                >
+                    {post.category}
+                </p>
                 {/* 게시물 제목 */}
-                <h3 className="post-title">{post.title}</h3>
+                <h3
+                    className="post-title"
+                    onDoubleClick={() => handleClick(post.id)} // 더블클릭 시 상세 페이지로 이동
+                >
+                    {post.title}
+                </h3>
                 {/* 게시물 헤더 (작성자, 날짜) */}
                 <div className="post-header">
                     <p className="author">{post.author}</p>
                     <p className="date">{post.date}</p>
                 </div>
 
-                {/* 게시물 이미지 */}
-                <PostImages images={post.images} />
+                {/* 게시물 이미지 슬라이더 */}
+                {post.images && post.images.length > 0 && (
+                    <div className="post-images-slider">
+                        <Slider {...settings}>
+                            {post.images.map((image, index) => (
+                                <div key={index} className="slider-item">
+                                    <img
+                                        src={image}
+                                        alt={`${post.title} ${index + 1}`}
+                                        className="post-image"
+                                        draggable // 드래그 가능하도록 설정
+                                        onDoubleClick={() => handleClick(post.id)} // 더블클릭 시 상세 페이지로 이동
+                                    />
+                                </div>
+                            ))}
+                        </Slider>
+                    </div>
+                )}
 
                 {/* 게시물 내용 (축약) */}
                 <p className="post-content">{truncateContent(post.content, 150)}</p>
             </div>
 
             {/* 댓글 보기/닫기 버튼 */}
-            <button type="button" className="community-comment-slide-button" onClick={handleCommentToggle}>
-                {isCommentOpen ? '댓글 닫기' : '댓글 보기'}
-            </button>
+            <div className="community-slide-button-container">
+                <button type="button" className="community-comment-slide-button" onClick={handleCommentToggle}>
+                    {isCommentOpen ? '댓글 닫기' : '댓글 보기'}
+                </button>
+            </div>
 
             {/* 댓글 섹션 */}
             <div className={`comments-section ${isCommentOpen ? 'open' : ''}`}>
@@ -110,13 +132,11 @@ function CommunityPostBox({ post, currentUser }: CommunityPostBoxProps) {
                         key={comment.id}
                         comment={comment}
                         currentUser={currentUser}
-                        onDelete={handleDeleteComment}
-                        onEdit={handleEditComment}
                     />
                 ))}
 
                 {/* 새 댓글 입력 영역 */}
-                <div>
+                <form className="community-write-comment-container" onSubmit={handleAddComment}>
                     <input
                         className="community-new-comment-input"
                         type="text"
@@ -124,10 +144,10 @@ function CommunityPostBox({ post, currentUser }: CommunityPostBoxProps) {
                         value={newComment}
                         onChange={(e) => setNewComment(e.target.value)}
                     />
-                    <button type="button" className="community-comment-write-button" onClick={handleAddComment}>
+                    <button type="submit" className="community-comment-write-button">
                         댓글 작성
                     </button>
-                </div>
+                </form>
             </div>
         </div>
     );

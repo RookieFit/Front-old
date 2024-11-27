@@ -1,25 +1,17 @@
-import { useNavigate } from 'react-router-dom';
+import './communityFloatingButtons.css'
 
 interface CommunityFloatingButtonsProps {
     onScrollToTop: () => void;
+    onWritePost: () => void;
+    onSearch: () => void;
 }
 
-function CommunityFloatingButtons({ onScrollToTop }: CommunityFloatingButtonsProps) {
-    const navigate = useNavigate();
-
-    const handleWritePost = () => {
-        navigate('/community/write');
-    };
-
-    const handleSearch = () => {
-        navigate('/community/search');
-    };
-
+function CommunityFloatingButtons({ onScrollToTop, onWritePost, onSearch }: CommunityFloatingButtonsProps) {
     return (
         <div className="community-floating-buttons">
             <button onClick={onScrollToTop} className="community-floating-up-button"></button>
-            <button onClick={handleWritePost} className="community-floating-plus-button"></button>
-            <button onClick={handleSearch} className="community-floating-search-button"></button>
+            <button onClick={onWritePost} className="community-floating-plus-button"></button>
+            <button onClick={onSearch} className="community-floating-search-button"></button>
         </div>
     );
 }
