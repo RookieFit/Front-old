@@ -34,7 +34,7 @@ export const marketItems: MarketItem[] = [
         ],
         condition: '거의 새것',
         delivery: '직거래 및 택배',
-        description: '웨이트 전용 아령 팝니다.\n딱 웨이트룸 왔어나 갈까 되었습니다 거의 새 제품이에요\n부산에서 직거래나 택배면 택배비 희망합니다! 채팅주세요',
+        description: '웨이트 전용 아령 팝니다.\n거의 새 제품이에요\n부산에서 직거래나 택배면 택배비 희망합니다! 채팅주세요',
         timestamp: '2024.11.04',
         userName: '똥똥한 토끼'
     },

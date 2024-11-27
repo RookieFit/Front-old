@@ -1,0 +1,120 @@
+.market-chat-page-wrapper {
+    width: 70%;
+    height: 75vh;
+    /* 뷰포트 높이의 80%로 설정 */
+    margin: 40px auto;
+    /* 상하 여백 추가 */
+    background-color: #fff;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    /* 내부 스크롤만 적용되도록 */
+}
+
+.market-chat-wrapper {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    /* 100vh에서 100%로 변경 */
+    background-color: #f8f8f8;
+}
+
+.market-chat-header {
+    padding: 16px;
+    background-color: #fff;
+    border-bottom: 1px solid #eee;
+}
+
+.market-chat-header-username {
+    text-align: center;
+    margin-bottom: 12px;
+    font-weight: bold;
+}
+
+.market-chat-header-product {
+    display: flex;
+    justify-content: flex-start;
+    gap: 12px;
+    align-items: center;
+}
+
+.market-chat-product-title {
+    font-size: 14px;
+    color: #333;
+}
+
+.market-chat-product-price {
+    font-size: 14px;
+    color: #666;
+}
+
+.market-chat-messages {
+    flex: 1;
+    padding: 16px;
+    overflow-y: auto;
+    /* 스크롤 가능하도록 설정 */
+}
+
+.market-chat-message.mine {
+    align-items: flex-end;
+    /* 내 메시지는 오른쪽 정렬 */
+}
+
+.market-chat-message.other {
+    align-items: flex-start;
+    /* 상대방 메시지는 왼쪽 정렬 */
+}
+
+.market-chat-message.mine .market-chat-message-content {
+    background-color: #007bff;
+    /* 내 메시지는 다른 배경색 */
+    color: white;
+    /* 내 메시지는 흰색 텍스트 */
+}
+
+.market-chat-input-area {
+    padding: 16px;
+    background-color: #fff;
+    border-top: 1px solid #eee;
+    position: sticky;
+    /* 입력창 고정 */
+    bottom: 0;
+    /* 하단에 고정 */
+}
+
+.market-chat-message {
+    margin-bottom: 16px;
+    display: flex;
+    flex-direction: column;
+}
+
+.market-chat-message-content {
+    background-color: #fff;
+    padding: 12px;
+    border-radius: 8px;
+    max-width: 70%;
+    word-break: break-word;
+}
+
+.market-chat-input-area {
+    padding: 16px;
+    background-color: #fff;
+    border-top: 1px solid #eee;
+    display: flex;
+    gap: 8px;
+}
+
+.market-chat-input {
+    flex: 1;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    resize: none;
+}
+
+.market-chat-send-button {
+    padding: 8px 16px;
+    background-color: #f0f0f0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
