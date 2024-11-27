@@ -151,9 +151,9 @@
 .toggle-mode-button {
     position: absolute;
     /* 버튼을 특정 위치로 이동 가능하도록 설정 */
-    top: 10px;
+    top: 1vw;
     /* 화면 상단에서 10px 아래 */
-    right: 5vw;
+    right: 3vw;
     /* 화면 오른쪽에서 10px 안쪽 */
     padding: 6px 12px;
     /* 버튼 크기를 작게 설정 */
