@@ -1,7 +1,7 @@
 .market-detail-wrapper {
     display: flex;
     flex-direction: column;
-    padding: 2vw 10vw;
+    padding: 2vw 15vw;
     /* 상하 패딩을 4vw에서 2vw로 줄임 */
     background-color: #f8f8f8;
 }

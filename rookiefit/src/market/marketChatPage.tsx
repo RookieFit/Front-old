@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react'
-import './makeChatPage.css'
+import './marketChatPage.css'
+import { useLocation } from 'react-router-dom';
 
 interface ChatMessage {
     id: number;
@@ -10,13 +11,16 @@ interface ChatMessage {
 }
 
 const MarketChatPage = () => {
+    const location = useLocation();
     const [messages, setMessages] = useState<ChatMessage[]>([]);
     const [newMessage, setNewMessage] = useState('');
     const messagesEndRef = useRef<HTMLDivElement>(null);
+    const { userName, title, price } = location.state;
 
     const scrollToBottom = () => {
         messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
     };
+
     const handleSendMessage = () => {
         if (newMessage.trim() === '') return;
 
@@ -41,18 +45,24 @@ const MarketChatPage = () => {
 
     return (
         <div className="market-chat-page-wrapper">
-            <div className="chat-wrapper">
-                <div className="chat-header">
-                    동동한 토끼
+            <div className="market-chat-wrapper">
+                <div className="market-chat-header-username">
+                    {userName}
+                </div>
+                <div className="market-chat-header-product">
+                    <span className="market-chat-product-title">{title}</span>
+                    <span className="market-chat-product-price">
+                        {price.toLocaleString()}원
+                    </span>
                 </div>
 
-                <div className="chat-messages">
+                <div className="market-chat-messages">
                     {messages.map((message, index) => (
-                        <div key={index} className={`chat-message ${message.isMine ? 'mine' : 'other'}`}>
-                            <div className="message-content">
+                        <div key={index} className={`market-chat-message ${message.isMine ? 'mine' : 'other'}`}>
+                            <div className="market-chat-message-content">
                                 {message.content}
                             </div>
-                            <div className="message-time">
+                            <div className="market-chat-message-time">
                                 {message.timestamp}
                             </div>
                         </div>
@@ -60,12 +70,12 @@ const MarketChatPage = () => {
                     <div ref={messagesEndRef} /> {/* 스크롤 위치 지정용 요소 */}
                 </div>
 
-                <div className="chat-input-area">
+                <div className="market-chat-input-area">
                     <textarea
                         value={newMessage}
                         onChange={(e) => setNewMessage(e.target.value)}
                         placeholder="메세지 보내기"
-                        className="chat-input"
+                        className="market-chat-input"
                         onKeyPress={(e) => {
                             if (e.key === 'Enter' && !e.shiftKey) {
                                 e.preventDefault();
@@ -74,7 +84,7 @@ const MarketChatPage = () => {
                         }}
                     />
                     <button
-                        className="chat-send-button"
+                        className="market-chat-send-button"
                         onClick={handleSendMessage}
                     >
                         전송하기

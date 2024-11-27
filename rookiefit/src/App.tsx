@@ -58,7 +58,7 @@ function App() {
           <Route path="/market" element={<MarketPage />} />
           <Route path="/market/detail/:id" element={<MarketDetail />} />
           <Route path="/market/write" element={<MarketPost />} />
-          <Route path="/market/chat" element={<MarketChatPage />} />
+          <Route path="/market/chat/:id" element={<MarketChatPage />} />
         </Routes>
       </div>
     </BrowserRouter>
