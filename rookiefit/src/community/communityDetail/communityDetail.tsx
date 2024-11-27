@@ -62,83 +62,86 @@ const CommunityDetail = () => {
     }
 
     return (
-        <div className="community-detail-container">
-            {/* 헤더 섹션 */}
-            <div className="community-detail-header">
-                <h3 className="community-detail-category">{post.category}</h3>
-                <h1 className="community-detail-title">{post.title}</h1>
-                <div className="community-detail-author-time">
-                    <p><strong>작성자:</strong> {post.author}</p>
-                    <p><strong>작성 시간:</strong> {post.date}</p>
-                </div>
-            </div>
+        <div className="community-detail-wrapper">
 
-            {/* 본문 섹션 */}
-            <div className="community-detail-body">
-                <div className="community-detail-content">
-                    {post.images.length > 0 && (
-                        <div className="community-detail-image-container">
-                            {post.images.map((image, index) => (
-                                <img
-                                    key={index}
-                                    src={image}
-                                    alt={`Post Image ${index + 1}`}
-                                    className="community-detail-post-image"
-                                />
-                            ))}
-                        </div>
+            <div className="community-detail-container">
+                {/* 헤더 섹션 */}
+                <div className="community-detail-header">
+                    <h3 className="community-detail-category">{post.category}</h3>
+                    <h1 className="community-detail-title">{post.title}</h1>
+                    <div className="community-detail-author-time">
+                        <p><strong>작성자:</strong> {post.author}</p>
+                        <p><strong>작성 시간:</strong> {post.date}</p>
+                    </div>
+                </div>
+
+                {/* 본문 섹션 */}
+                <div className="community-detail-body">
+                    <div className="community-detail-content">
+                        {post.images.length > 0 && (
+                            <div className="community-detail-image-container">
+                                {post.images.map((image, index) => (
+                                    <img
+                                        key={index}
+                                        src={image}
+                                        alt={`Post Image ${index + 1}`}
+                                        className="community-detail-post-image"
+                                    />
+                                ))}
+                            </div>
+                        )}
+                        <p>{post.content}</p>
+                    </div>
+                </div>
+
+                {/* 댓글 섹션 */}
+                <div className="community-detail-comment-section">
+                    <h4>댓글</h4>
+                    {comments.length > 0 ? (
+                        comments.map((comment) => (
+                            <CommunityComment
+                                key={comment.id}
+                                comment={comment}
+                                currentUser={currentUser}
+                                onDelete={handleDeleteComment}
+                                onEdit={handleEditComment}
+                            />
+                        ))
+                    ) : (
+                        <p>댓글이 없습니다.</p>
                     )}
-                    <p>{post.content}</p>
-                </div>
-            </div>
 
-            {/* 댓글 섹션 */}
-            <div className="community-detail-comment-section">
-                <h4>댓글</h4>
-                {comments.length > 0 ? (
-                    comments.map((comment) => (
-                        <CommunityComment
-                            key={comment.id}
-                            comment={comment}
-                            currentUser={currentUser}
-                            onDelete={handleDeleteComment}
-                            onEdit={handleEditComment}
-                        />
-                    ))
-                ) : (
-                    <p>댓글이 없습니다.</p>
-                )}
-
-                {/* 댓글 작성 섹션 */}
-                <div className="community-new-comment">
-                    <h4>댓글 작성</h4>
-                    <textarea style={
-                        {
-                            resize: 'none'
+                    {/* 댓글 작성 섹션 */}
+                    <div className="community-new-comment">
+                        <h4>댓글 작성</h4>
+                        <textarea style={
+                            {
+                                resize: 'none'
+                            }
                         }
-                    }
-                        placeholder="댓글 내용을 입력하세요"
-                        value={newComment}
-                        onChange={(e) => setNewComment(e.target.value)}
-                        className="community-new-comment-input"
-                    />
-                    <button onClick={handleAddComment} className="community-comment-button">
-                        댓글 작성
+                            placeholder="댓글 내용을 입력하세요"
+                            value={newComment}
+                            onChange={(e) => setNewComment(e.target.value)}
+                            className="community-new-comment-input"
+                        />
+                        <button onClick={handleAddComment} className="community-comment-button">
+                            댓글 작성
+                        </button>
+                    </div>
+                </div>
+
+                {/* 하단 버튼 섹션 */}
+                <div className="community-detail-footer-buttons">
+                    <button onClick={() => navigate('/community')} className="community-detail-go-back-button">
+                        목록
+                    </button>
+                    <button
+                        onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+                        className="community-detail-top-button"
+                    >
+                        Top
                     </button>
                 </div>
-            </div>
-
-            {/* 하단 버튼 섹션 */}
-            <div className="community-detail-footer-buttons">
-                <button onClick={() => navigate('/community')} className="community-detail-go-back-button">
-                    목록
-                </button>
-                <button
-                    onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-                    className="community-detail-top-button"
-                >
-                    Top
-                </button>
             </div>
         </div>
     );

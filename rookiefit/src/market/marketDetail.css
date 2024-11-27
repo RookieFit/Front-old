@@ -1,0 +1,229 @@
+.market-detail-wrapper {
+    display: flex;
+    flex-direction: column;
+    padding: 2vw 15vw;
+    /* 상하 패딩을 4vw에서 2vw로 줄임 */
+    background-color: #f8f8f8;
+}
+
+.market-detail-content {
+    background-color: #ffffff;
+    border-radius: 8px;
+    padding: 20px;
+    /* 24px에서 20px로 줄임 */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.market-detail-title-section {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.market-detail-main-title {
+    font-size: 24px;
+    font-weight: bold;
+    display: inline;
+    /* 제목을 카테고리 태그와 같은 줄에 표시 */
+}
+
+.market-detail-user-info {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.market-detail-user-avatar {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background-color: #f0f0f0;
+}
+
+.market-detail-user-name {
+    font-size: 14px;
+    color: #666;
+}
+
+.market-detail-timestamp {
+    font-size: 14px;
+    color: #666;
+}
+
+.market-detail-main-content {
+    display: flex;
+    gap: 20px;
+    /* 24px에서 20px로 줄임 */
+}
+
+.market-detail-content {
+    display: flex;
+    gap: 24px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    padding: 24px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.market-detail-image {
+    flex: 0.7;
+    max-height: 60vh;
+    /* 이미지 최대 높이 제한 */
+    overflow: hidden;
+    border-radius: 8px;
+}
+
+.market-detail-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    /* 이미지 비율 유지 */
+    background-color: transparent;
+    /* 이미지 여백 배경색 */
+}
+
+.market-detail-info {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+}
+
+.market-detail-category-tag {
+    display: inline-block;
+    padding: 4px 12px;
+    background-color: #e8fff3;
+    /* 연두색 배경으로 변경 */
+    color: #00b56f;
+    /* 연두색 텍스트로 변경 */
+    border-radius: 4px;
+    font-size: 14px;
+    width: fit-content;
+}
+
+.market-detail-item-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 16px;
+}
+
+.market-detail-price {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+    margin: 16px 0;
+}
+
+.market-detail-info-table {
+    margin: 16px 0;
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+    padding: 16px 0;
+}
+
+.market-detail-info-row {
+    display: flex;
+    margin: 8px 0;
+}
+
+.market-detail-info-label {
+    flex: 0.3;
+    color: #666;
+    font-size: 0.8vw;
+}
+
+.market-detail-info-value {
+    flex: 0.7;
+    color: #333;
+    font-size: 0.8vw;
+}
+
+.market-detail-description {
+    margin: 16px 0;
+    color: #333;
+    font-size: 1vw;
+    line-height: 1.6;
+}
+
+.market-detail-inquiry-button {
+    width: 100%;
+    padding: 16px;
+    background-color: #f0f0f0;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.2vw;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: auto;
+}
+
+.market-detail-inquiry-button {
+    width: 100%;
+    padding: 12px;
+    background-color: #00b56f;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    cursor: pointer;
+    text-align: center;
+    margin-top: auto;
+    transition: background-color 0.3s;
+}
+
+.market-detail-inquiry-button:hover {
+    background-color: #009e5c;
+}
+
+.market-detail-error {
+    font-size: 1.5rem;
+    text-align: center;
+    color: #ff6b6b;
+}
+
+.market-detail-author-buttons {
+    display: flex;
+    gap: 8px;
+    margin-top: 16px;
+}
+
+.market-detail-edit-button {
+    flex: 1;
+    padding: 12px;
+    background-color: #f0f0f0;
+    border: none;
+    border-radius: 4px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.market-detail-delete-button {
+    flex: 1;
+    padding: 12px;
+    background-color: #ff6b6b;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.market-detail-image .slick-slider {
+    width: 100%;
+    height: 100%;
+}
+
+.market-detail-image .slick-slide img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+.market-detail-image .slick-prev,
+.market-detail-image .slick-next {
+    z-index: 1;
+}
+
+.market-detail-image .slick-dots {
+    bottom: 10px;
+}

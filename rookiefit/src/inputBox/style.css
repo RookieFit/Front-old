@@ -1,54 +1,68 @@
+/* 전체 컨테이너 */
 .input-box.full-width {
     flex: 1;
     display: flex;
     flex-direction: row;
     align-items: flex-start;
-    /* 모든 요소가 상단에 맞춰지도록 설정 */
     justify-content: flex-start;
     gap: 20px;
 }
 
+/* 입력 박스 제목 */
 .input-box-title {
     white-space: pre-line;
     display: flex;
     width: 125px;
     height: 47px;
-    font-weight: 400;
+    font-weight: 500;
+    /* 제목 글씨를 더 두껍게 */
     font-size: 17px;
     line-height: 24px;
     border: 0;
     align-items: center;
     justify-content: center;
     text-align: center;
-    color: rgb(0, 0, 0);
+    color: #333333;
+    /* 제목 색상 진하게 설정 */
     background: transparent;
     cursor: default;
 }
 
+/* 입력 박스 내용 */
 .input-box-content {
     display: flex;
     flex-direction: column;
-    /* 메시지와 input이 수직으로 배치되도록 설정 */
 }
 
+/* 입력 박스 본문 */
 .input-box-body {
     display: flex;
     flex-direction: row;
-    /* title, input, button이 한 줄에 배치되도록 설정 */
     align-items: center;
     gap: 10px;
 }
 
+/* 입력 박스 입력 */
 .input-box-input {
     font-size: 17px;
     width: 254px;
     height: 47px;
-    border: 0;
+    border: 2px solid #CCCCCC;
+    /* 연한 테두리 추가 */
     background: #F2F2F2;
     padding: 1vw;
     box-sizing: border-box;
+    border-radius: 5px;
+    transition: border-color 0.3s ease;
 }
 
+.input-box-input:focus {
+    border-color: #007BFF;
+    /* 포커스 시 파란색 테두리 */
+    outline: none;
+}
+
+/* 비활성화된 버튼 */
 .input-box-button-disable {
     display: flex;
     width: 390px;
@@ -60,40 +74,80 @@
     padding: 1vw;
     color: #858585;
     background: #F2F2F2;
+    border-radius: 5px;
+    cursor: not-allowed;
+    border: 2px solid #CCCCCC;
+    /* 연한 테두리 추가 */
 }
 
+/* 메시지 영역 */
 .input-box-message {
     min-height: 20px;
-    /* 메시지 영역의 고정 높이 */
     font-size: 12px;
     color: #0600C0;
-    /* 일반 메시지 색상 */
     display: flex;
     align-items: center;
 }
 
 .input-box-message-error {
     min-height: 20px;
-    /* 메시지 영역의 고정 높이 */
     font-size: 12px;
     color: red;
-    /* 에러 메시지 색상 */
     display: flex;
     align-items: center;
 }
 
+/* 입력 박스 버튼 */
 .input-box-button {
     display: flex;
     width: 125px;
     height: 47px;
-    font-weight: 400;
+    font-weight: 600;
+    /* 버튼 글씨 두껍게 */
     font-size: 17px;
     line-height: 24px;
-    border: 0;
+    border: 2px solid #000000;
+    /* 버튼에 테두리 추가 */
+    border-radius: 5px;
     align-items: center;
     justify-content: center;
     text-align: center;
-    color: #000000;
-    background: transparent;
+    color: #ffffff;
+    background: #000000;
     cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    /* 버튼에 그림자 추가 */
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.input-box-button:hover {
+    background-color: #333333;
+    /* 호버 시 배경 색상 변경 */
+    transform: scale(1.05);
+    /* 호버 시 버튼 크기 확대 */
+}
+
+.input-box-button:disabled {
+    background: #F2F2F2;
+    color: #858585;
+    border: 2px solid #D9D9D9;
+    cursor: not-allowed;
+}
+
+/* 입력 박스 메시지 */
+.input-box-message {
+    min-height: 20px;
+    font-size: 12px;
+    color: #0600C0;
+    display: flex;
+    align-items: center;
+}
+
+/* 오류 메시지 */
+.input-box-message-error {
+    min-height: 20px;
+    font-size: 12px;
+    color: red;
+    display: flex;
+    align-items: center;
 }

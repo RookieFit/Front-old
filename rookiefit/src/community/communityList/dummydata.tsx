@@ -58,7 +58,7 @@ export const dummyPosts = Array.from({ length: 100 }, (_, index) => {
         author: `작성자 ${index + 1}`,
         date: `2024-11-${(index % 30) + 1}`,
         images, // 랜덤 이미지 배열
-        content: `여기에 게시글 내용 ${index + 1}이 들어갑니다. 글의 본문을 여기에 작성합니다. 
+        content: `여기에 게시글 내용 ${index + 1}이 들어갑니다. 글의 본문을 여기에 작성합니다.설명설명설명설명설명설명설명설명설명설명설명설명설명 
         이 글은 카테고리 "${randomCategory}"에 속합니다.`,
         comments, // 댓글 배열
     };
