@@ -1,13 +1,3 @@
-.seen-profile-logout {
-    width: 70px;
-    height: 20px;
-    font-size: 15px;
-    margin-top: 10px;
-    margin-left: 7px;
-    text-align: left;
-    border-style: none;
-}
-
 .seen-profile-image {
     border: thin solid rgb(153, 151, 151);
     background-color: #ffffff;

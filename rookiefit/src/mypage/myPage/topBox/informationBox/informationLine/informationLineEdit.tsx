@@ -14,7 +14,7 @@ const InformationLineEdit = ({ title }: Props) => {
             <input
                 type="text"
                 maxLength={30}
-                className="my-information-edit-message-textarea"
+                className="my-information-box-textbox"
                 onFocus={() => setIsInformationTextareaClicked(true)}
                 onBlur={() => setIsInformationTextareaClicked(false)}
                 placeholder={isInformationTextareaClicked ? "" : "입력하세요"}
