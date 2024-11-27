@@ -7,7 +7,7 @@ interface InformationLineEditProps {
     onChange?: (value: string) => void;
 }
 
-const InformationLineEdit: React.FC<InformationLineEditProps> = ({ title, value = '', onChange }) => {
+const InformationLineEdit = ({ title, value = '', onChange }: InformationLineEditProps) => {
     const [inputValue, setInputValue] = useState(value);
     const [isDuplicate, setIsDuplicate] = useState(false);
     const [isInformationTextareaClicked, setIsInformationTextareaClicked] = useState(false);
