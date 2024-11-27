@@ -50,36 +50,28 @@
     font-style: italic;
 }
 
-/* 이미지 스타일 - 좌우 스크롤 가능 */
-.post-images-wrapper {
-    display: flex;
-    overflow-x: auto;
-    gap: 15px;
+/* 이미지 슬라이더 스타일 */
+.post-images-slider {
+    width: 100%;
+    height: 400px;
+    /* 원하는 높이 설정 */
+    overflow: hidden;
+    /* 이미지 영역을 벗어나지 않도록 설정 */
     margin-bottom: 20px;
-    white-space: nowrap;
 }
 
-.post-image {
-    flex-shrink: 0;
-    width: 32%;
-    height: 220px;
-    background-size: cover;
-    background-position: center;
-    border-radius: 10px;
-    transition: opacity 0.3s ease, transform 0.3s ease;
+.post-images-slider .slider-item {
+    width: 100%;
+    height: 100%;
 }
 
-.post-images-wrapper::-webkit-scrollbar {
-    height: 8px;
-}
-
-.post-images-wrapper::-webkit-scrollbar-thumb {
-    background-color: rgba(0, 0, 0, 0.5);
-    border-radius: 4px;
-}
-
-.post-images-wrapper::-webkit-scrollbar-track {
-    background: #f1f1f1;
+.post-images-slider .post-image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    /* 이미지 비율을 유지하면서 크기 맞추기 */
+    object-position: center;
+    /* 이미지 중앙 정렬 */
 }
 
 /* 게시글 본문 */
@@ -92,6 +84,13 @@
 }
 
 /* 댓글 열고 닫기 버튼 스타일 */
+.community-slide-button-container {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 10px;
+}
+
+/* 댓글 열기/닫기 버튼 */
 .community-comment-slide-button {
     background-color: #000000;
     color: white;
@@ -100,33 +99,60 @@
     font-size: 1rem;
     border: none;
     cursor: pointer;
-    position: absolute;
-    right: 25px;
-    bottom: 10px;
+    transition: background-color 0.3s ease;
+}
+
+/* 댓글 버튼 hover 상태 */
+.community-comment-slide-button:hover {
+    background-color: #333;
 }
 
 /* 댓글 섹션 */
 .comments-section {
     display: none;
-    /* 기본적으로 댓글 섹션을 숨김 */
     margin-top: 20px;
 }
 
-/* 댓글 섹션 열렸을 때 */
 .comments-section.open {
     display: block;
-    /* 'open' 클래스가 있을 때만 댓글 섹션을 표시 */
+    padding-top: 15px;
+    margin-top: 15px;
+}
+
+/* 댓글 입력창과 버튼을 묶은 컨테이너 */
+.community-write-comment-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 15px;
 }
 
 /* 댓글 입력창 스타일 */
 .community-new-comment-input {
-    width: 100%;
+    flex: 1;
     padding: 10px;
-    margin-top: 10px;
     font-size: 1rem;
     border-radius: 5px;
     border: 1px solid #ddd;
     box-sizing: border-box;
+    transition: border-color 0.3s ease;
+}
+
+/* 댓글 작성 버튼 */
+.community-comment-write-button {
+    background-color: #000000;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-size: 1rem;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+/* 댓글 작성 버튼 hover 상태 */
+.community-comment-write-button:hover {
+    background-color: #333;
 }
 
 /* 댓글 목록 */
@@ -142,33 +168,4 @@
     display: flex;
     justify-content: flex-end;
     gap: 10px;
-}
-
-/* 댓글 섹션 열림 시 */
-.comments-section.open {
-    display: block;
-    /* 댓글 섹션을 보여줌 */
-    padding-top: 15px;
-    /* 댓글 섹션과 버튼 사이의 여백 */
-}
-
-/* 댓글 버튼 스타일 */
-.community-comment-write-button {
-    background-color: #000000;
-    color: white;
-    padding: 10px 15px;
-    border-radius: 5px;
-    font-size: 1rem;
-    border: none;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    margin-top: 0.5vw;
-}
-
-.community-comment-button:hover {
-    background-color: #000000;
-}
-
-.comment-actions button:hover {
-    background-color: #c0392b;
 }

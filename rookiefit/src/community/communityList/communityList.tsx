@@ -4,7 +4,7 @@ import CommunityHeader from '../communityComponents/communityHeader';
 import CommunityCategories from '../communityComponents/communityCategories';
 import CommunityPostBox from '../communityComponents/communityPostBox/communityPostBox';
 import CommunityGridPost from '../communityComponents/communityPostGrid';
-import CommunityFloatingButtons from '../communityComponents/communityFloatingButtons'; // 추가된 import
+import CommunityFloatingButtons from '../communityComponents/communityFloatingButtons';
 import { dummyPosts } from './dummydata';
 import './communityList.css';
 
@@ -61,13 +61,16 @@ const CommunityList = () => {
         navigate(`/community?category=${selectedCategory}&mode=${newMode}`);
     };
 
-    // 게시글 클릭 시 상세 페이지로 이동하는 코드 제거
-    // const handlePostClick = (id: number) => {
-    //     navigate(`/community/detail/${id}`);
-    // };
-
     const scrollToTop = () => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
+    };
+
+    const handleWritePost = () => {
+        navigate('/community/write');
+    };
+
+    const handleSearch = () => {
+        navigate('/community/search');
     };
 
     return (
@@ -101,8 +104,11 @@ const CommunityList = () => {
                 </div>
             </div>
 
-            {/* CommunityFloatingButtons 컴포넌트 추가 */}
-            <CommunityFloatingButtons onScrollToTop={scrollToTop} />
+            <CommunityFloatingButtons
+                onScrollToTop={scrollToTop}
+                onWritePost={handleWritePost}
+                onSearch={handleSearch}
+            />
         </div>
     );
 };

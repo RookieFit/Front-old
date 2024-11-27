@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './communityComment.css'
+import './communityComment.css';
 
 interface CommentProps {
     comment: {
@@ -17,16 +17,18 @@ function CommunityComment({ comment, currentUser, onDelete, onEdit }: CommentPro
     const [isEditing, setIsEditing] = useState(false);
     const [editedContent, setEditedContent] = useState(comment.content);
 
-    const handleEditClick = () => setIsEditing(true);
+    // 수정 모드 활성화
+    const startEditing = () => setIsEditing(true);
 
-    const handleSaveClick = () => {
+    // 수정 내용 저장
+    const saveEdit = () => {
         if (editedContent !== comment.content) {
             onEdit(comment.id, editedContent);
         }
         setIsEditing(false);
     };
 
-    // 현재 사용자가 댓글 작성자인지 확인
+    // 수정 및 삭제 권한 확인
     const canEditOrDelete = comment.author === currentUser;
 
     return (
@@ -36,23 +38,22 @@ function CommunityComment({ comment, currentUser, onDelete, onEdit }: CommentPro
             </p>
 
             {isEditing ? (
-                <div>
+                <div className="editing-section">
                     <textarea
                         value={editedContent}
                         onChange={(e) => setEditedContent(e.target.value)}
                     />
-                    <button onClick={handleSaveClick}>저장</button>
+                    <button onClick={saveEdit}>저장</button>
                     <button onClick={() => setIsEditing(false)}>취소</button>
                 </div>
             ) : (
-                <p>{comment.content}</p>
+                <p className="comment-content">{comment.content}</p>
             )}
 
-            {/* 본인이 작성한 댓글만 수정/삭제 가능 */}
             {canEditOrDelete && !isEditing && (
-                <div className='comment-actions'>
-                    <button onClick={() => onDelete(comment.id)} >삭제</button>
-                    <button onClick={handleEditClick}>수정</button>
+                <div className="comment-actions">
+                    <button onClick={() => onDelete(comment.id)}>삭제</button>
+                    <button onClick={startEditing}>수정</button>
                 </div>
             )}
         </div>
