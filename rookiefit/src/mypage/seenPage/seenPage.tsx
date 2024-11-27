@@ -6,7 +6,7 @@ import MyPageFooter from '../components/myPageFooter';
 const SeenPage = () => {
     return (
         <div className="seen-page-left-right-page">
-            <SeenProfile smallvalueReview={50} smallvalueClass={100} />
+            <SeenProfile smallvalueReview={50} smallvalueClass={100} userId={''} nickname={''} />
             <div className='seen-page-right-back'>
                 <SeenFeed />
             </div>

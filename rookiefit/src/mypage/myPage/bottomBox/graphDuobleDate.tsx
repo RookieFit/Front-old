@@ -69,6 +69,7 @@ const GraphDuobleDate = ({
                     type: 'x',
                     enabled: true,
                     autoScaleYaxis: true,
+                    allowMouseWheelZoom: false
                 },
                 toolbar: {
                     autoSelected: 'zoom',

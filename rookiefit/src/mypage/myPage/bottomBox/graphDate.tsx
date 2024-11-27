@@ -41,7 +41,8 @@ const GraphDate = ({ title, name, values, }: Props) => {
                 zoom: {
                     type: 'x',
                     enabled: true,
-                    autoScaleYaxis: true
+                    autoScaleYaxis: true,
+                    allowMouseWheelZoom: false
                 },
                 toolbar: {
                     autoSelected: 'zoom'

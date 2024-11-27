@@ -3,10 +3,12 @@ import './informationMiniBox.css';
 import { useState } from 'react';
 import InformationLineEdit from '../informationLine/informationLineEdit';
 import InformationLine from '../informationLine/informationLine';
+import SeenFeedEdit from '../../../../seenPage/seenFeed/seenFeedEdit';
+import SeenFeedGridBox from '../../../../seenPage/seenFeed/senFeedcommunityComponents/seenFeedGridBox';
 
 const InformationMiniBoxEdit = () => {
     const navigate = useNavigate();
-    const myPage= () => {
+    const myPage = () => {
         navigate('/myPage')
     };
     const communityList = () => {
@@ -87,8 +89,7 @@ const InformationMiniBoxEdit = () => {
                             onClick={communityList}
                             className='my-information-button'
                         />
-                        <h3>작성 글 내용</h3>
-                        <p>작성한 글 목록을 여기에 표시할 수 있습니다.</p>
+                        <SeenFeedGridBox />
                     </div>
                 </div>
             )}
@@ -101,7 +102,7 @@ const InformationMiniBoxEdit = () => {
                             onClick={seenFeedEdit}
                             className='my-information-button'
                         />
-                        {/* <CommunityGridPost posts={currentPosts} /> */}
+                        <SeenFeedEdit />
                     </div>
                 </div>
             )}

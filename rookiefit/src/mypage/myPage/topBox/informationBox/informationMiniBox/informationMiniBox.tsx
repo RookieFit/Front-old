@@ -6,7 +6,7 @@ import SeenFeed from '../../../../seenPage/seenFeed/seenFeed';
 import SeenFeedGridBox from '../../../../seenPage/seenFeed/senFeedcommunityComponents/seenFeedGridBox';
 
 const InformationMiniBox = () => {
-    
+
     const navigate = useNavigate();
     const myPageEdit = () => {
         navigate('/myPageEdit')
@@ -90,7 +90,7 @@ const InformationMiniBox = () => {
                             className='my-information-button'
                         />
                         <div className='my-information-seen-grid'>
-                            <SeenFeedGridBox/>
+                            <SeenFeedGridBox />
                         </div>
                     </div>
                 </div>

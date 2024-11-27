@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './SeedPostGridProps.css';
+import './seedPostGridProps.css';
 import CommunityPagination from '../../../../community/communityComponents/communityPagination';
 import { useNavigate } from 'react-router-dom';
 
