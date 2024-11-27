@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import ImageUploaderMany from '../components/imageUploaderMany';
 import './marketPost.css';
+import { useNavigate } from 'react-router-dom';
 
 interface MarketPostForm {
     category: '판매' | '구매';
@@ -14,6 +15,7 @@ interface MarketPostForm {
 }
 
 const MarketPost = () => {
+    const navigate = useNavigate();
     const [formData, setFormData] = useState<MarketPostForm>({
         category: '판매',
         title: '',
@@ -32,12 +34,14 @@ const MarketPost = () => {
             [name]: value
         }));
     };
+
     const handleSubmit = () => {
         if (!formData.title || !formData.price || !formData.location) {
             alert('모든 필드를 채워주세요.');
             return;
         }
         console.log('등록된 데이터:', formData);
+        navigate('/market')
     };
 
     return (
@@ -49,7 +53,7 @@ const MarketPost = () => {
                         name="category"
                         value={formData.category}
                         onChange={handleChange}
-                        className="market-category-select"
+                        className="market-post-category-select"
                     >
                         <option value="판매">판매</option>
                         <option value="구매">구매</option>
@@ -63,8 +67,8 @@ const MarketPost = () => {
                     />
                 </div>
 
-                <div className="market-detail-row">
-                    <span className="detail-label">가격</span>
+                <div className="market-post-detail-row">
+                    <span className="market-post-detail-label">가격</span>
                     <input
                         type="number"
                         name="price"
@@ -75,16 +79,16 @@ const MarketPost = () => {
                 </div>
 
                 <div className="market-post-details">
-                    <div className="market-detail-row">
-                        <span className="detail-label">상품상태</span>
+                    <div className="market-post-detail-row">
+                        <span className="market-post-detail-label">상품상태</span>
                         <select name="condition" value={formData.condition} onChange={handleChange}>
                             <option value="새상품">새상품</option>
                             <option value="거의 새것">거의 새것</option>
                             <option value="중고">중고</option>
                         </select>
                     </div>
-                    <div className="market-detail-row">
-                        <span className="detail-label">거래지역</span>
+                    <div className="market-post-detail-row">
+                        <span className="market-post-detail-label">거래지역</span>
                         <input
                             type="text"
                             name="location"
@@ -92,8 +96,8 @@ const MarketPost = () => {
                             onChange={handleChange}
                         />
                     </div>
-                    <div className="market-detail-row">
-                        <span className="detail-label">배송방법</span>
+                    <div className="market-post-detail-row">
+                        <span className="market-post-detail-label">배송방법</span>
                         <select name="delivery" value={formData.delivery} onChange={handleChange}>
                             <option value="직거래">직거래</option>
                             <option value="택배거래">택배거래</option>

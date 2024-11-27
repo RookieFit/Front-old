@@ -91,15 +91,15 @@
 .toggle-mode-button {
     position: absolute;
     /* 버튼을 특정 위치로 이동 가능하도록 설정 */
-    top: 10px;
+    top: 1vw;
     /* 화면 상단에서 10px 아래 */
-    right: 5vw;
+    right: 3vw;
     /* 화면 오른쪽에서 10px 안쪽 */
     padding: 6px 12px;
     /* 버튼 크기를 작게 설정 */
     font-size: 14px;
     /* 버튼 텍스트 크기 조정 */
-    background-color: #007bff;
+    background-color: #2e2e2e;
     /* 파란색 배경 */
     color: white;
     /* 텍스트 색상 */
