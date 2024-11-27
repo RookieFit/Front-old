@@ -4,7 +4,7 @@ import { useState } from 'react';
 import InformationLineEdit from '../informationLine/informationLineEdit';
 import InformationLine from '../informationLine/informationLine';
 import SeenFeedEdit from '../../../../seenPage/seenFeed/seenFeedEdit';
-import SeenFeedGridBox from '../../../../seenPage/seenFeed/senFeedcommunityComponents/seenFeedGridBox';
+import SeenFeedGridBox from '../../../../seenPage/seenFeed/seenFeedcommunityComponents/seenFeedGridBox';
 
 const InformationMiniBoxEdit = () => {
     const navigate = useNavigate();

@@ -3,7 +3,7 @@ import './informationMiniBox.css';
 import InformationLine from '../informationLine/informationLine';
 import { useState } from 'react';
 import SeenFeed from '../../../../seenPage/seenFeed/seenFeed';
-import SeenFeedGridBox from '../../../../seenPage/seenFeed/senFeedcommunityComponents/seenFeedGridBox';
+import SeenFeedGridBox from '../../../../seenPage/seenFeed/seenFeedcommunityComponents/seenFeedGridBox';
 
 const InformationMiniBox = () => {
 

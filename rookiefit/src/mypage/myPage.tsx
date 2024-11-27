@@ -19,7 +19,6 @@ const MyPage = () => {
                 <MyPageFooter />
             </div>
         </div>
-
     )
 };
 

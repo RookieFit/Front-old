@@ -25,7 +25,6 @@
 .community-write-dropdown-area {
     display: flex;
     position: relative;
-
 }
 
 .community-write-drop-box {
@@ -113,7 +112,7 @@
     border-radius: 5px;
 }
 
-.ccommunity-write-file-button {
+.community-write-file-button {
     background-color: #BDBDBD;
     width: 5.3vw;
     height: 2.8vh;
