@@ -56,6 +56,13 @@ const MarketItemList = () => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
     };
 
+    const handleWritePost = () => {
+        navigate('/market/write');
+    };
+
+    const handleSearch = () => {
+        navigate('/market/search');
+    };
     return (
         <div className="market-item-list-wrapper">
             <div className="market-item-list-header">
@@ -96,7 +103,7 @@ const MarketItemList = () => {
                     </div>
                 ))}
             </div>
-            <CommunityFloatingButtons onScrollToTop={scrollToTop} />
+            <CommunityFloatingButtons onScrollToTop={scrollToTop} onWritePost={handleWritePost} onSearch={handleSearch} />
             <CommunityPagination
                 currentPage={currentPage}
                 totalPages={Math.ceil(filteredItems.length / itemsPerPage)}

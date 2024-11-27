@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import ImageUploaderMany from '../components/imageUploaderMany';
 import './marketPost.css';
+import { useNavigate } from 'react-router-dom';
 
 interface MarketPostForm {
     category: '판매' | '구매';
@@ -14,6 +15,7 @@ interface MarketPostForm {
 }
 
 const MarketPost = () => {
+    const navigate = useNavigate();
     const [formData, setFormData] = useState<MarketPostForm>({
         category: '판매',
         title: '',
@@ -32,12 +34,14 @@ const MarketPost = () => {
             [name]: value
         }));
     };
+
     const handleSubmit = () => {
         if (!formData.title || !formData.price || !formData.location) {
             alert('모든 필드를 채워주세요.');
             return;
         }
         console.log('등록된 데이터:', formData);
+        navigate('/market')
     };
 
     return (
