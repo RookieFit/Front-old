@@ -1,7 +1,21 @@
 .market-item-list-wrapper {
     display: flex;
     flex-direction: column;
-    padding: 20px 10vw;
+    padding: 0 10vw;
+}
+
+.market-item-list-header {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 0.5vw;
+}
+
+.market-category-filter {
+    padding: 0.5vw 16px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background-color: white;
+    cursor: pointer;
 }
 
 .market-item-list-grid {

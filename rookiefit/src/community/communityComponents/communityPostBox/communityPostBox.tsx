@@ -61,6 +61,7 @@ function CommunityPostBox({ post, currentUser }: CommunityPostBoxProps) {
         setNewComment('');
     };
 
+
     // 게시물 클릭 시 상세 페이지로 이동
     const handleClick = (id: number) => {
         navigate(`/community/detail/${id}`);
