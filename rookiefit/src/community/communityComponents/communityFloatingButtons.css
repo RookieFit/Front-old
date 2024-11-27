@@ -1,0 +1,59 @@
+/* 플로팅 버튼들 영역 */
+.community-floating-buttons {
+    position: fixed;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+    /* 세로 중앙 정렬 */
+    display: flex;
+    flex-direction: column;
+    /* 세로로 나열 */
+    gap: 10px;
+    /* 버튼 간격 조정 */
+    z-index: 1000;
+}
+
+/* 플로팅 버튼들 공통 스타일 */
+.community-floating-buttons button {
+    cursor: pointer;
+    /* 기본 클릭 가능한 커서 */
+    background-color: transparent;
+    /* 배경 투명 */
+    width: 50px;
+    /* 버튼 크기 조정 */
+    height: 50px;
+    /* 버튼 크기 조정 */
+    border: none;
+}
+
+/* 검색 버튼 */
+.community-floating-search-button {
+    background-image: url(../communityList/assets/search-icon.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+/* 위로 가는 버튼 */
+.community-floating-up-button {
+    background-image: url(../communityList/assets/up-icon.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+/* 더하기 버튼 */
+.community-floating-plus-button {
+    background-image: url(../communityList/assets/plus-icon.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+/* 버튼 호버 상태 */
+.community-floating-buttons button:hover {
+    transform: scale(1.1);
+    /* 버튼 살짝 확대 */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    /* 부드러운 전환 */
+}
