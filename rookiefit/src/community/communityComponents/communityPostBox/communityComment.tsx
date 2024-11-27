@@ -9,8 +9,8 @@ interface CommentProps {
         content: string;
     };
     currentUser: string; // 현재 사용자
-    onDelete: (id: number) => void; // 삭제 처리 함수
-    onEdit: (id: number, newContent: string) => void; // 수정 처리 함수
+    onDelete?: (id: number) => void; // 삭제 처리 함수
+    onEdit?: (id: number, newContent: string) => void; // 수정 처리 함수
 }
 
 function CommunityComment({ comment, currentUser, onDelete, onEdit }: CommentProps) {
@@ -22,7 +22,7 @@ function CommunityComment({ comment, currentUser, onDelete, onEdit }: CommentPro
 
     // 수정 내용 저장
     const saveEdit = () => {
-        if (editedContent !== comment.content) {
+        if (editedContent !== comment.content && onEdit) {
             onEdit(comment.id, editedContent);
         }
         setIsEditing(false);
@@ -52,9 +52,12 @@ function CommunityComment({ comment, currentUser, onDelete, onEdit }: CommentPro
 
             {canEditOrDelete && !isEditing && (
                 <div className="comment-actions">
-                    <button onClick={() => onDelete(comment.id)}>삭제</button>
+                    {onDelete && (
+                        <button onClick={() => onDelete(comment.id)}>삭제</button>
+                    )}
                     <button onClick={startEditing}>수정</button>
                 </div>
+
             )}
         </div>
     );

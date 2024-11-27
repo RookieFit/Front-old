@@ -38,7 +38,7 @@ function CommunityPostBox({ post, currentUser }: CommunityPostBoxProps) {
         slidesToShow: 1,
         slidesToScroll: 1,
         arrows: true,
-        adaptiveHeight: true,  // 이미지 크기에 맞게 슬라이드 높이 자동 조정
+        adaptiveHeight: true, // 이미지 크기에 맞게 슬라이드 높이 자동 조정
     };
 
     // 댓글 섹션 토글 함수
@@ -61,10 +61,8 @@ function CommunityPostBox({ post, currentUser }: CommunityPostBoxProps) {
         setNewComment('');
     };
 
-    const handleClick = (e: React.MouseEvent, id: number) => {
-        if (window.getSelection()?.toString()) {
-            return;
-        }
+    // 게시물 클릭 시 상세 페이지로 이동
+    const handleClick = (id: number) => {
         navigate(`/community/detail/${id}`);
     };
 
@@ -74,11 +72,21 @@ function CommunityPostBox({ post, currentUser }: CommunityPostBoxProps) {
 
     return (
         <div className="post-box">
-            <div className="post-details" onClick={(e) => handleClick(e, post.id)}>
+            <div className="post-details">
                 {/* 게시물 카테고리 */}
-                <p className="post-category">{post.category}</p>
+                <p
+                    className="post-category"
+                    onDoubleClick={() => handleClick(post.id)} // 더블클릭 시 상세 페이지로 이동
+                >
+                    {post.category}
+                </p>
                 {/* 게시물 제목 */}
-                <h3 className="post-title">{post.title}</h3>
+                <h3
+                    className="post-title"
+                    onDoubleClick={() => handleClick(post.id)} // 더블클릭 시 상세 페이지로 이동
+                >
+                    {post.title}
+                </h3>
                 {/* 게시물 헤더 (작성자, 날짜) */}
                 <div className="post-header">
                     <p className="author">{post.author}</p>
@@ -95,6 +103,8 @@ function CommunityPostBox({ post, currentUser }: CommunityPostBoxProps) {
                                         src={image}
                                         alt={`${post.title} ${index + 1}`}
                                         className="post-image"
+                                        draggable // 드래그 가능하도록 설정
+                                        onDoubleClick={() => handleClick(post.id)} // 더블클릭 시 상세 페이지로 이동
                                     />
                                 </div>
                             ))}
