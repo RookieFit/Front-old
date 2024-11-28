@@ -1,19 +1,23 @@
 import './myPage.css';
 import React from 'react';
-import TopMainBoxEdit from './topBox/topMainBoxEdit';
-import GraphBoxEdit from './bottomBox/graphBoxEdit';
+import TopMainBoxEdit from './myPage/topBox/topMainBox/topMainBoxEdit';
+import GraphBoxEdit from './myPage/bottomBox/graphBoxEdit';
+import MyPageFooter from './components/myPageFooter';
 
 const MyPageEdit = () => {
     return (
         <div className="main-box">
             <div className='top-box'>
-                <TopMainBoxEdit/>
+                <TopMainBoxEdit />
             </div>
             <div className='bottom-box'>
-                <GraphBoxEdit/>
-            </div> 
+                <GraphBoxEdit />
+            </div>
+            <footer className='mypage-footer-cirle'>
+                <MyPageFooter />
+            </footer>
         </div>
-    )       
+    )
 };
 
 export default MyPageEdit;
