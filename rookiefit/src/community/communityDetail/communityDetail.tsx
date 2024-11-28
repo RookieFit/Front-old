@@ -85,7 +85,6 @@ const CommunityDetail = () => {
         autoplaySpeed: 2000,
     };
 
-
     return (
         <div className="community-detail-wrapper">
             <div className="community-detail-container">
