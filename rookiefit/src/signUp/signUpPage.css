@@ -48,3 +48,34 @@
     transition: background-color 0.3s ease;
     /* 호버 애니메이션 추가 */
 }
+
+/* 기존 스타일... */
+
+.certification-upload {
+    margin-top: 20px;
+}
+
+.certification-upload .input-box-title {
+    margin-bottom: 10px;
+}
+
+.verify-button {
+    margin-top: 10px;
+    padding: 10px 15px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.input-box-message {
+    color: #4CAF50;
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+/* ImageUploaderMany 컴포넌트 스타일 조정 */
+.image-uploader-many {
+    margin-bottom: 10px;
+}

@@ -1,0 +1,50 @@
+.home-page {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+}
+
+.content-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 1200px;
+    padding-top: 5vw;
+}
+
+.home-page-character {
+    width: 50%;
+    height: 0;
+    padding-bottom: 50%;
+    background: url('./assets/image/workout-bear.png') no-repeat center center;
+    background-size: contain;
+}
+
+.text-container {
+    width: 50%;
+    max-width: 509px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.rookiefit-text {
+    text-align: center;
+    color: #333;
+    line-height: 1.6;
+    padding: 20px;
+}
+
+.rookiefit-text h1 {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+    color: #2c3e50;
+}
+
+.rookiefit-text p {
+    font-size: 1.2em;
+    margin-bottom: 15px;
+}
