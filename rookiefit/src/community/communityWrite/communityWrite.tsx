@@ -1,4 +1,4 @@
-import { SetStateAction, useCallback, useEffect, useRef, useState } from "react";
+import { SetStateAction, useRef, useState } from "react";
 import CommunityHeader from "../communityComponents/communityHeader";
 import './communityWrite.css';
 import { useNavigate } from "react-router-dom";
