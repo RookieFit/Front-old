@@ -22,6 +22,7 @@ import CommunitySearchResult from './community/communitySearch/communitySearchRe
 import MarketChatPage from './market/marketChatPage';
 import MarketSearch from './market/marketSearch';
 import MarketSearchResult from './market/marketSearchResult';
+import Home from './home/home';
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
       <div>
         <Header />
         <Routes>
+          <Route path="/" element={<Home />} />
           <Route path="/mypageedit" element={<MyPageEdit />} />
           <Route path="/mypage" element={<MyPage />} />
           <Route path="/signin" element={<SigninPage />} />

@@ -5,16 +5,16 @@ import './signInPage.css';  // 컴포넌트 스타일을 위한 CSS 임포트
 
 // 로그인 페이지 컴포넌트 정의
 function SignInPage() {
-    // 상태 변수 선언
-    const [id, setId] = useState('');  // 사용자가 입력한 아이디를 저장하는 상태 변수
-    const [password, setPassword] = useState('');  // 사용자가 입력한 비밀번호를 저장하는 상태 변수
-    const [idMessage, setIdMessage] = useState('');  // 아이디 입력란에 대한 상태 메시지 (에러 메시지 또는 성공 메시지)
-    const [passwordMessage, setPasswordMessage] = useState('');  // 비밀번호 입력란에 대한 상태 메시지
-    const [isIdError, setIsIdError] = useState(false);  // 아이디 입력란의 에러 상태 (true: 에러, false: 정상)
-    const [isPasswordError, setIsPasswordError] = useState(false);  // 비밀번호 입력란의 에러 상태
-
-    // 페이지 이동을 위한 useNavigate 훅 사용
     const navigate = useNavigate();
+
+    const [id, setId] = useState<string>('');  // 사용자가 입력한 아이디를 저장하는 상태 변수
+    const [password, setPassword] = useState<string>('');
+
+    const [idMessage, setIdMessage] = useState<string>('');  // 아이디 입력란에 대한 상태 메시지 (에러 메시지 또는 성공 메시지)
+    const [passwordMessage, setPasswordMessage] = useState<string>('');  // 비밀번호 입력란에 대한 상태 메시지
+    const [isIdError, setIsIdError] = useState<boolean>(false);  // 아이디 입력란의 에러 상태 (true: 에러, false: 정상)
+    const [isPasswordError, setIsPasswordError] = useState<boolean>(false);  // 비밀번호 입력란의 에러 상태
+
 
     // 아이디 입력에 사용할 정규식 (알파벳 대소문자와 숫자만 허용)
     const alphanumericRegex = /^[A-Za-z0-9]*$/;  // 알파벳과 숫자만 허용하는 정규식
