@@ -1,3 +1,15 @@
+.my-information-nickname-alter{
+    position: absolute;
+    bottom: 14px;
+    left: 465px;
+    background-color: gray;
+    color: white;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    z-index: 1000;
+}
+
 .my-information-box {
     display: flex;
     flex-direction: row;

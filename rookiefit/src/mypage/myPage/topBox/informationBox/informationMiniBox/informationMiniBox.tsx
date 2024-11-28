@@ -11,9 +11,7 @@ interface Props {
     value: boolean;
 }
 
-
 const InformationMiniBox = ({ role, value }: Props) => {
-
     const navigate = useNavigate();
     const myPageEdit = () => {
         navigate('/myPageEdit')
@@ -21,9 +19,7 @@ const InformationMiniBox = ({ role, value }: Props) => {
     const CommunityDetail = () => {
         navigate('/community/detail/:id')
     };
-    const seenFeedEdit = () => {
-        navigate('/seenFeedEdit')
-    };
+
     // 초기값을 'info'로 설정하여 처음에 내 정보가 보이도록 합니다.
     const [activeTab, setActiveTab] = useState<'info' | 'post' | 'photo' | null>('info');
 
@@ -74,14 +70,15 @@ const InformationMiniBox = ({ role, value }: Props) => {
                         />
                         {role === 'trainer' ? (
                             <>
+                                <InformationLine title={'닉네임'} value={''} />
                                 <InformationLine title={'이름'} value={'나불끈'} />
                                 <InformationLine title={'나이'} value={'??'} />
                                 <InformationLine title={'몸무게'} value={'??'} />
                                 <InformationLine title={'키'} value={'??'} />
                                 <InformationLine title={'근육량'} value={'0'} />
                                 <InformationLine title={'체지방량'} value={'0'} />
-                                <InformationLine title={'주소'} value={'비키니시티'} />
-                                <InformationLine title={'헬스장명'} value={'없는데용?'} />
+                                <InformationLine title={'주소'} value={'헬창클럽'} />
+                                <InformationLine title={'헬스장명'} value={'루키핏'} />
                             </>
                         ) : (
                             <>
@@ -120,7 +117,7 @@ const InformationMiniBox = ({ role, value }: Props) => {
                         <input
                             type="button"
                             value="수정하기"
-                            onClick={seenFeedEdit}
+                            onClick={myPageEdit}
                             className='my-information-button'
                         />
                         <SeenFeed role={role} showBackground={value} />

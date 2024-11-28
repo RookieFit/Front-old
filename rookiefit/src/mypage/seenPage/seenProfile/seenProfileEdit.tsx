@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import './seenProfile.css';
+import './../../myPage/topBox/profileBox/myProfile/myProfile.css';
 import logo from '../assets/Larry.png'
 
 interface Props {
@@ -15,11 +15,11 @@ const SeenProfileEdit = ({ userId, name, message }: Props) => {
   };
 
   return (
-    <div className='seen-profile-left-back'>
-      <img className='seen-profile-image' src={logo}></img>
-      <div className='seen-profile-nickname'>{name}</div>
-      <input type='text' className='seen-profile-message-textarea' value={message} />
-      <input type="button" value="채팅하기" onClick={marketChatPage} className='seen-profile-button' />
+    <div className='profile-left-back'>
+      <img className='my-profile-edit-image' src={logo}></img>
+      <div className='my-profile-nickname'>{name}</div>
+      <input type='text' className='my-profile-message-textarea' value={message} />
+      <input type="button" value="채팅하기" onClick={marketChatPage} className='my-profile-button'/>
     </div>
   )
 };

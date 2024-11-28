@@ -16,6 +16,7 @@ const SeenFeed = ({ role, showBackground }: Props) => {
           <div className="seen-feed-banner">트레이너 경력</div>
           <input
             type="text"
+            spellCheck="false"
             className={`seen-feed-textarea ${isTextareaFocused ? 'focused' : ''}`}
             onFocus={() => setIsTextareaFocused(true)}
             onBlur={() => setIsTextareaFocused(false)}

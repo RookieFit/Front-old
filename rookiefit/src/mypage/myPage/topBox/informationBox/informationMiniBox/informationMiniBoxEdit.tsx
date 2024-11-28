@@ -7,11 +7,11 @@ import SeenFeedGridBox from '../../../../seenPage/seenFeed/seenFeedcommunityComp
 import SeenFeed from '../../../../seenPage/seenFeed/seenFeed';
 
 interface Props {
-    role:string
-    value: boolean
+    role: string;
+    value: boolean;
 }
 
-const InformationMiniBoxEdit  = ({role,value }: Props) => {
+const InformationMiniBoxEdit = ({ role, value }: Props) => {
     const navigate = useNavigate();
     const myPage = () => {
         navigate('/myPage')
@@ -48,6 +48,7 @@ const InformationMiniBoxEdit  = ({role,value }: Props) => {
                     내 정보
                 </button>
                 <button
+                    disabled
                     onClick={() => handleToggleTab('post')}
                     className='my-information-post'
                     style={getInputBackgroundColor('post')}>
@@ -60,7 +61,7 @@ const InformationMiniBoxEdit  = ({role,value }: Props) => {
                     사진첩
                 </button>
             </div>
-            {/* 조건부 렌더링 */}   
+            {/* 조건부 렌더링 */}
             {activeTab === 'info' && (
                 <div className='my-information-one'>
                     <div className='my-information-box-information'>
@@ -70,15 +71,31 @@ const InformationMiniBoxEdit  = ({role,value }: Props) => {
                             onClick={myPage}
                             className='my-information-button'
                         />
-                        <InformationLineEdit title={'닉네임'} />
-                        <InformationLine title={'이름'} value={'불가사리'} />
-                        <InformationLine title={'나이'} value={'??'} />
-                        <InformationLineEdit title={'몸무게'} />
-                        <InformationLineEdit title={'키'} />
-                        <InformationLineEdit title={'근육량'} />
-                        <InformationLineEdit title={'체지방량'} />
-                        <InformationLineEdit title={'주소'} />
-                        <InformationLineEdit title={'헬스장명'} />
+                        {role === 'trainer' ? (
+                            <>
+                                <InformationLine title={'닉네임'} value={''} />
+                                <InformationLine title={'이름'} value={'나불끈'} />
+                                <InformationLine title={'나이'} value={'??'} />
+                                <InformationLineEdit title={'몸무게'} value={'??'} />
+                                <InformationLineEdit title={'키'} value={'??'} />
+                                <InformationLineEdit title={'근육량'} value={'0'} />
+                                <InformationLineEdit title={'체지방량'} value={'0'} />
+                                <InformationLineEdit title={'주소'} value={'헬창클럽'} />
+                                <InformationLineEdit title={'헬스장명'} value={'루키핏'} />
+                            </>
+                        ) : (
+                            <>
+                                <InformationLineEdit title={'닉네임'} value={'뚱인데요?'} />
+                                <InformationLine title={'이름'} value={'불가사리'} />
+                                <InformationLine title={'나이'} value={'??'} />
+                                <InformationLineEdit title={'몸무게'} value={'??'} />
+                                <InformationLineEdit title={'키'} value={'??'} />
+                                <InformationLineEdit title={'근육량'} value={'0'} />
+                                <InformationLineEdit title={'체지방량'} value={'0'} />
+                                <InformationLineEdit title={'주소'} value={'비키니시티'} />
+                                <InformationLineEdit title={'헬스장명'} value={'없는데용?'} />
+                            </>
+                        )}
                     </div>
                 </div>
             )}
@@ -104,7 +121,7 @@ const InformationMiniBoxEdit  = ({role,value }: Props) => {
                             onClick={seenFeedEdit}
                             className='my-information-button'
                         />
-                        <SeenFeed role={role} showBackground={value}/>
+                        <SeenFeed role={role} showBackground={value} />
                     </div>
                 </div>
             )}

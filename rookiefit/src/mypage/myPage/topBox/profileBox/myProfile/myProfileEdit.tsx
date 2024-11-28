@@ -22,6 +22,7 @@ const MyProfileEdit = ({ userId, name, message }: Props) => {
       <div className='my-profile-nickname'>{name}</div>
       <input type='text'
         maxLength={19}
+        spellCheck="false"
         className='my-profile-message-textarea'
         onFocus={() => setIsProfileTextareaClicked(true)}
         onBlur={() => setIsProfileTextareaClicked(false)}
