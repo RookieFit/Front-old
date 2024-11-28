@@ -1,0 +1,21 @@
+.seen-page-left-right-page {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 0 10vw;
+    gap: 2vw;
+    margin-top: 1.8vw;
+}
+
+.seen-page-right-back {
+    width: 38vw;
+    max-height: 37.4vw;
+    /* 최대 높이 설정 */
+    height: 36.4vw;
+    /* 고정된 높이 */
+    border-radius: 12px;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.15);
+    background-color: transparent;
+    outline: 1px solid rgba(0, 0, 0, 0.1);
+    outline-offset: 2px;
+}
