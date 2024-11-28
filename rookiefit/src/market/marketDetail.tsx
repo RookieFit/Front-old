@@ -35,9 +35,10 @@ const MarketDetail = () => {
     const handleChat = () => {
         navigate(`/market/chat/${id}`, {
             state: {
+                chatRoomId: id, // 전달
                 userName: selectedItem.userName,
                 title: selectedItem.title,
-                price: selectedItem.price
+                price: selectedItem.price,
             }
         });
     };
