@@ -18,7 +18,7 @@ const MarketChatPage = () => {
     const messagesEndRef = useRef<HTMLDivElement>(null);
     const { userName, title, price } = location.state;
 
-    const token = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJxd2UiLCJpYXQiOjE3MzI3NTgyNjksImV4cCI6MTczMjc2MTg2OX0.kKdlob-JoUBm_bTnxO_2ujcevtLkX1J8rLIbRA9sUHQ";
+    const token = "e";
     const webSocketManager = useRef<WebSocketManager | null>(null);
 
     const scrollToBottom = () => {

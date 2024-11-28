@@ -129,7 +129,6 @@ const CommunityList = () => {
                             ))
                         )}
                     </div>
-                    {isLoading && <div className="loading">로딩 중...</div>}
                 </div>
             </div>
 

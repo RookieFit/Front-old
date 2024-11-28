@@ -22,12 +22,15 @@ export class WebSocketManager {
             connectHeaders: {
                 'Authorization': `Bearer ${this.token}`,
             },
+            debug: (str) => console.log(str),  // 디버그 로깅
             reconnectDelay: 5000,
         });
 
         this.client.onConnect = () => {
             console.log("WebSocket connected.");
             this.client?.subscribe("/topic/public", (message) => {
+                console.log("Subscribed to /topic/public.");
+                console.log("Received message: ", message.body);
                 this.onMessageReceived(message.body);
             });
         };
@@ -39,13 +42,14 @@ export class WebSocketManager {
         this.client.activate();
     }
 
+
     sendMessage(destination: string, body: any) {
         if (this.client?.connected) {
-            const message = JSON.stringify(body); // 메시지를 직렬화
-            console.log(`Sending message to ${destination}:`, message); // 보낸 메시지 로그
+            const message = JSON.stringify(body);
+            console.log(`Sending message to ${destination}:`, message);
 
-            this.client.publish({
-                destination,
+            this.client?.publish({
+                destination: destination,
                 body: message,
                 headers: {
                     'Authorization': `Bearer ${this.token}`,
@@ -55,6 +59,7 @@ export class WebSocketManager {
             console.error("WebSocket is not connected.");
         }
     }
+
 
     disconnect() {
         this.client?.deactivate();
