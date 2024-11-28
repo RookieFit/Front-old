@@ -35,7 +35,7 @@ const InformationLineEdit = ({ title, value = '', onChange }: InformationLineEdi
             <div style={{
                 position: 'absolute',
                 bottom: '14px',
-                left: '465p x',
+                left: '465px',
                 backgroundColor: 'gray',
                 color: 'white',
                 padding: '4px 8px',

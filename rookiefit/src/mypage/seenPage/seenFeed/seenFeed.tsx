@@ -1,18 +1,17 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import './seenFeed.css';
 
-const SeenFeedEdit = () => {
+interface Props {
+  role: string;
+  showBackground?: boolean; // 새로운 prop 추가
+}
+
+const SeenFeed = ({ role, showBackground }: Props) => {
   const [isTextareaFocused, setIsTextareaFocused] = useState(false);
 
-  // 기본 사용자 데이터를 바로 설정
-  const [currentUser, setCurrentUser] = useState({ role: 'user' });
-
-  // `users`를 더미 데이터로 유지할 필요가 없어서 제거
-
   return (
-    <div className="seen-feed-right-box">
-      {/* 사용자 역할에 따라 UI 조건부 렌더링 */}
-      {currentUser.role === 'trainer' ? (
+    <div className={showBackground ? "seen-feed-right-back" : ""}>
+      {role === 'trainer' ? (
         <div className="seen-feed-trainer-box">
           <div className="seen-feed-banner">트레이너 경력</div>
           <input
@@ -22,6 +21,7 @@ const SeenFeedEdit = () => {
             onBlur={() => setIsTextareaFocused(false)}
             placeholder={isTextareaFocused ? '' : '입력하세요'}
           />
+           <div className="seen-feed-photo">트레이너 대표 사진</div>
         </div>
       ) : (
         <div className="seen-feed-photo">사진첩</div>
@@ -30,4 +30,4 @@ const SeenFeedEdit = () => {
   );
 };
 
-export default SeenFeedEdit;
+export default SeenFeed;

@@ -5,23 +5,31 @@ import { useState } from 'react';
 import SeenFeed from '../../../../seenPage/seenFeed/seenFeed';
 import SeenFeedGridBox from '../../../../seenPage/seenFeed/seenFeedcommunityComponents/seenFeedGridBox';
 
-const InformationMiniBox = () => {
+
+interface Props {
+    role: string;
+    value: boolean;
+}
+
+
+const InformationMiniBox = ({ role, value }: Props) => {
 
     const navigate = useNavigate();
     const myPageEdit = () => {
         navigate('/myPageEdit')
     };
-    const communityList = () => {
-        navigate('/communityList')
+    const CommunityDetail = () => {
+        navigate('/community/detail/:id')
     };
     const seenFeedEdit = () => {
         navigate('/seenFeedEdit')
     };
     // 초기값을 'info'로 설정하여 처음에 내 정보가 보이도록 합니다.
-    const [activeTab] = useState<'info' | 'post' | 'photo' | null>('info');
+    const [activeTab, setActiveTab] = useState<'info' | 'post' | 'photo' | null>('info');
 
-    const handleToggleTab = (tab: 'info' | 'post' | 'photo' | null) => {
+    const handleToggleTab = (tab: 'info' | 'post' | 'photo') => {
         // 이미 선택된 탭을 클릭하면 다시 닫히도록 설정
+        setActiveTab(tab);
     };
 
     // 배경색을 동적으로 적용하기 위한 스타일 설정
@@ -55,9 +63,6 @@ const InformationMiniBox = () => {
                 </button>
             </div>
             {/* 조건부 렌더링 */}
-            {activeTab === null && (
-                <div className='my-information-push'> 위 글자를 눌러주세요!!!</div>
-            )}
             {activeTab === 'info' && (
                 <div className='my-information-one'>
                     <div className='my-information-box-information'>
@@ -67,15 +72,30 @@ const InformationMiniBox = () => {
                             onClick={myPageEdit}
                             className='my-information-button'
                         />
-                        <InformationLine title={'닉네임'} value={'뚱인데요?'} />
-                        <InformationLine title={'이름'} value={'불가사리'} />
-                        <InformationLine title={'나이'} value={'??'} />
-                        <InformationLine title={'몸무게'} value={'??'} />
-                        <InformationLine title={'키'} value={'??'} />
-                        <InformationLine title={'근육량'} value={'0'} />
-                        <InformationLine title={'체지방량'} value={'0'} />
-                        <InformationLine title={'주소'} value={'비키니시티'} />
-                        <InformationLine title={'헬스장명'} value={'없는데용?'} />
+                        {role === 'trainer' ? (
+                            <>
+                                <InformationLine title={'이름'} value={'나불끈'} />
+                                <InformationLine title={'나이'} value={'??'} />
+                                <InformationLine title={'몸무게'} value={'??'} />
+                                <InformationLine title={'키'} value={'??'} />
+                                <InformationLine title={'근육량'} value={'0'} />
+                                <InformationLine title={'체지방량'} value={'0'} />
+                                <InformationLine title={'주소'} value={'비키니시티'} />
+                                <InformationLine title={'헬스장명'} value={'없는데용?'} />
+                            </>
+                        ) : (
+                            <>
+                                <InformationLine title={'닉네임'} value={'뚱인데요?'} />
+                                <InformationLine title={'이름'} value={'불가사리'} />
+                                <InformationLine title={'나이'} value={'??'} />
+                                <InformationLine title={'몸무게'} value={'??'} />
+                                <InformationLine title={'키'} value={'??'} />
+                                <InformationLine title={'근육량'} value={'0'} />
+                                <InformationLine title={'체지방량'} value={'0'} />
+                                <InformationLine title={'주소'} value={'비키니시티'} />
+                                <InformationLine title={'헬스장명'} value={'없는데용?'} />
+                            </>
+                        )}
                     </div>
                 </div>
             )}
@@ -85,7 +105,7 @@ const InformationMiniBox = () => {
                         <input
                             type="button"
                             value="보러가기"
-                            onClick={communityList}
+                            onClick={CommunityDetail}
                             className='my-information-button'
                         />
                         <div className='my-information-seen-grid'>
@@ -103,7 +123,7 @@ const InformationMiniBox = () => {
                             onClick={seenFeedEdit}
                             className='my-information-button'
                         />
-                        <SeenFeed />
+                        <SeenFeed role={role} showBackground={value} />
                     </div>
                 </div>
             )}

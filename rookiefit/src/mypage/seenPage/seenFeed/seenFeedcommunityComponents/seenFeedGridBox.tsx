@@ -2,6 +2,7 @@ import { useState, useEffect, useCallback } from 'react';
 import { useLocation } from 'react-router-dom';
 import { dummyPosts } from '../../../../community/communityList/dummydata';
 import SeedPostGridProps from './seedPostGridProps';
+import './seenFeedGridBox.css';
 
 type Category = '전체' | '바프' | '고민' | '정보' | '친목' | '공지';
 const CATEGORIES: Category[] = ['전체', '바프', '고민', '정보', '친목', '공지'];

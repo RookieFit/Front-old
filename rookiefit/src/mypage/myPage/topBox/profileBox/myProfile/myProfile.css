@@ -1,3 +1,16 @@
+.profile-left-back {
+    width: 38vw;
+    height: 36.4vw;
+    border-radius: 12px;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.15);
+    outline: 1px solid rgba(0, 0, 0, 0.1);
+    outline-offset: 2px;
+    background-color: transparent;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
 .my-profile-logout {
     width: 70px;
     height: 20px;
@@ -78,17 +91,4 @@
     border-radius: 13px;
     border-style: none;
     text-align: center;
-}
-
-.profile-left-back {
-    width: 38vw;
-    height: 36.4vw;
-    border-radius: 12px;
-    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.15);
-    outline: 1px solid rgba(0, 0, 0, 0.1);
-    outline-offset: 2px;
-    background-color: transparent;
-    position: relative;
-    display: flex;
-    flex-direction: column;
 }

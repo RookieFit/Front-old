@@ -1,30 +1,31 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './seenFeed.css';
 
-// 더미 사용자 데이터
-const mockUser = { role: 'trainer' };
+interface Props {
+  role: string
+  showBackground?: boolean; // 새로운 prop 추가
+}
 
-const SeenFeedEdit = () => {
-  const [isFocused, setIsFocused] = useState(false); // 텍스트 영역 포커스 상태
-  const currentUser = mockUser; // 현재 사용자 데이터를 바로 설정
+const SeenFeedEdit = ({ role, showBackground }: Props) => {
+  const [isTextareaFocused, setIsTextareaFocused] = useState(false);
 
   return (
-    <div className="seen-feed-right-box">
-      {/* 트레이너 역할일 경우에만 렌더링 */}
-      {currentUser.role === 'trainer' && (
+    <div className={showBackground ? "seen-feed-right-back" : ""}>
+      {role === 'trainer' ? (
         <div className="seen-feed-trainer-box">
           <div className="seen-feed-banner">트레이너 경력</div>
           <input
             type="text"
-            className={`seen-feed-textarea ${isFocused ? 'focused' : ''}`}
-            onFocus={() => setIsFocused(true)}
-            onBlur={() => setIsFocused(false)}
-            placeholder={isFocused ? '' : '입력하세요'}
+            className={`seen-feed-textarea ${isTextareaFocused ? 'focused' : ''}`}
+            onFocus={() => setIsTextareaFocused(true)}
+            onBlur={() => setIsTextareaFocused(false)}
+            placeholder={isTextareaFocused ? '' : '입력하세요'}
           />
           <div className="seen-feed-photo">트레이너 대표 사진</div>
         </div>
+      ) : (
+        <div className="seen-feed-photo">사진첩</div>
       )}
-
     </div>
   );
 };
