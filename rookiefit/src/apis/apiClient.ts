@@ -130,42 +130,42 @@ export const UserCommunityAnswerRequest = async (requestBody: UserCommunityAnswe
     return result;
 }
 
-export const getAllUserCommunityRequest = async () => {
+export const GetAllUserCommunityRequest = async () => {
     const result = await axios.get(GET_ALL_USER_COMMUNITY_URL())
         .then(responseHandler<getAllUserCommunityResponseDto>)
         .catch(errorHandler)
     return result;
 }
 
-export const getByContentTypeUserCommunityRequest = async () => {
+export const GetByContentTypeUserCommunityRequest = async () => {
     const result = await axios.get(GET_BY_CONTENT_TYPE_USER_COMMUNITY_URL())
         .then(responseHandler<getByContentTypeUserCommunityResponseDto>)
         .catch(errorHandler)
     return result;
 }
 
-export const getUserCommunityRequest = async () => {
+export const GetUserCommunityRequest = async () => {
     const result = await axios.get(GET_USER_COMMUNITY_URL())
         .then(responseHandler<getUserCommunityResponseDto>)
         .catch(errorHandler)
     return result;
 }
 
-export const deleteUserCommunityRequest = async () => {
+export const DeleteUserCommunityRequest = async () => {
     const result = await axios.delete(DELETE_USER_COMMUNITY_URL())
         .then(responseHandler<DeleteUserCommunityResponseDto>)
         .catch(errorHandler)
     return result;
 }
 
-export const deleteUserCommunityAnswerRequest = async () => {
+export const DeleteUserCommunityAnswerRequest = async () => {
     const result = await axios.delete(DELETE_USER_COMMUNITY_ANSWER_URL())
         .then(responseHandler<DeleteUserCommunityResponseDto>)
         .catch(errorHandler)
     return result;
 }
 
-export const getSearchUserCommunityRequest = async () => {
+export const GetSearchUserCommunityRequest = async () => {
     const result = await axios.get(GET_SEARCH_USER_COMMUNITY_URL())
         .then(responseHandler<getSearchUserCommunityResponseDto>)
         .catch(errorHandler)
