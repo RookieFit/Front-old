@@ -1,0 +1,21 @@
+.graph-box {
+    background-color: #D9D9D9D9;
+    height: 350px;
+    width: 1525px;
+    margin-top: 20px;
+    margin-left: 10vw;
+    border-radius: 13px; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.toggle-graph-box {
+    display: block;
+    margin: 0 auto; /* 수평으로 중앙 정렬 */
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    text-align: center;
+}

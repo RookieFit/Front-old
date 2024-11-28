@@ -1,0 +1,94 @@
+.my-profile-logout {
+    width: 70px;
+    height: 20px;
+    font-size: 15px;
+    margin-top: 10px;
+    margin-left: 7px; 
+    text-align: left;
+    border-style: none;
+}
+
+.my-profile-image {
+    border: thin solid  rgb(153, 151, 151);
+    background-color: #ffffff;
+    width: 380px;
+    height: 380px;
+    margin: auto;
+    border-radius: 50%;
+    text-align: center;
+}
+
+.my-profile-nickname {
+    width: 181px;
+    height: 25px;
+    margin: 22px auto;
+    font-size: 32px;
+    text-align: center;
+}
+
+.my-profile-message-textarea {
+    background-color: #ECECEC; 
+    display: inline-block;
+    font-size: 25px;
+    width: 521px;   
+    height: 43px;
+    margin-top: 36px;
+    margin: auto;
+    border: none;
+    resize: none;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    text-align: center;
+}
+
+.my-profile-edit-image {
+    border: thin solid  rgb(153, 151, 151);
+    background-color: #ffffff;
+    width: 380px;
+    height: 380px;
+    margin: auto;
+    margin-top: 51px;
+    border-radius: 50%;
+    text-align: center;
+}
+
+.my-profile-edit {
+    background-color: #D9D9D9;  
+    text-decoration-line: none;
+    font-size: 24px;    
+    width: 383px;
+    height: 45px;
+    margin-top: 22px;
+    margin: auto;
+    border-radius: 13px;
+    border-style: none;
+    text-align: center;
+}
+
+.my-profile-button {
+    background-color: #D9D9D9;  
+    text-decoration-line: none;   
+    width: 383px;
+    height: 45px;
+    font-size: 24px; 
+    margin-bottom: 41px;
+    margin: auto; 
+    text-align: center;
+    border-radius: 13px;
+    border-style: none;
+    text-align: center;
+}
+
+.profile-left-back {
+    width: 38vw;
+    height: 36.4vw;
+    border-radius: 12px;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.15);
+    outline: 1px solid rgba(0, 0, 0, 0.1);
+    outline-offset: 2px;
+    background-color: transparent;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}

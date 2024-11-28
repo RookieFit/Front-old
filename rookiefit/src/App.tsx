@@ -14,6 +14,7 @@ import CommunityWrite from './community/communityWrite/communityWrite';
 import FindPassword from './findPassword/findPassword';
 import FindIdResult from './findIdResult/findIdResult';
 import FoodPage from './food/foodPage';
+import SeenPage from './mypage/seenPage/seenPage';
 import MarketPage from './market/marketPage';
 import MarketDetail from './market/marketDetail';
 import MarketPost from './market/marketPost';
@@ -31,6 +32,7 @@ function App() {
         <Header />
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/seenPage" element={<SeenPage />} />
           <Route path="/mypageedit" element={<MyPageEdit />} />
           <Route path="/mypage" element={<MyPage />} />
           <Route path="/signin" element={<SigninPage />} />
