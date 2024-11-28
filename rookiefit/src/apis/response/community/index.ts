@@ -1,14 +1,14 @@
-import userCommunityResponseDto from "./userCommunityResponse.dto"
-import userCommunityAnswerResponseDto from "./userCommunityAnswerResponse.dto"
-import getAllUserCommunityResponseDto from "./getAllUserCommunityResponse.dto"
-import getByContentTypeUserCommunityResponseDto from "./getByContentTypeUserCommunityResponse.dto"
-import getUserCommunityResponseDto from "./getUserCommunityResponse.dto"
-import deleteUserCommunityResponseDto from "./deleteUserCommunityResponse.dto"
-import getSearchUserCommunityResponseDto from "./getSearchUserCommunityResponse.dto"
+import UserCommunityResponseDto from "./userCommunityResponse.dto"
+import UserCommunityAnswerResponseDto from "./userCommunityAnswerResponse.dto"
+import GetAllUserCommunityResponseDto from "./getAllUserCommunityResponse.dto"
+import GetByContentTypeUserCommunityResponseDto from "./getByContentTypeUserCommunityResponse.dto"
+import GetUserCommunityResponseDto from "./getUserCommunityResponse.dto"
+import DeleteUserCommunityResponseDto from "./deleteUserCommunityResponse.dto"
+import GetSearchUserCommunityResponseDto from "./getSearchUserCommunityResponse.dto"
 
 export type {
-    userCommunityResponseDto, userCommunityAnswerResponseDto,
-    deleteUserCommunityResponseDto,
-    getAllUserCommunityResponseDto, getByContentTypeUserCommunityResponseDto,
-    getUserCommunityResponseDto, getSearchUserCommunityResponseDto
+    UserCommunityResponseDto, UserCommunityAnswerResponseDto,
+    DeleteUserCommunityResponseDto,
+    GetAllUserCommunityResponseDto, GetByContentTypeUserCommunityResponseDto,
+    GetUserCommunityResponseDto, GetSearchUserCommunityResponseDto
 }

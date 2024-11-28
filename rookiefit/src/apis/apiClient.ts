@@ -8,8 +8,11 @@ import FindUserIdResponseDto from "./response/account/findUserIdResponse.dto";
 import { CheckFindUserIdRequestDto, CheckFindUserPasswordRequestDto, FindUserPasswordRequestDto, UserDeleteRequestDto } from "./request/account";
 import { CheckFindUserIdResponseDto, CheckFindUserPasswordResponseDto, FindUserPasswordResponseDto, UserDeleteResponseDto } from "./response/account";
 import { UserCommunityAnswerRequestDto, UserCommunityResquestDto } from "./request/community";
-import { getByContentTypeUserCommunityResponseDto, getSearchUserCommunityResponseDto, getUserCommunityResponseDto, userCommunityAnswerResponseDto, userCommunityResponseDto } from "./response/community";
-import getAllUserCommunityResponseDto from "./response/community/getAllUserCommunityResponse.dto";
+import {
+    GetByContentTypeUserCommunityResponseDto, GetSearchUserCommunityResponseDto, GetUserCommunityResponseDto, UserCommunityAnswerResponseDto,
+    UserCommunityAnswerResponseDto, UserCommunityResponseDto, UserCommunityResponseDto
+} from "./response/community";
+import GetAllUserCommunityResponseDto from "./response/community/getAllUserCommunityResponse.dto";
 import DeleteUserCommunityResponseDto from "./response/community/deleteUserCommunityResponse.dto";
 
 const responseHandler = <T>(response: AxiosResponse<any, any>) => {
@@ -118,35 +121,35 @@ export const UserDeleteRequest = async (requestBody: UserDeleteRequestDto) => {
 
 export const UserCommunityRequest = async (requestBody: UserCommunityResquestDto) => {
     const result = await axios.post(USER_COMMUNITY_URL(), requestBody)
-        .then(responseHandler<userCommunityResponseDto>)
+        .then(responseHandler<UserCommunityResponseDto>)
         .catch(errorHandler)
     return result;
 }
 
 export const UserCommunityAnswerRequest = async (requestBody: UserCommunityAnswerRequestDto) => {
     const result = await axios.post(USER_COMMUNITY_ANSWER_URL(), requestBody)
-        .then(responseHandler<userCommunityAnswerResponseDto>)
+        .then(responseHandler<UserCommunityAnswerResponseDto>)
         .catch(errorHandler)
     return result;
 }
 
 export const GetAllUserCommunityRequest = async () => {
     const result = await axios.get(GET_ALL_USER_COMMUNITY_URL())
-        .then(responseHandler<getAllUserCommunityResponseDto>)
+        .then(responseHandler<GetAllUserCommunityResponseDto>)
         .catch(errorHandler)
     return result;
 }
 
 export const GetByContentTypeUserCommunityRequest = async () => {
     const result = await axios.get(GET_BY_CONTENT_TYPE_USER_COMMUNITY_URL())
-        .then(responseHandler<getByContentTypeUserCommunityResponseDto>)
+        .then(responseHandler<GetByContentTypeUserCommunityResponseDto>)
         .catch(errorHandler)
     return result;
 }
 
 export const GetUserCommunityRequest = async () => {
     const result = await axios.get(GET_USER_COMMUNITY_URL())
-        .then(responseHandler<getUserCommunityResponseDto>)
+        .then(responseHandler<GetUserCommunityResponseDto>)
         .catch(errorHandler)
     return result;
 }
@@ -167,7 +170,7 @@ export const DeleteUserCommunityAnswerRequest = async () => {
 
 export const GetSearchUserCommunityRequest = async () => {
     const result = await axios.get(GET_SEARCH_USER_COMMUNITY_URL())
-        .then(responseHandler<getSearchUserCommunityResponseDto>)
+        .then(responseHandler<GetSearchUserCommunityResponseDto>)
         .catch(errorHandler)
     return result;
 }
