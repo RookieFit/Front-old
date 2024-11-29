@@ -6,7 +6,7 @@ import AddedDetails from '../calendarComponents/calendarAddDetails';
 import moment from 'moment';
 import { useCalendarDetails } from '../calendarDetailContext';
 import { UseCalendar } from '../calendarContext';
-import ImageUploader from '../../components/imageUploader';
+import ImageUploaderMany from '../../components/imageUploaderMany'; // 여러 이미지 업로드 컴포넌트 추가
 
 const CalendarWrite = () => {
     const navigate = useNavigate();
@@ -21,10 +21,11 @@ const CalendarWrite = () => {
     const [title, setTitle] = useState(''); // 일기 제목 상태
     const [diaryContent, setDiaryContent] = useState(''); // 일기 내용 상태
     const [localDetails, setLocalDetails] = useState<string[][]>([]); // 운동 세부사항 상태
-    const [uploadedImage, setUploadedImage] = useState<File | null>(null); // 업로드된 이미지 상태
+    const [uploadedImages, setUploadedImages] = useState<File[]>([]); // 업로드된 여러 이미지 상태
 
-    const handleImageUpload = (image: File | null) => {
-        setUploadedImage(image);
+    // 이미지 업로드 처리
+    const handleImagesUpload = (images: File[]) => {
+        setUploadedImages((prevImages) => [...prevImages, ...images]); // 기존 이미지들에 새 이미지 추가
     };
 
     // 운동 세부사항 추가 함수
@@ -46,7 +47,7 @@ const CalendarWrite = () => {
 
     // 제출 시 일기 저장 처리
     const handleSubmit = () => {
-        const imageData = uploadedImage ? URL.createObjectURL(uploadedImage) : null;
+        const imageUrls = uploadedImages.map((image) => URL.createObjectURL(image)); // 모든 이미지의 URL 생성
 
         setDetails((prevDetails) => ({
             entries: [
@@ -56,7 +57,7 @@ const CalendarWrite = () => {
                     diaryContent,
                     workoutDetails: localDetails, // 운동 세부사항 저장
                     date: selectedDate.toString(), // 선택된 날짜 저장
-                    image: imageData, // 업로드된 이미지 URL 저장
+                    images: imageUrls, // 여러 이미지 URL 저장
                 }
             ]
         }));
@@ -72,12 +73,10 @@ const CalendarWrite = () => {
         <div className="right-back">
             <div className="calendar-write-wrapper">
                 <div className="calendar-header">
-                    {/* 날짜 왼쪽에 취소 버튼 추가 */}
                     <div className="calendar-write-cancel-button" onClick={handleCancel}>취소</div>
                     <h2>{moment(selectedDate).format('YYYY-MM-DD')}</h2>
                 </div>
                 <div className="calendar-title-input">
-                    {/* 제목 글자수 제한 */}
                     <textarea
                         value={title}
                         onChange={handleTitleChange}
@@ -87,7 +86,6 @@ const CalendarWrite = () => {
                 </div>
                 <div className="calendar-write-detail">
                     <div className="input-row">
-                        {/* 운동명, 횟수, 세트수, 휴식시간 입력 필드 */}
                         <TextInput
                             label="운동명"
                             value={workoutDetails.exerciseName}
@@ -110,19 +108,21 @@ const CalendarWrite = () => {
                         />
                     </div>
                     <div className="calendar-write-add-detail">
-                        {/* 운동 세부사항 추가 버튼 */}
                         <button className="calendar-write-add" onClick={handleAddDetail}>추가하기</button>
-                        <AddedDetails workoutDetails={localDetails} /> {/* 추가된 세부사항 목록 */}
+                        <AddedDetails workoutDetails={localDetails} />
                         <div className="diary-input-section">
                             <textarea
                                 value={diaryContent}
                                 onChange={handleDiaryChange}
                                 placeholder="여기에 자유롭게 내용을 입력하세요."
                                 maxLength={255}
-
                             />
-                            {/* 이미지 추가 버튼을 따로 만들어서... */}
-                            <ImageUploader onImageUpload={handleImageUpload} maxSizeMB={5} />
+                            {/* 여러 이미지 업로드 */}
+                            <ImageUploaderMany
+                                maxImages={5}
+                                onImageUpload={handleImagesUpload}
+                                previewImages={uploadedImages.map((file) => URL.createObjectURL(file))} // 업로드된 이미지 미리보기 URL을 전달
+                            />
                         </div>
                         <button className="calendar-write-submit" onClick={handleSubmit}>SUBMIT</button>
                     </div>

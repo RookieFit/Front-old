@@ -13,27 +13,6 @@
     cursor: pointer;
 }
 
-.image-uploader-many-preview-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 16px;
-    margin-top: 16px;
-}
-
-.image-uploader-many-preview {
-    position: relative;
-    aspect-ratio: 1;
-    border-radius: 8px;
-    overflow: hidden;
-    border: 1px solid #eee;
-}
-
-.image-uploader-many-preview img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
 .image-uploader-many-preview button {
     position: absolute;
     top: 8px;
@@ -53,4 +32,37 @@
 
 .image-uploader-many-label:hover {
     background-color: #a7a7a7;
+}
+
+.image-uploader-many-preview img {
+    width: 100%;
+    /* 이미지가 부모 요소의 너비를 채우게 */
+    height: auto;
+    /* 비율에 맞게 높이를 자동으로 조정 */
+    max-height: 300px;
+    /* 최대 높이를 지정하여 너무 커지지 않도록 제한 */
+    object-fit: cover;
+    /* 이미지를 자르지 않고 비율에 맞춰 잘림 처리 */
+}
+
+.image-uploader-many-preview {
+    display: flex;
+    justify-content: center;
+    /* 슬라이드 내 이미지가 중앙에 오게 */
+    align-items: center;
+    /* 세로로 중앙 정렬 */
+    position: relative;
+}
+
+.image-uploader-many-preview-grid {
+    width: 100%;
+    /* 그리드가 부모 크기를 채우게 */
+    max-width: 800px;
+    /* 최대 너비 설정 */
+    margin: 0 auto;
+    /* 중앙 정렬 */
+}
+
+.slick-track {
+    transform: none;
 }

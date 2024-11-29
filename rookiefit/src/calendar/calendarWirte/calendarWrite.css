@@ -8,8 +8,11 @@
 
 .calendar-header {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
+    /* 헤더의 두 요소를 양쪽으로 배치 */
     align-items: center;
+    padding: 1vw 1vw;
+    /* 좌우 여백 추가 */
 }
 
 /* 버튼 스타일 */
@@ -109,13 +112,26 @@
     width: 100%;
 }
 
+.calendar-header h2 {
+    margin: 1vw;
+    /* 제목(날짜) 기본 여백 제거 */
+    text-align: center;
+    flex: 1;
+    /* 가운데 정렬 유지 */
+}
+
 .calendar-write-cancel-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     cursor: pointer;
     font-size: 1.2rem;
     color: #d9534f;
     font-weight: bold;
+    margin-right: auto;
+    /* 왼쪽 정렬 */
 }
 
 .calendar-write-cancel-button:hover {
-    text-decoration: underline;
+    color: #b64642;
 }

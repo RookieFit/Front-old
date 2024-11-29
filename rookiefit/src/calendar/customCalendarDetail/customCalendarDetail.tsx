@@ -25,12 +25,18 @@ const CustomCalendarDetail = () => {
         navigate('/calendar/detail');
     };
 
+    // 일지 목록 최근날짜 기준 5개만 보여주기
+    const getRecentEntries = (entries: Entry[]) => {
+        const sortedEntries = entries.sort((a, b) => moment(b.date).isBefore(moment(a.date)) ? -1 : 1);
+        return sortedEntries.slice(0, 5);
+    };
+
     const sliceContent = (content: string) =>
         content.length > 50 ? content.slice(0, 50) + "..." : content;
 
     // 일지 목록 출력하는데 들어갈 내용에 관한 함수 (출력 목록 제한, 마우스이벤트, 내용 글자수 제한)
     const renderEntries = (entries: Entry[]) => (
-        entries.slice(0, 5).map((entry, index) => (
+        getRecentEntries(entries).map((entry, index) => (
             <div
                 key={index}
                 className="calendar-detail-item"
