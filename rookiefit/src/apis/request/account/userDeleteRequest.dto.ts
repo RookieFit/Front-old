@@ -1,4 +1,4 @@
-export default interface FindUserPasswordRequestDto {
+export default interface UserDeleteRequestDto {
     user_password: string;
     token: string;
 }
