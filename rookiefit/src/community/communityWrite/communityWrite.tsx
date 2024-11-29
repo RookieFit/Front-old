@@ -4,7 +4,7 @@ import './communityWrite.css';
 import { useNavigate } from "react-router-dom";
 
 const CommunityWrite = () => {
-    const menuItems = ['전체', '바프', '고민', '정보' , '친목', '공지'];
+    const menuItems = ['전체', '바프', '고민', '정보', '친목', '공지'];
     const [isClick, setIsClick] = useState(false); // 선택된 필터 텍스트 상태
     const [isSelectedDropDown, setSelectedDropDown] = useState("게시판 종류");
 
@@ -44,7 +44,7 @@ const CommunityWrite = () => {
 
     //파일 업로드 관련
     const inputEl = useRef(null);
-    
+
     return (
         <div className="write-top-box">
             <CommunityHeader
