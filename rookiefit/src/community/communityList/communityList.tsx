@@ -59,7 +59,7 @@ const CommunityList = () => {
             const sorted = sortPostsById(newPosts); // ID 순으로 정렬
             setLoadedPosts((prevPosts) => [...prevPosts, ...sorted]);
             setIsLoading(false);
-        }, 3000); // 3초 지연
+        }, 300); // 3초 지연
     }, [isLoading, loadedPosts, selectedCategory]);
 
     // IntersectionObserver를 사용하여 스크롤이 끝에 도달했을 때 추가 로드
@@ -74,16 +74,18 @@ const CommunityList = () => {
                 rootMargin: '100px', // 스크롤이 100px 남았을 때 로드 시작
             }
         );
+
         const sentinel = document.getElementById('sentinel');
-        if (sentinel) {
+        if (sentinel && !isGridMode) { // 그리드 모드가 아닐 때만 Observer 활성화
             observer.observe(sentinel);
         }
+
         return () => {
             if (sentinel) {
                 observer.unobserve(sentinel);
             }
         };
-    }, [loadMorePosts]);
+    }, [loadMorePosts, isGridMode]);
 
     const handleCategoryClick = (category: Category) => {
         setSelectedCategory(category);

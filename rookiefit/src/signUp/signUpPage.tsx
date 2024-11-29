@@ -74,10 +74,17 @@ function SignUpPage() {
             setIsIdCheck(false);
         };
 
+        if (code === ResponseCode.DUPLICATE_PHONENUMBER) {
+            setIsPhoneNumberError(true);
+            setPhoneNumberMessage('이미 가입된 전화번호입니다. 다른 번호를 사용해주세요.');
+            setIsPhoneNumberError(false);
+        }
+
         if (code !== ResponseCode.SUCCESS) return;
 
         setIsPhoneNumberError(false);
-        setPhoneNumberMessage('인증 번호가 전송 되었습니다.');
+        setPhoneNumberMessage('인증 번호가 전송되었습니다.');
+        setIsPhoneNumberError(true);
     };
 
     const checkCertificationResponse = (responseBody: ResponseBody<CheckCertificationResponseDto>) => {
@@ -128,6 +135,10 @@ function SignUpPage() {
         };
 
         if (code !== ResponseCode.SUCCESS) return;
+
+        // 회원가입 성공 시 알림 메시지 표시
+        alert('회원 가입이 완료 되었습니다.');
+
         navigate("/signin");
     };
 

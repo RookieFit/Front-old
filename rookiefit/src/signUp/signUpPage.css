@@ -11,46 +11,57 @@
 /* 회원가입 타이틀 */
 .sign-up-title {
     font-weight: 600;
-    /* 가독성을 위해 글씨를 더 두껍게 */
     font-size: 36px;
     color: #000000;
-    /* 진한 검정으로 유지 */
+    padding: 1vw;
 }
 
 /* 언더라인 */
 .underline {
     width: 31%;
     height: 2px;
-    /* 두께를 약간 더 두껍게 */
     margin-bottom: 10px;
     background-color: #9C9C9C;
-    /* 색상 그대로 유지 */
     border: none;
-    /* 불필요한 테두리 제거 */
 }
 
 /* 회원가입 버튼 */
 .sign-up-button {
     font-weight: 600;
-    /* 버튼 텍스트 강조 */
     font-size: 20px;
     line-height: 24px;
     cursor: pointer;
     width: 545px;
     height: 50px;
-    /* 높이를 약간 조정해 버튼 가시성 개선 */
     color: #ffffff;
-    /* 버튼 텍스트를 흰색으로 변경 */
     background-color: #000000;
-    /* 파란색으로 변경해 시각적으로 눈에 띄게 */
     border: none;
     border-radius: 5px;
     transition: background-color 0.3s ease;
-    /* 호버 애니메이션 추가 */
 }
 
-/* 기존 스타일... */
+/* 비활성화 상태에서 버튼 */
+.sign-up-button:disabled {
+    background-color: #D3D3D3;
+    cursor: not-allowed;
+}
 
+/* 인풋 박스 스타일 */
+.input-box {
+    width: 100%;
+    max-width: 545px;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+/* 오류 메시지 스타일 */
+.input-box-message {
+    font-size: 14px;
+    color: #ff0000;
+    margin-top: 5px;
+}
+
+/* 인증 관련 스타일 */
 .certification-upload {
     margin-top: 20px;
 }

@@ -12,6 +12,7 @@ interface Props {
     onChange: (event: ChangeEvent<HTMLInputElement>) => void;
     onKeyDown: (event: KeyboardEvent<HTMLInputElement>) => void;
     onButtonClick?: () => void;
+    isError?: boolean;
 }
 
 const InputBox = forwardRef<HTMLInputElement, Props>((props: Props, ref) => {
