@@ -24,6 +24,7 @@ import MarketChatPage from './market/marketChatPage';
 import MarketSearch from './market/marketSearch';
 import MarketSearchResult from './market/marketSearchResult';
 import Home from './home/home';
+import AdministratorPage from './admin/administratorPage';
 
 function App() {
   return (
@@ -67,6 +68,7 @@ function App() {
           <Route path="/market/chat/:id" element={<MarketChatPage />} />
           <Route path="/market/search" element={<MarketSearch />} />
           <Route path="/market/searchresult" element={<MarketSearchResult />} />
+          <Route path="/admin" element={<AdministratorPage />} />
         </Routes>
       </div>
     </BrowserRouter>
