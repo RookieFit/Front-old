@@ -1,5 +1,5 @@
 .image-uploader-many {
-    margin: 20px 0;
+    margin: 0.2vw 0;
 }
 
 .image-uploader-many-label {
@@ -36,13 +36,10 @@
 
 .image-uploader-many-preview img {
     width: 100%;
-    /* 이미지가 부모 요소의 너비를 채우게 */
     height: auto;
-    /* 비율에 맞게 높이를 자동으로 조정 */
     max-height: 300px;
-    /* 최대 높이를 지정하여 너무 커지지 않도록 제한 */
     object-fit: cover;
-    /* 이미지를 자르지 않고 비율에 맞춰 잘림 처리 */
+    border-radius: 10px;
 }
 
 .image-uploader-many-preview {
@@ -57,10 +54,9 @@
 .image-uploader-many-preview-grid {
     width: 100%;
     /* 그리드가 부모 크기를 채우게 */
-    max-width: 800px;
-    /* 최대 너비 설정 */
     margin: 0 auto;
     /* 중앙 정렬 */
+    padding-top: 0.3vw;
 }
 
 .slick-track {

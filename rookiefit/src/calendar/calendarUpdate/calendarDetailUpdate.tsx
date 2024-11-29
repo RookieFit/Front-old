@@ -5,21 +5,17 @@ import { UseCalendar } from '../calendarContext';
 import { useCalendarDetails } from '../calendarDetailContext';
 import AddedDetails from '../calendarComponents/calendarAddDetails';
 import './calendarDetailUpdate.css';
-import ImageUploaderMany from '../../components/imageUploaderMany'; // ImageUploaderMany로 변경
-
-// CalendarDetailUpdate 컴포넌트
+import ImageUploaderMany from '../../components/imageUploaderMany';
 
 const CalendarDetailUpdate = () => {
     const navigate = useNavigate();
-    const { selectedDate } = UseCalendar(); // useContext로 selectedDate 가져오기
-    const { details, setDetails } = useCalendarDetails(); // calendarDetailContext에서 details와 setDetails 가져오기
-    // 상태 초기화
+    const { selectedDate } = UseCalendar();
+    const { details, setDetails } = useCalendarDetails();
     const [title, setTitle] = useState('');
     const [diaryContent, setDiaryContent] = useState('');
     const [workoutDetails, setWorkoutDetails] = useState<string[][]>([]);
-    const [uploadedImages, setUploadedImages] = useState<string[]>([]); // 여러 이미지 URL 상태
+    const [uploadedImages, setUploadedImages] = useState<File[]>([]);
 
-    // 선택된 날짜에 맞는 데이터 불러오기
     useEffect(() => {
         const currentEntry = details.entries.find(
             (entry) => entry.date === selectedDate.toString()
@@ -29,52 +25,58 @@ const CalendarDetailUpdate = () => {
             setTitle(currentEntry.title);
             setDiaryContent(currentEntry.diaryContent);
             setWorkoutDetails(currentEntry.workoutDetails);
-            setUploadedImages(currentEntry.images || []); // 여러 이미지 URL을 사용
+            // 기존 이미지 URL을 File 객체로 변환
+            Promise.all(currentEntry.images!.map(urlToFile))
+                .then(files => setUploadedImages(files));
         } else {
-            // 선택된 날짜에 해당하는 데이터가 없을 경우 초기화
             setTitle('');
             setDiaryContent('');
             setWorkoutDetails([]);
             setUploadedImages([]);
         }
-    }, [selectedDate, details.entries]); // selectedDate와 details.entries가 변경될 때마다 실행
+    }, [selectedDate, details.entries]);
 
-    // 제목 변경 처리
+    // URL을 File 객체로 변환하는 함수
+    const urlToFile = async (url: string) => {
+        const response = await fetch(url);
+        const blob = await response.blob();
+        return new File([blob], 'image.jpg', { type: blob.type });
+    };
+
     const handleTitleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
         setTitle(e.target.value);
     };
 
-    // 일지 내용 변경 처리
     const handleDiaryChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
         setDiaryContent(e.target.value);
     };
 
-    // 수정 완료 시 일기 저장 처리
     const handleUpdate = () => {
         setDetails((prevDetails) => ({
             entries: prevDetails.entries.map((entry) =>
-                entry.date === selectedDate.toString()
-                    ? { ...entry, title, diaryContent, workoutDetails, images: uploadedImages }
-                    : entry
+                entry.date === selectedDate.toString() ? {
+                    ...entry,
+                    title,
+                    diaryContent,
+                    workoutDetails,
+                    images: uploadedImages.map(file => URL.createObjectURL(file))
+                } : entry
             ),
         }));
-        navigate('/calendar'); // 제출 후 캘린더 페이지로 이동
+        navigate('/calendar');
     };
 
     const handleImageUpload = (images: File[]) => {
-        // 여러 이미지가 업로드되면 uploadedImages 상태를 URL 배열로 변경
-        const imageUrls = images.map((image) => URL.createObjectURL(image));
-        setUploadedImages((prevImages) => [...prevImages, ...imageUrls]);
+        setUploadedImages(images);
     };
 
-    // 삭제 처리
     const handleDelete = () => {
         setDetails((previousDetails) => ({
             entries: previousDetails.entries.filter(
                 (entry) => entry.date !== selectedDate.toString()
             ),
         }));
-        navigate('/calendar'); // 삭제 후 캘린더 페이지로 이동
+        navigate('/calendar');
     };
 
     return (
@@ -103,10 +105,9 @@ const CalendarDetailUpdate = () => {
                         {/* 이미지 업로더를 통해 기존 이미지들과 새로 업로드된 이미지들 프리뷰로 보여주기 */}
                         <ImageUploaderMany
                             onImageUpload={handleImageUpload}
-                            maxImages={5} // maxImages가 0 이상으로 계산되도록
+                            maxImages={5}
                             previewImages={uploadedImages}
                         />
-
                     </div>
                     <div className="calendar-detail-update-wrapper">
                         <button
@@ -130,4 +131,3 @@ const CalendarDetailUpdate = () => {
 };
 
 export default CalendarDetailUpdate;
-

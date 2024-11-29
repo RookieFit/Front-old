@@ -34,7 +34,7 @@
 /* 제목 */
 .calendar-title-input {
     padding: 0 1vw;
-    /* margin-bottom: 0.5vw; */
+    margin-bottom: 0.2vw;
 }
 
 .calendar-title-input label {
