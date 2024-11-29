@@ -4,7 +4,6 @@ import CheckFindUserPasswordResponseDto from "./checkFindUserPasswordResponse.dt
 import FindUserPasswordResponseDto from "./findUserPasswordResponse.dto"
 import UserDeleteResponseDto from "./userDeleteResponse.dto"
 
-
 export type {
     FindUserIdResponse, CheckFindUserIdResponseDto,
     FindUserPasswordResponseDto, CheckFindUserPasswordResponseDto,
