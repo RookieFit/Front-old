@@ -4,14 +4,14 @@ import moment from 'moment';
 import { useNavigate } from 'react-router-dom';
 import { useCalendarDetails } from '../calendarDetailContext';
 import { UseCalendar } from '../calendarContext';
-import { useDragPrevent } from '../../components/useDragPrevent'; // 커스텀 훅 가져오기
+import { useDragPrevent } from '../../components/useDragPrevent';
 
 interface Entry {
     title: string;
     diaryContent: string;
-    workoutDetails: string[][]; // 운동 세부사항
+    workoutDetails: string[][];
     date: string;
-    image?: string | null; // 이미지 URL을 저장할 필드를 선택 사항으로 변경
+    images?: string[]; // 여러 이미지 URL을 저장하는 배열
 }
 
 const CustomCalendarDetail = () => {
@@ -25,12 +25,18 @@ const CustomCalendarDetail = () => {
         navigate('/calendar/detail');
     };
 
+    // 일지 목록 최근날짜 기준 5개만 보여주기
+    const getRecentEntries = (entries: Entry[]) => {
+        const sortedEntries = entries.sort((a, b) => moment(b.date).isBefore(moment(a.date)) ? -1 : 1);
+        return sortedEntries.slice(0, 5);
+    };
+
     const sliceContent = (content: string) =>
         content.length > 50 ? content.slice(0, 50) + "..." : content;
 
     // 일지 목록 출력하는데 들어갈 내용에 관한 함수 (출력 목록 제한, 마우스이벤트, 내용 글자수 제한)
     const renderEntries = (entries: Entry[]) => (
-        entries.slice(0, 5).map((entry, index) => (
+        getRecentEntries(entries).map((entry, index) => (
             <div
                 key={index}
                 className="calendar-detail-item"
@@ -41,8 +47,8 @@ const CustomCalendarDetail = () => {
                 role="button"
             >
                 <div className="calendar-detail-header">
-                    {entry.image && (
-                        <img src={entry.image} alt="Entry Thumbnail" className="entry-thumbnail" />
+                    {entry.images && entry.images.length > 0 && (
+                        <img src={entry.images[0]} alt="Entry Thumbnail" className="entry-thumbnail" />
                     )}
                     <div className="calendar-detail-text">
                         <p><strong>작성 날짜:</strong> {moment(entry.date).format('YYYY-MM-DD')}</p>

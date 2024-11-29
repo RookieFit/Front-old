@@ -11,11 +11,11 @@ import { WebSocketManager } from "../socket/webSocketManager";
 // 상수 분리
 const SLIDER_SETTINGS = {
     dots: true,
-    infinite: true,
+    infinite: false,
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
-    arrows: true
+    arrows: false
 };
 
 const MarketDetail = () => {
