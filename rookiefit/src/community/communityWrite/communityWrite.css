@@ -51,10 +51,13 @@
     background-color: white;
     min-width: 100%;
     box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
-    z-index: 1;                     /* 다른 요소들보다 위에 표시되도록 설정 */
+    z-index: 1;
+    /* 다른 요소들보다 위에 표시되도록 설정 */
     border-radius: 4px;
-    opacity: 0;                     /* 초기에는 보이지 않도록 설정 */
-    visibility: hidden;             /* 드롭다운 메뉴 숨기기 */
+    opacity: 0;
+    /* 초기에는 보이지 않도록 설정 */
+    visibility: hidden;
+    /* 드롭다운 메뉴 숨기기 */
     transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
     /* 부드러운 애니메이션 설정 */
 }
@@ -65,7 +68,7 @@
     visibility: visible;
     /* 열린 상태에서는 가시성 설정 */
     transform: translateY(0);
-    /* 드롭다운 메뉴가 원래 위치로 이동 */    
+    /* 드롭다운 메뉴가 원래 위치로 이동 */
 }
 
 .drop-down-write-item {

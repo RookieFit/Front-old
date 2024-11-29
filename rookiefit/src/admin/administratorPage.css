@@ -16,7 +16,7 @@
 }
 
 /* 버튼들이 포함된 컨테이너 */
-.button-container {
+.admin-button-container {
     display: flex;
     flex-direction: column;
     /* 버튼들을 세로로 나열 */
@@ -25,7 +25,7 @@
 }
 
 /* 버튼 스타일 */
-button {
+.admin-button {
     padding: 10px 20px;
     font-size: 1rem;
     border-radius: 5px;
@@ -38,6 +38,6 @@ button {
 }
 
 /* 버튼 hover 효과 */
-button:hover {
+.admin-button:hover {
     background-color: #2980b9;
 }

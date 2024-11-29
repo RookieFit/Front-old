@@ -1,0 +1,152 @@
+/* 공지 작성 페이지 스타일 */
+.notice-write-top-box {
+    display: flex;
+    flex-direction: column;
+    margin: 20px;
+    max-width: 1200px;
+    margin: 20px auto;
+}
+
+/* 공지 작성 입력 영역 */
+.notice-write-inbox {
+    background-color: #ffffff;
+    width: 90%;
+    max-width: 1000px;
+    height: auto;
+    min-height: 55vh;
+    display: flex;
+    flex-direction: column;
+    margin: 30px auto;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    transition: box-shadow 0.3s ease;
+}
+
+.notice-write-inbox:hover {
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+}
+
+/* 제목 입력 영역 */
+.notice-write-title-box {
+    display: flex;
+    flex-direction: row;
+    margin-top: 30px;
+    align-items: center;
+    gap: 20px;
+}
+
+/* 카테고리 고정 텍스트 (공지) */
+.notice-write-dropdown-area {
+    display: flex;
+    position: relative;
+    width: 100%;
+}
+
+.notice-write-drop-box {
+    background-color: #F0F0F0;
+    color: #333;
+    font-size: 16px;
+    border: none;
+    width: 150px;
+    height: 50px;
+    transition: all 0.3s ease;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.notice-write-drop-box:hover {
+    background-color: #e0e0e0;
+}
+
+/* 제목 입력 필드 */
+.notice-write-title {
+    background-color: #F0F0F0;
+    width: 5000px;
+    height: 50px;
+    text-align: left;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    padding: 0 15px;
+    transition: all 0.3s ease;
+    outline: none;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.notice-write-title:focus {
+    background-color: #e6e6e6;
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* 내용 입력 필드 */
+.notice-write-detail {
+    background-color: #F0F0F0;
+    width: 97%;
+    height: 350px;
+    margin-top: 20px;
+    border: none;
+    font-size: 16px;
+    padding: 15px;
+    resize: vertical;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    outline: none;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.notice-write-detail:focus {
+    background-color: #e6e6e6;
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* 하단 영역 */
+.notice-write-under {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    position: relative;
+    width: 100%;
+}
+
+/* 파일 업로드 버튼 */
+.notice-write-file-upload {
+    position: absolute;
+    left: 0;
+    width: 200px;
+    height: 25px;
+    font-size: 16px;
+    text-align: center;
+    cursor: pointer;
+    border-radius: 8px;
+    border: none;
+    background-color: #F0F0F0;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.notice-write-file-upload:hover {
+    background-color: #e0e0e0;
+    transform: translateY(-3px);
+}
+
+/* 등록 버튼 */
+.notice-write-upload-contents {
+    width: 200px;
+    height: 55px;
+    background-color: #a9abb0;
+    color: white;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.3s ease;
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+}
