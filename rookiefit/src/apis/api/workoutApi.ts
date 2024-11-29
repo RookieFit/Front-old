@@ -3,7 +3,6 @@ import GetUserWorkoutDetailRequestDto from "../request/workout/getUserWorkoutDet
 import { DeleteUserWorkoutListResponseDto, GetUserWorkoutDetailResponseDto, GetUserWorkoutListResponseDto, InputUserWorkoutListResponseDto } from "../response/workout";
 import { axiosInstance, responseHandler, errorHandler } from "./index";
 
-
 export const InputUserWorkoutListRequest = async (requestBody: InputUserWorkoutListRequestDto) => {
     return axiosInstance.post('/user/input-userworkoutlistdata', requestBody)
         .then(responseHandler<InputUserWorkoutListResponseDto>)

@@ -77,11 +77,10 @@ const CommunityDetail = () => {
 
     const sliderSettings = {
         dots: true,
-        infinite: post.images.length > 3, // 이미지가 3개 이상일 때만 루프
+        infinite: false, // 이미지가 3개 이상일 때만 루프
         speed: 500,
         slidesToShow: Math.min(3, post.images.length), // 이미지 수가 3개 미만이면 해당 수만큼 표시
         slidesToScroll: 1,
-        autoplay: true,
         autoplaySpeed: 2000,
     };
 
