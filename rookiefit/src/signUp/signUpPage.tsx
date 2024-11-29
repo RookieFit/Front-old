@@ -5,7 +5,7 @@ import { CheckCertificationRequestDto, IdCheckRequestDto, SignUpRequestDto, SmsC
 import { ResponseCode } from '../apis/types/enums';
 import { CheckCertificationResponseDto, IdCheckResponseDto, SignUpResponseDto, SmsCertificationResponseDto } from '../apis/response/auth';
 import { ResponseBody } from '../apis/types';
-import { CheckCertificationRequest, IdCheckRequest, SignUpRequest, SmsCertificationRequest } from '../apis/apiClient';
+import { CheckCertificationRequest, IdCheckRequest, SignUpRequest, SmsCertificationRequest } from '../apis/api/authApi';
 import { useNavigate } from 'react-router-dom';
 
 function SignUpPage() {
@@ -240,7 +240,6 @@ function SignUpPage() {
             userId,
             user_password: password,
             user_phonenumber: userPhoneNumber,
-            user_email: "asd@asd.com"
         };
         SignUpRequest(requestBody).then(signUpResponse);
     };
