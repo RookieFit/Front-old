@@ -1,0 +1,43 @@
+/* 관리자 페이지 전체 컨테이너 */
+.admin-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* 수평 중앙 정렬 */
+    justify-content: flex-start;
+    /* 수직 상단 정렬 */
+    height: 100vh;
+    /* 화면 높이에 맞게 전체를 꽉 채우되, 내용이 많으면 넘칠 수 있도록 설정 */
+    text-align: center;
+    padding-top: 20px;
+    /* 상단 여백을 추가하여 콘텐츠가 상단에 오도록 조정 */
+    overflow: hidden;
+    /* 화면을 넘는 내용은 숨김 */
+}
+
+/* 버튼들이 포함된 컨테이너 */
+.button-container {
+    display: flex;
+    flex-direction: column;
+    /* 버튼들을 세로로 나열 */
+    gap: 20px;
+    /* 버튼 간 간격 */
+}
+
+/* 버튼 스타일 */
+button {
+    padding: 10px 20px;
+    font-size: 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    border: none;
+    background-color: #3498db;
+    /* 버튼 배경색 */
+    color: white;
+    transition: background-color 0.3s ease;
+}
+
+/* 버튼 hover 효과 */
+button:hover {
+    background-color: #2980b9;
+}

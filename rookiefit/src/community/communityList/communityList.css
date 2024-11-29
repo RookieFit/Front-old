@@ -6,6 +6,10 @@
     position: relative;
     width: 100%;
     padding: 20px;
+    box-sizing: border-box;
+    /* padding 포함한 크기 계산 */
+    overflow-x: hidden;
+    /* 가로 스크롤 방지 */
 }
 
 /* 커뮤니티 구분선 */
