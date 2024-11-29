@@ -6,7 +6,7 @@ function AdministratorPage() {
 
     // 공지 작성 페이지로 이동
     const handleNoticeCreateClick = () => {
-        navigate('/createNotice');  // '/createNotice' 경로로 이동 (공지 작성 페이지)
+        navigate('/admin/noticewrite');  // '/createNotice' 경로로 이동 (공지 작성 페이지)
     };
 
     // 트레이너 인증 페이지로 이동
@@ -18,14 +18,14 @@ function AdministratorPage() {
         <div className="admin-container">
             <h2>관리자 페이지</h2>
 
-            <div className="button-container">
+            <div className="admin-button-container">
                 {/* 공지 작성 버튼 */}
-                <button onClick={handleNoticeCreateClick}>
+                <button className="admin-button" onClick={handleNoticeCreateClick}>
                     공지 작성
                 </button>
 
                 {/* 트레이너 인증 버튼 */}
-                <button onClick={handleTrainerAuthClick}>
+                <button className="admin-button" onClick={handleTrainerAuthClick}>
                     트레이너 인증
                 </button>
             </div>
