@@ -119,7 +119,6 @@ export const UserDeleteRequest = async (requestBody: UserDeleteRequestDto) => {
     return result;
 }
 
-
 export const UserCommunityRequest = async (requestBody: UserCommunityResquestDto) => {
     const result = await axios.post(USER_COMMUNITY_URL(), requestBody)
         .then(responseHandler<UserCommunityResponseDto>)
