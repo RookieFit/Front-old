@@ -25,6 +25,7 @@ import MarketSearch from './market/marketSearch';
 import MarketSearchResult from './market/marketSearchResult';
 import Home from './home/home';
 import AdministratorPage from './admin/administratorPage';
+import NoticeWrite from './admin/noticeWrite';
 
 function App() {
   return (
@@ -69,6 +70,7 @@ function App() {
           <Route path="/market/search" element={<MarketSearch />} />
           <Route path="/market/searchresult" element={<MarketSearchResult />} />
           <Route path="/admin" element={<AdministratorPage />} />
+          <Route path="/admin/noticewrite" element={<NoticeWrite />} />
         </Routes>
       </div>
     </BrowserRouter>
