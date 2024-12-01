@@ -46,9 +46,9 @@ const CustomCalendar = () => {
                 <StyledCalendar
                     value={selectedDate}
                     onClickDay={dayClickHandler}
-                    formatDay={(locale, date) => moment(date).format("D")}
-                    formatYear={(locale, date) => moment(date).format("YYYY")}
-                    formatMonthYear={(locale, date) => moment(date).format("YYYY. MM")}
+                    formatDay={(_locale, date) => moment(date).format("D")}
+                    formatYear={(_locale, date) => moment(date).format("YYYY")}
+                    formatMonthYear={(_locale, date) => moment(date).format("YYYY. MM")}
                     calendarType="gregory"
                     showNeighboringMonth={false}
                     next2Label={null}
