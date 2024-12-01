@@ -10,7 +10,7 @@ import MyPage from './mypage/myPage';
 import MyPageEdit from './mypage/myPageEdit';
 import CommunityList from './community/communityList/communityList';
 import CommunityDetail from './community/communityDetail/communityDetail';
-import CommunityWrite from './community/communityWrite/communityWrite';
+import CommunityWrite from './community/communityWrite';
 import FindPassword from './findPassword/findPassword';
 import FindIdResult from './findIdResult/findIdResult';
 import FoodPage from './food/foodPage';
@@ -26,6 +26,7 @@ import MarketSearchResult from './market/marketSearchResult';
 import Home from './home/home';
 import AdministratorPage from './admin/administratorPage';
 import NoticeWrite from './admin/noticeWrite';
+import TrainerAuth from './admin/trainerAuth';
 
 function App() {
   return (
@@ -71,6 +72,7 @@ function App() {
           <Route path="/market/searchresult" element={<MarketSearchResult />} />
           <Route path="/admin" element={<AdministratorPage />} />
           <Route path="/admin/noticewrite" element={<NoticeWrite />} />
+          <Route path="/admin/trainerauth" element={<TrainerAuth />} />
         </Routes>
       </div>
     </BrowserRouter>
