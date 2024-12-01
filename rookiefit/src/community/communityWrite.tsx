@@ -1,39 +1,26 @@
 import { useNavigate } from 'react-router-dom';
-import WriteBox from '../components/writeBox'; // WriteBox 컴포넌트 import
+import WriteBox from '../components/writeBox';
 
-const CommunityWrite = () => {
-    const menuItems = ['전체', '바프', '고민', '정보', '친목', '공지'];
-
-    // 페이지 이동
+const NoticeWrite = () => {
     const navigate = useNavigate();
-    const communityList = () => {
-        navigate('/community'); // 등록 후 커뮤니티 목록으로 이동
-    };
 
-    // 등록 처리 함수 (WriteBox의 onSubmit 처리)
-    const handleSubmit = (title: string, detail: string, file?: File) => {
-        console.log('제목:', title);
-        console.log('내용:', detail);
-        if (file) {
-            console.log('파일:', file.name);
-        }
+    // 제출 처리 함수
+    const handleSubmit = (title: string, detail: string, images: File[]) => {
+        // 여러 이미지를 처리하는 로직 (예: API 호출)
 
-        // 데이터 처리 로직 추가 (예: 서버로 전송 등)
-        communityList(); // 데이터 전송 후 커뮤니티 목록 페이지로 이동
+        // 등록 후 페이지 이동
+        navigate(`/community?category=공지&mode=grid`);
     };
 
     return (
-        <div className="write-top-box">
-            <div className="community-write-inbox">
-                <WriteBox
-                    categories={menuItems} // 카테고리 전달
-                    onSubmit={handleSubmit} // 제목, 내용, 파일을 처리하는 함수 전달
-                    headerTitle="새 게시물 작성" // WriteBox에 헤더 제목 전달
-                    headerContent="게시판에 새로운 글을 작성해 주세요." // WriteBox에 헤더 내용 전달
-                />
-            </div>
-        </div>
+        <WriteBox
+            categories={['공지']} // 카테고리 배열로 전달
+            headerTitle="공지 작성"
+            headerContent="공지 사항을 작성하는 페이지입니다."
+            onSubmit={handleSubmit} // onSubmit 함수에 images 배열 전달
+            maxImages={5} // 최대 5개 이미지 업로드 가능하도록 설정
+        />
     );
 };
 
-export default CommunityWrite;
+export default NoticeWrite;

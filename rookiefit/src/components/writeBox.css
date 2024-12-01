@@ -37,7 +37,6 @@
     display: flex;
     flex-direction: column;
     transition: box-shadow 0.3s ease;
-
 }
 
 .write-box-body:hover {
@@ -156,22 +155,6 @@
     margin-top: 20px;
     width: 100%;
     position: relative;
-}
-
-/* 파일 업로드 버튼 */
-.write-box-file {
-    position: absolute;
-    left: 0;
-    width: 300px;
-    font-size: 16px;
-    color: #666;
-    background-color: #f0f0f0;
-    border: none;
-    border-radius: 7px;
-    text-align: left;
-    padding-left: 5px;
-    cursor: pointer;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 /* 등록 버튼 */
