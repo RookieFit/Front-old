@@ -151,10 +151,24 @@
 .write-box-footer {
     display: flex;
     justify-content: center;
+    /* 기본적으로 중앙 정렬 */
     align-items: center;
+    /* 수직 가운데 정렬 */
+    position: relative;
+    /* 내부 위치를 제어하기 위해 relative 설정 */
     margin-top: 20px;
     width: 100%;
-    position: relative;
+}
+
+.custom-image-uploader {
+    position: absolute;
+    /* 절대 위치 설정 */
+    left: 0;
+    /* 왼쪽 끝에 고정 */
+    margin-left: 10px;
+    /* 좌측 여백 추가 */
+    align-items: center;
+    /* 수직 가운데 정렬 */
 }
 
 /* 등록 버튼 */

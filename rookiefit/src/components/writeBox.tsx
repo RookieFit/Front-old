@@ -77,21 +77,7 @@ const WriteBox = ({ categories, onSubmit, headerTitle, headerContent, maxImages 
                 />
                 <div className="write-box-footer">
                     <ImageUploaderMany
-                        style={{
-                            position: 'absolute',
-                            bottom: '0',
-                            left: '0',
-                            width: '300px',
-                            fontSize: '16px',
-                            color: '#666',
-                            backgroundColor: '#f0f0f0',
-                            border: 'none',
-                            borderRadius: '7px',
-                            textAlign: 'left',
-                            paddingLeft: '5px',
-                            cursor: 'pointer',
-                            boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
-                        }}
+                        className="custom-image-uploader"
                         maxImages={maxImages}
                         onImageUpload={handleImageUpload} // 업로드된 이미지 처리
                         previewImages={previewImages} // 미리보기 이미지 전달
