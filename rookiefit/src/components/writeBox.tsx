@@ -77,7 +77,6 @@ const WriteBox = ({ categories, onSubmit, headerTitle, headerContent, maxImages 
                 />
                 <div className="write-box-footer">
                     <ImageUploaderMany
-                        className="custom-image-uploader"
                         maxImages={maxImages}
                         onImageUpload={handleImageUpload} // 업로드된 이미지 처리
                         previewImages={previewImages} // 미리보기 이미지 전달
