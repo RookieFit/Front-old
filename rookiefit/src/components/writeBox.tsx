@@ -5,12 +5,10 @@ import ImageUploaderMany from './imageUploaderMany'; // ImageUploaderMany 컴포
 interface WriteBoxProps {
     categories: string[]; // 카테고리 목록
     onSubmit: (title: string, detail: string, images: File[]) => void; // 제출 핸들러, images는 File[] 배열로 받음
-    headerTitle: string; // 헤더 제목
-    headerContent: string; // 헤더 내용
     maxImages: number; // 최대 이미지 수
 }
 
-const WriteBox = ({ categories, onSubmit, headerTitle, headerContent, maxImages }: WriteBoxProps) => {
+const WriteBox = ({ categories, onSubmit, maxImages }: WriteBoxProps) => {
     const [selectedCategory, setSelectedCategory] = useState(categories[0] || '');
     const [title, setTitle] = useState('');
     const [detail, setDetail] = useState('');
@@ -43,10 +41,6 @@ const WriteBox = ({ categories, onSubmit, headerTitle, headerContent, maxImages 
 
     return (
         <div className="write-box-top">
-            <div className="write-box-header">
-                <h2>{headerTitle}</h2>
-                <p>{headerContent}</p>
-            </div>
             <div className="write-box-body">
                 <div className="write-box-category">
                     <select
@@ -77,7 +71,6 @@ const WriteBox = ({ categories, onSubmit, headerTitle, headerContent, maxImages 
                 />
                 <div className="write-box-footer">
                     <ImageUploaderMany
-                        className="custom-image-uploader"
                         maxImages={maxImages}
                         onImageUpload={handleImageUpload} // 업로드된 이미지 처리
                         previewImages={previewImages} // 미리보기 이미지 전달
