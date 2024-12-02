@@ -59,12 +59,10 @@
     display: flex;
     align-items: center;
     gap: 1vw;
+    border-block-end-style: 2px solid #ccc;
 }
 
 .mypage {
-    width: 2vw;
-    height: 2vw;
-    background-image: url(../assets/images/Person.png);
     background-size: cover;
     background-position: center;
     cursor: pointer;

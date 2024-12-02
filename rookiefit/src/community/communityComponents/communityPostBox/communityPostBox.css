@@ -85,6 +85,23 @@
     text-align: justify;
 }
 
+/* "더보기" 버튼 스타일 */
+.more-button {
+    background-color: transparent;
+    color: #000;
+    padding: 8px 0;
+    font-size: 1rem;
+    border: none;
+    cursor: pointer;
+    text-align: left;
+    display: inline-block;
+    transition: background-color 0.3s ease;
+}
+
+.more-button:hover {
+    color: #007bff;
+}
+
 /* 댓글 열고 닫기 버튼 스타일 */
 .community-slide-button-container {
     display: flex;
@@ -96,7 +113,6 @@
     background-color: #000000;
     color: white;
     padding: 8px 12px;
-    /* 버튼 크기 축소 */
     border-radius: 5px;
     font-size: 0.9rem;
     border: none;
