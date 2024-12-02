@@ -29,7 +29,7 @@ const SeenFeed = ({ role, showBackground }: Props) => {
       ) : (
         <>
           <div className="seen-feed-photo">사진첩</div>
-          <SeenFeedGridPhoto itemsPerRow={3} totalItems={9}/>
+       
         </>
       )}
     </div>
