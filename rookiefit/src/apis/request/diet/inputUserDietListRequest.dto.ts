@@ -4,3 +4,12 @@ export default interface InputUserDietListRequestDto {
     total_calories: number
     dietDetails: []
 }
+
+export interface DietDetail {
+    food_name: string;
+    food_first_category: string;
+    chocdf: number;
+    prot: number;
+    fatce: number;
+    enerc: number;
+}

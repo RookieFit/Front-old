@@ -28,7 +28,7 @@ const CustomCalendarDetail = () => {
     // 일지 목록 최근날짜 기준 5개만 보여주기
     const getRecentEntries = (entries: Entry[]) => {
         const sortedEntries = entries.sort((a, b) => moment(b.date).isBefore(moment(a.date)) ? -1 : 1);
-        return sortedEntries.slice(0, 5);
+        return sortedEntries.slice(0, 5); // 5개만 slicing
     };
 
     const sliceContent = (content: string) =>
