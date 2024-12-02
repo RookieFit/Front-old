@@ -17,3 +17,30 @@
     margin: 0 12px;
     align-self: center;
 }
+
+.community-grid-item {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 16px;
+    margin: 8px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.community-grid-thumbnail {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 12px;
+}
+
+.community-grid-item h3 {
+    font-size: 1.2rem;
+    margin-bottom: 8px;
+}
+
+.community-grid-item p {
+    font-size: 0.9rem;
+    color: #666;
+}

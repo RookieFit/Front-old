@@ -1,7 +1,8 @@
-import React, { useEffect, useRef, useState } from 'react';
-import './marketChatPage.css';
-import { useLocation } from 'react-router-dom';
-import { WebSocketManager } from '../socket/webSocketManager';
+// src/pages/MarketChatPage.tsx
+import React, { useEffect, useRef, useState } from "react";
+import { WebSocketManager } from "../socket/webSocketManager";
+import { useLocation } from "react-router-dom";
+import "./marketChatPage.css";
 
 interface ChatMessage {
     id: number;
@@ -15,15 +16,11 @@ const MarketChatPage = () => {
     const location = useLocation();
     const [messages, setMessages] = useState<ChatMessage[]>([]);
     const [newMessage, setNewMessage] = useState('');
+    const [chatRoomId, setChatRoomId] = useState<string | null>(null);
     const messagesEndRef = useRef<HTMLDivElement>(null);
     const { userName, title, price } = location.state;
 
-    const token = "e";
     const webSocketManager = useRef<WebSocketManager | null>(null);
-
-    const scrollToBottom = () => {
-        messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
-    };
 
     const handleNewMessageReceived = (messageBody: string) => {
         const parsedMessage = JSON.parse(messageBody);
@@ -42,7 +39,7 @@ const MarketChatPage = () => {
     };
 
     const handleSendMessage = () => {
-        if (newMessage.trim() === '') return;
+        if (newMessage.trim() === '' || !chatRoomId) return;
 
         const newChatMessage: ChatMessage = {
             id: messages.length + 1,
@@ -52,20 +49,25 @@ const MarketChatPage = () => {
                 minute: '2-digit'
             }),
             isMine: true,
-            userName: userName,
+            userName: "mmglo",
         };
 
         webSocketManager.current?.sendMessage("/app/sendmessage", {
+            chatRoomId: chatRoomId,
             content: newMessage,
-            userName: userName,
+            senderUserId: "mmglo",
         });
 
         setMessages((prev) => [...prev, newChatMessage]);
         setNewMessage('');
     };
 
+    const scrollToBottom = () => {
+        messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+    };
+
     useEffect(() => {
-        webSocketManager.current = new WebSocketManager(token, handleNewMessageReceived);
+        webSocketManager.current = new WebSocketManager(handleNewMessageReceived, setChatRoomId);
         webSocketManager.current.connect();
 
         return () => {
@@ -93,7 +95,7 @@ const MarketChatPage = () => {
                             <div className="market-chat-message-time">{message.timestamp}</div>
                         </div>
                     ))}
-                    <div ref={messagesEndRef} /> {/* 스크롤 위치 지정용 요소 */}
+                    <div ref={messagesEndRef} />
                 </div>
 
                 <div className="market-chat-input-area">

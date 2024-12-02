@@ -1,20 +1,10 @@
 import React, { useState } from 'react';
-import './marketItemList.css';
 import { useNavigate } from 'react-router-dom';
-import { marketItems } from './marketData';
+import PostGrid from '../components/postGrid'; // PostGrid 컴포넌트 가져오기
 import CommunityPagination from '../community/communityComponents/communityPagination';
 import CommunityFloatingButtons from '../community/communityComponents/communityFloatingButtons';
-
-// 마켓 아이템 타입 정의
-export interface MarketItem {
-    id: number;
-    category: '판매' | '구매';
-    title: string;
-    location: string;
-    price: number;
-    image: string;
-    timestamp: string;
-}
+import { marketItems, MarketItem } from './marketData'; // MarketItem 타입과 데이터 가져오기
+import './marketItemList.css';
 
 const MarketItemList = () => {
     const navigate = useNavigate();
@@ -39,21 +29,13 @@ const MarketItemList = () => {
     };
 
     // 카드 클릭 핸들러
-    const handleCardClick = (e: React.MouseEvent, id: number) => {
-        // 텍스트가 선택되어 있다면 클릭 이벤트 무시
-        if (window.getSelection()?.toString()) {
-            return;
-        }
+    const handlePostClick = (id: number) => {
         navigate(`/market/detail/${id}`);
     };
 
     const handleCategoryChange = (category: '전체' | '판매' | '구매') => {
         setSelectedCategory(category);
         setCurrentPage(1); // 카테고리 변경시 첫 페이지로 이동
-    };
-
-    const scrollToTop = () => {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
     };
 
     const handleWritePost = () => {
@@ -63,6 +45,7 @@ const MarketItemList = () => {
     const handleSearch = () => {
         navigate('/market/search');
     };
+
     return (
         <div className="market-item-list-wrapper">
             <div className="market-item-list-header">
@@ -76,13 +59,12 @@ const MarketItemList = () => {
                     <option value="구매">구매</option>
                 </select>
             </div>
-            <div className="market-item-list-grid">
-                {currentItems.map((item) => (
-                    <div
-                        key={item.id}
-                        className="market-item-list-grid-card"
-                        onClick={(e) => handleCardClick(e, item.id)}
-                    >
+
+            <PostGrid<MarketItem>
+                posts={currentItems} // MarketItem 타입에 맞는 데이터 전달
+                onPostClick={handlePostClick} // 클릭 시 처리 함수 전달
+                renderItem={(item: MarketItem) => (
+                    <div className="market-item-list-grid-card" onClick={() => handlePostClick(item.id)}>
                         <img
                             src={item.image}
                             alt={item.title}
@@ -101,9 +83,10 @@ const MarketItemList = () => {
                             </p>
                         </div>
                     </div>
-                ))}
-            </div>
-            <CommunityFloatingButtons onScrollToTop={scrollToTop} onWritePost={handleWritePost} onSearch={handleSearch} />
+                )}
+            />
+
+            <CommunityFloatingButtons onWritePost={handleWritePost} onSearch={handleSearch} />
             <CommunityPagination
                 currentPage={currentPage}
                 totalPages={Math.ceil(filteredItems.length / itemsPerPage)}
