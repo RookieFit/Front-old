@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Route, Routes, useNavigate } from 'react-router-dom';
 import './App.css';
 import Header from './layout/header/header';
 import CalenderPage from './calendar/calenderPage';
@@ -27,56 +27,76 @@ import Home from './home/home';
 import AdministratorPage from './admin/administratorPage';
 import NoticeWrite from './admin/noticeWrite';
 import TrainerAuth from './admin/trainerAuth';
+import { useEffect, useState } from 'react';
+import { checkLoginStatus } from './authCheck/authUtils';
 
 function App() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const verifyLogin = async () => {
+      const loginStatus = await checkLoginStatus();
+      console.log('Login Status:', loginStatus); // 로그 추가
+      if (!loginStatus) {
+        navigate('/signin');
+      } else {
+        setIsLoggedIn(true);
+      }
+    };
+
+    verifyLogin();
+  }, [navigate]);
+  return (
+    <div>
+      <Header />
+      <Routes>
+        {/* 로그인 없이 접근 가능한 페이지 */}
+        <Route path="/" element={<Home />} />
+        <Route path="/signin" element={<SigninPage />} />
+        <Route path="/signup" element={<SignUpPage />} />
+        <Route path="/findid" element={<FindId />} />
+        <Route path="/findpassword" element={<FindPassword />} />
+        <Route path="/findidresult" element={<FindIdResult />} />
+        <Route path="/passwordreset" element={<PasswordReset />} />
+
+        {/* 인증된 사용자만 접근 가능한 페이지 */}
+        <Route path="/mypage" element={isLoggedIn ? <MyPage /> : <SigninPage />} />
+        <Route path="/mypageedit" element={isLoggedIn ? <MyPageEdit /> : <SigninPage />} />
+        <Route path="/calendar" element={isLoggedIn ? <CalenderPage /> : <SigninPage />} />
+        <Route path="/calendar/write" element={isLoggedIn ? <CalenderPage /> : <SigninPage />} />
+        <Route path="/calendar/detail" element={isLoggedIn ? <CalenderPage /> : <SigninPage />} />
+        <Route path="/community" element={isLoggedIn ? <CommunityList /> : <SigninPage />} />
+        <Route path="/community/write" element={isLoggedIn ? <CommunityWrite /> : <SigninPage />} />
+        <Route path="/community/detail/:id" element={isLoggedIn ? <CommunityDetail /> : <SigninPage />} />
+        <Route path="/community/grid" element={isLoggedIn ? <CommunityList /> : <SigninPage />} />
+        <Route path="/community/grid/bodyprofile" element={isLoggedIn ? <CommunityList /> : <SigninPage />} />
+        <Route path="/community/grid/concern" element={isLoggedIn ? <CommunityList /> : <SigninPage />} />
+        <Route path="/community/grid/information" element={isLoggedIn ? <CommunityList /> : <SigninPage />} />
+        <Route path="/community/grid/friendship" element={isLoggedIn ? <CommunityList /> : <SigninPage />} />
+        <Route path="/community/grid/announcement" element={isLoggedIn ? <CommunityList /> : <SigninPage />} />
+        <Route path="/community/search" element={isLoggedIn ? <CommunitySearch /> : <SigninPage />} />
+        <Route path="/community/searchresult" element={isLoggedIn ? <CommunitySearchResult /> : <SigninPage />} />
+        <Route path="/food" element={isLoggedIn ? <FoodPage /> : <SigninPage />} />
+        <Route path="/market" element={isLoggedIn ? <MarketPage /> : <SigninPage />} />
+        <Route path="/market/detail/:id" element={isLoggedIn ? <MarketDetail /> : <SigninPage />} />
+        <Route path="/market/write" element={isLoggedIn ? <MarketPost /> : <SigninPage />} />
+        <Route path="/market/chat/:id" element={isLoggedIn ? <MarketChatPage /> : <SigninPage />} />
+        <Route path="/market/search" element={isLoggedIn ? <MarketSearch /> : <SigninPage />} />
+        <Route path="/market/searchresult" element={isLoggedIn ? <MarketSearchResult /> : <SigninPage />} />
+        <Route path="/admin" element={isLoggedIn ? <AdministratorPage /> : <SigninPage />} />
+        <Route path="/admin/noticewrite" element={isLoggedIn ? <NoticeWrite /> : <SigninPage />} />
+        <Route path="/admin/trainerauth" element={isLoggedIn ? <TrainerAuth /> : <SigninPage />} />
+      </Routes>
+    </div>
+  );
+}
+
+export default function Root() {
   return (
     <BrowserRouter>
-      <div>
-        <Header />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/seenPage" element={<SeenPage />} />
-          <Route path="/mypageedit" element={<MyPageEdit />} />
-          <Route path="/mypage" element={<MyPage />} />
-          <Route path="/signin" element={<SigninPage />} />
-          <Route path="/findid" element={<FindId />} />
-          <Route path="/findidresult" element={<FindIdResult />} />
-          <Route path="/findpassword" element={<FindPassword />} />
-          <Route path="/passwordreset" element={<PasswordReset />} />
-          <Route path="/signup" element={<SignUpPage />} />
-          <Route path="/calendar" element={<CalenderPage />} />
-          <Route path="/calendar/write" element={<CalenderPage />} />
-          <Route path="/calendar/detail" element={<CalenderPage />} />
-          <Route path="/community" element={<CommunityList />} />
-          <Route path="/community/bodyprofile" element={<CommunityList />} />
-          <Route path="/community/concern" element={<CommunityList />} />
-          <Route path="/community/information" element={<CommunityList />} />
-          <Route path="/community/friendship" element={<CommunityList />} />
-          <Route path="/community/announcement" element={<CommunityList />} />
-          <Route path="/community/write" element={<CommunityWrite />} />
-          <Route path="/community/detail/:id" element={<CommunityDetail />} />
-          <Route path="/community/grid" element={<CommunityList />} />
-          <Route path="/community/grid/bodyprofile" element={<CommunityList />} />
-          <Route path="/community/grid/concern" element={<CommunityList />} />
-          <Route path="/community/grid/information" element={<CommunityList />} />
-          <Route path="/community/grid/friendship" element={<CommunityList />} />
-          <Route path="/community/grid/announcement" element={<CommunityList />} />
-          <Route path="/community/search" element={<CommunitySearch />} /> {/* CommunitySearch 경로 추가 */}
-          <Route path="/community/searchresult" element={<CommunitySearchResult />} /> {/* CommunitySearchResult 경로 추가 */}
-          <Route path="/diet" element={<FoodPage />} />
-          <Route path="/market" element={<MarketPage />} />
-          <Route path="/market/detail/:id" element={<MarketDetail />} />
-          <Route path="/market/write" element={<MarketPost />} />
-          <Route path="/market/chat/:id" element={<MarketChatPage />} />
-          <Route path="/market/search" element={<MarketSearch />} />
-          <Route path="/market/searchresult" element={<MarketSearchResult />} />
-          <Route path="/admin" element={<AdministratorPage />} />
-          <Route path="/admin/noticewrite" element={<NoticeWrite />} />
-          <Route path="/admin/trainerauth" element={<TrainerAuth />} />
-        </Routes>
-      </div>
+      <App />
     </BrowserRouter>
   );
 }
 
-export default App;

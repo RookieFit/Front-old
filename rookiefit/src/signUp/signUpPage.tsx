@@ -62,30 +62,30 @@ function SignUpPage() {
         if (!responseBody) return;
         const { code } = responseBody;
 
-        if (code === ResponseCode.VALIDATION_ERROR) alert('아이디와 이메일을 입력하세요.');
-
-        if (code === ResponseCode.DATABASE_ERROR) alert('데이터베이스 오류입니다.');
-
-        if (code === ResponseCode.SMS_FAIL) alert('SMS 전송에 실패했습니다.');
-
-        if (code === ResponseCode.DUPLICATE_ID) {
-            setIsIdError(true);
-            setIdMessage('이미 사용중인 아이디 입니다.');
-            setIsIdCheck(false);
-        };
-
-        if (code === ResponseCode.DUPLICATE_PHONENUMBER) {
+        if (code === ResponseCode.VALIDATION_ERROR) {
+            setPhoneNumberMessage('아이디와 전화번호를 입력하세요.');
             setIsPhoneNumberError(true);
-            setPhoneNumberMessage('이미 가입된 전화번호입니다. 다른 번호를 사용해주세요.');
-            setIsPhoneNumberError(false);
         }
 
-        if (code !== ResponseCode.SUCCESS) return;
+        if (code === ResponseCode.DATABASE_ERROR) {
+            setPhoneNumberMessage('데이터베이스 오류입니다.');
+            setIsPhoneNumberError(true);
+        }
 
-        setIsPhoneNumberError(false);
-        setPhoneNumberMessage('인증 번호가 전송되었습니다.');
-        setIsPhoneNumberError(true);
+        if (code === ResponseCode.SMS_FAIL) {
+            setPhoneNumberMessage('SMS 전송에 실패했습니다.');
+            setIsPhoneNumberError(true);
+        }
+
+        if (code === ResponseCode.SUCCESS) {
+            setPhoneNumberMessage('인증번호가 발송되었습니다.');
+            setIsPhoneNumberError(false);
+        } else {
+            setPhoneNumberMessage('인증번호 발송에 실패했습니다.');
+            setIsPhoneNumberError(true);
+        }
     };
+
 
     const checkCertificationResponse = (responseBody: ResponseBody<CheckCertificationResponseDto>) => {
         if (!responseBody) return;
@@ -97,7 +97,7 @@ function SignUpPage() {
 
         if (code === ResponseCode.CERTIFICATION_FAIL) {
             setIsCertificationError(true);
-            setCertificationMessage('이미 사용중인 아이디 입니다.');
+            setCertificationMessage('인증번호가 일치하지 않습니다.');
             setIsCertificationCheck(false);
         };
 
@@ -124,7 +124,7 @@ function SignUpPage() {
 
         if (code === ResponseCode.CERTIFICATION_FAIL) {
             setIsCertificationError(true);
-            setCertificationMessage('이미 사용중인 아이디 입니다.');
+            setCertificationMessage('인증번호가 일치하지 않습니다.');
             setIsCertificationCheck(false);
         };
 
@@ -220,29 +220,43 @@ function SignUpPage() {
     };
 
     const smsCertificationButtonClickHandler = async () => {
+        // 전화번호가 비어있거나 아이디가 비어있는지 체크
         if (!userId || !userPhoneNumber) {
             setPhoneNumberMessage('아이디와 전화번호를 입력하세요.');
             setIsPhoneNumberError(true);
             return;
         }
 
+        // 전화번호 유효성 검사
+        if (!/^\d{10,11}$/.test(userPhoneNumber)) {  // 전화번호가 10~11자리 숫자로 구성되어 있는지 확인
+            setPhoneNumberMessage('올바른 전화번호를 입력해주세요.');
+            setIsPhoneNumberError(true);
+            return;
+        }
+
+        // 전화번호가 올바르면 상태 초기화
+        setPhoneNumberMessage('인증 번호 전송 중...');
+        setIsPhoneNumberError(false);
+
         const requestBody: SmsCertificationRequestDto = {
             userId,
             user_phonenumber: userPhoneNumber,
         };
 
-        setPhoneNumberMessage('인증 번호 전송 중...');
-        setIsPhoneNumberError(false);
-
         try {
+            // 인증 요청 API 호출
             const response = await SmsCertificationRequest(requestBody);
+
+            // API 응답 처리
             smsCertificationResponse(response);
-            // eslint-disable-next-line @typescript-eslint/no-unused-vars
         } catch (error) {
+            // 인증 실패 시 처리
             setPhoneNumberMessage('인증 번호 전송에 실패했습니다.');
             setIsPhoneNumberError(true);
         }
     };
+
+
 
     const onSignUpButtonClickHandler = () => {
         if (!userId || !password || !certificationNumber) return;

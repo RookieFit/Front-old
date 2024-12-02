@@ -37,7 +37,6 @@
 .image-uploader-many-preview img {
     width: 100%;
     height: auto;
-    max-height: 300px;
     object-fit: cover;
     border-radius: 10px;
 }
