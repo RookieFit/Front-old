@@ -1,66 +1,28 @@
 import React from 'react';
 import './postGrid.css';
-import { useDragPrevent } from './useDragPrevent'; // 커스텀 훅 가져오기
+import { useDragPrevent } from './useDragPrevent';
 
-// 카테고리 타입 정의
-export type Category = '전체' | '바프' | '고민' | '정보' | '친목' | '공지';
-
-// 댓글 타입 정의
-export interface Comment {
-    id: number;
-    postId: number;
-    author: string;
-    date: string;
-    content: string;
-}
-
-// 게시글 타입 정의
-export interface Post {
-    id: number;
-    category: Category;
-    title: string;
-    author: string;
-    date: string;
-    images: string[];
-    content: string;
-    comments: Comment[];
-}
-
-interface PostGridProps {
-    posts: Post[];
+interface PostGridProps<T> {
+    posts: T[];
     onPostClick: (id: number) => void; // 클릭 시 게시글 상세 페이지로 이동하는 함수
+    renderItem: (item: T) => React.ReactNode; // 항목의 콘텐츠를 렌더링하는 함수
 }
 
-const PostGrid = ({ posts, onPostClick }: PostGridProps) => {
-    const { handleMouseDown, handleMouseUp, handleMouseMove } = useDragPrevent(); // 커스텀 훅 사용
+const PostGrid = <T extends { id: number }>({ posts, onPostClick, renderItem }: PostGridProps<T>) => {
+    const { handleMouseDown, handleMouseUp, handleMouseMove } = useDragPrevent();
 
     return (
         <div className="post-grid">
-            {posts.map((post) => (
+            {posts.map((item) => (
                 <div
-                    key={post.id}
-                    className="post-grid-item"
+                    key={item.id}
                     onMouseDown={handleMouseDown}
-                    onMouseUp={() => handleMouseUp(() => onPostClick(post.id))} // 클릭 시 게시글 상세 페이지로 이동
+                    onMouseUp={() => handleMouseUp(() => onPostClick(item.id))}
                     onMouseMove={handleMouseMove}
                     tabIndex={0}
                     role="button"
                 >
-                    <div className="post-grid-header">
-                        {post.images[0] && (
-                            <img
-                                src={post.images[0]}
-                                alt="Entry Thumbnail"
-                                className="post-grid-entry-thumbnail"
-                            />
-                        )}
-                        <div className="post-grid-text">
-                            <p><strong>작성 날짜:</strong> {post.date}</p>
-                            <p><strong>카테고리:</strong> {post.category}</p>
-                            <p><strong>제목:</strong> {post.title}</p>
-                            <p><strong>일지 내용:</strong> {post.content.slice(0, 50)}...</p>
-                        </div>
-                    </div>
+                    {renderItem(item)}
                 </div>
             ))}
         </div>
