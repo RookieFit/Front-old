@@ -1,113 +1,94 @@
-import { useState, ChangeEvent, KeyboardEvent } from 'react';  // 상태 관리와 이벤트 처리 위한 React 훅들 임포트
-import { useNavigate } from 'react-router-dom';  // 페이지 이동을 위한 useNavigate 훅 임포트
-import InputBox from '../inputBox/inputBox';  // 사용자 정의 입력박스 컴포넌트 임포트
-import './signInPage.css';  // 컴포넌트 스타일을 위한 CSS 임포트
+import { useState, ChangeEvent, KeyboardEvent } from 'react';
+import { useNavigate } from 'react-router-dom';
+import InputBox from '../inputBox/inputBox';
+import './signInPage.css';
 
-// 로그인 페이지 컴포넌트 정의
 function SignInPage() {
-    // 상태 변수 선언
-    const [id, setId] = useState('');  // 사용자가 입력한 아이디를 저장하는 상태 변수
-    const [password, setPassword] = useState('');  // 사용자가 입력한 비밀번호를 저장하는 상태 변수
-    const [idMessage, setIdMessage] = useState('');  // 아이디 입력란에 대한 상태 메시지 (에러 메시지 또는 성공 메시지)
-    const [passwordMessage, setPasswordMessage] = useState('');  // 비밀번호 입력란에 대한 상태 메시지
-    const [isIdError, setIsIdError] = useState(false);  // 아이디 입력란의 에러 상태 (true: 에러, false: 정상)
-    const [isPasswordError, setIsPasswordError] = useState(false);  // 비밀번호 입력란의 에러 상태
-
-    // 페이지 이동을 위한 useNavigate 훅 사용
     const navigate = useNavigate();
 
-    // 아이디 입력에 사용할 정규식 (알파벳 대소문자와 숫자만 허용)
-    const alphanumericRegex = /^[A-Za-z0-9]*$/;  // 알파벳과 숫자만 허용하는 정규식
+    const [id, setId] = useState<string>('');
+    const [password, setPassword] = useState<string>('');
 
-    // 아이디 입력 처리 함수
+    const [idMessage, setIdMessage] = useState<string>('');
+    const [passwordMessage, setPasswordMessage] = useState<string>('');
+    const [isIdError, setIsIdError] = useState<boolean>(false);
+    const [isPasswordError, setIsPasswordError] = useState<boolean>(false);
+
+    const alphanumericRegex = /^[A-Za-z0-9]*$/;
+
     const handleIdChange = (event: ChangeEvent<HTMLInputElement>) => {
-        const newValue = event.target.value;  // 사용자가 입력한 아이디 값
+        const newValue = event.target.value;
 
-        // 아이디가 정규식에 맞지 않으면 오류 메시지 출력
         if (!alphanumericRegex.test(newValue)) {
-            setIdMessage('형식에 맞지 않습니다.');  // 형식이 맞지 않으면 에러 메시지
-            setIsIdError(true);  // 에러 상태 true로 설정
+            setIdMessage('형식에 맞지 않습니다.');
+            setIsIdError(true);
         } else {
-            setId(newValue);  // 정상적인 입력이면 아이디 상태 업데이트
-            setIdMessage('');  // 에러 메시지 초기화
-            setIsIdError(false);  // 에러 상태 false로 설정
+            setId(newValue);
+            setIdMessage('');
+            setIsIdError(false);
         }
     };
 
-    // 비밀번호 입력 처리 함수
     const handlePasswordChange = (event: ChangeEvent<HTMLInputElement>) => {
-        setPassword(event.target.value);  // 사용자가 입력한 비밀번호 값으로 상태 업데이트
-        setPasswordMessage('');  // 비밀번호 메시지 초기화
-        setIsPasswordError(false);  // 비밀번호 오류 상태 초기화
+        setPassword(event.target.value);
+        setPasswordMessage('');
+        setIsPasswordError(false);
     };
 
-    // 로그인 버튼 클릭 시 처리 함수
     const handleSignInClick = () => {
-        // 아이디가 비어있으면 오류 메시지 표시
         if (id === '') {
-            setIdMessage('아이디를 입력하세요.');  // 아이디 입력이 비어있으면 에러 메시지
-            setIsIdError(true);  // 아이디 오류 상태 true로 설정
+            setIdMessage('아이디를 입력하세요.');
+            setIsIdError(true);
         }
-        // 비밀번호가 비어있으면 오류 메시지 표시
         if (password === '') {
-            setPasswordMessage('비밀번호를 입력하세요.');  // 비밀번호 입력이 비어있으면 에러 메시지
-            setIsPasswordError(true);  // 비밀번호 오류 상태 true로 설정
+            setPasswordMessage('비밀번호를 입력하세요.');
+            setIsPasswordError(true);
         }
-        // 아이디와 비밀번호가 모두 입력되었을 때 로그인 시도
         if (id && password) {
-            alert('로그인 시도 중...');  // 실제로 로그인 API 호출 전 알림 메시지
-            // 이후 로그인 처리 로직을 추가할 수 있음
+            alert('로그인 시도 중...');  // 실제 로그인 API 호출 전 알림 메시지
+            // 로그인 로직 추가 후 로그인 성공 시 마이페이지로 이동
+            navigate('/mypage');  // 로그인 성공 후 마이페이지로 리다이렉션
         }
     };
 
-    // Enter 키 입력 시 로그인 시도 함수
     const handleKeyDown = (event: KeyboardEvent<HTMLInputElement>) => {
-        if (event.key === 'Enter') handleSignInClick();  // Enter 키가 눌리면 로그인 클릭 처리
+        if (event.key === 'Enter') handleSignInClick();
     };
 
-    // 아이디 찾기 페이지로 이동하는 함수
-    const handleFindIdClick = () => navigate('/findid');  // /findId 경로로 이동
-
-    // 비밀번호 찾기 페이지로 이동하는 함수
-    const handleFindPasswordClick = () => navigate('/findpassword');  // /findPassword 경로로 이동
-
-    // 회원가입 페이지로 이동하는 함수
-    const handleSignUpClick = () => navigate('/signup');  // /signup 경로로 이동
+    const handleFindIdClick = () => navigate('/findid');
+    const handleFindPasswordClick = () => navigate('/findpassword');
+    const handleSignUpClick = () => navigate('/signup');
 
     return (
-        <div id="sign-in-wrapper">  {/* 로그인 페이지 전체 컨테이너 */}
-            <h2 className="sign-in-title">로그인</h2>  {/* 페이지 제목 */}
+        <div id="sign-in-wrapper">
+            <h2 className="sign-in-title">로그인</h2>
 
-            {/* 아이디 입력박스 */}
             <InputBox
                 title="아이디"
                 placeholder="아이디를 입력하세요."
                 type="text"
-                value={id}  // 상태 변수로 입력값을 제어
-                message={idMessage}  // 아이디에 대한 메시지 (에러 메시지 포함)
-                isErrorMessage={isIdError}  // 아이디 오류 여부
-                onChange={handleIdChange}  // 아이디 입력 처리 핸들러
-                onKeyDown={handleKeyDown}  // 키 입력 시 처리 핸들러
+                value={id}
+                message={idMessage}
+                isErrorMessage={isIdError}
+                onChange={handleIdChange}
+                onKeyDown={handleKeyDown}
             />
 
-            {/* 비밀번호 입력박스 */}
             <InputBox
                 title="비밀번호"
                 placeholder="비밀번호를 입력하세요."
                 type="password"
-                value={password}  // 상태 변수로 입력값을 제어
-                message={passwordMessage}  // 비밀번호에 대한 메시지 (에러 메시지 포함)
-                isErrorMessage={isPasswordError}  // 비밀번호 오류 여부
-                onChange={handlePasswordChange}  // 비밀번호 입력 처리 핸들러
-                onKeyDown={handleKeyDown}  // 키 입력 시 처리 핸들러
+                value={password}
+                message={passwordMessage}
+                isErrorMessage={isPasswordError}
+                onChange={handlePasswordChange}
+                onKeyDown={handleKeyDown}
             />
 
-            {/* 로그인 버튼 */}
             <button className="sign-in-button" onClick={handleSignInClick}>
                 로그인
             </button>
 
-            {/* 회원가입 /아이디 찾기 / 비밀번호 찾기 링크 */}
             <div className="find-id-password-sign-up-container">
                 <button className="find-id-password-button" onClick={handleSignUpClick}>
                     회원 가입
@@ -116,22 +97,20 @@ function SignInPage() {
                 <button className="find-id-password-button" onClick={handleFindIdClick}>
                     아이디 찾기
                 </button>
-                <span className="vertical-line"></span>  {/* 두 버튼을 구분하는 세로선 */}
+                <span className="vertical-line"></span>
                 <button className="find-id-password-button" onClick={handleFindPasswordClick}>
                     비밀번호 찾기
                 </button>
             </div>
 
-            <div className="underline"></div>  {/* 페이지 하단의 구분선 */}
+            <div className="underline"></div>
 
-            {/* 간편 로그인 섹션 */}
-            <div className="easy-sign-in-text">간편 로그인 및 회원가입</div>  {/* 간편 로그인 안내 텍스트 */}
+            <div className="easy-sign-in-text">간편 로그인 및 회원가입</div>
 
-            {/* SNS 로그인 버튼들 */}
             <div className="sns-sign-in-container">
-                <button className="naver-sign-in"></button>  {/* 네이버 로그인 버튼 */}
-                <button className="kakao-sign-in"></button>  {/* 카카오 로그인 버튼 */}
-                <button className="google-sign-in"></button>  {/* 구글 로그인 버튼 */}
+                <button className="naver-sign-in"></button>
+                <button className="kakao-sign-in"></button>
+                <button className="google-sign-in"></button>
             </div>
         </div>
     );

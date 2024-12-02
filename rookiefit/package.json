@@ -10,7 +10,6 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@chakra-ui/react": "^3.1.0",
     "@emotion/react": "^11.13.3",
     "@emotion/styled": "^11.13.0",
     "@stomp/stompjs": "^7.0.0",
@@ -24,6 +23,7 @@
     "react-apexcharts": "^1.5.0",
     "react-calendar": "^5.1.0",
     "react-dom": "^18.3.1",
+    "react-native-fs-cache-image": "^1.0.4",
     "react-router-dom": "^6.28.0",
     "react-slick": "^0.30.2",
     "slick-carousel": "^1.8.1",

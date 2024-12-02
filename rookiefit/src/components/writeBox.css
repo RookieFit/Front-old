@@ -1,0 +1,193 @@
+.write-box-header {
+    text-align: center;
+}
+
+.write-box-header h2 {
+    font-weight: 400;
+    font-size: 36px;
+    line-height: 44px;
+    color: #666666;
+}
+
+.write-box-header p {
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 22px;
+    color: #7E7E7E;
+}
+
+/* 공통 상단 컨테이너 */
+.write-box-top {
+    display: flex;
+    flex-direction: column;
+    margin: 20px auto;
+    max-width: 1200px;
+}
+
+/* 입력 영역 컨테이너 */
+.write-box-body {
+    background-color: #ffffff;
+    width: 90%;
+    max-width: 1000px;
+    min-height: 55vh;
+    margin: 30px auto;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    transition: box-shadow 0.3s ease;
+}
+
+.write-box-body:hover {
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+}
+
+/* 제목 입력 영역 */
+.write-box-title-container {
+    display: flex;
+    align-items: center;
+    margin-top: 30px;
+    gap: 20px;
+}
+
+.write-box-title {
+    background-color: #f0f0f0;
+    width: 100%;
+    height: 50px;
+    padding: 0 15px;
+    font-size: 16px;
+    border: none;
+    border-radius: 8px;
+    outline: none;
+    text-align: left;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.write-box-title:focus {
+    background-color: #e6e6e6;
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* 카테고리 영역 */
+.write-box-category {
+    display: flex;
+    position: relative;
+    width: 100%;
+    gap: 20px;
+}
+
+/* 카테고리 드롭다운 */
+.write-box-category-select {
+    width: 150px;
+    height: 50px;
+    font-size: 16px;
+    background-color: #f0f0f0;
+    border: none;
+    border-radius: 8px;
+    text-align: center;
+    color: #333;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.write-box-category-select:disabled {
+    width: 150px;
+    height: 50px;
+    font-size: 16px;
+    background-color: #f0f0f0;
+    border: none;
+    border-radius: 8px;
+    text-align: center;
+    color: #333;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease;
+    appearance: none;
+    -webkit-appearance: none;
+    /* Safari와 Chrome에서의 호환성 */
+    -moz-appearance: none;
+    /* Firefox에서의 호환성 */
+    /* 기본 화살표 제거 */
+}
+
+.write-box-category-label {
+    background-color: #f0f0f0;
+    color: #333;
+    font-size: 16px;
+    width: 150px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-right: 20px;
+}
+
+/* 내용 입력 필드 */
+.write-box-detail {
+    background-color: #f0f0f0;
+    width: 97%;
+    height: 350px;
+    margin-top: 20px;
+    padding: 15px;
+    font-size: 16px;
+    border: none;
+    border-radius: 8px;
+    outline: none;
+    resize: vertical;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.write-box-detail:focus {
+    background-color: #e6e6e6;
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* 하단 컨테이너 */
+.write-box-footer {
+    display: flex;
+    justify-content: center;
+    /* 기본적으로 중앙 정렬 */
+    align-items: center;
+    /* 수직 가운데 정렬 */
+    position: relative;
+    /* 내부 위치를 제어하기 위해 relative 설정 */
+    margin-top: 20px;
+    width: 100%;
+}
+
+.custom-image-uploader {
+    position: absolute;
+    /* 절대 위치 설정 */
+    left: 0;
+    /* 왼쪽 끝에 고정 */
+    margin-left: 10px;
+    /* 좌측 여백 추가 */
+    align-items: center;
+    /* 수직 가운데 정렬 */
+}
+
+/* 등록 버튼 */
+.write-box-submit {
+    width: 200px;
+    height: 55px;
+    background-color: #a9abb0;
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.write-box-submit:hover {
+    background-color: #8d8f95;
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+}

@@ -47,7 +47,7 @@ const ImageUploader = ({ onImageUpload, maxSizeMB = 5 }: ImageUploaderProps) => 
                         onChange={handleFileChange}
                         style={{ display: 'none' }}
                     />
-                    <span className="upload-icon">+</span> {/* + 아이콘처럼 보이게 스타일링 */}
+                    <span className="upload-icon">사진</span> {/* + 아이콘처럼 보이게 스타일링 */}
                 </label>
             )}
         </div>

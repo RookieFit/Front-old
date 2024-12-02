@@ -10,7 +10,7 @@ import MyPage from './mypage/myPage';
 import MyPageEdit from './mypage/myPageEdit';
 import CommunityList from './community/communityList/communityList';
 import CommunityDetail from './community/communityDetail/communityDetail';
-import CommunityWrite from './community/communityWrite/communityWrite';
+import CommunityWrite from './community/communityWrite';
 import FindPassword from './findPassword/findPassword';
 import FindIdResult from './findIdResult/findIdResult';
 import FoodPage from './food/foodPage';
@@ -23,6 +23,10 @@ import CommunitySearchResult from './community/communitySearch/communitySearchRe
 import MarketChatPage from './market/marketChatPage';
 import MarketSearch from './market/marketSearch';
 import MarketSearchResult from './market/marketSearchResult';
+import Home from './home/home';
+import AdministratorPage from './admin/administratorPage';
+import NoticeWrite from './admin/noticeWrite';
+import TrainerAuth from './admin/trainerAuth';
 
 function App() {
   return (
@@ -30,6 +34,7 @@ function App() {
       <div>
         <Header />
         <Routes>
+          <Route path="/" element={<Home />} />
           <Route path="/seenPage" element={<SeenPage />} />
           <Route path="/mypageedit" element={<MyPageEdit />} />
           <Route path="/mypage" element={<MyPage />} />
@@ -65,6 +70,9 @@ function App() {
           <Route path="/market/chat/:id" element={<MarketChatPage />} />
           <Route path="/market/search" element={<MarketSearch />} />
           <Route path="/market/searchresult" element={<MarketSearchResult />} />
+          <Route path="/admin" element={<AdministratorPage />} />
+          <Route path="/admin/noticewrite" element={<NoticeWrite />} />
+          <Route path="/admin/trainerauth" element={<TrainerAuth />} />
         </Routes>
       </div>
     </BrowserRouter>

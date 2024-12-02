@@ -57,12 +57,10 @@
 }
 
 .input-box-input:focus {
-    border-color: #007BFF;
-    /* 포커스 시 파란색 테두리 */
+    border-color: #000000;
     outline: none;
 }
 
-/* 비활성화된 버튼 */
 .input-box-button-disable {
     display: flex;
     width: 390px;
@@ -75,7 +73,7 @@
     color: #858585;
     background: #F2F2F2;
     border-radius: 5px;
-    cursor: not-allowed;
+    cursor: text;
     border: 2px solid #CCCCCC;
     /* 연한 테두리 추가 */
 }
@@ -84,7 +82,7 @@
 .input-box-message {
     min-height: 20px;
     font-size: 12px;
-    color: #0600C0;
+    color: #000000;
     display: flex;
     align-items: center;
 }
@@ -120,18 +118,11 @@
     transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
-.input-box-button:hover {
-    background-color: #333333;
-    /* 호버 시 배경 색상 변경 */
-    transform: scale(1.05);
-    /* 호버 시 버튼 크기 확대 */
-}
-
 .input-box-button:disabled {
     background: #F2F2F2;
     color: #858585;
     border: 2px solid #D9D9D9;
-    cursor: not-allowed;
+    cursor: text;
 }
 
 /* 입력 박스 메시지 */

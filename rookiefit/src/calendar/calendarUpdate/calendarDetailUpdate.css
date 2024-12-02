@@ -24,3 +24,12 @@
     background-color: #ccc;
     /* 선의 색상 */
 }
+
+/* 선택된 슬라이드 테두리 제거 */
+.slick-slide {
+    outline: none !important;
+}
+
+.slick-slide img {
+    outline: none !important;
+}

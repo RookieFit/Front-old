@@ -26,17 +26,23 @@ const CommunityList = () => {
         return params.get('mode') === 'grid';
     };
 
+    const sortPostsById = (posts: typeof dummyPosts) => {
+        return posts.slice().sort((a, b) => a.id - b.id); // ID 기준 오름차순
+    };
+
     const [selectedCategory, setSelectedCategory] = useState<Category>(getInitialCategory());
     const [isGridMode, setIsGridMode] = useState<boolean>(getInitialMode());
     const [loadedPosts, setLoadedPosts] = useState<typeof dummyPosts>([]); // 현재 로드된 게시물
     const [isLoading, setIsLoading] = useState<boolean>(false); // 로딩 상태
 
-    // 게시물을 카테고리별로 필터링
+    // 게시물을 카테고리별로 필터링하고 정렬
     useEffect(() => {
         const filtered = selectedCategory === '전체'
             ? dummyPosts.slice(0, 10) // 처음 10개만
             : dummyPosts.filter((post) => post.category === selectedCategory).slice(0, 10);
-        setLoadedPosts(filtered);
+
+        const sorted = sortPostsById(filtered); // ID 순으로 정렬
+        setLoadedPosts(sorted);
     }, [selectedCategory]);
 
     // 스크롤바가 바닥에 도달했을 때 게시물 추가 로딩
@@ -50,9 +56,10 @@ const CommunityList = () => {
                 ? dummyPosts.slice(startIdx, startIdx + 10)
                 : dummyPosts.filter((post) => post.category === selectedCategory).slice(startIdx, startIdx + 10);
 
-            setLoadedPosts((prevPosts) => [...prevPosts, ...newPosts]);
+            const sorted = sortPostsById(newPosts); // ID 순으로 정렬
+            setLoadedPosts((prevPosts) => [...prevPosts, ...sorted]);
             setIsLoading(false);
-        }, 3000); // 3초 지연
+        }, 300); // 3초 지연
     }, [isLoading, loadedPosts, selectedCategory]);
 
     // IntersectionObserver를 사용하여 스크롤이 끝에 도달했을 때 추가 로드
@@ -67,16 +74,18 @@ const CommunityList = () => {
                 rootMargin: '100px', // 스크롤이 100px 남았을 때 로드 시작
             }
         );
+
         const sentinel = document.getElementById('sentinel');
-        if (sentinel) {
+        if (sentinel && !isGridMode) { // 그리드 모드가 아닐 때만 Observer 활성화
             observer.observe(sentinel);
         }
+
         return () => {
             if (sentinel) {
                 observer.unobserve(sentinel);
             }
         };
-    }, [loadMorePosts]);
+    }, [loadMorePosts, isGridMode]);
 
     const handleCategoryClick = (category: Category) => {
         setSelectedCategory(category);

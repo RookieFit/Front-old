@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import './CalendarWrite.css';
 import { useNavigate } from 'react-router-dom';
 import TextInput from '../calendarComponents/calendarInput';
@@ -6,126 +6,123 @@ import AddedDetails from '../calendarComponents/calendarAddDetails';
 import moment from 'moment';
 import { useCalendarDetails } from '../calendarDetailContext';
 import { UseCalendar } from '../calendarContext';
-import ImageUploader from '../../components/imageUploader';
+import ImageUploaderMany from '../../components/imageUploaderMany';
 
 const CalendarWrite = () => {
     const navigate = useNavigate();
-    const { selectedDate } = UseCalendar(); // useContext로 selectedDate 가져오기
-    const { setDetails } = useCalendarDetails(); // CalendarDetailsProvider에서 setDetails 가져오기
-    const [workoutDetails, setWorkoutDetails] = useState({
-        exerciseName: '',
-        repetitions: '',
-        sets: '',
-        restTime: ''
+    const { selectedDate } = UseCalendar();
+    const { setDetails } = useCalendarDetails();
+
+    const [formData, setFormData] = useState({
+        title: '',
+        diaryContent: '',
+        workoutDetails: { exerciseName: '', repetitions: '', sets: '', restTime: '' },
+        localDetails: [] as string[][],
+        uploadedImages: [] as File[],
     });
-    const [title, setTitle] = useState(''); // 일기 제목 상태
-    const [diaryContent, setDiaryContent] = useState(''); // 일기 내용 상태
-    const [localDetails, setLocalDetails] = useState<string[][]>([]); // 운동 세부사항 상태
-    const [uploadedImage, setUploadedImage] = useState<File | null>(null); // 업로드된 이미지 상태
 
-    const handleImageUpload = (image: File | null) => {
-        setUploadedImage(image);
-    };
+    // 모든 입력 필드의 업데이트를 하나의 핸들러로 통합
+    const handleInputChange = useCallback((field: string, value: string, isWorkout = false) => {
+        setFormData(prevState => {
+            if (isWorkout) {
+                return {
+                    ...prevState,
+                    workoutDetails: { ...prevState.workoutDetails, [field]: value },
+                };
+            }
+            return { ...prevState, [field]: value };
+        });
+    }, []);
 
-    // 운동 세부사항 추가 함수
-    const handleAddDetail = () => {
-        const newDetail = [workoutDetails.exerciseName, workoutDetails.repetitions, workoutDetails.sets, workoutDetails.restTime];
-        setLocalDetails((prevDetails) => [...prevDetails, newDetail]); // 세부사항 배열에 추가
-        setWorkoutDetails({ exerciseName: '', repetitions: '', sets: '', restTime: '' }); // 입력 필드 초기화
-    };
+    // 운동 세부정보 추가
+    const handleAddDetail = useCallback(() => {
+        const { exerciseName, repetitions, sets, restTime } = formData.workoutDetails;
+        setFormData(prevState => ({
+            ...prevState,
+            localDetails: [...prevState.localDetails, [exerciseName, repetitions, sets, restTime]],
+            workoutDetails: { exerciseName: '', repetitions: '', sets: '', restTime: '' }, // 초기화
+        }));
+    }, [formData.workoutDetails]);
 
-    // 일지 내용 변경 처리
-    const handleDiaryChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-        setDiaryContent(e.target.value);
-    };
+    // 이미지 업로드 처리
+    const handleImagesUpload = useCallback((images: File[]) => {
+        setFormData(prevState => ({ ...prevState, uploadedImages: images }));
+    }, []);
 
-    // 제목 변경 처리
-    const handleTitleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-        setTitle(e.target.value);
-    };
-
-    // 제출 시 일기 저장 처리
-    const handleSubmit = () => {
-        const imageData = uploadedImage ? URL.createObjectURL(uploadedImage) : null;
-
-        setDetails((prevDetails) => ({
+    // 제출 처리
+    const handleSubmit = useCallback(() => {
+        const { title, diaryContent, localDetails, uploadedImages } = formData;
+        setDetails(prevDetails => ({
             entries: [
                 ...prevDetails.entries,
                 {
                     title,
                     diaryContent,
-                    workoutDetails: localDetails, // 운동 세부사항 저장
-                    date: selectedDate.toString(), // 선택된 날짜 저장
-                    image: imageData, // 업로드된 이미지 URL 저장
-                }
-            ]
+                    workoutDetails: localDetails,
+                    date: selectedDate.toString(),
+                    images: uploadedImages.map(image => URL.createObjectURL(image)),
+                },
+            ],
         }));
-        navigate("/calendar"); // 제출 후 캘린더 페이지로 이동
-    };
+        navigate('/calendar');
+    }, [formData, navigate, selectedDate, setDetails]);
 
-    // 취소 버튼 클릭 시 처리
-    const handleCancel = () => {
-        navigate("/calendar"); // 취소 시 캘린더 페이지로 돌아감
-    };
+    // 취소 처리
+    const handleCancel = useCallback(() => {
+        navigate('/calendar');
+    }, [navigate]);
 
     return (
         <div className="right-back">
             <div className="calendar-write-wrapper">
                 <div className="calendar-header">
-                    {/* 날짜 왼쪽에 취소 버튼 추가 */}
                     <div className="calendar-write-cancel-button" onClick={handleCancel}>취소</div>
                     <h2>{moment(selectedDate).format('YYYY-MM-DD')}</h2>
                 </div>
+
+                {/* 제목 입력 */}
                 <div className="calendar-title-input">
-                    {/* 제목 글자수 제한 */}
                     <textarea
-                        value={title}
-                        onChange={handleTitleChange}
+                        value={formData.title}
+                        onChange={(e) => handleInputChange('title', e.target.value)}
                         placeholder="제목"
                         maxLength={40}
                     />
                 </div>
+
+                {/* 운동 세부사항 */}
                 <div className="calendar-write-detail">
                     <div className="input-row">
-                        {/* 운동명, 횟수, 세트수, 휴식시간 입력 필드 */}
-                        <TextInput
-                            label="운동명"
-                            value={workoutDetails.exerciseName}
-                            onChange={(e) => setWorkoutDetails({ ...workoutDetails, exerciseName: e.target.value })}
-                        />
-                        <TextInput
-                            label="횟수"
-                            value={workoutDetails.repetitions}
-                            onChange={(e) => setWorkoutDetails({ ...workoutDetails, repetitions: e.target.value })}
-                        />
-                        <TextInput
-                            label="세트수"
-                            value={workoutDetails.sets}
-                            onChange={(e) => setWorkoutDetails({ ...workoutDetails, sets: e.target.value })}
-                        />
-                        <TextInput
-                            label="휴식시간"
-                            value={workoutDetails.restTime}
-                            onChange={(e) => setWorkoutDetails({ ...workoutDetails, restTime: e.target.value })}
-                        />
-                    </div>
-                    <div className="calendar-write-add-detail">
-                        {/* 운동 세부사항 추가 버튼 */}
-                        <button className="calendar-write-add" onClick={handleAddDetail}>추가하기</button>
-                        <AddedDetails workoutDetails={localDetails} /> {/* 추가된 세부사항 목록 */}
-                        <div className="diary-input-section">
-                            <textarea
-                                value={diaryContent}
-                                onChange={handleDiaryChange}
-                                placeholder="여기에 자유롭게 내용을 입력하세요."
-                                maxLength={255}
-
+                        {['exerciseName', 'repetitions', 'sets', 'restTime'].map(field => (
+                            <TextInput
+                                key={field}
+                                label={field === 'exerciseName' ? '운동명' : field === 'repetitions' ? '횟수' : field === 'sets' ? '세트수' : '휴식시간'}
+                                value={formData.workoutDetails[field as keyof typeof formData.workoutDetails]}
+                                onChange={(e) => handleInputChange(field, e.target.value, true)}
                             />
-                            {/* 이미지 추가 버튼을 따로 만들어서... */}
-                            <ImageUploader onImageUpload={handleImageUpload} maxSizeMB={5} />
-                        </div>
-                        <button className="calendar-write-submit" onClick={handleSubmit}>SUBMIT</button>
+                        ))}
                     </div>
+                </div>
+                <div className="calendar-write-add-detail">
+                    <button className="calendar-write-add" onClick={handleAddDetail}>추가하기</button>
+                    <AddedDetails workoutDetails={formData.localDetails} />
+                    {/* 일기 내용 */}
+                    <div className="diary-input-section">
+                        <textarea
+                            value={formData.diaryContent}
+                            onChange={(e) => handleInputChange('diaryContent', e.target.value)}
+                            placeholder="여기에 자유롭게 내용을 입력하세요."
+                            maxLength={255}
+                        />
+                        <ImageUploaderMany
+                            maxImages={5}
+                            onImageUpload={handleImagesUpload}
+                            previewImages={formData.uploadedImages}
+                        />
+                    </div>
+
+                    {/* 제출 버튼 */}
+                    <button className="calendar-write-submit" onClick={handleSubmit}>SUBMIT</button>
                 </div>
             </div>
         </div>
