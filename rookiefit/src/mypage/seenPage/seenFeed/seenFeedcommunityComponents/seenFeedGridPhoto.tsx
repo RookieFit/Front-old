@@ -1,14 +1,31 @@
-import React from 'react'
-import ImageUploader from '../../../../components/imageUploader'
+import React from 'react';
+import ImageUploader from '../../../../components/imageUploader';
+import './seenFeedGridPhoto.css';
 
-const seenFeedGridPhoto = () => {
-    return (
-        <div className="seen-feed-container">
-            <ImageUploader onImageUpload={function (image: File | null): void {
-                throw new Error('Function not implemented.');
-            }} />
-        </div>
-    )
+interface SeenFeedGridPhotoProps {
+    itemsPerRow: number;
+    totalItems: number;
 }
 
-export default seenFeedGridPhoto
+const SeenFeedGridPhoto = ({ itemsPerRow, totalItems}: SeenFeedGridPhotoProps) => {
+    return (
+        <div
+            className="seen-feed-container"
+            style={{
+                gridTemplateColumns: `repeat(${itemsPerRow}, 1fr)`,
+            }}
+        >
+            {[...Array(totalItems)].map((_, index) => (
+                <div className="seen-feed-item" key={index}>
+                    <ImageUploader
+                        onImageUpload={(image: File | null) => {
+                            console.log('Uploaded:', image);
+                        }}
+                    />
+                </div>
+            ))}
+        </div>
+    );
+};
+
+export default SeenFeedGridPhoto;

@@ -10,8 +10,8 @@ interface Props {
 
 const SeenProfileEdit = ({ userId, name, message }: Props) => {
   const navigate = useNavigate();
-  const marketChatPage = () => {
-    navigate(`/market/chat/${userId}`);
+  const myPage = () => {
+    navigate(`/myPage`);
   };
 
   return (
@@ -19,7 +19,7 @@ const SeenProfileEdit = ({ userId, name, message }: Props) => {
       <img className='my-profile-edit-image' src={logo}></img>
       <div className='my-profile-nickname'>{name}</div>
       <input type='text' className='my-profile-message-textarea' value={message} />
-      <input type="button" value="채팅하기" onClick={marketChatPage} className='my-profile-button'/>
+      <input type="button" value="수정하기" onClick={myPage} className='my-profile-button' />
     </div>
   )
 };
