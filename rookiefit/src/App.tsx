@@ -39,7 +39,7 @@ function App() {
       const loginStatus = await checkLoginStatus();
       console.log('Login Status:', loginStatus); // 로그 추가
       if (!loginStatus) {
-        navigate('/signin');
+        setIsLoggedIn(false);
       } else {
         setIsLoggedIn(true);
       }
@@ -47,6 +47,7 @@ function App() {
 
     verifyLogin();
   }, [navigate]);
+
   return (
     <div>
       <Header />
@@ -61,6 +62,7 @@ function App() {
         <Route path="/passwordreset" element={<PasswordReset />} />
 
         {/* 인증된 사용자만 접근 가능한 페이지 */}
+        <Route path="/seenPage" element={<SeenPage />} />
         <Route path="/mypage" element={isLoggedIn ? <MyPage /> : <SigninPage />} />
         <Route path="/mypageedit" element={isLoggedIn ? <MyPageEdit /> : <SigninPage />} />
         <Route path="/calendar" element={isLoggedIn ? <CalenderPage /> : <SigninPage />} />
@@ -77,6 +79,7 @@ function App() {
         <Route path="/community/grid/announcement" element={isLoggedIn ? <CommunityList /> : <SigninPage />} />
         <Route path="/community/search" element={isLoggedIn ? <CommunitySearch /> : <SigninPage />} />
         <Route path="/community/searchresult" element={isLoggedIn ? <CommunitySearchResult /> : <SigninPage />} />
+        <Route path="/diet" element={isLoggedIn ? <FoodPage /> : <SigninPage />} />
         <Route path="/food" element={isLoggedIn ? <FoodPage /> : <SigninPage />} />
         <Route path="/market" element={isLoggedIn ? <MarketPage /> : <SigninPage />} />
         <Route path="/market/detail/:id" element={isLoggedIn ? <MarketDetail /> : <SigninPage />} />

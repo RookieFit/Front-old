@@ -52,7 +52,8 @@ function SignInPage() {
             setIsPasswordError(true);
             setPasswordMessage('로그인 정보가 일치하지 않습니다.');
         } else if (code === ResponseCode.SUCCESS && token) {
-            const expires = new Date((new Date().getTime()) * 1000 + expirationTime);
+            // MARK: 추가예정
+            // const expires = new Date((new Date().getTime()) * 1000 + expirationTime);
             saveTokens(token, expirationTime.toString());
 
             console.log('Stored Access Token:', getJwtToken());
