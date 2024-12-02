@@ -58,6 +58,8 @@ function SignUpPage() {
         setIsIdCheck(true);
     };
 
+
+
     const smsCertificationResponse = (responseBody: ResponseBody<SmsCertificationResponseDto>) => {
         if (!responseBody) return;
         const { code } = responseBody;
