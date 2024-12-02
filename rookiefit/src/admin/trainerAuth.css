@@ -1,0 +1,53 @@
+/* trainerAuth.css */
+
+/* 기본 스타일 */
+.trainerAuth-container {
+    width: 80%;
+    margin: 20px auto;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+}
+
+/* 제목 스타일 */
+.trainerAuth-title {
+    text-align: center;
+    font-size: 24px;
+    color: #595959;
+    margin-bottom: 20px;
+}
+
+/* 표 스타일 */
+.trainerAuth-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+/* 테이블 헤더 스타일 */
+.trainerAuth-th {
+    background-color: #007BFF;
+    color: white;
+    padding: 12px;
+    text-align: left;
+    font-weight: bold;
+}
+
+/* 테이블 데이터 스타일 */
+.trainerAuth-td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+/* 이미지 스타일 */
+.trainerAuth-img {
+    border-radius: 4px;
+    object-fit: cover;
+}
+
+/* 행 hover 효과 */
+.trainerAuth-tr:hover {
+    background-color: #f1f1f1;
+}

@@ -6,14 +6,14 @@ interface ImageUploaderProps {
     maxImages: number;
     onImageUpload: (images: File[]) => void;
     previewImages: File[];
+    className?: string; // 외부에서 전달받을 사용자 정의 클래스
 }
 
-const ImageUploaderMany = ({ maxImages, onImageUpload, previewImages }: ImageUploaderProps) => {
+const ImageUploaderMany = ({ maxImages, onImageUpload, previewImages, className }: ImageUploaderProps) => {
     const [images, setImages] = useState<File[]>([]);
 
-    // 기존 이미지를 받아와서 이미지 상태에 초기화
     useEffect(() => {
-        setImages([]); // 이 부분은 기존 이미지 프리뷰를 사용할 때 필요하지 않으므로 수정이 필요할 수 있음
+        setImages([]);
     }, [previewImages]);
 
     const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -32,18 +32,18 @@ const ImageUploaderMany = ({ maxImages, onImageUpload, previewImages }: ImageUpl
 
     const sliderSettings = {
         dots: false,
-        infinite: false,  // 무한 스크롤 비활성화
+        infinite: false,
         speed: 500,
-        slidesToShow: Math.min(3, images.length + previewImages.length), // 최대 3개까지 한 번에 표시
+        slidesToShow: Math.min(3, previewImages.length),
         slidesToScroll: 1,
         autoplay: true,
         autoplaySpeed: 2000,
-        focusOnSelect: true, // 클릭하면 선택된 이미지로 포커스
-        arrows: false, // 화살표 비활성화
+        focusOnSelect: true,
+        arrows: false,
     };
 
     return (
-        <div className="image-uploader-many">
+        <div className={`image-uploader-many ${className || ''}`}>
             <label className="image-uploader-many-label">
                 <input
                     type="file"

@@ -11,7 +11,7 @@ function AdministratorPage() {
 
     // 트레이너 인증 페이지로 이동
     const handleTrainerAuthClick = () => {
-        navigate('/trainerAuth');  // '/trainerAuth' 경로로 이동 (트레이너 인증 페이지)
+        navigate('/admin/trainerauth');  // '/trainerAuth' 경로로 이동 (트레이너 인증 페이지)
     };
 
     return (
