@@ -10,7 +10,9 @@ const MyPageFooter = () => {
     const handleFooterToggle = () => {
         setIsFooterVisible(!isFooterVisible);
     };
-
+    const scrollToTop = () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    };
     const handleClickOutside = (event: { target: any; }) => {
         if (footerRef.current && !footerRef.current.contains(event.target)) {
             setIsFooterVisible(false);
@@ -28,45 +30,47 @@ const MyPageFooter = () => {
         navigate(path);
         setIsFooterVisible(false);
     };
-
     return (
-        <button
-            ref={footerRef}
-            className="my-footer-circle"
-            onClick={handleFooterToggle}
-        >
-            {isFooterVisible && (
-                <div className="my-footer-visible-box">
-                    나의 발자취
-                    <div className="my-footer-visible-inbox">
-                        <button 
-                            className="my-footer-visible-box-chat-log"
-                            onClick={() => handleNavigation('/chat-')}
-                        >
-                            채팅 기록
-                        </button>
-                        <button 
-                            className="my-footer-visible-box-market-log"
-                            onClick={() => handleNavigation('/market:nickname')}
-                        >
-                            거래 내역
-                        </button>
-                        <button 
-                            className="my-footer-visible-box-community-list"
-                            onClick={() => handleNavigation('/communitylist')}
-                        >
-                            게시글 목록
-                        </button>
-                        <button 
-                            className="my-footer-visible-box-inquiry"
-                            onClick={() => handleNavigation('/inquiry')}
-                        >
-                            1대1 문의 하기
-                        </button>
+        <>
+            <button onClick={scrollToTop} className="my-footer-floating-up-button"/>
+            <button
+                ref={footerRef}
+                className="my-footer-circle"
+                onClick={handleFooterToggle}
+            >
+                {isFooterVisible && (
+                    <div className="my-footer-visible-box">
+                        나의 발자취
+                        <div className="my-footer-visible-inbox">
+                            <button
+                                className="my-footer-visible-box-chat-log"
+                                onClick={() => handleNavigation('/chat-')}
+                            >
+                                채팅 기록
+                            </button>
+                            <button
+                                className="my-footer-visible-box-market-log"
+                                onClick={() => handleNavigation('/market:nickname')}
+                            >
+                                거래 내역
+                            </button>
+                            <button
+                                className="my-footer-visible-box-community-list"
+                                onClick={() => handleNavigation('/communitylist')}
+                            >
+                                게시글 목록
+                            </button>
+                            <button
+                                className="my-footer-visible-box-inquiry"
+                                onClick={() => handleNavigation('/inquiry')}
+                            >
+                                1대1 문의 하기
+                            </button>
+                        </div>
                     </div>
-                </div>
-            )}
-        </button>
+                )}
+            </button>
+        </>
     );
 };
 

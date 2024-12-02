@@ -1,7 +1,6 @@
 import './topMainBox.css';
 import MyProfile from '../profileBox/myProfile/myProfile';
 import InformationMiniBox from '../informationBox/informationMiniBox/informationMiniBox';
-import { useState } from 'react';
 import SeenProfile from '../../../seenPage/seenProfile/seenProfile';
 
 interface Props {

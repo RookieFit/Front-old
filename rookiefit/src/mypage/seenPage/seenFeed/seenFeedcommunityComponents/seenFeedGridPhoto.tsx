@@ -1,5 +1,4 @@
 import React from 'react';
-import ImageUploader from '../../../../components/imageUploader';
 import './seenFeedGridPhoto.css';
 import ImageUploaderMany from '../../../../components/imageUploaderMany';
 
@@ -8,14 +7,17 @@ interface SeenFeedGridPhotoProps {
     totalItems: number;
 }
 
-const SeenFeedGridPhoto = ({ totalItems}: SeenFeedGridPhotoProps) => {
+const SeenFeedGridPhoto = ({ itemsPerRow, totalItems}: SeenFeedGridPhotoProps) => {
     return (
         <div
             className="seen-feed-container"
+            style={{
+                gridTemplateColumns: `repeat(${itemsPerRow}, 1fr)`,
+            }}
         >
             {[...Array(totalItems)].map((_, index) => (
                 <div className="seen-feed-item" key={index}>
-                  <ImageUploaderMany maxImages={0} onImageUpload={function (images: File[]): void {
+                  <ImageUploaderMany maxImages={1} onImageUpload={function (images: File[]): void {
                         throw new Error('Function not implemented.');
                     } } previewImages={[]}/>
                 </div>

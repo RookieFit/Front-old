@@ -27,7 +27,7 @@ const MyPage = () => {
             <div className='mypage-footer-cirle'>
                 <MyPageFooter />
             </div>
-            
+             
         </div>
     )
 };
