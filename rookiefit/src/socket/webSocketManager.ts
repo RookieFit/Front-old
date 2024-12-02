@@ -1,14 +1,14 @@
-// src/utils/WebSocketManager.tsx
 import { Client } from "@stomp/stompjs";
 
 export class WebSocketManager {
     private client: Client | null = null;
-    private token: string;
+    private token = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJxd2UiLCJpYXQiOjE3MzI3ODYzMDQsImV4cCI6MTczMjc4OTkwNH0.-NCtG0Vi9c_M9nwZioYk-pz2OpJ9ZOFC-QHpYBgMwqM";
     private onMessageReceived: (message: string) => void;
+    private onChatRoomCreated: (chatRoomId: string) => void;
 
-    constructor(token: string, onMessageReceived: (message: string) => void) {
-        this.token = token;
+    constructor(onMessageReceived: (message: string) => void, onChatRoomCreated: (chatRoomId: string) => void) {
         this.onMessageReceived = onMessageReceived;
+        this.onChatRoomCreated = onChatRoomCreated;
     }
 
     connect() {
@@ -22,16 +22,22 @@ export class WebSocketManager {
             connectHeaders: {
                 'Authorization': `Bearer ${this.token}`,
             },
-            debug: (str) => console.log(str),  // 디버그 로깅
+            debug: (str) => console.log(str),
             reconnectDelay: 5000,
         });
 
         this.client.onConnect = () => {
             console.log("WebSocket connected.");
-            this.client?.subscribe("/topic/public", (message) => {
-                console.log("Subscribed to /topic/public.");
-                console.log("Received message: ", message.body);
-                this.onMessageReceived(message.body);
+            this.client?.subscribe("/topic/chatroom", (message) => {
+                const chatRoomId = JSON.parse(message.body);
+                console.log("Received Chat Room ID:", chatRoomId);
+                this.onChatRoomCreated(chatRoomId);
+
+                // 이후 해당 채팅방으로 구독 변경
+                this.client?.subscribe(`/topic/${chatRoomId}`, (message) => {
+                    // 해당 채팅방에서 오는 메시지를 처리
+                    console.log("New message in chat room:", message.body);
+                });
             });
         };
 
@@ -42,6 +48,19 @@ export class WebSocketManager {
         this.client.activate();
     }
 
+    CreateChatRoom = (chatRoomData: any) => {
+        if (this.client?.connected) {
+            this.client?.publish({
+                destination: "/app/createchatroom",
+                body: JSON.stringify(chatRoomData),
+                headers: {
+                    Authorization: `Bearer ${this.token}`,
+                },
+            });
+        } else {
+            console.log("Not connected to WebSocket server.");
+        }
+    };
 
     sendMessage(destination: string, body: any) {
         if (this.client?.connected) {
@@ -59,7 +78,6 @@ export class WebSocketManager {
             console.error("WebSocket is not connected.");
         }
     }
-
 
     disconnect() {
         this.client?.deactivate();

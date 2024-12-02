@@ -24,14 +24,21 @@ const MarketPost = () => {
         location: '',
         delivery: '직거래',
         description: '',
-        images: []
+        images: [],
     });
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
         const { name, value } = e.target;
-        setFormData(prev => ({
+        setFormData((prev) => ({
             ...prev,
-            [name]: value
+            [name]: value,
+        }));
+    };
+
+    const handleImageUpload = (images: File[]) => {
+        setFormData((prev) => ({
+            ...prev,
+            images,
         }));
     };
 
@@ -41,12 +48,11 @@ const MarketPost = () => {
             return;
         }
         console.log('등록된 데이터:', formData);
-        navigate('/market')
+        navigate('/market');
     };
 
     return (
         <div className="market-post-wrapper">
-
             <div className="market-post-form">
                 <div className="market-post-header">
                     <select
@@ -112,9 +118,15 @@ const MarketPost = () => {
                     className="market-post-description"
                     placeholder="상품 설명을 입력해주세요"
                 />
-                <ImageUploaderMany maxImages={6} />
+                <ImageUploaderMany
+                    maxImages={6}
+                    onImageUpload={handleImageUpload}
+                    previewImages={formData.images}
+                />
 
-                <button className="market-post-submit" onClick={handleSubmit}>등록하기</button>
+                <button className="market-post-submit" onClick={handleSubmit}>
+                    등록하기
+                </button>
             </div>
         </div>
     );

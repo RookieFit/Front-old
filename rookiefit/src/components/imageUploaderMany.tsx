@@ -34,10 +34,8 @@ const ImageUploaderMany = ({ maxImages, onImageUpload, previewImages, className 
         dots: false,
         infinite: false,
         speed: 500,
-        slidesToShow: Math.min(3, previewImages.length),
+        slidesToShow: Math.min(3, images.length + previewImages.length), // 최대 3개까지 한 번에 표시
         slidesToScroll: 1,
-        autoplay: true,
-        autoplaySpeed: 2000,
         focusOnSelect: true,
         arrows: false,
     };
