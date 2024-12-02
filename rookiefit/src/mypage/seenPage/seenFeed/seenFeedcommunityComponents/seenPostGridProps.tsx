@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import './seenPostGridProps.css';
 import CommunityPagination from '../../../../community/communityComponents/communityPagination';
-import { useNavigate } from 'react-router-dom';
 import { useDragPrevent } from '../../../../components/useDragPrevent';
 
 // 카테고리 타입 정의
