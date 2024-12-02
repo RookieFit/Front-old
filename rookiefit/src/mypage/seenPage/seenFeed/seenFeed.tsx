@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import './seenFeed.css';
+import SeenFeedGrid from './seenFeedcommunityComponents/seenFeedGridBox';
+import SeenFeedGridPhoto from './seenFeedcommunityComponents/seenFeedGridPhoto';
 
 interface Props {
   role: string;
@@ -22,10 +24,15 @@ const SeenFeed = ({ role, showBackground }: Props) => {
             onBlur={() => setIsTextareaFocused(false)}
             placeholder={isTextareaFocused ? '' : '입력하세요'}
           />
-           <div className="seen-feed-photo">트레이너 대표 사진</div>
+          <div className="seen-feed-photo">트레이너 대표 사진</div>
         </div>
       ) : (
-        <div className="seen-feed-photo">사진첩</div>
+        <>
+          <div className="seen-feed-photo">사진첩</div>
+          <SeenFeedGridPhoto />
+          <SeenFeedGridPhoto />
+          <SeenFeedGridPhoto />
+        </>
       )}
     </div>
   );

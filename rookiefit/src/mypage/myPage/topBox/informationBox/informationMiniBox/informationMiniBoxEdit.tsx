@@ -23,7 +23,7 @@ const InformationMiniBoxEdit = ({ role, value }: Props) => {
         navigate('/seenFeedEdit')
     };
     // 초기값을 'info'로 설정하여 처음에 내 정보가 보이도록 합니다.
-    const [activeTab, setActiveTab] = useState<'info' | 'post' | 'photo' | null>('info');
+    const [activeTab, setActiveTab] = useState<'info' | 'post' | 'photo'>('info');
 
     const handleToggleTab = (tab: 'info' | 'post' | 'photo') => {
         // 이미 선택된 탭을 클릭하면 다시 닫히도록 설정
@@ -31,7 +31,7 @@ const InformationMiniBoxEdit = ({ role, value }: Props) => {
     };
 
     // 배경색을 동적으로 적용하기 위한 스타일 설정
-    const getInputBackgroundColor = (tab: 'info' | 'post' | 'photo' | null) => {
+    const getInputBackgroundColor = (tab: 'info' | 'post' | 'photo') => {
         if (activeTab === tab) {
             return { backgroundColor: '#D9D9D9' }; // 선택된 탭의 배경색
         }

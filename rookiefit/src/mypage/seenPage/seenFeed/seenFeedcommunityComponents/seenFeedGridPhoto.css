@@ -1,0 +1,4 @@
+.seen-feed-container {
+    display: flex;
+    flex-direction: column;
+}
