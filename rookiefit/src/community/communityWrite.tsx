@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import WriteBox from '../components/writeBox';
 
-const NoticeWrite = () => {
+const CommunityWrite = () => {
     const navigate = useNavigate();
 
     // 제출 처리 함수
@@ -14,13 +14,11 @@ const NoticeWrite = () => {
 
     return (
         <WriteBox
-            categories={['공지']} // 카테고리 배열로 전달
-            headerTitle="공지 작성"
-            headerContent="공지 사항을 작성하는 페이지입니다."
+            categories={['바프', '고민', '정보', '친목']} // 카테고리 배열로 전달
             onSubmit={handleSubmit} // onSubmit 함수에 images 배열 전달
             maxImages={5} // 최대 5개 이미지 업로드 가능하도록 설정
         />
     );
 };
 
-export default NoticeWrite;
+export default CommunityWrite;

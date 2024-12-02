@@ -1,21 +1,3 @@
-.write-box-header {
-    text-align: center;
-}
-
-.write-box-header h2 {
-    font-weight: 400;
-    font-size: 36px;
-    line-height: 44px;
-    color: #666666;
-}
-
-.write-box-header p {
-    font-weight: 400;
-    font-size: 18px;
-    line-height: 22px;
-    color: #7E7E7E;
-}
-
 /* 공통 상단 컨테이너 */
 .write-box-top {
     display: flex;
@@ -137,7 +119,7 @@
     border: none;
     border-radius: 8px;
     outline: none;
-    resize: vertical;
+    resize: none;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
@@ -149,7 +131,7 @@
 
 /* 하단 컨테이너 */
 .write-box-footer {
-    display: flex;
+    display: table-column;
     justify-content: center;
     /* 기본적으로 중앙 정렬 */
     align-items: center;
@@ -158,6 +140,7 @@
     /* 내부 위치를 제어하기 위해 relative 설정 */
     margin-top: 20px;
     width: 100%;
+    height: 100%;
 }
 
 .custom-image-uploader {
@@ -173,7 +156,7 @@
 
 /* 등록 버튼 */
 .write-box-submit {
-    width: 200px;
+    width: 100%;
     height: 55px;
     background-color: #a9abb0;
     color: #ffffff;

@@ -12,11 +12,16 @@ const Header = () => {
         { label: "FitLog", path: "/calendar" },
         { label: "Eats", path: "/diet" },
         { label: "Forum", path: "/community" },
-        { label: "Market", path: "/market" },  // 마켓 항목 추가
+        { label: "Market", path: "/market" },
     ];
 
-    // 경로가 /calendar로 시작하면 활성화 상태로
     const isCalendarPage = location.pathname.startsWith('/calendar');
+
+    const handleLogout = () => {
+        console.log('로그아웃 완료');
+        localStorage.removeItem('token');
+        window.location.href = '/';
+    };
 
     return (
         <div>
@@ -47,7 +52,14 @@ const Header = () => {
                             </Link>
                         </div>
                     ) : (
-                        <Link to="/mypage" className="mypage" />
+                        <div className="auth-links horizontal">
+                            <Link to="/mypage" className={`nav-link ${isLoginPage ? 'active' : ''}`}>
+                                마이페이지
+                            </Link>
+                            <Link to="/" onClick={handleLogout} className={`nav-link ${isLoginPage ? 'active' : ''}`}>
+                                로그아웃
+                            </Link>
+                        </div>
                     )}
                 </div>
             </header>

@@ -61,31 +61,25 @@ function CommunityPostBox({ post, currentUser }: CommunityPostBoxProps) {
         setNewComment('');
     };
 
-
-    // 게시물 클릭 시 상세 페이지로 이동
-    const handleClick = (id: number) => {
-        navigate(`/community/detail/${id}`);
-    };
-
+    // 본문 내용 축약 함수
     const truncateContent = (content: string, maxLength: number) => {
         return content.length > maxLength ? content.slice(0, maxLength) + '...' : content;
+    };
+
+    // 상세 페이지로 이동 함수
+    const handleDetailClick = () => {
+        navigate(`/community/detail/${post.id}`);
     };
 
     return (
         <div className="post-box">
             <div className="post-details">
                 {/* 게시물 카테고리 */}
-                <p
-                    className="post-category"
-                    onDoubleClick={() => handleClick(post.id)} // 더블클릭 시 상세 페이지로 이동
-                >
+                <p className="post-category">
                     {post.category}
                 </p>
                 {/* 게시물 제목 */}
-                <h3
-                    className="post-title"
-                    onDoubleClick={() => handleClick(post.id)} // 더블클릭 시 상세 페이지로 이동
-                >
+                <h3 className="post-title">
                     {post.title}
                 </h3>
                 {/* 게시물 헤더 (작성자, 날짜) */}
@@ -105,7 +99,6 @@ function CommunityPostBox({ post, currentUser }: CommunityPostBoxProps) {
                                         alt={`${post.title} ${index + 1}`}
                                         className="post-image"
                                         draggable // 드래그 가능하도록 설정
-                                        onDoubleClick={() => handleClick(post.id)} // 더블클릭 시 상세 페이지로 이동
                                     />
                                 </div>
                             ))}
@@ -115,6 +108,13 @@ function CommunityPostBox({ post, currentUser }: CommunityPostBoxProps) {
 
                 {/* 게시물 내용 (축약) */}
                 <p className="post-content">{truncateContent(post.content, 150)}</p>
+
+                {/* "더보기" 버튼 추가 */}
+                {post.content.length > 1 && (
+                    <button onClick={handleDetailClick} className="more-button">
+                        ...더보기
+                    </button>
+                )}
             </div>
 
             {/* 댓글 보기/닫기 버튼 */}
