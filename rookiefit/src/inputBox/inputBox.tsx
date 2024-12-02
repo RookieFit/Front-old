@@ -10,7 +10,7 @@ interface Props {
     isErrorMessage?: boolean;
     buttonTitle?: string;
     onChange: (event: ChangeEvent<HTMLInputElement>) => void;
-    onKeyDown: (event: KeyboardEvent<HTMLInputElement>) => void;
+    onKeyDown?: (event: KeyboardEvent<HTMLInputElement>) => void;
     onButtonClick?: () => void;
 }
 
