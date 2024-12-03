@@ -43,19 +43,20 @@ const CommunityPostGrid = ({ posts }: { posts: Post[] }) => {
 
     return (
         <div>
-            {/* PostGrid 컴포넌트에 renderItem 추가 */}
             <PostGrid<Post>
                 posts={currentPosts} // Post 타입을 지정
                 onPostClick={handlePostClick}
                 renderItem={(post: Post) => (
                     <div className="community-grid-item">
-                        {post.images[0] && (
-                            <img
-                                src={post.images[0]}
-                                alt={post.title}
-                                className="community-grid-thumbnail"
-                            />
-                        )}
+                        <div className="community-grid-thumbnail">
+                            {post.images[0] ? (
+                                <img
+                                    src={post.images[0]}
+                                    alt={post.title}
+                                    className="community-grid-image"
+                                />
+                            ) : null /* 이미지가 없으면 빈 컨테이너만 렌더링 */}
+                        </div>
                         <h3>{post.title}</h3>
                         <p>{post.date}</p>
                         <p>{post.content.slice(0, 50)}...</p>

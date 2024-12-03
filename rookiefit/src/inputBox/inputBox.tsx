@@ -12,6 +12,7 @@ interface Props {
     onChange: (event: ChangeEvent<HTMLInputElement>) => void;
     onKeyDown?: (event: KeyboardEvent<HTMLInputElement>) => void;
     onButtonClick?: () => void;
+    disabled?: boolean; // disabled 속성 추가
 }
 
 const InputBox = forwardRef<HTMLInputElement, Props>((props: Props, ref) => {
@@ -26,6 +27,7 @@ const InputBox = forwardRef<HTMLInputElement, Props>((props: Props, ref) => {
         onChange,
         onKeyDown,
         onButtonClick,
+        disabled = false,  // disabled 기본값 false
     } = props;
 
     const [inputValue, setInputValue] = useState(value);
@@ -61,7 +63,11 @@ const InputBox = forwardRef<HTMLInputElement, Props>((props: Props, ref) => {
                         onKeyDown={onKeyDown}
                     />
                     {buttonTitle && onButtonClick && (
-                        <button className={buttonClassName} onClick={onButtonClick}>
+                        <button
+                            className={buttonClassName}
+                            onClick={onButtonClick}
+                            disabled={disabled} // 버튼에 disabled 적용
+                        >
                             {buttonTitle}
                         </button>
                     )}
