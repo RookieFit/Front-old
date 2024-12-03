@@ -31,8 +31,26 @@ function SignUpPage() {
     const [isIdCheck, setIsIdCheck] = useState(false);
     const [isCertificationCheck, setIsCertificationCheck] = useState(false);
 
+    const [isIdButtonDisabled, setIsIdButtonDisabled] = useState(false);  // 중복체크 버튼 비활성화
+    const [isCertificationButtonDisabled, setIsCertificationButtonDisabled] = useState(false);  // 확인 버튼 비활성화
+
     const idAllowedRegex = /^[A-Za-z0-9!@#$%^&*()_+=-]*$/;
     const numericRegex = /^[0-9]*$/;
+    const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/; // 영문, 숫자 포함 최소 8자
+
+    // 필드 유효성 검사 상태
+    const isFormValid =
+        userId &&
+        !isIdError &&
+        password &&
+        confirmPassword &&
+        password === confirmPassword &&
+        !isPasswordErrorMessage &&
+        userPhoneNumber &&
+        !isPhoneNumberError &&
+        certificationNumber &&
+        !isCertificationError;
+
 
     // 이벤트 핸들러
     const handleIdChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -45,7 +63,25 @@ function SignUpPage() {
             setIdMessage('');
             setIsIdErrorMessage(false);
         }
+
+        // 아이디 입력값이 변경되면 중복 체크 버튼을 활성화
+        if (isIdButtonDisabled) setIsIdButtonDisabled(false);
     };
+
+    const handlePasswordChange = (e: ChangeEvent<HTMLInputElement>) => {
+        const value = e.target.value;
+        setPassword(value);
+
+        if (!passwordRegex.test(value)) {
+            setPasswordMessage('패스워드는 영문, 숫자 포함 최소 8자 이상이어야 합니다.');
+            setIsPasswordErrorMessage(true);
+        } else {
+            setPasswordMessage('');
+            setIsPasswordErrorMessage(false);
+        }
+    };
+
+
 
     const handlePhoneNumberChange = (e: ChangeEvent<HTMLInputElement>) => {
         const value = e.target.value;
@@ -57,6 +93,9 @@ function SignUpPage() {
             setPhoneNumberMessage('');
             setIsPhoneNumberError(false);
         }
+
+        // 전화번호 입력값이 변경되면 인증 버튼을 활성화
+        if (isCertificationButtonDisabled) setIsCertificationButtonDisabled(false);
     };
 
     const handleCertificationNumberChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -69,11 +108,16 @@ function SignUpPage() {
             setCertificationMessage('');
             setIsCertificationError(false);
         }
+
+        // 인증번호 입력값이 변경되면 확인 버튼을 활성화
+        if (isCertificationButtonDisabled) setIsCertificationButtonDisabled(false);
     };
 
     // API 요청
     const onIdButtonClickHandler = () => {
         if (!userId) return;
+        setIsIdButtonDisabled(true);  // 중복체크 버튼 비활성화
+
         IdCheckRequest({ userId }).then(response => handleIdCheckResponse(response, setIsIdError, setIdMessage, setIsIdCheck));
     };
 
@@ -107,6 +151,8 @@ function SignUpPage() {
 
     const onCertificationNumberButtonClickHandler = async () => {
         if (!userId || !userPhoneNumber || !certificationNumber) return;
+
+        setIsCertificationButtonDisabled(true);  // 확인 버튼 비활성화
 
         try {
             const response = await CheckCertificationRequest({
@@ -163,13 +209,16 @@ function SignUpPage() {
                 isErrorMessage={isIdErrorMessage}
                 buttonTitle="중복체크"
                 onButtonClick={onIdButtonClickHandler}
+                disabled={isIdButtonDisabled}  // 중복체크 버튼 비활성화
             />
             <InputBox
                 title="패스워드"
                 placeholder="패스워드를 입력해주세요"
                 type="password"
                 value={password}
-                onChange={(e) => setPassword(e.target.value)}
+                onChange={handlePasswordChange}
+                message={passwordMessage}
+                isErrorMessage={isPasswordErrorMessage}
             />
             <InputBox
                 title="패스워드 확인"
@@ -201,8 +250,14 @@ function SignUpPage() {
                 isErrorMessage={isCertificationError}
                 buttonTitle="확인"
                 onButtonClick={onCertificationNumberButtonClickHandler}
+                disabled={isCertificationButtonDisabled}  // 확인 버튼 비활성화
             />
-            <button className="sign-up-button" onClick={onSignUpButtonClickHandler}>
+
+            <button
+                className="sign-up-button"
+                onClick={onSignUpButtonClickHandler}
+                disabled={!isFormValid}  // 모든 필드가 유효할 때만 버튼 활성화
+            >
                 회원가입
             </button>
         </div>
