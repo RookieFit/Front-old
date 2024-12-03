@@ -1,18 +1,17 @@
 .seen-feed-post-grid {
-    width: 660px;
-    height: 490px;
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    width: 95%;
+    height: 540px;
+    gap: 16px;
+    margin: auto;
 }
 
 .seen-feed-post-grid-item {
-    width: 32vw;
     border: 1px solid #ddd;
     border-radius: 8px;
     overflow: hidden;
     background-color: #fff;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    margin-left: 18px;
 }
 
 .seen-feed-post-grid-header {
@@ -20,22 +19,21 @@
     align-items: center;
     gap: 0.5vw;
     flex-direction: row;
-    padding: 5px;
+    padding: 4px;
 }
 
 .seen-feed-post-grid-entry-thumbnail {
-    width: 40%;
-    height: 150px;
-    /* object-fit: cover; */
+    width: 35%;
+    height: 160px;
     border-radius: 8px;
 }
 
 .seen-feed-post-grid-text {
-    margin-top: 3px;
+    margin-top: 4px;
 }
 
 .seen-feed-post-grid-text p {
-    margin: 0.1vw 0;
+    margin: 0.5vw 0;
     font-size: 0.9rem;
     color: #333;
 }
@@ -44,24 +42,4 @@
     display: flex;
     justify-content: center;
     margin-top: 20px;
-}
-
-.community-pagination button {
-    padding: 8px 16px;
-    margin: 0 4px;
-    border: none;
-    background-color: #007bff;
-    color: #fff;
-    border-radius: 4px;
-    cursor: pointer;
-}
-
-.community-pagination button:disabled {
-    background-color: #ddd;
-    cursor: not-allowed;
-}
-
-.community-pagination span {
-    margin: 0 12px;
-    align-self: center;
 }

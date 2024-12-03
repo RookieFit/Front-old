@@ -46,7 +46,7 @@ const InformationLineEdit = ({ title, value = '', onChange }: InformationLineEdi
                 maxLength={30}
                 value={inputValue}
                 onChange={handleChange}
-                className="my-information-box-textbox"
+                className="my-information-edit-box-textbox"
                 spellCheck="false"
                 onFocus={() => setIsInformationTextareaClicked(true)}
                 onBlur={() => setIsInformationTextareaClicked(false)}

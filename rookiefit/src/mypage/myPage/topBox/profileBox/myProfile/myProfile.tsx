@@ -21,7 +21,7 @@ const MyProfile = ({ userId, name, message }: Props) => {
     <div className='profile-left-back'>
       <input type='button' value="로그아웃" onClick={main} className='my-profile-logout' />
       <img className='my-profile-image' src={logo}></img>
-      <div className='my-profile-nickname'>{name}</div>
+      <div className='my-profile-edit-nickname'>{name}</div>
       <input type='text' className='my-profile-message-textarea' value={message} disabled />
       <input type="button" value="수정하기" onClick={myPageEdit} className='my-profile-button' />
     </div>

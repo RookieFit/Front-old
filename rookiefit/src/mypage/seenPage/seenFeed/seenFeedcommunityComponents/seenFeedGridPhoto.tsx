@@ -1,27 +1,31 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './seenFeedGridPhoto.css';
 import ImageUploaderMany from '../../../../components/imageUploaderMany';
 
-interface SeenFeedGridPhotoProps {
-    itemsPerRow: number;
-    totalItems: number;
-}
 
-const SeenFeedGridPhoto = ({ itemsPerRow, totalItems}: SeenFeedGridPhotoProps) => {
+const SeenFeedGridPhoto = () => {
+    const [images, setImages] = useState<File[][]>(Array(1).fill([]));
+
+    const handleImageUpload = (index: number) => (newImages: File[]) => {
+        const updatedImages = [...images];
+        updatedImages[index] = newImages;
+        setImages(updatedImages);
+    };
+
     return (
-        <div
-            className="seen-feed-container"
-            style={{
-                gridTemplateColumns: `repeat(${itemsPerRow}, 1fr)`,
-            }}
-        >
-            {[...Array(totalItems)].map((_, index) => (
-                <div className="seen-feed-item" key={index}>
-                  <ImageUploaderMany maxImages={1} onImageUpload={function (images: File[]): void {
-                        throw new Error('Function not implemented.');
-                    } } previewImages={[]}/>
-                </div>
-            ))}
+        <div className="seen-feed-container">
+            <div className="seen-feed-grid">
+                {images.map((imageSet, index) => (
+                    <div key={index} className="seen-feed-grid-item">
+                        <ImageUploaderMany
+                            maxImages={3}
+                            onImageUpload={handleImageUpload(index)}
+                            previewImages={imageSet}
+                            className="seen-feed-uploader"
+                        />
+                    </div>
+                ))}
+            </div>
         </div>
     );
 };

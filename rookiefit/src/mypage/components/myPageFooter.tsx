@@ -64,7 +64,7 @@ const MyPageFooter = () => {
                                 className="my-footer-visible-box-inquiry"
                                 onClick={() => handleNavigation('/inquiry')}
                             >
-                                1대1 문의 하기
+                                기타
                             </button>
                         </div>
                     </div>

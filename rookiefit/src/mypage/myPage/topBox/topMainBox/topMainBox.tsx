@@ -3,26 +3,33 @@ import MyProfile from '../profileBox/myProfile/myProfile';
 import InformationMiniBox from '../informationBox/informationMiniBox/informationMiniBox';
 import SeenProfile from '../../../seenPage/seenProfile/seenProfile';
 
-interface Props {
-    role: string
-}
-
-const TopMainBox = ({ role }: Props) => {
-
+const TopMainBox = ({ role, userInfo, trainerInfo, information }) => {
     return (
         <div className="top-mainbox-left-right-page">
             {role === 'trainer' ? (
                 <>
-                    <SeenProfile userId={'1'} name={'나불끈'} message={'사람이든 몸이든 조져드립니다!!'} />
-                    <InformationMiniBox role={'trainer'} value={false} />
+                    <SeenProfile {...trainerInfo} />
+                    <InformationMiniBox role={''} value={false} information={{
+                        nickname: '',
+                        name: '',
+                        age: '',
+                        weight: '',
+                        height: '',
+                        muscle: '',
+                        fat: '',
+                        address: '',
+                        gym: ''
+                    }}                
+                     />
                 </>
             ) : (
                 <>
-                    <MyProfile userId={'2'} name={'뚱인데용'} message={'사뢍해용~~'} />
-                    <InformationMiniBox role={'user'} value={false} />
+                    <MyProfile {...userInfo} />
+                    <InformationMiniBox role={'user'} value={false} information={information} />
                 </>
             )}
         </div>
     )
 };
+
 export default TopMainBox;

@@ -73,7 +73,7 @@ const SeenFeedGrid = () => {
                     }} />
             </div>
         </div>
-    );
+    ); 
 };
 
 export default SeenFeedGrid;

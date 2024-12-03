@@ -3,6 +3,7 @@
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
+    background-color: transparent ;
     width: 50px;
     height: 50px;
     position: fixed;
@@ -26,7 +27,7 @@
 .my-footer-visible-box {
     background-color: #AAAAAA;
     width: 150px;
-    height: 100px;
+    height: 150px;
     align-items: center;
     justify-items: center;
     position: fixed;
@@ -47,11 +48,10 @@
 .my-footer-visible-box-chat-log {
     background-color: #C1C1C1;
     width: 95%;
-    height: 20px;
+    height: 30px;
     align-items: center;
     justify-items: center;
-    margin-left: 3px;
-    margin-top: 3px;
+    margin-left: 1px;
+    margin-top: 5px;
     border-style: none;
-    font-size: small;
 }
