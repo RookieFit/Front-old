@@ -21,6 +21,7 @@ function SignUpPage() {
 
     const [passwordMessage, setPasswordMessage] = useState('');
     const [isPasswordErrorMessage, setIsPasswordErrorMessage] = useState(false);
+    const [passwordRuleMessage, setPasswordRuleMessage] = useState('');
 
     const [phoneNumberMessage, setPhoneNumberMessage] = useState('');
     const [isPhoneNumberError, setIsPhoneNumberError] = useState(false);
@@ -73,15 +74,13 @@ function SignUpPage() {
         setPassword(value);
 
         if (!passwordRegex.test(value)) {
-            setPasswordMessage('패스워드는 영문, 숫자 포함 최소 8자 이상이어야 합니다.');
+            setPasswordRuleMessage('패스워드는 영문, 숫자 포함 최소 8자 이상이어야 합니다.');
             setIsPasswordErrorMessage(true);
         } else {
-            setPasswordMessage('');
+            setPasswordRuleMessage('');
             setIsPasswordErrorMessage(false);
         }
     };
-
-
 
     const handlePhoneNumberChange = (e: ChangeEvent<HTMLInputElement>) => {
         const value = e.target.value;
@@ -217,7 +216,7 @@ function SignUpPage() {
                 type="password"
                 value={password}
                 onChange={handlePasswordChange}
-                message={passwordMessage}
+                message={passwordRuleMessage}
                 isErrorMessage={isPasswordErrorMessage}
             />
             <InputBox
