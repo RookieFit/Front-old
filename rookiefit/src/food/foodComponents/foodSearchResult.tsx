@@ -9,12 +9,12 @@ interface FoodSearchResultProps {
     handleAddFood: () => void;
 }
 
-const FoodSearchResult: React.FC<FoodSearchResultProps> = ({
+const FoodSearchResult = ({
     filteredEntries,
     handleFoodClick,
     selectedFood,
     handleAddFood,
-}) => {
+}: FoodSearchResultProps) => {
     return (
         <div>
             {selectedFood ? (

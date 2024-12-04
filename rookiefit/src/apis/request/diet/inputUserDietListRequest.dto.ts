@@ -1,8 +1,8 @@
 export default interface InputUserDietListRequestDto {
-    token: string
+    token: string | null
     diet_created_date: string
     total_calories: number
-    dietDetails: []
+    dietDetails: DietDetail[]
 }
 
 export interface DietDetail {

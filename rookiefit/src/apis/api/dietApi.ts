@@ -38,12 +38,7 @@ export const DeleteUserDietListRequest = async (requestBody: DeleteUserDietListR
 };
 
 export const GetDietDataDetailRequest = async (requestBody: GetDietDataDetailRequestDto) => {
-    return axiosInstance.get('/user/userdietlistdata', {
-        params: {
-            token: requestBody.token,
-            diet_created_date: requestBody.diet_created_date
-        }
-    })
+    return axiosInstance.post('/user/userdietlistdata', requestBody)
         .then(responseHandler<GetDietDataDetailResponseDto>)
         .catch(errorHandler);
 };

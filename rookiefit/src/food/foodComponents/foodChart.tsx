@@ -13,10 +13,10 @@ const FoodChart = () => {
     const [selectedDate, setSelectedDate] = useState<Date | null>(null);  // 선택된 날짜 상태
 
     // 영양 성분 합계 계산
-    const totalCalories = foodDetails.entries.reduce((sum, item) => sum + item.cal, 0);
-    const totalCarbs = foodDetails.entries.reduce((sum, item) => sum + item.chobo, 0);
+    const totalCalories = foodDetails.entries.reduce((sum, item) => sum + item.enerc, 0);
+    const totalCarbs = foodDetails.entries.reduce((sum, item) => sum + item.chocdf, 0);
     const totalProtein = foodDetails.entries.reduce((sum, item) => sum + item.prot, 0);
-    const totalFat = foodDetails.entries.reduce((sum, item) => sum + item.fat, 0);
+    const totalFat = foodDetails.entries.reduce((sum, item) => sum + item.fatce, 0);
 
     // 차트에 사용될 데이터 설정
     const data = {
