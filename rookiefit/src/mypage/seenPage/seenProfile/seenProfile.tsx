@@ -3,12 +3,11 @@ import '../../myPage/topBox/profileBox/myProfile/myProfile.css';
 import logo from '../assets/Larry.png'
 
 interface Props {
-  userId: string; // 사용자 ID 추가
   name: string;
   message: string;
 }
 
-const SeenProfile = ({ userId, name, message }: Props) => {
+const SeenProfile = ({ name, message }: Props) => {
   const navigate = useNavigate();
   const myPageEdit = () => {
     navigate(`/myPageEdit`);

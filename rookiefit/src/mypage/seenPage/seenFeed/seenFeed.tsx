@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import './seenFeed.css';
 import SeenFeedGridPhoto from './seenFeedcommunityComponents/seenFeedGridPhoto';
-import SeenFeedGridBox from './seenFeedcommunityComponents/seenFeedGridBox';
 
 interface Props {
   role: string;
