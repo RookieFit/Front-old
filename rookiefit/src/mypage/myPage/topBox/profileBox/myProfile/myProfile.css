@@ -1,4 +1,18 @@
+.profile-left-back {
+    width: 38vw;
+    height: 36.4vw;
+    border-radius: 12px;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.15);
+    outline: 1px solid rgba(0, 0, 0, 0.1);
+    outline-offset: 2px;
+    background-color: transparent;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
 .my-profile-logout {
+    background-color: transparent ;
     width: 70px;
     height: 20px;
     font-size: 15px;
@@ -13,19 +27,31 @@
     background-color: #ffffff;
     width: 380px;
     height: 380px;
-    margin: auto;
+    margin-top: 45px;
+    margin-left: 155px;
     border-radius: 50%;
     text-align: center;
 }
 
-.my-profile-nickname {
-    width: 181px;
-    height: 25px;
-    margin: 22px auto;
-    font-size: 32px;
+.my-profile-edit-image {
+    border: thin solid  rgb(153, 151, 151);
+    background-color: #ffffff;
+    width: 380px;
+    height: 380px;
+    margin-top: 75px;
+    margin-left: 155px;
+    border-radius: 50%;
     text-align: center;
 }
 
+.my-profile-edit-nickname,
+.my-profile-nickname {
+    width: 181px;
+    height: 25px;
+    margin: 20px 265px 15px;
+    font-size: 32px;
+    text-align: center;
+}
 .my-profile-message-textarea {
     background-color: #ECECEC; 
     display: inline-block;
@@ -39,17 +65,6 @@
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
-    text-align: center;
-}
-
-.my-profile-edit-image {
-    border: thin solid  rgb(153, 151, 151);
-    background-color: #ffffff;
-    width: 380px;
-    height: 380px;
-    margin: auto;
-    margin-top: 51px;
-    border-radius: 50%;
     text-align: center;
 }
 
@@ -78,17 +93,4 @@
     border-radius: 13px;
     border-style: none;
     text-align: center;
-}
-
-.profile-left-back {
-    width: 38vw;
-    height: 36.4vw;
-    border-radius: 12px;
-    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.15);
-    outline: 1px solid rgba(0, 0, 0, 0.1);
-    outline-offset: 2px;
-    background-color: transparent;
-    position: relative;
-    display: flex;
-    flex-direction: column;
 }
