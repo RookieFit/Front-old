@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import { useLocation } from 'react-router-dom';
 import { dummyPosts } from '../../../../community/communityList/dummydata';
-import SeedPostGridProps from './seedPostGridProps';
+import SeedPostGridProps from './seenPostGridProps';
 
 type Category = '전체' | '바프' | '고민' | '정보' | '친목' | '공지';
 const CATEGORIES: Category[] = ['전체', '바프', '고민', '정보', '친목', '공지'];
@@ -66,10 +66,14 @@ const SeenFeedGrid = () => {
     return (
         <div>
             <div className="seen-feed-grid">
-                <SeedPostGridProps posts={seenPosts} />
+                <SeedPostGridProps
+                    posts={seenPosts}
+                    onPostClick={function (id: number): void {
+                        throw new Error('Function not implemented.');
+                    }} />
             </div>
         </div>
-    );
+    ); 
 };
 
 export default SeenFeedGrid;

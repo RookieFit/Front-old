@@ -11,9 +11,10 @@
 }
 
 .toggle-graph-box {
+    background-color: transparent;
     display: block;
-    margin: 0 auto; /* 수평으로 중앙 정렬 */
-    padding: 10px 20px;
+    margin: 0 auto;
+    margin-top: 12px;
     border: none;
     cursor: pointer;
     border-radius: 5px;

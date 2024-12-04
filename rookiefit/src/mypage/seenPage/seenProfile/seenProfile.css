@@ -1,3 +1,17 @@
+.seen-profile-left-back {
+    width: 38vw;
+    width: 38vw;
+    max-height: 37.4vw;
+    /* 최대 높이 설정 */
+    height: 36.4vw;
+    /* 고정된 높이 */
+    border-radius: 12px;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.15);
+    background-color: transparent;
+    outline: 1px solid rgba(0, 0, 0, 0.1);
+    outline-offset: 2px;
+}
+
 .seen-profile-image {
     border: thin solid rgb(153, 151, 151);
     background-color: #ffffff;
@@ -11,9 +25,7 @@
 .seen-profile-nickname {
     width: 181px;
     height: 25px;
-    margin-top: 2px;
-    margin-left: 270px;
-    margin-bottom: 3%;
+    margin: 22px auto;
     font-size: 32px;
     text-align: center;
 }
@@ -28,29 +40,14 @@
     justify-content: center;
 }
 
-.seen-profile-small-review-text-box,
-.seen-profile-small-class-text-box {
-    background-color: transparent;
-    width: 4%;
-    border-style: none;
-    text-align: center;
-}
-
-.seen-profile-small-review-button,
-.seen-profile-small-class-button{
-    background-color: transparent;
-    width: 9%;
-    border-style: none;
-}
-
 .seen-profile-message-textarea {
-    background-color: #ECECEC;
+    background-color: #ECECEC; 
     display: inline-block;
-    font-size: 20px;
-    width: 500px;
-    height: 40px;
-    margin-top: 25px;
-    margin-left: 110px;
+    font-size: 25px;
+    width: 521px;   
+    height: 43px;
+    margin-top: 36px;
+    margin: auto;
     border: none;
     resize: none;
     overflow: hidden;
@@ -66,7 +63,6 @@
     height: 380px;
     margin: auto;
     margin-top: 51px;
-    margin-left: 174px;
     border-radius: 50%;
     text-align: center;
 }
@@ -96,17 +92,4 @@
     border-radius: 13px;
     border-style: none;
     text-align: center;
-}
-
-.seen-profile-left-back {
-    width: 38vw;
-    height: 36.4vw;
-    border-radius: 12px;
-    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.15);
-    outline: 1px solid rgba(0, 0, 0, 0.1);
-    outline-offset: 2px;
-    background-color: transparent;
-    position: relative;
-    display: flex;
-    flex-direction: column;
 }
