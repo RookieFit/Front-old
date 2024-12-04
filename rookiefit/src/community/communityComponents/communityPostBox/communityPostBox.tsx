@@ -61,6 +61,10 @@ function CommunityPostBox({ post, currentUser }: CommunityPostBoxProps) {
         setNewComment('');
     };
 
+    const handleDeleteComment = (id: number) => {
+        setComments((prevComments) => prevComments.filter((comment) => comment.id !== id));
+    };
+
     // 본문 내용 축약 함수
     const truncateContent = (content: string, maxLength: number) => {
         return content.length > maxLength ? content.slice(0, maxLength) + '...' : content;
@@ -132,6 +136,7 @@ function CommunityPostBox({ post, currentUser }: CommunityPostBoxProps) {
                         key={comment.id}
                         comment={comment}
                         currentUser={currentUser}
+                        onDelete={handleDeleteComment}
                     />
                 ))}
 

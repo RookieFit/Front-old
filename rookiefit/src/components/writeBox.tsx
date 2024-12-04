@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import './writeBox.css'; // 공통 스타일 파일
 import ImageUploaderMany from './imageUploaderMany'; // ImageUploaderMany 컴포넌트 임포트
+import { UserCommunityRequest } from '../apis/api/communityApi';
+import { getJwtToken } from '../authCheck/storageUtils';
 
 interface WriteBoxProps {
     categories: string[]; // 카테고리 목록
@@ -13,6 +15,8 @@ const WriteBox = ({ categories, onSubmit, maxImages }: WriteBoxProps) => {
     const [title, setTitle] = useState('');
     const [detail, setDetail] = useState('');
     const [previewImages, setPreviewImages] = useState<File[]>([]); // 업로드된 이미지 상태 관리
+    const token = getJwtToken()
+    const createdDate = "24242424"
 
     // 제목 입력 처리
     const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -37,6 +41,21 @@ const WriteBox = ({ categories, onSubmit, maxImages }: WriteBoxProps) => {
     // 카테고리 변경 처리
     const handleCategoryChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
         setSelectedCategory(e.target.value);
+    };
+    const onIdButtonClickHandler = async () => {
+        if (!title || !detail || !selectedCategory) return;
+        try {
+            const response = await UserCommunityRequest({
+                token: token,
+                createdDate: createdDate,
+                communityTitle: title,
+                communityContent: detail,
+                communityContentType: selectedCategory,
+            });
+            console.log("response", response)
+        } catch {
+            console.log("response")
+        }
     };
 
     return (
@@ -75,7 +94,7 @@ const WriteBox = ({ categories, onSubmit, maxImages }: WriteBoxProps) => {
                         onImageUpload={handleImageUpload} // 업로드된 이미지 처리
                         previewImages={previewImages} // 미리보기 이미지 전달
                     />
-                    <button className="write-box-submit" onClick={handleSubmit}>
+                    <button className="write-box-submit" onClick={onIdButtonClickHandler}>
                         등록하기
                     </button>
                 </div>

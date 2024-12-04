@@ -1,5 +1,7 @@
 import axios, { AxiosResponse } from "axios";
 import ResponseDto from "../response/response.dto"; // ResponseDto 타입 정의 필요
+import { getJwtToken } from "../../authCheck/storageUtils";
+const token = getJwtToken()
 
 const DOMAIN = 'http://localhost:4040';
 export const API_DOMAIN = `${DOMAIN}/api/v1`;
@@ -8,6 +10,7 @@ export const axiosInstance = axios.create({
     baseURL: API_DOMAIN,
     headers: {
         'Content-Type': 'application/json',
+        "Authorization": `Bearer ${token}`,
     },
 });
 
