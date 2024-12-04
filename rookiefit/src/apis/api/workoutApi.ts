@@ -4,11 +4,7 @@ import { DeleteUserWorkoutListResponseDto, GetUserWorkoutDetailResponseDto, GetU
 import { axiosInstance, responseHandler, errorHandler } from "./index";
 
 export const InputUserWorkoutListRequest = async (requestBody: InputUserWorkoutListRequestDto) => {
-    return axiosInstance.post('/user/input-userworkoutlistdata', requestBody, {
-        headers: {
-            'Authorization': `Bearer ${requestBody.token}`, // Bearer 형식으로 토큰 전달
-        },
-    })
+    return axiosInstance.post('/user/input-userworkoutlistdata', requestBody)
         .then(responseHandler<InputUserWorkoutListResponseDto>)
         .catch(errorHandler);
 };
