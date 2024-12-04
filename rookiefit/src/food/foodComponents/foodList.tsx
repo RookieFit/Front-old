@@ -70,6 +70,13 @@ const FoodList = () => {
         }
     };
 
+    // 음식 삭제 처리
+    const handleDeleteFood = (foodName: string) => {
+        setFoodDetails({
+            entries: foodDetails.entries.filter(item => item.foodName !== foodName)
+        });
+    }
+
     // 검색어 변경 처리
     const handleSearchChange = (term: string) => {
         setSearchResult(term);
@@ -83,13 +90,26 @@ const FoodList = () => {
                     {debouncedSearch ? `${debouncedSearch} 검색 결과` : "오늘 먹은 음식 목록"}
                 </div>
                 {!isEditing ? (
-                    <button onClick={toggleEditMode} className="food-list-update">
+                    <button
+                        onClick={toggleEditMode}
+                        className={`food-list-update ${!debouncedSearch ? "visible" : ""}`}
+                    >
                         수정하기
                     </button>
                 ) : (
                     <div className="food-list-edit-buttons">
-                        <button onClick={toggleEditMode}>완료</button>
-                        <button onClick={handleCancelEdit}>취소</button>
+                        <button
+                            onClick={toggleEditMode}
+                            className="food-list-complete-button"
+                        >
+                            완료
+                        </button>
+                        <button
+                            onClick={handleCancelEdit}
+                            className="food-list-cancel-button"
+                        >
+                            취소
+                        </button>
                     </div>
                 )}
             </div>
@@ -111,6 +131,17 @@ const FoodList = () => {
                                         <div className="food-item-name">{foodItem.foodName}</div>
                                         <div className="food-item-calories">칼로리: {foodItem.cal}kcal</div>
                                     </div>
+                                    {isEditing && (
+                                        // 편집 모드일 때만 삭제 버튼 표시
+                                        <div className="delete-button-wrapper">
+                                            <button
+                                                onClick={() => handleDeleteFood(foodItem.foodName)}
+                                                className="food-list-delete-button"
+                                            >
+                                                삭제
+                                            </button>
+                                        </div>
+                                    )}
                                 </div>
                             ))
                         ) : (
