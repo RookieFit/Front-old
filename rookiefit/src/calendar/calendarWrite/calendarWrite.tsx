@@ -7,11 +7,15 @@ import moment from 'moment';
 import { useCalendarDetails } from '../calendarDetailContext';
 import { UseCalendar } from '../calendarContext';
 import ImageUploaderMany from '../../components/imageUploaderMany';
+import { submitWorkoutData } from '../service/workoutService';
+import { getJwtToken } from '../../authCheck/storageUtils';
 
 const CalendarWrite = () => {
     const navigate = useNavigate();
     const { selectedDate } = UseCalendar();
     const { setDetails } = useCalendarDetails();
+
+    const tokens = getJwtToken()
 
     const [formData, setFormData] = useState({
         title: '',
@@ -50,21 +54,41 @@ const CalendarWrite = () => {
     }, []);
 
     // 제출 처리
-    const handleSubmit = useCallback(() => {
+    const handleSubmit = useCallback(async () => {
         const { title, diaryContent, localDetails, uploadedImages } = formData;
-        setDetails(prevDetails => ({
-            entries: [
-                ...prevDetails.entries,
-                {
-                    title,
-                    diaryContent,
-                    workoutDetails: localDetails,
-                    date: selectedDate.toString(),
-                    images: uploadedImages.map(image => URL.createObjectURL(image)),
-                },
-            ],
-        }));
-        navigate('/calendar');
+
+        try {
+            // API 호출
+            const response = await submitWorkoutData({
+                token: tokens,
+                title,
+                diaryContent,
+                localDetails,
+                selectedDate: selectedDate
+            });
+
+            console.log('API 응답:', response);
+
+            // 기존 로직 유지
+            setDetails(prevDetails => ({
+                entries: [
+                    ...prevDetails.entries,
+                    {
+                        title,
+                        diaryContent,
+                        workoutDetails: localDetails,
+                        date: selectedDate.toString(),
+                        images: uploadedImages.map(image => URL.createObjectURL(image)),
+                    },
+                ],
+            }));
+
+            // 성공 시 캘린더 페이지로 이동
+            navigate('/calendar');
+        } catch (error) {
+            console.error('API 호출 중 오류 발생:', error);
+            // 오류 처리 로직 (예: 사용자에게 오류 메시지 표시)
+        }
     }, [formData, navigate, selectedDate, setDetails]);
 
     // 취소 처리

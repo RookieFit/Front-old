@@ -32,17 +32,7 @@ const InformationLineEdit = ({ title, value = '', onChange }: InformationLineEdi
 
     const showNotification = (message: string) => {
         return (
-            <div style={{
-                position: 'absolute',
-                bottom: '14px',
-                left: '465p x',
-                backgroundColor: 'gray',
-                color: 'white',
-                padding: '4px 8px',
-                borderRadius: '4px',
-                fontSize: '12px',
-                zIndex: 1000
-            }}>
+            <div className="my-information-nickname-alter">
                 {message}
             </div>
         );
@@ -56,7 +46,8 @@ const InformationLineEdit = ({ title, value = '', onChange }: InformationLineEdi
                 maxLength={30}
                 value={inputValue}
                 onChange={handleChange}
-                className="my-information-box-textbox"
+                className="my-information-edit-box-textbox"
+                spellCheck="false"
                 onFocus={() => setIsInformationTextareaClicked(true)}
                 onBlur={() => setIsInformationTextareaClicked(false)}
                 placeholder={isInformationTextareaClicked ? "" : "입력하세요"}
