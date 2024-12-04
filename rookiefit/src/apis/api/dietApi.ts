@@ -3,14 +3,13 @@ import { GetDietDataDetailResponseDto, GetDietDataResponseDto, InputFoodInfoResp
 import InputUserDietListRequestDto from "../request/diet/inputUserDietListRequest.dto";
 import { DeleteUserDietListRequestDto, GetDietDataDetailRequestDto, InputFoodInfoRequestDto } from "../request/diet";
 
-export const GetDietDataRequest = async (food_name: string): Promise<{ data: GetDietDataResponseDto[] }> => {
+export const GetDietDataRequest = async (keyword: string) => {
     return axiosInstance.get('/user/dietsearch', {
-        params: { food_name },
+        params: { keyword }
     })
-        .then(responseHandler)
+        .then(responseHandler<GetDietDataResponseDto>)
         .catch(errorHandler);
 };
-
 
 export const InputUserDietListRequest = async (requestBody: InputUserDietListRequestDto) => {
     return axiosInstance.post('/user/input-userdietlistdata', requestBody)

@@ -3,8 +3,8 @@ import { useFoodContext } from "../foodContext";
 import "./foodList.css";
 import FoodSearchBar from "./foodSearchBar";
 import FoodSearchResult from "./foodSearchResult";
-import { GetDietDataRequest } from "../../apis/api/dietApi";
-import { GetDietDataResponseDto } from "../../apis/response/diet";
+import { GetDietDataRequest } from "../../apis/api/dietApi"; // API 요청 함수
+import { GetDietDataResponseDto } from "../../apis/response/diet"; // 리스폰스 타입
 
 export interface Entry {
     foodName: string;
@@ -17,32 +17,29 @@ export interface Entry {
 const FoodList = () => {
     const { foodDetails, setFoodDetails } = useFoodContext();
     const [isEditing, setIsEditing] = useState(false);
-    const [searchResult, setSearchResult] = useState("");
-    const [debouncedSearch, setDebouncedSearch] = useState("");
-    const [filteredEntries, setFilteredEntries] = useState<GetDietDataResponseDto[]>([]);
-    const [selectedFood, setSelectedFood] = useState<GetDietDataResponseDto | null>(null);
+    const [searchResult, setSearchResult] = useState(""); // 검색어
+    const [debouncedSearch, setDebouncedSearch] = useState(""); // 디바운싱된 검색어
+    const [filteredEntries, setFilteredEntries] = useState<GetDietDataResponseDto[]>([]); // 검색된 음식 리스트
+    const [selectedFood, setSelectedFood] = useState<GetDietDataResponseDto | null>(null); // 선택된 음식
 
-    // 검색어 디바운싱 처리 (350ms 지연 후 검색어 반영)
+    // 디바운싱 처리
     useEffect(() => {
-        const timeoutId = setTimeout(() => {
-            setDebouncedSearch(searchResult);
-        }, 350);
-
-        return () => clearTimeout(timeoutId); // 컴포넌트 언마운트 시 타이머 클리어
+        const timeoutId = setTimeout(() => setDebouncedSearch(searchResult), 350);
+        return () => clearTimeout(timeoutId);
     }, [searchResult]);
 
-    // 검색어를 기반으로 API 호출
+    // API 호출 및 검색 결과 처리
     useEffect(() => {
-        if (!debouncedSearch) {
-            setFilteredEntries([]); // 검색어가 없으면 결과 초기화
-            return;
-        }
-
         const fetchDietData = async () => {
+            if (!debouncedSearch) {
+                setFilteredEntries([]);
+                return;
+            }
             try {
-                const response = await GetDietDataRequest(debouncedSearch);
-                console.log("API 호출 응답:", response.data); // 응답 데이터 확인
-                setFilteredEntries(response.data || []);
+                const response = await GetDietDataRequest(debouncedSearch); // food_name을 그대로 전달
+
+                console.log("음식 검색", response);  // 응답 전체 출력
+
             } catch (error) {
                 console.error("음식 검색 중 오류 발생:", error);
                 setFilteredEntries([]);
@@ -52,47 +49,33 @@ const FoodList = () => {
         fetchDietData();
     }, [debouncedSearch]);
 
-    useEffect(() => {
-        const timeoutId = setTimeout(() => {
-            setDebouncedSearch(searchResult);
-        }, 350);
-
-        return () => clearTimeout(timeoutId); // 컴포넌트 언마운트 시 타이머 클리어
-    }, [searchResult]);
-
-    useEffect(() => {
-        console.log("디바운스 후 검색어:", debouncedSearch); // 디바운싱된 검색어 출력
-    }, [debouncedSearch]);
-
+    // 수정 모드 토글
     const toggleEditMode = () => setIsEditing(prev => !prev);
+    const handleCancelEdit = () => setIsEditing(false);
 
-    const handleCancelEdit = () => {
-        setIsEditing(false);
-    };
-
+    // 음식 추가 처리
     const handleAddFood = () => {
         if (selectedFood) {
-            // GetDietDataResponseDto를 Entry로 변환
             const foodEntry: Entry = {
-                foodName: selectedFood.foodName, // GetDietDataResponseDto에서 적절한 필드로 변경
-                cal: selectedFood.enerc, // GetDietDataResponseDto에서 적절한 필드로 변경
-                chobo: selectedFood.chocdf, // GetDietDataResponseDto에서 적절한 필드로 변경
-                prot: selectedFood.prot, // GetDietDataResponseDto에서 적절한 필드로 변경
-                fat: selectedFood.fatce, // GetDietDataResponseDto에서 적절한 필드로 변경
+                foodName: selectedFood.foodName,
+                cal: selectedFood.enerc,
+                chobo: selectedFood.chocdf,
+                prot: selectedFood.prot,
+                fat: selectedFood.fatce,
             };
 
             setFoodDetails({
-                entries: [...foodDetails.entries, foodEntry] // Entry[] 타입에 foodEntry를 추가
+                entries: [...foodDetails.entries, foodEntry],
             });
 
             setSelectedFood(null);
         }
     };
 
+    // 검색어 변경 처리
     const handleSearchChange = (term: string) => {
         setSearchResult(term);
-        setSelectedFood(null); // 검색어 변경 시 선택된 음식 초기화
-        console.log("검색어 변경:", term); // 여기서 검색어가 잘 바뀌는지 확인
+        setSelectedFood(null);
     };
 
     return (
@@ -102,20 +85,13 @@ const FoodList = () => {
                     {debouncedSearch ? `${debouncedSearch} 검색 결과` : "오늘 먹은 음식 목록"}
                 </div>
                 {!isEditing ? (
-                    <button
-                        onClick={toggleEditMode}
-                        className={`food-list-update ${!debouncedSearch ? "visible" : ""}`}
-                    >
+                    <button onClick={toggleEditMode} className="food-list-update">
                         수정하기
                     </button>
                 ) : (
                     <div className="food-list-edit-buttons">
-                        <button onClick={toggleEditMode} className="food-list-complete-button">
-                            완료
-                        </button>
-                        <button onClick={handleCancelEdit} className="food-list-cancel-button">
-                            취소
-                        </button>
+                        <button onClick={toggleEditMode}>완료</button>
+                        <button onClick={handleCancelEdit}>취소</button>
                     </div>
                 )}
             </div>
