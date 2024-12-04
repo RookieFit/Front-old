@@ -8,18 +8,30 @@ import SeenFeedGridBox from '../../../../seenPage/seenFeed/seenFeedcommunityComp
 interface Props {
   role: string;
   value: boolean;
+  information: {
+    nickname: string;
+    name: string;
+    age: string;
+    weight: string;
+    height: string;
+    muscle: string;
+    fat: string;
+    address: string;
+    gym: string;
+  };
+  onInformationUpdate: (newInformation: Partial<Props['information']>) => void;
 }
 
-const InformationMiniBox = ({ role, value }: Props) => {
+const InformationMiniBox = ({ role, value, information, onInformationUpdate }: Props) => {
   const navigate = useNavigate();
+  const [activeTab, setActiveTab] = useState<'info' | 'post' | 'photo'>('info');
+  
   const myPageEdit = () => {
     navigate('/myPageEdit')
   };
   const CommunityDetail = () => {
     navigate('/community/detail/:id')
-  }
-  const [activeTab, setActiveTab] = useState<'info' | 'post' | 'photo'>('info');
-
+  };
   const handleToggleTab = (tab: 'info' | 'post' | 'photo') => {
     setActiveTab(tab);
   };
@@ -53,15 +65,15 @@ const InformationMiniBox = ({ role, value }: Props) => {
               </>
             ) : (
               <>
-                <InformationLine title={'닉네임'} value={'뚱인데요?'} />
-                <InformationLine title={'이름'} value={'불가사리'} />
-                <InformationLine title={'나이'} value={'??'} />
-                <InformationLine title={'몸무게'} value={'??'} />
-                <InformationLine title={'키'} value={'??'} />
-                <InformationLine title={'근육량'} value={'0'} />
-                <InformationLine title={'체지방량'} value={'0'} />
-                <InformationLine title={'주소'} value={'비키니시티'} />
-                <InformationLine title={'헬스장명'} value={'없는데용?'} />
+                <InformationLine title={'닉네임'} value={information.nickname} />
+                <InformationLine title={'이름'} value={information.name} />
+                <InformationLine title={'나이'} value={information.age} />
+                <InformationLine title={'몸무게'} value={information.height} />
+                <InformationLine title={'키'} value={information.height} />
+                <InformationLine title={'근육량'} value={information.muscle} />
+                <InformationLine title={'체지방량'} value={information.fat} />F
+                <InformationLine title={'주소'} value={information.address} />
+                <InformationLine title={'헬스장명'} value={information.gym} />
               </>
             )}
           </div>

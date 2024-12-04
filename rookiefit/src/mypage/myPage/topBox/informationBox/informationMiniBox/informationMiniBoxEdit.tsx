@@ -23,6 +23,8 @@ interface Props {
 }
 
 const InformationMiniBoxEdit = ({ role, value, information, onInformationUpdate }: Props) => {
+  const [isNickName, setNickName] = useState();
+
   const navigate = useNavigate();
   const myPage = () => {
     navigate('/myPage')
@@ -66,15 +68,15 @@ const InformationMiniBoxEdit = ({ role, value, information, onInformationUpdate 
               </>
             ) : (
               <>
-                <InformationLineEdit title={'닉네임'} value={'뚱인데요?'} />
-                <InformationLine title={'이름'} value={'불가사리'} />
-                <InformationLine title={'나이'} value={'??'} />
-                <InformationLineEdit title={'몸무게'} value={'??'} />
-                <InformationLineEdit title={'키'} value={'??'} />
-                <InformationLineEdit title={'근육량'} value={'0'} />
-                <InformationLineEdit title={'체지방량'} value={'0'} />
-                <InformationLineEdit title={'주소'} value={'비키니시티'} />
-                <InformationLineEdit title={'헬스장명'} value={'없는데용?'} />
+                <InformationLineEdit title={'닉네임'} value={information.nickname} />
+                <InformationLine title={'이름'} value={information.name} />
+                <InformationLine title={'나이'} value={information.age} />
+                <InformationLineEdit title={'몸무게'} value={information.height} />
+                <InformationLineEdit title={'키'} value={information.height} />
+                <InformationLineEdit title={'근육량'} value={information.muscle} />
+                <InformationLineEdit title={'체지방량'} value={information.fat} />
+                <InformationLineEdit title={'주소'} value={information.address} />
+                <InformationLineEdit title={'헬스장명'} value={information.gym} />
               </>
             )}
           </div>

@@ -9,24 +9,36 @@ const TopMainBoxEdit = ({ role, userInfo, trainerInfo, information }) => {
             {role === 'trainer' ? (
                 <>
                     <SeenProfileEdit {...trainerInfo} />
-                    <InformationMiniBoxEdit
-                        role={'trainer'}
-                        value={false}
-                        information={information}
-                        onInformationUpdate={function (newInformation: Partial<{ weight: string; height: string; muscle: string; fat: string; address: string; }>): void {
-                            throw new Error('Function not implemented.');
-                        }} />
+                    <InformationMiniBoxEdit role={role} value={false} information={{
+                        nickname: '',
+                        name: '',
+                        age: '',
+                        weight: '',
+                        height: '',
+                        muscle: '',
+                        fat: '',
+                        address: '',
+                        gym: ''
+                    }} onInformationUpdate={function (newInformation: Partial<{ nickname: string; name: string; age: string; weight: string; height: string; muscle: string; fat: string; address: string; gym: string; }>): void {
+                        throw new Error('Function not implemented.');
+                    } }                        />
                 </>
             ) : (
                 <>
                     <MyProfileEdit {...userInfo} />
-                    <InformationMiniBoxEdit
-                        role={'user'}
-                        value={false}
-                        information={information}
-                        onInformationUpdate={function (newInformation: Partial<{ nickname: string; weight: string; height: string; muscle: string; fat: string; address: string; gym: string; }>): void {
+                    <InformationMiniBoxEdit role={role} value={false} information={{
+                            nickname: '',
+                            name: '',
+                            age: '',
+                            weight: '',
+                            height: '',
+                            muscle: '',
+                            fat: '',
+                            address: '',
+                            gym: ''
+                        }} onInformationUpdate={function (newInformation: Partial<{ nickname: string; name: string; age: string; weight: string; height: string; muscle: string; fat: string; address: string; gym: string; }>): void {
                             throw new Error('Function not implemented.');
-                        }} />
+                        } }                        />
                 </>
             )}
         </div>
