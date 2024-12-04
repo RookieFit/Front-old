@@ -3,12 +3,15 @@ import { GetDietDataDetailResponseDto, GetDietDataResponseDto, InputFoodInfoResp
 import InputUserDietListRequestDto from "../request/diet/inputUserDietListRequest.dto";
 import { DeleteUserDietListRequestDto, GetDietDataDetailRequestDto, InputFoodInfoRequestDto } from "../request/diet";
 
-export const GetDietDataRequest = async (keyword: string) => {
+export const GetDietDataRequest = async (keyword: string): Promise<GetDietDataResponseDto[]> => {
     return axiosInstance.get('/user/dietsearch', {
-        params: { keyword }
+        params: { keyword },
     })
-        .then(responseHandler<GetDietDataResponseDto>)
-        .catch(errorHandler);
+        .then(response => responseHandler<GetDietDataResponseDto[]>(response)) // 배열 반환
+        .catch(error => {
+            console.error("Error fetching diet data:", error);
+            return []; // 에러 발생 시 빈 배열 반환
+        });
 };
 
 export const InputUserDietListRequest = async (requestBody: InputUserDietListRequestDto) => {

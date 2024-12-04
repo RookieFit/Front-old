@@ -36,10 +36,8 @@ const FoodList = () => {
                 return;
             }
             try {
-                const response = await GetDietDataRequest(debouncedSearch); // food_name을 그대로 전달
-
-                console.log("음식 검색", response);  // 응답 전체 출력
-
+                const response = await GetDietDataRequest(debouncedSearch);
+                setFilteredEntries(response); // 항상 배열로 설정
             } catch (error) {
                 console.error("음식 검색 중 오류 발생:", error);
                 setFilteredEntries([]);
