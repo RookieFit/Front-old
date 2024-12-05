@@ -2,7 +2,7 @@
 import { useNavigate } from 'react-router-dom';
 import './informationMiniBox.css';
 import InformationLine from '../informationLine/informationLine';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import SeenFeed from '../../../../seenPage/seenFeed/seenFeed';
 import SeenFeedGridBox from '../../../../seenPage/seenFeed/seenFeedcommunityComponents/seenFeedGridBox';
 import InformationLineEdit from '../informationLine/informationLineEdit';
@@ -31,7 +31,6 @@ interface Props {
     trainergym: string;
   };
   onInformationUpdate: (newInformation: Partial<Props['information']>) => void;
-
 }
 
 const InformationMiniBox = ({ role, value, information, onInformationUpdate }: Props) => {
@@ -39,65 +38,61 @@ const InformationMiniBox = ({ role, value, information, onInformationUpdate }: P
   const [isEditing, setIsEditing] = useState(false);
   const [activeTab, setActiveTab] = useState<'info' | 'post' | 'photo'>('info');
 
-  const [isUserNickName, setIsUserNickName] = useState(information.usernickname);
-  const [isUserName, setIsUserName] = useState(information.username);
-  const [isUserAge, setIsUserAge] = useState(information.userage);
-  const [isUserWeight, setIsUserWeight] = useState(information.userweight);
-  const [isUserHeight, setIsUserHeight] = useState(information.userheight);
-  const [isUserMuscle, setIsUserMuscle] = useState(information.usermuscle);
-  const [isUserFat, setIsUserFat] = useState(information.userfat);
-  const [isUserAddress, setUserIsAddress] = useState(information.useraddress);
-  const [isUserGym, setUserIsGym] = useState(information.usergym);
-  const onChangeUserName = (value) => setIsUserName(value);
-  const onChangeUserNickName = (value) => setIsUserNickName(value);
-  const onChangeUserAge = (value) => setIsUserAge(value);
-  const onChangeUserWeight = (value) => setIsUserWeight(value);
-  const onChangeUserHeight = (value) => setIsUserHeight(value);
-  const onChangeUserMuscle = (value) => setIsUserMuscle(value);
-  const onChangeUserFat = (value) => setIsUserFat(value);
-  const onChangeUserAddress = (value) => setUserIsAddress(value);
-  const onChangeUserGym = (value) => setUserIsGym(value);
+  const [userInfo, setUserInfo] = useState({
+    nickname: information.usernickname,
+    name: information.username,
+    age: information.userage,
+    weight: information.userweight,
+    height: information.userheight,
+    muscle: information.usermuscle,
+    fat: information.userfat,
+    address: information.useraddress,
+    gym: information.usergym
+  });
 
-  const [isTrainerNickName, setIsTrainerNickName] = useState(information.trainernickname);
-  const [isTrainerName, setIsTrainerName] = useState(information.trainername);
-  const [isTrainerAge, setIsTrainerAge] = useState(information.trainerage);
-  const [isTrainerWeight, setIsTrainerWeight] = useState(information.trainerweight);
-  const [isTrainerHeight, setIsTrainerHeight] = useState(information.trainerheight);
-  const [isTrainerMuscle, setIsTrainerMuscle] = useState(information.trainermuscle);
-  const [isTrainerFat, setIsTrainerFat] = useState(information.trainerfat);
-  const [isTrainerAddress, setIsTrainerAddress] = useState(information.traineraddress);
-  const [isTrainerGym, setIsTrainerGym] = useState(information.trainergym);
-  const onChangeTrainerName = (value) => setIsTrainerName(value);
-  const onChangeTrainerNickName = (value) => setIsTrainerNickName(value);
-  const onChangeTrainerAge = (value) => setIsTrainerAge(value);
-  const onChangTrainerWeight = (value) => setIsTrainerWeight(value);
-  const onChangeTrainerHeight = (value) => setIsTrainerHeight(value);
-  const onChangeTrainerMuscle = (value) => setIsTrainerMuscle(value);
-  const onChangeTrainerFat = (value) => setIsTrainerFat(value);
-  const onChangeTrainerAddress = (value) => setIsTrainerAddress(value);
-  const onChangeTrainerGym = (value) => setIsTrainerGym(value);
+  const [trainerInfo, setTrainerInfo] = useState({
+    nickname: information.trainernickname,
+    name: information.trainername,
+    age: information.trainerage,
+    weight: information.trainerweight,
+    height: information.trainerheight,
+    muscle: information.trainermuscle,
+    fat: information.trainerfat,
+    address: information.traineraddress,
+    gym: information.trainergym
+  });
+
+  const updateInfo = (setFunction) => (field: any, value: any) => {
+    setFunction((prevInfo: any) => ({
+      ...prevInfo,
+      [field]: value
+    }));
+  };
+
+  const onChangeUserInfo = updateInfo(setUserInfo);
+  const onChangeTrainerInfo = updateInfo(setTrainerInfo);
+
+  useEffect(() => {
+    if (information) {
+      setTrainerInfo({
+        nickname: information.trainernickname,
+        name: information.trainername,
+        age: information.trainerage,
+        weight: information.trainerweight,
+        height: information.trainerheight,
+        muscle: information.trainermuscle,
+        fat: information.trainerfat,
+        address: information.traineraddress,
+        gym: information.trainergym
+      });
+    }
+  }, [information]);
 
   const handleEditToggle = () => {
     if (isEditing) {
       onInformationUpdate({
-        usernickname: isUserNickName,
-        username: isUserName,
-        userage: isUserAge,
-        userweight: isUserWeight,
-        userheight: isUserHeight,
-        usermuscle: isUserMuscle,
-        userfat: isUserFat,
-        useraddress: isUserAddress,
-        usergym: isUserGym,
-        trainernickname: isTrainerNickName,
-        trainername: isTrainerName,
-        trainerage: isTrainerAge,
-        trainerweight: isTrainerWeight,
-        trainerheight: isTrainerHeight,
-        trainermuscle: isTrainerMuscle,
-        trainerfat: isTrainerFat,
-        traineraddress: isTrainerAddress,
-        trainergym: isTrainerGym,
+        ...userInfo,
+        ...trainerInfo
       });
     }
     setIsEditing(prev => !prev);
@@ -132,56 +127,55 @@ const InformationMiniBox = ({ role, value, information, onInformationUpdate }: P
               {isEditing ? (
                 role === 'trainer' ? (
                   <>
-                    <InformationLineEdit title={'닉네임'} value={isTrainerNickName} onChange={onChangeTrainerNickName} />
-                    <InformationLineEdit title={'이름'} value={isTrainerName} onChange={onChangeTrainerName} />
-                    <InformationLineEdit title={'나이'} value={isTrainerAge} onChange={onChangeTrainerAge} />
-                    <InformationLineEdit title={'몸무게'} value={isTrainerWeight} onChange={onChangTrainerWeight} />
-                    <InformationLineEdit title={'키'} value={isTrainerHeight} onChange={onChangeTrainerHeight} />
-                    <InformationLineEdit title={'근육량'} value={isTrainerMuscle} onChange={onChangeTrainerMuscle} />
-                    <InformationLineEdit title={'체지방량'} value={isTrainerFat} onChange={onChangeTrainerFat} />
-                    <InformationLineEdit title={'주소'} value={isTrainerAddress} onChange={onChangeTrainerAddress} />
-                    <InformationLineEdit title={'헬스장명'} value={isTrainerGym} onChange={onChangeTrainerGym} />
+                    <InformationLineEdit title={'닉네임'} value={trainerInfo.nickname} onChange={(value) => onChangeTrainerInfo('nickname', value)} />
+                    <InformationLineEdit title={'이름'} value={trainerInfo.name} onChange={(value) => onChangeTrainerInfo('name', value)} />
+                    <InformationLineEdit title={'나이'} value={trainerInfo.age} onChange={(value) => onChangeTrainerInfo('age', value)} />
+                    <InformationLineEdit title={'몸무게'} value={trainerInfo.weight} onChange={(value) => onChangeTrainerInfo('weight', value)} />
+                    <InformationLineEdit title={'키'} value={trainerInfo.height} onChange={(value) => onChangeTrainerInfo('height', value)} />
+                    <InformationLineEdit title={'근육량'} value={trainerInfo.muscle} onChange={(value) => onChangeTrainerInfo('muscle', value)} />
+                    <InformationLineEdit title={'체지방량'} value={trainerInfo.fat} onChange={(value) => onChangeTrainerInfo('fat', value)} />
+                    <InformationLineEdit title={'주소'} value={trainerInfo.address} onChange={(value) => onChangeTrainerInfo('address', value)} />
+                    <InformationLineEdit title={'헬스장명'} value={trainerInfo.gym} onChange={(value) => onChangeTrainerInfo('gym', value)} />
                   </>
                 ) : (
                   <>
-                    <InformationLineEdit title={'닉네임'} value={isUserNickName} onChange={onChangeUserNickName} />
-                    <InformationLineEdit title={'이름'} value={isUserName} onChange={onChangeUserName} />
-                    <InformationLineEdit title={'나이'} value={isUserAge} onChange={onChangeUserAge} />
-                    <InformationLineEdit title={'몸무게'} value={isUserWeight} onChange={onChangeUserWeight} />
-                    <InformationLineEdit title={'키'} value={isUserHeight} onChange={onChangeUserHeight} />
-                    <InformationLineEdit title={'근육량'} value={isUserMuscle} onChange={onChangeUserMuscle} />
-                    <InformationLineEdit title={'체지방량'} value={isUserFat} onChange={onChangeUserFat} />
-                    <InformationLineEdit title={'주소'} value={isUserAddress} onChange={onChangeUserAddress} />
-                    <InformationLineEdit title={'헬스장명'} value={isUserGym} onChange={onChangeUserGym} />
+                    <InformationLineEdit title={'닉네임'} value={userInfo.nickname} onChange={(value) => onChangeUserInfo('nickname', value)} />
+                    <InformationLineEdit title={'이름'} value={userInfo.name} onChange={(value) => onChangeUserInfo('name', value)} />
+                    <InformationLineEdit title={'나이'} value={userInfo.age} onChange={(value) => onChangeUserInfo('age', value)} />
+                    <InformationLineEdit title={'몸무게'} value={userInfo.weight} onChange={(value) => onChangeUserInfo('weight', value)} />
+                    <InformationLineEdit title={'키'} value={userInfo.height} onChange={(value) => onChangeUserInfo('height', value)} />
+                    <InformationLineEdit title={'근육량'} value={userInfo.muscle} onChange={(value) => onChangeUserInfo('muscle', value)} />
+                    <InformationLineEdit title={'체지방량'} value={userInfo.fat} onChange={(value) => onChangeUserInfo('fat', value)} />
+                    <InformationLineEdit title={'주소'} value={userInfo.address} onChange={(value) => onChangeUserInfo('address', value)} />
+                    <InformationLineEdit title={'헬스장명'} value={userInfo.gym} onChange={(value) => onChangeUserInfo('gym', value)} />
                   </>
                 )
               ) : (
                 role === 'trainer' ? (
                   <>
-                    <InformationLine title={'닉네임'} value={isTrainerNickName} />
-                    <InformationLine title={'이름'} value={isTrainerName} />
-                    <InformationLine title={'나이'} value={isTrainerAge} />
-                    <InformationLine title={'몸무게'} value={isTrainerWeight} />
-                    <InformationLine title={'키'} value={isTrainerHeight} />
-                    <InformationLine title={'근육량'} value={isTrainerMuscle} />
-                    <InformationLine title={'체지방량'} value={isTrainerFat} />
-                    <InformationLine title={'주소'} value={isTrainerAddress} />
-                    <InformationLine title={'헬스장명'} value={isTrainerGym} />
+                    <InformationLine title={'닉네임'} value={trainerInfo.nickname} />
+                    <InformationLine title={'이름'} value={trainerInfo.name} />
+                    <InformationLine title={'나이'} value={trainerInfo.age} />
+                    <InformationLine title={'몸무게'} value={trainerInfo.weight} />
+                    <InformationLine title={'키'} value={trainerInfo.height} />
+                    <InformationLine title={'근육량'} value={trainerInfo.muscle} />
+                    <InformationLine title={'체지방량'} value={trainerInfo.fat} />
+                    <InformationLine title={'주소'} value={trainerInfo.address} />
+                    <InformationLine title={'헬스장명'} value={trainerInfo.gym} />
                   </>
                 ) : (
                   <>
-                    <InformationLine title={'닉네임'} value={isUserNickName} />
-                    <InformationLine title={'이름'} value={isUserName} />
-                    <InformationLine title={'나이'} value={isUserAge} />
-                    <InformationLine title={'몸무게'} value={isUserWeight} />
-                    <InformationLine title={'키'} value={isUserHeight} />
-                    <InformationLine title={'근육량'} value={isUserMuscle} />
-                    <InformationLine title={'체지방량'} value={isUserFat} />
-                    <InformationLine title={'주소'} value={isUserAddress} />
-                    <InformationLine title={'헬스장명'} value={isUserGym} />
+                    <InformationLine title={'닉네임'} value={userInfo.nickname} />
+                    <InformationLine title={'이름'} value={userInfo.name} />
+                    <InformationLine title={'나이'} value={userInfo.age} />
+                    <InformationLine title={'몸무게'} value={userInfo.weight} />
+                    <InformationLine title={'키'} value={userInfo.height} />
+                    <InformationLine title={'근육량'} value={userInfo.muscle} />
+                    <InformationLine title={'체지방량'} value={userInfo.fat} />
+                    <InformationLine title={'주소'} value={userInfo.address} />
+                    <InformationLine title={'헬스장명'} value={userInfo.gym} />
                   </>
-                )
-              )}
+                ))}
             </>
           </div>
         </div>
@@ -193,14 +187,16 @@ const InformationMiniBox = ({ role, value, information, onInformationUpdate }: P
             <SeenFeedGridBox />
           </div>
         </div>
-      )}
+      )
+      }
       {activeTab === 'photo' && (
         <div className='my-information-box-information'>
           <input type="button" value="수정하기" onClick={handleEditToggle} className='my-information-button' />
           <SeenFeed role={role} showBackground={false} />
         </div>
-      )}
-    </div>
+      )
+      }
+    </div >
   );
 };
 
