@@ -4,27 +4,28 @@ import './informationMiniBox.css';
 import InformationLine from '../informationLine/informationLine';
 import { useEffect, useState } from 'react';
 import SeenFeed from '../../../../seenPage/seenFeed/seenFeed';
-import SeenFeedGridBox from '../../../../seenPage/seenFeed/seenFeedcommunityComponents/seenFeedGridBox';
 import InformationLineEdit from '../informationLine/informationLineEdit';
+import { dummyPosts } from '../../../../../community/communityList/dummydata';
+import SeenPostGridProps from '../../../../seenPage/seenFeed/seenFeedcommunityComponents/seenPostGridProps';
 
 interface Props {
     role: string;
-    value: string;
+    value: boolean;
     information: {
         usernickname: string;
         trainernickname: string;
         username: string;
         trainername: string;
-        userage: string;
-        trainerage: string;
-        userweight: string;
-        trainerweight: string;
-        userheight: string;
-        trainerheight: string;
-        usermuscle: string;
-        trainermuscle: string;
-        userfat: string;
-        trainerfat: string;
+        userage: number;
+        trainerage: number;
+        userweight: number;
+        trainerweight: number;
+        userheight: number;
+        trainerheight: number;
+        usermuscle: number;
+        trainermuscle: number;
+        userfat: number;
+        trainerfat: number;
         useraddress: string;
         traineraddress: string;
         usergym: string;
@@ -62,7 +63,7 @@ const InformationMiniBox = ({ role, value, information, onInformationUpdate }: P
         gym: information.trainergym
     });
 
-    const updateInfo = (setFunction) => (field: string, value: string) => {
+    const updateInfo = (setFunction: any) => (field: string, value: string) => {
         setFunction((prevInfo: any) => ({
             ...prevInfo,
             [field]: value
@@ -84,9 +85,22 @@ const InformationMiniBox = ({ role, value, information, onInformationUpdate }: P
                 fat: information.trainerfat,
                 address: information.traineraddress,
                 gym: information.trainergym
+            })
+            setUserInfo({
+                nickname: information.usernickname,
+                name: information.username,
+                age: information.userage,
+                weight: information.userweight,
+                height: information.userheight,
+                muscle: information.usermuscle,
+                fat: information.userfat,
+                address: information.useraddress,
+                gym: information.usergym
             });
         }
     }, [information]);
+
+
 
     const handleEditToggle = () => {
         if (isEditing) {
@@ -182,13 +196,16 @@ const InformationMiniBox = ({ role, value, information, onInformationUpdate }: P
                 <div className='my-information-box-information'>
                     <input type="button" value="보러가기" onClick={CommunityDetail} className='my-information-button' />
                     <div className='my-information-seen-grid'>
-                        <SeenFeedGridBox />
+                        <SeenPostGridProps posts={dummyPosts} />
                     </div>
                 </div>
             )}
             {activeTab === 'photo' && (
                 <div className='my-information-box-information'>
-                    <input type="button" value="수정하기" onClick={handleEditToggle} className='my-information-button' />
+                    <input type="button"
+                        // value="수정하기"
+                        // onClick={handleEditToggle}
+                        className='my-information-button' />
                     <SeenFeed role={role} showBackground={false} />
                 </div>
             )}

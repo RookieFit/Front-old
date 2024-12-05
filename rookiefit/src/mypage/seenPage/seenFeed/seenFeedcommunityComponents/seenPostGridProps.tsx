@@ -1,30 +1,22 @@
+import { useNavigate } from 'react-router-dom';
 import React, { useState } from 'react';
 import './seenPostGridProps.css';
 import CommunityPagination from '../../../../community/communityComponents/communityPagination';
-import { useDragPrevent } from '../../../../components/useDragPrevent';
+import PostGrid from '../../../../components/postGrid';
 
-// 카테고리 타입 정의
-export type Category = '전체' | '바프' | '고민' | '정보' | '친목' | '공지';
-
-// 댓글 타입 정의
-export interface Comment {
+// 게시글 타입 정의
+export interface Post {
     id: number;
-    postId: number;
+    title: string;
     author: string;
     date: string;
+    images: string[];
     content: string;
 }
 
-interface PostGridProps<T> {
-    posts: T[];
-    onPostClick: (id: number) => void; // 클릭 시 게시글 상세 페이지로 이동하는 함수
-    renderItem: (item: T) => React.ReactNode; // 항목의 콘텐츠를 렌더링하는 함수
-}
-
-const SeenPostGridProps = <T extends { id: number }>({ posts, onPostClick, renderItem }: PostGridProps<T>) => {
-    const { handleMouseDown, handleMouseUp, handleMouseMove } = useDragPrevent();
+const SeenPostGridProps  = ({ posts }: { posts: Post[] }) => {
+    const navigate = useNavigate();
     const [seenPage, setSeenPage] = useState(1);
-
     const postsPerPage = 3;
 
     const indexOfLastPost = seenPage * postsPerPage;
@@ -35,22 +27,31 @@ const SeenPostGridProps = <T extends { id: number }>({ posts, onPostClick, rende
         setSeenPage(newPage);
     };
 
+    const handlePostClick = (id: number) => {
+        navigate(`/community/detail/${id}`);
+    };
     return (
         <div>
-            <div className="seen-feed-post-grid">
-                {posts.map((item) => (
-                    <div
-                        key={item.id}
-                        onMouseDown={handleMouseDown}
-                        onMouseUp={() => handleMouseUp(() => onPostClick(item.id))}
-                        onMouseMove={handleMouseMove}
-                        tabIndex={0}
-                        role="button"
-                    >
-                        {renderItem(item)}
-                    </div>
-                ))}
-            </div>
+            <PostGrid<Post>
+                posts={seenPosts}// Post 타입을 지정
+                onPostClick={handlePostClick}
+                renderItem={(post: Post) => (
+                    <div className="seen-feed-post-grid-item">
+                        <div className="seen-feed-post-grid-entry-thumbnaill">
+                            {post.images[0] ? (
+                                <img
+                                    src={post.images[1]}
+                                    alt={post.title}    
+                                    className="seen-feed-grid-image"
+                                />
+                            ) : null /* 이미지가 없으면 빈 컨테이너만 렌더링 */}
+                        </div>
+                        <h3>{post.title}</h3>
+                        <p>{post.date}</p>
+                        <p>{post.content.slice(0, 50)}...</p>
+                    </div>  
+                )}
+            />
             <CommunityPagination
                 currentPage={seenPage}
                 totalPages={Math.ceil(posts.length / postsPerPage)}

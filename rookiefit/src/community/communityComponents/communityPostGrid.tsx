@@ -23,7 +23,7 @@ export interface Post {
     comments: Comment[];
 }
 
-const CommunityPostGrid = ({ posts }: { posts: Post[] }) => {
+const CommunityPostGrid  = ({ posts }: { posts: Post[] }) => {
     const navigate = useNavigate();
     const [currentPage, setCurrentPage] = useState(1);
     const postsPerPage = 9; // 한 페이지에 9개의 게시글

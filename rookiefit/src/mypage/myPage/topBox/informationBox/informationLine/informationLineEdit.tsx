@@ -3,11 +3,11 @@ import './informationLine.css';
 
 interface InformationLineEditProps {
     title: string;
-    value: string;
+    value: number;
     onChange?: (value: string) => void;
 }
 
-const InformationLineEdit = ({ title, value = '', onChange }: InformationLineEditProps) => {
+const InformationLineEdit = ({ title, value, onChange }: InformationLineEditProps) => {
     const [inputValue, setInputValue] = useState(value);
     const [isDuplicate, setIsDuplicate] = useState(false);
     const [isInformationTextareaClicked, setIsInformationTextareaClicked] = useState(false);

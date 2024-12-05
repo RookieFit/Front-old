@@ -4,7 +4,7 @@ import MyProfile from '../profileBox/myProfile/myProfile';
 import InformationMiniBox from '../informationBox/informationMiniBox/informationMiniBox';
 import SeenProfile from '../../../seenPage/seenProfile/seenProfile';
 
-const TopMainBox = ({ role }) => {
+const TopMainBox = ( role:string ) => {
     const [information, setInformation] = useState({
         usernickname: '뚱인데요??',
         username: '불가사리',
@@ -26,7 +26,7 @@ const TopMainBox = ({ role }) => {
         trainergym: '??'
     });
 
-    const onInformationUpdate = (newInformation) => {
+    const onInformationUpdate = (newInformation: { usernickname: string; username: string; userage: string; userweight: string; userheight: string; usermuscle: string; userfat: string; useraddress: string; usergym: string; trainernickname: string; trainername: string; trainerage: string; trainerweight: string; trainerheight: string; trainermuscle: string; trainerfat: string; traineraddress: string; trainergym: string; }) => {
         setInformation(prev => ({ ...prev, ...newInformation }));
     };
 
@@ -42,9 +42,10 @@ const TopMainBox = ({ role }) => {
                         role={role}
                         onInformationUpdate={onInformationUpdate}
                         information={information}
+                        value={true}
                     />
                 </>
-            ) : (
+            ) : (   
                 <>
                     <MyProfile
                         name={information.usernickname}
@@ -54,6 +55,7 @@ const TopMainBox = ({ role }) => {
                         role={role}
                         onInformationUpdate={onInformationUpdate}
                         information={information}
+                        value={true}
                     />
                 </>
             )}
