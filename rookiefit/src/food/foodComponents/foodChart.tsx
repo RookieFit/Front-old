@@ -10,6 +10,7 @@ import { useFoodContext } from "../foodContext"; // useFoodContext 임포트
 const FoodChart = () => {
     const { foodDetails, selectedDate, setSelectedDate } = useFoodContext(); // Context 사용
     const [showCalendar, setShowCalendar] = useState(false); // 달력 팝업 상태
+    console.log("Food Details:", foodDetails);
 
     // 영양 성분 합계 계산
     const totalCalories = foodDetails.entries.reduce((sum, item) => sum + item.enerc, 0);

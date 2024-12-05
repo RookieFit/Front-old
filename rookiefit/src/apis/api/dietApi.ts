@@ -1,7 +1,7 @@
 import { axiosInstance, responseHandler, errorHandler } from "./index";
 import { GetDietDataDetailResponseDto, GetDietDataResponseDto, InputFoodInfoResponseDto, InputUserDietListResponseDto } from "../response/diet";
 import InputUserDietListRequestDto from "../request/diet/inputUserDietListRequest.dto";
-import { DeleteUserDietListRequestDto, GetDietDataDetailRequestDto, InputFoodInfoRequestDto } from "../request/diet";
+import { DeleteUserDietListRequestDto, InputFoodInfoRequestDto } from "../request/diet";
 
 export const GetDietDataRequest = async (keyword: string): Promise<GetDietDataResponseDto[]> => {
     return axiosInstance.get('/user/dietsearch', {
@@ -37,8 +37,13 @@ export const DeleteUserDietListRequest = async (requestBody: DeleteUserDietListR
         .catch(errorHandler);
 };
 
-export const GetDietDataDetailRequest = async (requestBody: GetDietDataDetailRequestDto) => {
-    return axiosInstance.post('/user/userdietlistdata', requestBody)
-        .then(responseHandler<GetDietDataDetailResponseDto>)
-        .catch(errorHandler);
+export const GetDietDataDetailRequest = async (diet_created_date: string): Promise<GetDietDataDetailResponseDto[]> => {
+    return axiosInstance.get('/user/userdietlistdata', {
+        params: { diet_created_date },
+    })
+        .then(response => responseHandler<GetDietDataDetailResponseDto[]>(response)) // 응답 데이터 반환
+        .catch(error => {
+            console.error("Error fetching diet data:", error);
+            return []; // 에러 발생 시 빈 배열 반환
+        });
 }; 

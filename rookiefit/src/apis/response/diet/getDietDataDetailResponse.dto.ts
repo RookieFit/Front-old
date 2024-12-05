@@ -7,10 +7,10 @@ export default interface GetDietDataDetailResponseDto extends ResponseDto {
     dietDetails: DietDetail[];
 }
 interface DietDetail {
-    foodName: string;
-    foodFirstCategory: string;
+    food_name: string;
+    food_first_category: string;
     chocdf: number;
     prot: number;
-    fat: number;
+    fatce: number;
     enerc: number;
 }
