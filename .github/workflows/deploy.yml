@@ -22,12 +22,12 @@ jobs:
       # 3. 종속성 설치
       - name: Install dependencies
         run: npm install
-        working-directory: ./frontend
+        working-directory: ./rookiefit
 
       # 4. React 빌드
       - name: Build frontend
         run: npm run build
-        working-directory: ./frontend
+        working-directory: ./rookiefit
 
       # 5. AWS credentials 설정
       - name: Configure AWS credentials
