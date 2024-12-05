@@ -26,7 +26,7 @@ jobs:
 
       # 4. React 빌드
       - name: Build frontend
-        run: npm run build
+        run: npm run dev
         working-directory: ./rookiefit
 
       # 5. AWS credentials 설정
