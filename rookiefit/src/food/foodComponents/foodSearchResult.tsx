@@ -15,6 +15,7 @@ const FoodSearchResult = ({
     selectedFood,
     handleAddFood,
 }: FoodSearchResultProps) => {
+
     return (
         <div>
             {selectedFood ? (

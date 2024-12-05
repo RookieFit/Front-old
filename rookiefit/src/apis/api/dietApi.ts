@@ -41,4 +41,4 @@ export const GetDietDataDetailRequest = async (requestBody: GetDietDataDetailReq
     return axiosInstance.post('/user/userdietlistdata', requestBody)
         .then(responseHandler<GetDietDataDetailResponseDto>)
         .catch(errorHandler);
-};
+}; 

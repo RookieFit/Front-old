@@ -3,22 +3,21 @@ import { DietDetail, useFoodContext } from "../foodContext";
 import "./foodList.css";
 import FoodSearchBar from "./foodSearchBar";
 import FoodSearchResult from "./foodSearchResult";
-import { GetDietDataRequest, InputUserDietListRequest } from "../../apis/api/dietApi"; // API 요청 함수
-import { GetDietDataDetailResponseDto, GetDietDataResponseDto } from "../../apis/response/diet"; // 리스폰스 타입
-import InputUserDietListRequestDto from "../../apis/request/diet/inputUserDietListRequest.dto";
+import { GetDietDataRequest, InputUserDietListRequest } from "../../apis/api/dietApi";
+import { GetDietDataDetailResponseDto, GetDietDataResponseDto } from "../../apis/response/diet";
 import { getJwtToken } from "../../authCheck/storageUtils";
-import { GetDietDataDetailRequest } from "../../apis/api/dietApi"; // 데이터 가져오는 함수
-import { GetDietDataDetailRequestDto } from "../../apis/request/diet";
+import { GetDietDataDetailRequest } from "../../apis/api/dietApi";
+import { GetDietDataDetailRequestDto, InputUserDietListRequestDto } from "../../apis/request/diet";
 
 const FoodList = () => {
     const token = getJwtToken();
-    const { foodDetails, setFoodDetails } = useFoodContext();
+    const { foodDetails, setFoodDetails, selectedDate } = useFoodContext();
     const [isEditing, setIsEditing] = useState(false);
     const [searchResult, setSearchResult] = useState(""); // 검색어
     const [debouncedSearch, setDebouncedSearch] = useState(""); // 디바운싱된 검색어
     const [filteredEntries, setFilteredEntries] = useState<GetDietDataResponseDto[]>([]); // 검색된 음식 리스트
     const [selectedFood, setSelectedFood] = useState<GetDietDataResponseDto | null>(null); // 선택된 음식
-    const [dietData, setDietData] = useState<GetDietDataDetailResponseDto[]>([]); // 식단 데이터
+    const [dietData, setDietData] = useState<GetDietDataDetailResponseDto[]>([]);
 
     // 디바운싱 처리
     useEffect(() => {
@@ -30,13 +29,13 @@ const FoodList = () => {
     useEffect(() => {
         const fetchDietData = async () => {
             if (!debouncedSearch) {
-                setFilteredEntries([]);
+                setFilteredEntries([]); // 검색어가 없으면 필터링된 항목 초기화
                 return;
             }
             try {
                 const response = await GetDietDataRequest(debouncedSearch);
                 console.log("검색 결과:", response);
-                setFilteredEntries(response); // 항상 배열로 설정
+                setFilteredEntries(response);
             } catch (error) {
                 console.error("음식 검색 중 오류 발생:", error);
                 setFilteredEntries([]);
@@ -46,31 +45,40 @@ const FoodList = () => {
         fetchDietData();
     }, [debouncedSearch]);
 
-    // 오늘 날짜로 식단 데이터 가져오기
     useEffect(() => {
-        const fetchDietDetailData = async () => {
-            if (token) {
-                const dietCreatedDate = new Date().toISOString().split("T")[0];
-                const requestBody: GetDietDataDetailRequestDto = {
-                    token: token,
-                    diet_created_date: dietCreatedDate,
-                };
-                try {
-                    const response = await GetDietDataDetailRequest(requestBody);
-                    console.log("식단 데이터:", response);
-                    if (Array.isArray(response)) {
-                        setDietData(response); // 식단 데이터를 상태에 설정
-                    } else {
-                        setDietData([]); // 빈 배열로 초기화
-                    }
-                } catch (error) {
-                    console.error("식단 데이터 가져오기 중 오류 발생:", error);
-                }
-            }
-        };
+        console.log("Selected Date in FoodList:", selectedDate); // selectedDate가 제대로 반영되는지 확인
+        console.log("foodDetails.entries:", foodDetails.entries); // foodDetails.entries의 상태 확인
+    }, [selectedDate, foodDetails.entries]);  // selectedDate나 foodDetails.entries가 변경될 때마다 확인
 
-        fetchDietDetailData();
-    }, [token]); // 토큰이 변경되면 새로 가져옴
+    // 선택된 날짜에 맞춰 식단 데이터를 가져오기
+    // useEffect(() => {
+    //     const fetchDietDetailData = async () => {
+    //         if (token) {
+    //             console.log("토큰:", token);  // 토큰 값 확인
+    //             const requestBody: GetDietDataDetailRequestDto = {
+    //                 token: token,
+    //                 diet_created_date: selectedDate, // 선택된 날짜를 사용
+    //             };
+    //             try {
+    //                 const response = await GetDietDataDetailRequest(requestBody);
+    //                 console.log("식단 데이터:", response);  // API 응답 확인
+    //                 if (Array.isArray(response)) {
+    //                     setDietData(response);
+    //                     setFoodDetails({ entries: response });
+    //                 } else {
+    //                     setDietData([]);
+    //                     setFoodDetails({ entries: [] });
+    //                 }
+    //             } catch (error) {
+    //                 console.error("식단 데이터 가져오기 중 오류 발생:", error);
+    //             }
+    //         } else {
+    //             console.error("토큰이 없습니다!");  // 토큰 없을 때 로그
+    //         }
+    //     };
+
+    //     fetchDietDetailData();
+    // }, [token, selectedDate]);
 
     // 수정 모드 토글
     const toggleEditMode = () => setIsEditing(prev => !prev);
@@ -96,15 +104,20 @@ const FoodList = () => {
         setFoodDetails(updatedFoodDetails);
 
         console.log("추가된 음식:", updatedFoodDetails);
+        const totalCalories = dietData.reduce((sum, foodItem) => {
+            return sum + foodItem.dietDetails[0]?.enerc || 0;
+        }, 0);
+
+        console.log("Total Calories for selected date:", totalCalories);
 
         try {
             const requestBody: InputUserDietListRequestDto = {
                 token: token,
-                diet_created_date: new Date().toISOString().split("T")[0],
-                total_calories: updatedFoodDetails.entries.reduce((sum, item) => sum + item.enerc, 0),
+                diet_created_date: selectedDate, // 선택된 날짜 사용
+                total_calories: totalCalories,
                 dietDetails: updatedFoodDetails.entries.map(entry => ({
                     food_name: entry.food_name,
-                    food_first_category: "과자류·빵류 또는 떡류",
+                    food_first_category: "과자류·빵류 또는 떡류", // 카테고리 필요하면 수정
                     chocdf: entry.chocdf,
                     prot: entry.prot,
                     fatce: entry.fatce,
@@ -176,18 +189,17 @@ const FoodList = () => {
                     />
                 ) : (
                     <div className="food-list-items">
-                        {dietData.length > 0 ? (
-                            dietData.map((foodItem, index) => (
+                        {foodDetails.entries.length > 0 ? (
+                            foodDetails.entries.map((foodItem, index) => (
                                 <div key={index} className="food-item">
                                     <div className="food-item-left">
-                                        {/* dietDetails 배열의 첫 번째 항목에서 foodName을 가져옵니다. */}
-                                        <div className="food-item-name">{foodItem.dietDetails[0]?.foodName}</div>
-                                        <div className="food-item-calories">칼로리: {foodItem.dietDetails[0]?.enerc}kcal</div>
+                                        <div className="food-item-name">{foodItem.food_name}</div>
+                                        <div className="food-item-calories">칼로리: {foodItem.enerc}kcal</div>
                                     </div>
                                     {isEditing && (
                                         <div className="delete-button-wrapper">
                                             <button
-                                                onClick={() => handleDeleteFood(foodItem.dietDetails[0]?.foodName)}
+                                                onClick={() => handleDeleteFood(foodItem.food_name)}
                                                 className="food-list-delete-button"
                                             >
                                                 삭제
@@ -199,11 +211,10 @@ const FoodList = () => {
                         ) : (
                             <div className="empty-list-message">
                                 <p>목록이 비어 있습니다.</p>
-                                <p>식단을 추가해주세요!</p>
+                                <p>음식을 추가해주세요!</p>
                             </div>
                         )}
                     </div>
-
                 )}
             </div>
         </div>
