@@ -24,7 +24,7 @@ interface PostGridProps<T> {
 const SeenPostGridProps = <T extends { id: number }>({ posts, onPostClick, renderItem }: PostGridProps<T>) => {
     const { handleMouseDown, handleMouseUp, handleMouseMove } = useDragPrevent();
     const [seenPage, setSeenPage] = useState(1);
-    
+
     const postsPerPage = 3;
 
     const indexOfLastPost = seenPage * postsPerPage;
@@ -38,18 +38,18 @@ const SeenPostGridProps = <T extends { id: number }>({ posts, onPostClick, rende
     return (
         <div>
             <div className="seen-feed-post-grid">
-            {posts.map((item) => (
-                <div
-                    key={item.id}
-                    onMouseDown={handleMouseDown}
-                    onMouseUp={() => handleMouseUp(() => onPostClick(item.id))}
-                    onMouseMove={handleMouseMove}
-                    tabIndex={0}
-                    role="button"
-                >
-                    {renderItem(item)}
-                </div>
-            ))}
+                {posts.map((item) => (
+                    <div
+                        key={item.id}
+                        onMouseDown={handleMouseDown}
+                        onMouseUp={() => handleMouseUp(() => onPostClick(item.id))}
+                        onMouseMove={handleMouseMove}
+                        tabIndex={0}
+                        role="button"
+                    >
+                        {renderItem(item)}
+                    </div>
+                ))}
             </div>
             <CommunityPagination
                 currentPage={seenPage}
