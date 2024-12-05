@@ -1,0 +1,10 @@
+version: 0.0
+os: linux
+files:
+  - source: /
+    destination: /home/ubuntu/Front
+hooks:
+  AfterInstall:
+    - location: scripts/start-server-front.sh
+      timeout: 300
+      runas: ubuntu
