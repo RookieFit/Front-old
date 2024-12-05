@@ -19,7 +19,7 @@ jobs:
         with:
           node-version: 16
 
-      # 3. 종속성 설치.
+      # 3. 종속성 설치
       - name: Install dependencies
         run: npm install
         working-directory: ./rookiefit
