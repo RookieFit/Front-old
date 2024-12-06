@@ -1,11 +1,11 @@
 .profile-left-back {
+    background-color: transparent;
     width: 38vw;
     height: 36.4vw;
     border-radius: 12px;
     box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.15);
     outline: 1px solid rgba(0, 0, 0, 0.1);
     outline-offset: 2px;
-    background-color: transparent;
     position: relative;
     display: flex;
     flex-direction: column;
@@ -23,12 +23,11 @@
 }
 
 .my-profile-image {
-    border: thin solid  rgb(153, 151, 151);
     background-color: #ffffff;
+    border: thin solid  rgb(153, 151, 151);
     width: 380px;
     height: 380px;
-    margin-top: 45px;
-    margin-left: 155px;
+    margin: 45px auto 0;
     border-radius: 50%;
     text-align: center;
 }
@@ -38,8 +37,7 @@
     background-color: #ffffff;
     width: 380px;
     height: 380px;
-    margin-top: 75px;
-    margin-left: 155px;
+    margin: 75px auto 0;
     border-radius: 50%;
     text-align: center;
 }
@@ -48,7 +46,7 @@
 .my-profile-nickname {
     width: 181px;
     height: 25px;
-    margin: 20px 265px 15px;
+    margin: 20px auto 15px;
     font-size: 32px;
     text-align: center;
 }

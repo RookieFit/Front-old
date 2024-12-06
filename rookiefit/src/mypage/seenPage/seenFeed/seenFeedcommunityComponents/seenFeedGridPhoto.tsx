@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './seenFeedGridPhoto.css';
 import ImageUploaderMany from '../../../../components/imageUploaderMany';
+import PostGrid from '../../../../components/postGrid';
 
 
 const SeenFeedGridPhoto = () => {
@@ -17,11 +18,14 @@ const SeenFeedGridPhoto = () => {
             <div className="seen-feed-grid">
                 {images.map((imageSet, index) => (
                     <div key={index} className="seen-feed-grid-item">
-                        <ImageUploaderMany
-                            maxImages={3}
-                            onImageUpload={handleImageUpload(index)}
-                            previewImages={imageSet}
-                            className="seen-feed-uploader"
+                        <PostGrid
+                            posts={[]}
+                            onPostClick={function (id: number): void {
+                                throw new Error('Function not implemented.');
+                            }}
+                            renderItem={function (item: { id: number; }): React.ReactNode {
+                                throw new Error('Function not implemented.');
+                            }}
                         />
                     </div>
                 ))}

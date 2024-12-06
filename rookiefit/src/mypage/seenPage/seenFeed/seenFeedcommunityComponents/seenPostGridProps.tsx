@@ -15,27 +15,16 @@ export interface Comment {
     content: string;
 }
 
-// 게시글 타입 정의
-export interface Post {
-    id: number;
-    category: Category;
-    title: string;
-    author: string;
-    date: string;
-    images: string[];
-    content: string;
-    comments: Comment[];
-}
-
-interface SeenPostGridProps {
-    posts: Post[];
+interface PostGridProps<T> {
+    posts: T[];
     onPostClick: (id: number) => void; // 클릭 시 게시글 상세 페이지로 이동하는 함수
+    renderItem: (item: T) => React.ReactNode; // 항목의 콘텐츠를 렌더링하는 함수
 }
 
-const SeenPostGridProps = ({ posts, onPostClick, }: SeenPostGridProps) => {
-    const { handleMouseDown, handleMouseUp, handleMouseMove } = useDragPrevent(); // 커스텀 훅 사용
+const SeenPostGridProps = <T extends { id: number }>({ posts, onPostClick, renderItem }: PostGridProps<T>) => {
+    const { handleMouseDown, handleMouseUp, handleMouseMove } = useDragPrevent();
     const [seenPage, setSeenPage] = useState(1);
-    
+
     const postsPerPage = 3;
 
     const indexOfLastPost = seenPage * postsPerPage;
@@ -49,29 +38,16 @@ const SeenPostGridProps = ({ posts, onPostClick, }: SeenPostGridProps) => {
     return (
         <div>
             <div className="seen-feed-post-grid">
-                {seenPosts.map((post) => (
+                {posts.map((item) => (
                     <div
-                        key={post.id}
-                        className="seen-feed-post-grid-item"
+                        key={item.id}
                         onMouseDown={handleMouseDown}
-                        onMouseUp={() => handleMouseUp(() => onPostClick(post.id))}
+                        onMouseUp={() => handleMouseUp(() => onPostClick(item.id))}
                         onMouseMove={handleMouseMove}
+                        tabIndex={0}
+                        role="button"
                     >
-                        <div className="seen-feed-post-grid-header">
-                            {post.images[0] && (
-                                <img
-                                    src={post.images[0]}
-                                    alt="Entry Thumbnail"
-                                    className="seen-feed-post-grid-entry-thumbnail"
-                                />
-                            )}
-                            <div className="seen-feed-post-grid-text">
-                                <p><strong>작성 날짜:</strong> {post.date}</p>
-                                <p><strong>카테고리:</strong> {post.category}</p>
-                                <p><strong>제목:</strong> {post.title}</p>
-                                <p><strong>일지 내용:</strong> {post.content.slice(0, 50)}...</p>
-                            </div>
-                        </div>
+                        {renderItem(item)}
                     </div>
                 ))}
             </div>
