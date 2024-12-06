@@ -1,7 +1,7 @@
-.seen-feed-grid-box {
+.seen-feed-grid {
     width: 660px;
     height: 590px;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     border-radius: 13px;
 }

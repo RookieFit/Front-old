@@ -7,7 +7,7 @@ interface InformationLineEditProps {
     onChange?: (value: string) => void;
 }
 
-const InformationLineEdit = ({ title, value = '', onChange }: InformationLineEditProps) => {
+const InformationLineEditString = ({ title, value, onChange }: InformationLineEditProps) => {
     const [inputValue, setInputValue] = useState(value);
     const [isDuplicate, setIsDuplicate] = useState(false);
     const [isInformationTextareaClicked, setIsInformationTextareaClicked] = useState(false);
@@ -16,7 +16,7 @@ const InformationLineEdit = ({ title, value = '', onChange }: InformationLineEdi
     const mockDuplicateNicknames = ['asd', 'asdasd', 'asd123'];
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const newValue = e.target.value;
+        const newValue: string = e.target.value;
         setInputValue(newValue);
 
         // 중복 여부 확인
@@ -55,4 +55,4 @@ const InformationLineEdit = ({ title, value = '', onChange }: InformationLineEdi
     );
 };
 
-export default InformationLineEdit;
+export default InformationLineEditString;

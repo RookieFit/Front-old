@@ -11,7 +11,7 @@ export const checkLoginStatus = async () => {
     } else {
         // 토큰이 없으면 로그인되지 않은 상태
         console.log('로그인되지 않음');
-        return false;
+        return true;
     }
 };
 
