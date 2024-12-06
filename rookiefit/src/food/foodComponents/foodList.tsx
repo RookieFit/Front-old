@@ -7,7 +7,6 @@ import { GetDietDataRequest } from "../../apis/api/dietApi";
 import { GetDietDataResponseDto } from "../../apis/response/diet";
 import { InputUserDietListRequest } from "../../apis/api/dietApi";
 import { GetDietDataDetailRequest } from "../../apis/api/dietApi";
-import { getJwtToken } from "../../authCheck/storageUtils";
 import { InputUserDietListRequestDto } from "../../apis/request/diet";
 
 const FoodList = () => {
