@@ -7,7 +7,7 @@ const SeenPage = () => {
     
     return (
         <div className="seen-page-left-right-page">
-            <SeenProfile userId={'1'} name={'김불끈'} message={'사람이든 어쩌고 저쩌고'} />
+            <SeenProfile name={'1'} message={'1'}  />
             <div className='seen-page-right-back'>
                 <SeenFeed role={'trainer'} showBackground={true}/>
             </div>

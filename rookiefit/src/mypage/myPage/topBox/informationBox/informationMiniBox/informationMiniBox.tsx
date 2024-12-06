@@ -10,6 +10,7 @@ import InformationLineEditString from '../informationLine/informationLineEditStr
 import InformationLineEditNumber from '../informationLine/informationLineEditNumber';
 import InformationLineString from '../informationLine/informationLineString';
 import InformationLineNumber from '../informationLine/informationLineNumber';
+import SeenFeedGridPhoto from '../../../../seenPage/seenFeed/seenFeedcommunityComponents/seenFeedGridPhoto';
 
 interface Props {
     role: string;
@@ -198,17 +199,14 @@ const InformationMiniBox = ({ role, informationUserNumber, informationUserString
                     <input type="button" value="보러가기" onClick={CommunityDetail} className='my-information-button' />
                     <div className='my-information-seen-grid'>
                         <SeenPostGridProps posts={dummyPosts} />
-                    </div>
+                        </div>
                 </div>
             )}
             {activeTab === 'photo' && (
                 <div className='my-information-box-information'>
-                    { // 버튼 고민//
-                    /* <input type="button"
-                         value="수정하기"
-                         onClick={handleEditToggle}
-                        className='my-information-button' /> */}
-                    <SeenFeed role={role} showBackground={false} />
+                    <div className='my-information-seen-grid'>
+                        <SeenFeedGridPhoto posts={dummyPosts}/> 
+                   </div>
                 </div>
             )}
         </div >

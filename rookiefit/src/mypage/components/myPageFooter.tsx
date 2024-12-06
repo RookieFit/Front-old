@@ -4,7 +4,7 @@ import './myPageFooter.css';
 
 const MyPageFooter = () => {
     const [isFooterVisible, setIsFooterVisible] = useState(false);
-    const footerRef = useRef(null);
+    const footerRef = useRef<HTMLButtonElement>(null);
     const navigate = useNavigate();
 
     const handleFooterToggle = () => {
@@ -13,8 +13,8 @@ const MyPageFooter = () => {
     const scrollToTop = () => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
     };
-    const handleClickOutside = (event: { target: any; }) => {
-        if (footerRef.current && !footerRef.current.contains(event.target)) {
+    const handleClickOutside = (event: MouseEvent) => {
+        if (footerRef.current && !footerRef.current.contains(event.target as Node)) {
             setIsFooterVisible(false);
         }
     };
@@ -32,7 +32,7 @@ const MyPageFooter = () => {
     };
     return (
         <>
-            <button onClick={scrollToTop} className="my-footer-floating-up-button"/>
+            <button onClick={scrollToTop} className="my-footer-floating-up-button" />
             <button
                 ref={footerRef}
                 className="my-footer-circle"

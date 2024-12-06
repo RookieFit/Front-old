@@ -14,7 +14,7 @@ export interface Post {
     content: string;
 }
 
-const SeenPostGridProps  = ({ posts }: { posts: Post[] }) => {
+const SeenPostGridProps = ({ posts }: { posts: Post[] }) => {
     const navigate = useNavigate();
     const [seenPage, setSeenPage] = useState(1);
     const postsPerPage = 3;
@@ -33,6 +33,7 @@ const SeenPostGridProps  = ({ posts }: { posts: Post[] }) => {
     return (
         <div>
             <PostGrid<Post>
+                className='seen-feed-post-grid'
                 posts={seenPosts}// Post 타입을 지정
                 onPostClick={handlePostClick}
                 renderItem={(post: Post) => (
@@ -41,15 +42,17 @@ const SeenPostGridProps  = ({ posts }: { posts: Post[] }) => {
                             {post.images[0] ? (
                                 <img
                                     src={post.images[1]}
-                                    alt={post.title}    
+                                    alt={post.title}
                                     className="seen-feed-grid-image"
                                 />
                             ) : null /* 이미지가 없으면 빈 컨테이너만 렌더링 */}
                         </div>
-                        <h3>{post.title}</h3>
-                        <p>{post.date}</p>
-                        <p>{post.content.slice(0, 50)}...</p>
-                    </div>  
+                        <div className='seen-feed-grid-detail'>
+                            <h3>{post.title}</h3>
+                            <p>{post.date}</p>
+                            <p>{post.content.slice(0, 50)}...</p>
+                        </div>
+                    </div>
                 )}
             />
             <CommunityPagination
