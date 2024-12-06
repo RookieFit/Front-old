@@ -54,11 +54,3 @@ export const errorHandler = (error: unknown): ResponseDto | null => {
     }
     return null; // AxiosError가 아닌 경우 null 반환
 };
-
-export const postMultipartData = await axios.create({
-    baseURL: API_DOMAIN,
-    headers: {
-        'Content-Type': 'multipart/form-data',
-        Authorization: `Bearer ${token}`, // 인증 토큰 추가
-    },
-});
