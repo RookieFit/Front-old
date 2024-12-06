@@ -6,38 +6,6 @@
     /* 각 셀 간격 */
 }
 
-.post-grid-item {
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    overflow: hidden;
-    background-color: #fff;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-}
-
-.post-grid-header {
-    display: flex;
-    align-items: center;
-    gap: 0.5vw;
-    flex-direction: row;
-    padding: 10px;
-}
-
-.post-grid-entry-thumbnail {
-    width: 40%;
-    height: 200px;
-    border-radius: 8px;
-}
-
-.post-grid-text {
-    margin-top: 10px;
-}
-
-.post-grid-text p {
-    margin: 0.5vw 0;
-    font-size: 1rem;
-    color: #333;
-}
-
 .community-pagination {
     display: flex;
     justify-content: center;
