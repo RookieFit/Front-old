@@ -1,6 +1,6 @@
-import axios from 'axios';
+// import axios from 'axios';
 import { getJwtToken, saveTokens } from './storageUtils';
-import { logout } from './authActions';
+// import { logout } from './authActions';
 // 로그인 상태를 확인하는 함수
 export const checkLoginStatus = async () => {
     const token = getJwtToken();  // 로컬 스토리지에서 토큰 가져오기
@@ -11,7 +11,7 @@ export const checkLoginStatus = async () => {
     } else {
         // 토큰이 없으면 로그인되지 않은 상태
         console.log('로그인되지 않음');
-        return true;
+        return false;
     }
 };
 
