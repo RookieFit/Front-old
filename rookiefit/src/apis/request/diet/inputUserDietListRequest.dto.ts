@@ -5,10 +5,10 @@ export default interface InputUserDietListRequestDto {
 }
 
 export interface DietDetail {
-    food_name: string;
-    food_first_category: string;
+    foodName: string;
+    foodFirstCategory: string;
     chocdf: number;
     prot: number;
-    fatce: number;
+    fat: number;
     enerc: number;
 }
