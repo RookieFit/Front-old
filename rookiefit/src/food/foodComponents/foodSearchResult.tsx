@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import { GetDietDataResponseDto } from "../../apis/response/diet";
 import "./foodSearchResult.css";
 
@@ -15,6 +15,54 @@ const FoodSearchResult = ({
     selectedFood,
     handleAddFood,
 }: FoodSearchResultProps) => {
+    const [visibleEntries, setVisibleEntries] = useState<GetDietDataResponseDto[]>([]);
+    const [itemsToShow, setItemsToShow] = useState(5);
+    const [isLoading, setIsLoading] = useState(false);
+
+    // 초기 표시 데이터 설정
+    useEffect(() => {
+        // Reset visible entries when filteredEntries change
+        setVisibleEntries(filteredEntries.slice(0, itemsToShow));
+        setItemsToShow(5); // Reset items to show
+    }, [filteredEntries]);
+
+    // 스크롤 이벤트 핸들러
+    const handleScroll = useCallback(() => {
+        // Check if we're near the bottom of the page and not already loading
+        if (
+            window.innerHeight + document.documentElement.scrollTop + 100 >=
+            document.documentElement.offsetHeight &&
+            !isLoading &&
+            visibleEntries.length < filteredEntries.length
+        ) {
+            loadMoreItems();
+        }
+    }, [visibleEntries, filteredEntries, isLoading]);
+
+    // 추가 항목 로드
+    const loadMoreItems = useCallback(() => {
+        setIsLoading(true);
+
+        // Simulate network delay
+        setTimeout(() => {
+            const newItemsToShow = Math.min(
+                itemsToShow + 5,
+                filteredEntries.length
+            );
+
+            setItemsToShow(newItemsToShow);
+            setVisibleEntries(filteredEntries.slice(0, newItemsToShow));
+            setIsLoading(false);
+        }, 500); // 0.5초 지연
+    }, [filteredEntries, itemsToShow]);
+
+    // 스크롤 이벤트 등록
+    useEffect(() => {
+        window.addEventListener("scroll", handleScroll);
+        return () => {
+            window.removeEventListener("scroll", handleScroll);
+        };
+    }, [handleScroll]);
 
     return (
         <div>
@@ -26,7 +74,6 @@ const FoodSearchResult = ({
                     <p>단백질: {selectedFood.prot} g</p>
                     <p>지방: {selectedFood.fatce} g</p>
 
-                    {/* 선택된 음식에 대해 "추가하기" 버튼 표시 */}
                     <div className="food-search-result-add-food-button-container">
                         <button
                             onClick={handleAddFood}
@@ -36,19 +83,24 @@ const FoodSearchResult = ({
                         </button>
                     </div>
                 </div>
-            ) : filteredEntries.length > 0 ? (
-                filteredEntries.map((food, index) => (
-                    <div
-                        key={index}
-                        className="food-search-result-food-item"
-                        onClick={() => handleFoodClick(food)}
-                    >
-                        <div className="food-item-left">
-                            <div className="food-item-name">{food.foodName}</div>
-                            <div className="food-item-calories">{food.enerc} kcal</div>
+            ) : visibleEntries.length > 0 ? (
+                <>
+                    {visibleEntries.map((food, index) => (
+                        <div
+                            key={index}
+                            className="food-search-result-food-item"
+                            onClick={() => handleFoodClick(food)}
+                        >
+                            <div className="food-item-left">
+                                <div className="food-item-name">{food.foodName}</div>
+                                <div className="food-item-calories">{food.enerc} kcal</div>
+                            </div>
                         </div>
-                    </div>
-                ))
+                    ))}
+                    {isLoading && (
+                        <div className="loading-indicator">Loading...</div>
+                    )}
+                </>
             ) : (
                 <div className="food-search-result-no-results">검색 결과가 없습니다.</div>
             )}
