@@ -50,14 +50,15 @@ function CommunityComment({ comment, currentUser, onDelete, onEdit }: CommentPro
                 <p className="comment-content">{comment.content}</p>
             )}
 
-            {canEditOrDelete && !isEditing && (
+            {canEditOrDelete && (
                 <div className="comment-actions">
-                    {onDelete && (
+                    {onDelete && !isEditing && (
                         <button onClick={() => onDelete(comment.id)}>삭제</button>
                     )}
-                    <button onClick={startEditing}>수정</button>
+                    {!isEditing && (
+                        <button onClick={startEditing}>수정</button>
+                    )}
                 </div>
-
             )}
         </div>
     );

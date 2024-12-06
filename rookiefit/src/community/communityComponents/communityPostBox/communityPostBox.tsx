@@ -3,6 +3,8 @@ import Slider from 'react-slick';
 import { useNavigate } from 'react-router-dom';
 import Comment from './communityComment';
 import './communityPostBox.css';
+import { UserCommunityAnswerRequest } from '../../../apis/api/communityApi'; // 수정된 API import
+import { getJwtToken } from '../../../authCheck/storageUtils';
 
 // Post 인터페이스 정의
 interface Post {
@@ -22,15 +24,14 @@ interface CommunityPostBoxProps {
     currentUser: string; // 현재 사용자
 }
 
+const token = getJwtToken()
+
 function CommunityPostBox({ post, currentUser }: CommunityPostBoxProps) {
     const navigate = useNavigate();
-
-    // 댓글 섹션 열림/닫힘 상태 관리
     const [isCommentOpen, setIsCommentOpen] = useState(false);
     const [comments, setComments] = useState(post.comments);
     const [newComment, setNewComment] = useState('');
 
-    // 슬라이더 설정
     const settings = {
         dots: true,
         infinite: true,
@@ -38,39 +39,52 @@ function CommunityPostBox({ post, currentUser }: CommunityPostBoxProps) {
         slidesToShow: 1,
         slidesToScroll: 1,
         arrows: true,
-        adaptiveHeight: true, // 이미지 크기에 맞게 슬라이드 높이 자동 조정
+        adaptiveHeight: true,
     };
 
-    // 댓글 섹션 토글 함수
-    const handleCommentToggle = (e: React.MouseEvent<HTMLButtonElement>) => {
+    const handleAddComment = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        setIsCommentOpen((prev) => !prev);
-    };
 
-    // 새 댓글 추가 함수
-    const handleAddComment = (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
         if (newComment.trim() === '') return;
+
         const newCommentObj = {
             id: Date.now(),
             author: currentUser,
             date: new Date().toLocaleString(),
             content: newComment,
         };
+
         setComments((prevComments) => [...prevComments, newCommentObj]);
-        setNewComment('');
+        setNewComment(''); // 댓글 입력 필드 비우기
+
+        try {
+            // API 호출: 댓글 등록
+            const response = await UserCommunityAnswerRequest({
+                communityListId: post.id, // 게시물 ID
+                author: currentUser, // 댓글 작성자
+                content: newCommentObj.content, // 댓글 내용
+                date: new Date().toISOString(), // 작성 시간 (ISO 포맷)
+            });
+
+            console.log('댓글 작성 성공:', response); // 서버에서 응답이 오면 출력
+        } catch (error) {
+            console.error('댓글 작성 실패:', error); // 오류 발생 시 출력
+        }
     };
 
-    const handleDeleteComment = (id: number) => {
-        setComments((prevComments) => prevComments.filter((comment) => comment.id !== id));
+    const handleDeleteComment = (commentId: number) => {
+        setComments((prevComments) => prevComments.filter((comment) => comment.id !== commentId));
+        // 실제 삭제 요청을 위한 API 호출 로직을 추가할 수 있습니다.
     };
 
-    // 본문 내용 축약 함수
+    const handleCommentToggle = () => {
+        setIsCommentOpen((prev) => !prev);
+    };
+
     const truncateContent = (content: string, maxLength: number) => {
         return content.length > maxLength ? content.slice(0, maxLength) + '...' : content;
     };
 
-    // 상세 페이지로 이동 함수
     const handleDetailClick = () => {
         navigate(`/community/detail/${post.id}`);
     };
@@ -78,21 +92,13 @@ function CommunityPostBox({ post, currentUser }: CommunityPostBoxProps) {
     return (
         <div className="post-box">
             <div className="post-details">
-                {/* 게시물 카테고리 */}
-                <p className="post-category">
-                    {post.category}
-                </p>
-                {/* 게시물 제목 */}
-                <h3 className="post-title">
-                    {post.title}
-                </h3>
-                {/* 게시물 헤더 (작성자, 날짜) */}
+                <p className="post-category">{post.category}</p>
+                <h3 className="post-title">{post.title}</h3>
                 <div className="post-header">
                     <p className="author">{post.author}</p>
                     <p className="date">{post.date}</p>
                 </div>
 
-                {/* 게시물 이미지 슬라이더 */}
                 {post.images && post.images.length > 0 && (
                     <div className="post-images-slider">
                         <Slider {...settings}>
@@ -102,7 +108,7 @@ function CommunityPostBox({ post, currentUser }: CommunityPostBoxProps) {
                                         src={image}
                                         alt={`${post.title} ${index + 1}`}
                                         className="post-image"
-                                        draggable // 드래그 가능하도록 설정
+                                        draggable
                                     />
                                 </div>
                             ))}
@@ -110,10 +116,8 @@ function CommunityPostBox({ post, currentUser }: CommunityPostBoxProps) {
                     </div>
                 )}
 
-                {/* 게시물 내용 (축약) */}
                 <p className="post-content">{truncateContent(post.content, 150)}</p>
 
-                {/* "더보기" 버튼 추가 */}
                 {post.content.length > 1 && (
                     <button onClick={handleDetailClick} className="more-button">
                         ...더보기
@@ -121,16 +125,13 @@ function CommunityPostBox({ post, currentUser }: CommunityPostBoxProps) {
                 )}
             </div>
 
-            {/* 댓글 보기/닫기 버튼 */}
             <div className="community-slide-button-container">
                 <button type="button" className="community-comment-slide-button" onClick={handleCommentToggle}>
                     {isCommentOpen ? '댓글 닫기' : '댓글 보기'}
                 </button>
             </div>
 
-            {/* 댓글 섹션 */}
             <div className={`comments-section ${isCommentOpen ? 'open' : ''}`}>
-                {/* 댓글 목록 */}
                 {comments.map((comment) => (
                     <Comment
                         key={comment.id}
@@ -140,7 +141,6 @@ function CommunityPostBox({ post, currentUser }: CommunityPostBoxProps) {
                     />
                 ))}
 
-                {/* 새 댓글 입력 영역 */}
                 <form className="community-write-comment-container" onSubmit={handleAddComment}>
                     <input
                         className="community-new-comment-input"

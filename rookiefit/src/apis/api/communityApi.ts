@@ -14,7 +14,7 @@ import {
 } from "../response/community";
 
 export const UserCommunityRequest = async (requestBody: UserCommunityResquestDto) => {
-    return axiosInstance.post('/user/input-usercommunity', requestBody)
+    return axiosInstance.post('/user/input-usercommunit', requestBody)
         .then(responseHandler<UserCommunityResponseDto>)
         .catch(errorHandler);
 };

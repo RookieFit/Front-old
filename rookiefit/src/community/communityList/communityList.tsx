@@ -1,25 +1,12 @@
-import { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import CommunityHeader from '../communityComponents/communityHeader';
 import CommunityCategories from '../communityComponents/communityCategories';
 import CommunityPostBox from '../communityComponents/communityPostBox/communityPostBox';
 import CommunityGridPost from '../communityComponents/communityPostGrid';
 import CommunityFloatingButtons from '../communityComponents/communityFloatingButtons';
+import { dummyPosts } from './dummydata';
 import './communityList.css';
-import userCommunityResponseDto from '../../apis/response/community/userCommunityResponse.dto';
-import { ResponseCode } from '../../types/enums';
-import axios from 'axios';
-
-export default interface UserCommunityRequestDto {
-    token: string | null;
-    communityListId?: number;
-    communityTitle: string;
-    communityContent: string;
-    createdDate: string;
-    isModified?: boolean;
-    communityImageUrl?: string;
-    communityContentType: string;
-}
 
 type Category = '전체' | '바프' | '고민' | '정보' | '친목' | '공지';
 const CATEGORIES: Category[] = ['전체', '바프', '고민', '정보', '친목', '공지'];
@@ -39,59 +26,57 @@ const CommunityList = () => {
         return params.get('mode') === 'grid';
     };
 
+    const sortPostsById = (posts: typeof dummyPosts) => {
+        return posts.slice().sort((a, b) => a.id - b.id); // ID 기준 오름차순
+    };
+
     const [selectedCategory, setSelectedCategory] = useState<Category>(getInitialCategory());
     const [isGridMode, setIsGridMode] = useState<boolean>(getInitialMode());
-    const [loadedPosts, setLoadedPosts] = useState<userCommunityResponseDto["data"]>([]);
-    const [isLoading, setIsLoading] = useState<boolean>(false);
-    const [error, setError] = useState<string | null>(null);
+    const [loadedPosts, setLoadedPosts] = useState<typeof dummyPosts>([]); // 현재 로드된 게시물
+    const [isLoading, setIsLoading] = useState<boolean>(false); // 로딩 상태
 
-    const fetchPosts = useCallback(async (startIdx = 0) => {
-        setIsLoading(true);
-        setError(null);
+    // 게시물을 카테고리별로 필터링하고 정렬
+    useEffect(() => {
+        const filtered = selectedCategory === '전체'
+            ? dummyPosts.slice(0, 10) // 처음 10개만
+            : dummyPosts.filter((post) => post.category === selectedCategory).slice(0, 10);
 
-        try {
-            const response = await axios.get<userCommunityResponseDto>("/api/community/posts", {
-                params: {
-                    category: selectedCategory === '전체' ? undefined : selectedCategory,
-                    startIdx,
-                    limit: 10,
-                },
-            });
-
-            if (response.data.code === ResponseCode.SUCCESS) {
-                const newPosts = response.data.data || [];
-                setLoadedPosts((prevPosts) => [...prevPosts, ...newPosts]);
-            } else {
-                setError(response.data.message || '데이터를 불러오는 데 실패했습니다.');
-            }
-        } catch (err) {
-            setError(err instanceof Error ? err.message : '알 수 없는 에러가 발생했습니다.');
-        } finally {
-            setIsLoading(false);
-        }
+        const sorted = sortPostsById(filtered); // ID 순으로 정렬
+        setLoadedPosts(sorted);
     }, [selectedCategory]);
 
-    useEffect(() => {
-        fetchPosts();
-    }, [selectedCategory, fetchPosts]);
-
+    // 스크롤바가 바닥에 도달했을 때 게시물 추가 로딩
     const loadMorePosts = useCallback(() => {
-        if (isLoading) return;
-        fetchPosts(loadedPosts.length);
-    }, [isLoading, loadedPosts, fetchPosts]);
+        if (isLoading) return; // 로딩 중이면 추가 로딩 방지
+        setIsLoading(true);
 
+        setTimeout(() => {
+            const startIdx = loadedPosts.length;
+            const newPosts = selectedCategory === '전체'
+                ? dummyPosts.slice(startIdx, startIdx + 10)
+                : dummyPosts.filter((post) => post.category === selectedCategory).slice(startIdx, startIdx + 10);
+
+            const sorted = sortPostsById(newPosts); // ID 순으로 정렬
+            setLoadedPosts((prevPosts) => [...prevPosts, ...sorted]);
+            setIsLoading(false);
+        }, 300); // 3초 지연
+    }, [isLoading, loadedPosts, selectedCategory]);
+
+    // IntersectionObserver를 사용하여 스크롤이 끝에 도달했을 때 추가 로드
     useEffect(() => {
         const observer = new IntersectionObserver(
             ([entry]) => {
                 if (entry.isIntersecting) {
-                    loadMorePosts();
+                    loadMorePosts(); // 스크롤이 끝에 도달했을 때 게시물 추가
                 }
             },
-            { rootMargin: '100px' }
+            {
+                rootMargin: '100px', // 스크롤이 100px 남았을 때 로드 시작
+            }
         );
 
         const sentinel = document.getElementById('sentinel');
-        if (sentinel && !isGridMode) {
+        if (sentinel && !isGridMode) { // 그리드 모드가 아닐 때만 Observer 활성화
             observer.observe(sentinel);
         }
 
@@ -142,7 +127,6 @@ const CommunityList = () => {
                     <button onClick={toggleMode} className="toggle-mode-button">
                         {isGridMode ? '리스트 보기' : '그리드 보기'}
                     </button>
-                    {error && <div className="error-message">{error}</div>}
                     <div className="post-list">
                         {isGridMode ? (
                             <CommunityGridPost posts={loadedPosts} />
@@ -157,7 +141,7 @@ const CommunityList = () => {
                 </div>
             </div>
 
-            <div id="sentinel"></div>
+            <div id="sentinel"></div> {/* IntersectionObserver의 타겟 */}
 
             <CommunityFloatingButtons
                 onScrollToTop={scrollToTop}
