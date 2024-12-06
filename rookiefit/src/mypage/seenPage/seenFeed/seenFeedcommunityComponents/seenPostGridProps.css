@@ -1,12 +1,15 @@
 .seen-feed-post-grid {
-    display: grid;
     width: 95%;
-    height: 540px;
-    gap: 16px;
-    margin: auto;
+    display: flex;
+    flex-direction: column;
+    padding: 0 0 0 2.5%;
+    gap: 5px;
 }
 
 .seen-feed-post-grid-item {
+    height: 165px;
+    display: flex;
+    flex-direction: row;
     border: 1px solid #ddd;
     border-radius: 8px;
     overflow: hidden;
@@ -14,25 +17,23 @@
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
-.seen-feed-post-grid-header {
-    display: flex;
-    align-items: center;
-    gap: 0.5vw;
-    flex-direction: row;
-    padding: 4px;
-}
-
 .seen-feed-post-grid-entry-thumbnail {
-    width: 35%;
-    height: 160px;
     border-radius: 8px;
 }
 
-.seen-feed-post-grid-text {
-    margin-top: 4px;
+.seen-feed-post-grid-image {
+    width: 100%;
+    height: 160px;
+    margin: 1% 0 1% 1%;
+    border-radius: 8px;
 }
 
-.seen-feed-post-grid-text p {
+.seen-feed-grid-detail {
+    margin: 4px 0 0 10px;
+}
+
+.seen-feed-grid-detail h3,
+.seen-feed-grid-detail p {
     margin: 0.5vw 0;
     font-size: 0.9rem;
     color: #333;
