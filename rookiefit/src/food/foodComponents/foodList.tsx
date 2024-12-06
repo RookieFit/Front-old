@@ -78,6 +78,13 @@ const FoodList = () => {
         console.log("selectedFood:", selectedFood);
     }, [selectedFood]);
 
+    // 뒤로가기 핸들러 추가
+    const handleBack = () => {
+        setSelectedFood(null);
+        setSearchResult("");
+        setDebouncedSearch("");
+    };
+
     // 음식 추가 처리
     const handleAddFood = async () => {
         if (selectedFood) {
@@ -164,6 +171,7 @@ const FoodList = () => {
                         handleFoodClick={setSelectedFood}
                         selectedFood={selectedFood}
                         handleAddFood={handleAddFood}
+                        handleBack={handleBack}  // 뒤로가기 핸들러 추가
                     />
                 ) : (
                     <div className="food-list-items">

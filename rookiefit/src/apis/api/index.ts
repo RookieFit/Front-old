@@ -5,7 +5,7 @@ import { ResponseDto } from "../response";
 const DOMAIN = 'http://localhost:4040';
 export const API_DOMAIN = `${DOMAIN}/api/v1`;
 
-export const axiosInstance = axios.create({
+export const axiosInstance = await axios.create({
     baseURL: API_DOMAIN,
     headers: {
         'Content-Type': 'application/json',
