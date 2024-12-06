@@ -2,7 +2,7 @@ import { Client } from "@stomp/stompjs";
 
 export class WebSocketManager {
     private client: Client | null = null;
-    private token = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJxd2UiLCJpYXQiOjE3MzI3ODYzMDQsImV4cCI6MTczMjc4OTkwNH0.-NCtG0Vi9c_M9nwZioYk-pz2OpJ9ZOFC-QHpYBgMwqM";
+    private token = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJxd2Vxd2UiLCJpYXQiOjE3MzMzOTIzNzMsImV4cCI6MTczMzM5NTk3M30.d8Zo5A55jVq40uUqvNIvlVH8JmYTRfI0-8BMHjATCg8";
     private onMessageReceived: (message: string) => void;
     private onChatRoomCreated: (chatRoomId: string) => void;
 

@@ -1,43 +1,77 @@
-import { useState } from 'react';
-import './writeBox.css'; // 공통 스타일 파일
-import ImageUploaderMany from './imageUploaderMany'; // ImageUploaderMany 컴포넌트 임포트
+import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import './writeBox.css';
+import ImageUploaderMany from './imageUploaderMany';
+import { UserCommunityRequest } from '../apis/api/communityApi';
+import { getJwtToken } from '../authCheck/storageUtils';
 
 interface WriteBoxProps {
-    categories: string[]; // 카테고리 목록
-    onSubmit: (title: string, detail: string, images: File[]) => void; // 제출 핸들러, images는 File[] 배열로 받음
-    maxImages: number; // 최대 이미지 수
+    categories: string[];
+    onSubmit: (title: string, detail: string, images: File[]) => void;
+    maxImages: number;
 }
 
-const WriteBox = ({ categories, onSubmit, maxImages }: WriteBoxProps) => {
+const WriteBox = ({ categories, maxImages }: WriteBoxProps) => {
     const [selectedCategory, setSelectedCategory] = useState(categories[0] || '');
     const [title, setTitle] = useState('');
     const [detail, setDetail] = useState('');
-    const [previewImages, setPreviewImages] = useState<File[]>([]); // 업로드된 이미지 상태 관리
+    const navigate = useNavigate();
+    const [previewImages, setPreviewImages] = useState<File[]>([]);
+    const [token, setToken] = useState<string | null>(null); // token 상태
+    const [isLoading, setIsLoading] = useState(true); // 로딩 상태
 
-    // 제목 입력 처리
+    useEffect(() => {
+        // 비동기적으로 token을 설정하는 작업
+        const fetchToken = async () => {
+            const storedToken = await getJwtToken(); // 비동기 호출
+            setToken(storedToken); // 토큰 상태 설정
+            setIsLoading(false); // 로딩 완료
+            console.log(storedToken)
+        };
+        fetchToken();
+    }, []);
+
     const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setTitle(e.target.value);
     };
 
-    // 내용 입력 처리
     const handleDetailChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
         setDetail(e.target.value);
     };
 
-    // 이미지 업로드 핸들러
     const handleImageUpload = (images: File[]) => {
-        setPreviewImages(images); // 이미지를 배열로 저장
+        setPreviewImages(images);
     };
 
-    // 등록 버튼 클릭 처리
-    const handleSubmit = () => {
-        onSubmit(title, detail, previewImages); // 모든 이미지를 전달
-    };
-
-    // 카테고리 변경 처리
     const handleCategoryChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
         setSelectedCategory(e.target.value);
     };
+
+    const onIdButtonClickHandler = async () => {
+        if (!title || !detail || !selectedCategory || !token) return; // token이 없으면 요청하지 않음
+        console.log("제목:", title);
+        console.log("내용:", detail);
+        console.log("카테고리:", selectedCategory);
+        console.log("이미지 미리보기 목록:", previewImages);
+
+        try {
+            const response = await UserCommunityRequest({
+                communityTitle: title,
+                communityContent: detail,
+                communityContentType: selectedCategory,
+            });
+            console.log("token", token);
+            console.log("response", response);
+
+            navigate('/community'); // 리스트 페이지로 이동
+        } catch (error) {
+            console.log("Error in request:", error);
+        }
+    };
+
+    if (isLoading) {
+        return <div>Loading...</div>; // 로딩 중에는 로딩 화면을 표시
+    }
 
     return (
         <div className="write-box-top">
@@ -47,7 +81,7 @@ const WriteBox = ({ categories, onSubmit, maxImages }: WriteBoxProps) => {
                         className="write-box-category-select"
                         value={selectedCategory}
                         onChange={handleCategoryChange}
-                        disabled={categories.length === 1} // 카테고리가 하나면 비활성화
+                        disabled={categories.length === 1}
                     >
                         {categories.map((category, index) => (
                             <option key={index} value={category}>
@@ -72,10 +106,14 @@ const WriteBox = ({ categories, onSubmit, maxImages }: WriteBoxProps) => {
                 <div className="write-box-footer">
                     <ImageUploaderMany
                         maxImages={maxImages}
-                        onImageUpload={handleImageUpload} // 업로드된 이미지 처리
-                        previewImages={previewImages} // 미리보기 이미지 전달
+                        onImageUpload={handleImageUpload}
+                        previewImages={previewImages}
                     />
-                    <button className="write-box-submit" onClick={handleSubmit}>
+                    <button
+                        className="write-box-submit"
+                        onClick={onIdButtonClickHandler}
+                        disabled={!token} // token이 없으면 버튼 비활성화
+                    >
                         등록하기
                     </button>
                 </div>
