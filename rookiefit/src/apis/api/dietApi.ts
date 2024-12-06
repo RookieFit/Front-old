@@ -27,12 +27,7 @@ export const InputFoodInfoRequest = async (requestBody: InputFoodInfoRequestDto)
 };
 
 export const DeleteUserDietListRequest = async (requestBody: DeleteUserDietListRequestDto) => {
-    return axiosInstance.delete('/user/delete-userdietlistdata', {
-        params: {
-            token: requestBody.token,
-            diet_created_date: requestBody.diet_created_date
-        }
-    })
+    return axiosInstance.delete(`/user/delete-userdietlistdata/${requestBody.userDietDetailId}`)
         .then(responseHandler<InputFoodInfoResponseDto>)
         .catch(errorHandler);
 };

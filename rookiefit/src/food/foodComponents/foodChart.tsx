@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { MouseEvent, useState } from "react";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 import Chart from "react-apexcharts";
@@ -10,7 +10,7 @@ import { useFoodContext } from "../foodContext"; // useFoodContext 임포트
 const FoodChart = () => {
     const { foodDetails, selectedDate, setSelectedDate } = useFoodContext(); // Context 사용
     const [showCalendar, setShowCalendar] = useState(false); // 달력 팝업 상태
-    console.log("Food Details:", foodDetails);
+    console.log("Food Details for Chart:", foodDetails);
 
     // 영양 성분 합계 계산
     const totalCalories = foodDetails.entries.reduce((sum, item) => sum + item.enerc, 0);
@@ -60,12 +60,17 @@ const FoodChart = () => {
                     horizontal: 25, // 수평 간격 (px)
                     vertical: 10, // 수직 간격 (px)
                 },
+                formatter: (seriesName: string, opts: any) => {
+                    const value = opts.w.globals.series[opts.seriesIndex];
+                    return `${seriesName}: ${value.toFixed(1)}g`; // 레전드에 수치를 표시 (단위: g)
+                },
             },
         } as ApexOptions,
     };
 
-    const handleDateChange = (newDate: Date) => {
-        setSelectedDate(moment(newDate).format("YYYY-MM-DD")); // 컨텍스트에 저장
+    // 날짜 클릭 처리
+    const handleDateClick = (date: Date) => {
+        setSelectedDate(moment(date).format("YYYY-MM-DD")); // 선택한 날짜 설정
         setShowCalendar(false); // 달력 닫기
     };
 
@@ -81,8 +86,8 @@ const FoodChart = () => {
                 {showCalendar && (
                     <div className="calendar-popup">
                         <Calendar
-                            value={(selectedDate)} // 컨텍스트의 날짜로 설정
-                            onChange={handleDateChange}
+                            value={new Date(selectedDate)} // 컨텍스트의 날짜로 설정
+                            onClickDay={handleDateClick} // 날짜 클릭 시 호출될 핸들러
                             formatDay={(locale, date) => moment(date).format("D")}
                             formatYear={(locale, date) => moment(date).format("YYYY")}
                             formatMonthYear={(locale, date) => moment(date).format("YYYY. MM")}
@@ -91,7 +96,6 @@ const FoodChart = () => {
                             next2Label={null}
                             prev2Label={null}
                             minDetail="year"
-                            startOfWeek={0} // 일요일부터 시작
                         />
                     </div>
                 )}
