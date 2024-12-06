@@ -1,35 +1,57 @@
 import React, { useState } from 'react';
 import './seenFeedGridPhoto.css';
-import ImageUploaderMany from '../../../../components/imageUploaderMany';
 import PostGrid from '../../../../components/postGrid';
+import { useNavigate } from 'react-router-dom';
+import CommunityPagination from '../../../../community/communityComponents/communityPagination';
 
+export interface Post {
+    id: number;
+    title: string;
+    author: string;
+    date: string;
+    images: string[];
+    content: string;
+}
 
-const SeenFeedGridPhoto = () => {
-    const [images, setImages] = useState<File[][]>(Array(1).fill([]));
+const SeenFeedGridPhoto = ({ posts }: { posts: Post[] }) => {
+    const navigate = useNavigate();
+    const [seenPage, setSeenPage] = useState(1);
+    const postsPerPage = 9;
 
-    const handleImageUpload = (index: number) => (newImages: File[]) => {
-        const updatedImages = [...images];
-        updatedImages[index] = newImages;
-        setImages(updatedImages);
+    const indexOfLastPost = seenPage * postsPerPage;
+    const indexOfFirstPost = indexOfLastPost - postsPerPage;
+    const seenPosts = posts.slice(indexOfFirstPost, indexOfLastPost);
+
+    const handlePageChange = (newPage: number) => {
+        setSeenPage(newPage);
     };
 
+    const handlePostClick = (id: number) => {
+        navigate(`/community/detail/${id}`);
+    };
     return (
-        <div className="seen-feed-container">
-            <div className="seen-feed-grid">
-                {images.map((imageSet, index) => (
-                    <div key={index} className="seen-feed-grid-item">
-                        <PostGrid
-                            posts={[]}
-                            onPostClick={function (id: number): void {
-                                throw new Error('Function not implemented.');
-                            }}
-                            renderItem={function (item: { id: number; }): React.ReactNode {
-                                throw new Error('Function not implemented.');
-                            }}
-                        />
+        <div>
+            <PostGrid<Post>
+                className='seen-feed-photo-post-grid'
+                posts={seenPosts}// Post 타입을 지정
+                onPostClick={handlePostClick}
+                renderItem={(post: Post) => (
+                    <div className="seen-feed-photo-item">
+                            {post.images[0] ? (
+                                <img
+                                    src={post.images[1]}
+                                    alt={post.title}
+                                    className="seen-feed-grid-image"
+                                />
+                            ) : null /* 이미지가 없으면 빈 컨테이너만 렌더링 */}
                     </div>
-                ))}
-            </div>
+                )}
+            />
+            <CommunityPagination
+                currentPage={seenPage}
+                totalPages={Math.ceil(posts.length / postsPerPage)}
+                onPageChange={handlePageChange}
+            />
         </div>
     );
 };

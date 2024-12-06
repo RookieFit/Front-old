@@ -87,12 +87,19 @@ const FoodList = () => {
     const toggleEditMode = () => setIsEditing((prev) => !prev);
     const handleCancelEdit = () => setIsEditing(false);
 
+
+    // 뒤로가기 핸들러 추가
+    const handleBack = () => {
+        setSelectedFood(null);
+        setSearchResult("");
+        setDebouncedSearch("");
+    };
+
     // 음식 삭제 처리
     const handleDeleteFood = async (id: number) => {
         try {
             // 음식 삭제
             await deleteFoodFromDiet(id);
-
             // 상태 업데이트 (삭제 후 바로 반영)
             setFoodDetails((prevState) => ({
                 entries: prevState.entries.filter((item) => item.userDietDetailId !== id),
@@ -145,6 +152,7 @@ const FoodList = () => {
                         handleFoodClick={setSelectedFood}
                         selectedFood={selectedFood}
                         handleAddFood={handleAddFood}
+                        handleBack={handleBack}  // 뒤로가기 핸들러 추가
                     />
                 ) : (
                     <div className="food-list-items">

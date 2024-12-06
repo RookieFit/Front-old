@@ -1,0 +1,89 @@
+.food-add-page {
+    padding: 30px;
+    max-width: 600px;
+    margin: 50px auto;
+    /* 페이지 중앙 정렬 및 상단 여백 추가 */
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    /* 부드러운 그림자 */
+    border: 1px solid #e0e0e0;
+    /* 미묘한 경계선 */
+}
+
+.food-add-page h2 {
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 30px;
+    color: #333;
+    /* 어두운 텍스트 */
+}
+
+.food-add-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    /* 각 입력 필드 간 여백 */
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    /* 라벨과 입력 필드 간격 */
+}
+
+.form-group label {
+    font-weight: 600;
+    font-size: 14px;
+    color: #555;
+    /* 중간 톤의 텍스트 */
+}
+
+.form-group input {
+    padding: 12px;
+    font-size: 16px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    background-color: #f8f8f8;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-group input:focus {
+    border-color: #4CAF50;
+    box-shadow: 0 0 6px rgba(76, 175, 80, 0.4);
+    /* 포커스 시 강조 효과 */
+    outline: none;
+}
+
+.food-add-submit-button {
+    padding: 12px;
+    font-size: 16px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    text-transform: uppercase;
+    /* 버튼 텍스트 대문자 */
+    letter-spacing: 1px;
+    /* 문자 간격 */
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.food-add-submit-button:hover {
+    background-color: #45a049;
+    transform: translateY(-2px);
+    /* 살짝 올라가는 효과 */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    /* 버튼 강조 */
+}
+
+.food-add-submit-button:active {
+    background-color: #3e8e41;
+    transform: translateY(0);
+    /* 클릭 시 원래 위치로 복귀 */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
