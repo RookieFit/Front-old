@@ -83,7 +83,7 @@ const InformationMiniBox = ({ role, informationUserNumber, informationUserString
         trainergym: informationTrainerString.trainergym
     });
 
-    const updateInfo = (setFunction: any) => (field: string, value: string) => {
+    const updateInfo = (setFunction: any) => (field: string, value: string | number) => {
         setFunction((prevInfo: any) => ({
             ...prevInfo,
             [field]: value
@@ -144,11 +144,11 @@ const InformationMiniBox = ({ role, informationUserNumber, informationUserString
                                 <>
                                     <InformationLineEditString title={'닉네임'} value={trainerStringInfo.trainernickname} onChange={(value) => onChangeTrainerStringInfo('nickname', value)} />
                                     <InformationLineEditString title={'이름'} value={trainerStringInfo.trainername} onChange={(value) => onChangeTrainerStringInfo('name', value)} />
-                                    <InformationLineEditNumber title={'나이'} value={trainerNumberInfo.trainerage} onChange={(value) => onChangeTrainerNumbeInfo('age', value.toString())} />
-                                    <InformationLineEditNumber title={'몸무게'} value={trainerNumberInfo.trainerweight} onChange={(value) => onChangeTrainerNumbeInfo('weight', value.toString())} />
-                                    <InformationLineEditNumber title={'키'} value={trainerNumberInfo.trainerheight} onChange={(value) => onChangeTrainerNumbeInfo('height', value.toString())} />
-                                    <InformationLineEditNumber title={'근육량'} value={trainerNumberInfo.trainermuscle} onChange={(value) => onChangeTrainerNumbeInfo('muscle', value.toString())} />
-                                    <InformationLineEditNumber title={'체지방량'} value={trainerNumberInfo.trainerfat} onChange={(value) => onChangeTrainerNumbeInfo('fat', value.toString())} />
+                                    <InformationLineEditNumber title={'나이'} value={trainerNumberInfo.trainerage} onChange={(value) => onChangeTrainerNumbeInfo('age', value)} />
+                                    <InformationLineEditNumber title={'몸무게'} value={trainerNumberInfo.trainerweight} onChange={(value) => onChangeTrainerNumbeInfo('weight', value)} />
+                                    <InformationLineEditNumber title={'키'} value={trainerNumberInfo.trainerheight} onChange={(value) => onChangeTrainerNumbeInfo('height', value)} />
+                                    <InformationLineEditNumber title={'근육량'} value={trainerNumberInfo.trainermuscle} onChange={(value) => onChangeTrainerNumbeInfo('muscle', value)} />
+                                    <InformationLineEditNumber title={'체지방량'} value={trainerNumberInfo.trainerfat} onChange={(value) => onChangeTrainerNumbeInfo('fat', value)} />
                                     <InformationLineEditString title={'주소'} value={trainerStringInfo.traineraddress} onChange={(value) => onChangeTrainerStringInfo('address', value)} />
                                     <InformationLineEditString title={'헬스장명'} value={trainerStringInfo.trainergym} onChange={(value) => onChangeTrainerStringInfo('gym', value)} />
                                 </>
@@ -156,10 +156,10 @@ const InformationMiniBox = ({ role, informationUserNumber, informationUserString
                                 <>
                                     <InformationLineEditString title={'닉네임'} value={userStringInfo.usernickname} onChange={(value) => onChangeUserStringInfo('nickname', value)} />
                                     <InformationLineEditString title={'이름'} value={userStringInfo.username} onChange={(value) => onChangeUserStringInfo('name', value)} />
-                                    <InformationLineEditNumber title={'몸무게'} value={userNumberInfo.userweight} onChange={(value) => onChangeUserNumberInfo('weight', value.toString())} />
-                                    <InformationLineEditNumber title={'키'} value={userNumberInfo.userheight} onChange={(value) => onChangeUserNumberInfo('height', value.toString())} />
-                                    <InformationLineEditNumber title={'근육량'} value={userNumberInfo.usermuscle} onChange={(value) => onChangeUserNumberInfo('muscle', value.toString())} />
-                                    <InformationLineEditNumber title={'체지방량'} value={userNumberInfo.userfat} onChange={(value) => onChangeUserNumberInfo('fat', value.toString())}  />
+                                    <InformationLineEditNumber title={'몸무게'} value={userNumberInfo.userweight} onChange={(value) => onChangeUserNumberInfo('weight', value)} />
+                                    <InformationLineEditNumber title={'키'} value={userNumberInfo.userheight} onChange={(value) => onChangeUserNumberInfo('height', value)} />
+                                    <InformationLineEditNumber title={'근육량'} value={userNumberInfo.usermuscle} onChange={(value) => onChangeUserNumberInfo('muscle', value)} />
+                                    <InformationLineEditNumber title={'체지방량'} value={userNumberInfo.userfat} onChange={(value) => onChangeUserNumberInfo('fat', value)}  />
                                     <InformationLineEditString title={'주소'} value={userStringInfo.useraddress} onChange={(value) => onChangeUserStringInfo('address', value)} />
                                     <InformationLineEditString title={'헬스장명'} value={userStringInfo.usergym} onChange={(value) => onChangeUserStringInfo('gym', value)} />
                                 </>
