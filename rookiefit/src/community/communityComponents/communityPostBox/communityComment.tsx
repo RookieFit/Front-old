@@ -3,27 +3,28 @@ import './communityComment.css';
 
 interface CommentProps {
     comment: {
-        id: number;
-        author: string;
-        date: string;
-        content: string;
+        communityListId: number; // 게시글 ID
+        answerContent: string; // 댓글 내용
+        answerCreatedDate: string; // 댓글 작성일
+        communityAnswerListId: string; // 댓글 ID
+        author: string; // 댓글 작성자 ID (현재 사용자를 비교)
     };
     currentUser: string; // 현재 사용자
-    onDelete?: (id: number) => void; // 삭제 처리 함수
-    onEdit?: (id: number, newContent: string) => void; // 수정 처리 함수
+    onDelete?: (id: string) => void; // 삭제 처리 함수
+    onEdit?: (id: string, newContent: string) => void; // 수정 처리 함수
 }
 
 function CommunityComment({ comment, currentUser, onDelete, onEdit }: CommentProps) {
     const [isEditing, setIsEditing] = useState(false);
-    const [editedContent, setEditedContent] = useState(comment.content);
+    const [editedContent, setEditedContent] = useState(comment.answerContent);
 
     // 수정 모드 활성화
     const startEditing = () => setIsEditing(true);
 
     // 수정 내용 저장
     const saveEdit = () => {
-        if (editedContent !== comment.content && onEdit) {
-            onEdit(comment.id, editedContent);
+        if (editedContent !== comment.answerContent && onEdit) {
+            onEdit(comment.communityAnswerListId, editedContent);
         }
         setIsEditing(false);
     };
@@ -34,7 +35,7 @@ function CommunityComment({ comment, currentUser, onDelete, onEdit }: CommentPro
     return (
         <div className="community-comment">
             <p>
-                <strong>{comment.author}</strong> ({comment.date})
+                <strong>{comment.author}</strong> ({comment.answerCreatedDate})
             </p>
 
             {isEditing ? (
@@ -47,13 +48,13 @@ function CommunityComment({ comment, currentUser, onDelete, onEdit }: CommentPro
                     <button onClick={() => setIsEditing(false)}>취소</button>
                 </div>
             ) : (
-                <p className="comment-content">{comment.content}</p>
+                <p className="comment-content">{comment.answerContent}</p>
             )}
 
             {canEditOrDelete && (
                 <div className="comment-actions">
                     {onDelete && !isEditing && (
-                        <button onClick={() => onDelete(comment.id)}>삭제</button>
+                        <button onClick={() => onDelete(comment.communityAnswerListId)}>삭제</button>
                     )}
                     {!isEditing && (
                         <button onClick={startEditing}>수정</button>

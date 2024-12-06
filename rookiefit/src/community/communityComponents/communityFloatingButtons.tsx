@@ -1,7 +1,6 @@
 import './communityFloatingButtons.css'
 
 interface CommunityFloatingButtonsProps {
-    onScrollToTop: () => void;
     onWritePost: () => void;
     onSearch: () => void;
 }

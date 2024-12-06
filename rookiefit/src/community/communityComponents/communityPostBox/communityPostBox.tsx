@@ -24,8 +24,6 @@ interface CommunityPostBoxProps {
     currentUser: string; // 현재 사용자
 }
 
-const token = getJwtToken()
-
 function CommunityPostBox({ post, currentUser }: CommunityPostBoxProps) {
     const navigate = useNavigate();
     const [isCommentOpen, setIsCommentOpen] = useState(false);
@@ -48,23 +46,24 @@ function CommunityPostBox({ post, currentUser }: CommunityPostBoxProps) {
         if (newComment.trim() === '') return;
 
         const newCommentObj = {
+            communityListId: post.id,  // 게시물 ID
+            communityAnswerListId: currentUser, // 댓글 작성자 (userId 또는 유니크 식별자 사용)
+            answerContent: newComment,  // 댓글 내용
+            answerCreatedDate: new Date().toISOString(),  // 작성 시간 (ISO 포맷)
+            author: currentUser,  // 댓글 작성자
+        };
+
+        setComments((prevComments) => [...prevComments, {
             id: Date.now(),
             author: currentUser,
             date: new Date().toLocaleString(),
-            content: newComment,
-        };
-
-        setComments((prevComments) => [...prevComments, newCommentObj]);
+            content: newComment
+        }]);
         setNewComment(''); // 댓글 입력 필드 비우기
 
         try {
             // API 호출: 댓글 등록
-            const response = await UserCommunityAnswerRequest({
-                communityListId: post.id, // 게시물 ID
-                author: currentUser, // 댓글 작성자
-                content: newCommentObj.content, // 댓글 내용
-                date: new Date().toISOString(), // 작성 시간 (ISO 포맷)
-            });
+            const response = await UserCommunityAnswerRequest(newCommentObj);
 
             console.log('댓글 작성 성공:', response); // 서버에서 응답이 오면 출력
         } catch (error) {
