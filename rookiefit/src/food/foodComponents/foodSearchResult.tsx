@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import { GetDietDataResponseDto } from "../../apis/response/diet";
 import "./foodSearchResult.css";
 import { useNavigate } from "react-router-dom";

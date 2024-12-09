@@ -1,52 +1,38 @@
 .community-search {
     display: flex;
     flex-direction: column;
-    /* 세로 정렬 */
     justify-content: flex-start;
-    /* 상단 정렬 */
     align-items: center;
-    /* 수평 중앙 정렬 */
     min-height: 100vh;
-    /* 화면 전체 높이 설정 */
     text-align: center;
-    /* 텍스트 중앙 정렬 */
     gap: 2rem;
-    /* 요소 간 간격 */
     background-color: #f9f9f9;
-    /* 배경색 추가 */
 }
 
 .community-search h1 {
     margin-top: 2rem;
     margin-bottom: 1rem;
     font-size: 2rem;
-    /* 제목 크기 조정 */
     color: #333;
-    /* 텍스트 색상 변경 */
 }
 
 .community-search p {
     margin-bottom: 1.5rem;
     color: #555;
-    /* 텍스트 색상 */
     font-size: 1.1rem;
-    /* 글씨 크기 약간 키움 */
 }
 
 .search-bar {
     display: flex;
     align-items: center;
     gap: 0.3rem;
-    /* 입력창과 버튼 간 간격 더 줄이기 */
     width: 100%;
     max-width: 600px;
-    /* 검색 바 최대 너비 설정 */
     border-radius: 8px;
     padding: 1rem;
-    /* 바깥쪽 여백 추가 */
 }
 
-.category-select,
+.search-method-select,
 .search-input {
     padding: 0.65rem;
     font-size: 1rem;
@@ -56,19 +42,15 @@
     box-sizing: border-box;
 }
 
-.category-select {
-    border-radius: 4px;
-    max-width: 100px;
-    /* 카테고리 선택창의 너비를 짧게 설정 */
-    width: 100%;
+.search-method-select {
+    max-width: 150px;
+    /* 검색 방법 선택창의 너비 설정 */
 }
 
 .search-input {
     flex: 1;
     max-width: 400px;
-    /* 검색창 너비 제한 */
     margin-right: 0.3rem;
-    /* 검색 버튼과의 간격 더 줄임 */
 }
 
 .search-button {
@@ -79,28 +61,6 @@
     transition: background-color 0.3s ease;
     background-image: url(../communityList/assets/search-icon.png);
     background-size: 50px 50px;
-    /* 아이콘 크기를 더 크게 설정 */
     background-repeat: no-repeat;
     background-position: center;
-    /* 아이콘을 중앙에 배치 */
-}
-
-/* 반응형 디자인 */
-@media (max-width: 768px) {
-    .community-search {
-        padding: 1rem;
-        /* 모바일 화면에 맞춰 여백 조정 */
-    }
-
-    .search-bar {
-        max-width: 100%;
-        /* 검색 바 너비 100%로 설정 */
-    }
-
-    .category-select,
-    .search-input,
-    .search-button {
-        width: 100%;
-        /* 모든 입력 필드와 버튼 너비 100% 설정 */
-    }
 }
