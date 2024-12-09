@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./foodAddPage.css";
+import { InputFoodInfoRequestDto } from "../../apis/request/diet";
+import { InputFoodInfoRequest } from "../../apis/api/dietApi";
 
 const FoodAddPage = () => {
     const navigate = useNavigate();
@@ -13,7 +15,7 @@ const FoodAddPage = () => {
     const [fat, setFat] = useState<number | string>("");
 
     // 폼 제출 처리 함수
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
 
         // 입력 값 검증
@@ -22,19 +24,23 @@ const FoodAddPage = () => {
             return;
         }
 
-        // 여기서 추가된 음식 데이터를 서버로 전송하거나 로컬 상태에 저장할 수 있습니다.
-        const newFood = {
-            foodName,
-            calories: Number(calories),
-            carbs: Number(carbs),
-            protein: Number(protein),
-            fat: Number(fat),
+        // API 호출을 위한 데이터 변환
+        const newFood: InputFoodInfoRequestDto = {
+            food_name: foodName,
+            chocdf: Number(carbs),
+            prot: Number(protein),
+            fatce: Number(fat),
+            enerc: Number(calories),
         };
 
-        // 예시: 음식 추가 후 목록 페이지로 이동
-        console.log("새로운 음식 추가:", newFood);
-        // 음식 추가 후 목록 페이지로 이동 (예시)
-        navigate("/food-list");
+        try {
+            // API 호출
+            await InputFoodInfoRequest(newFood);
+            alert("음식 정보가 성공적으로 추가되었습니다.");
+            navigate("/diet"); // 성공 시 목록 페이지로 이동
+        } catch (error) {
+            alert("음식 정보를 추가하는 도중 문제가 발생했습니다.");
+        }
     };
 
     return (
