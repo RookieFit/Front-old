@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react'; // useRef 추가
 import Slider from 'react-slick';
 import { useNavigate } from 'react-router-dom';
 import Comment from './communityComment';
@@ -36,6 +36,8 @@ function CommunityPostBox({ post, currentUser }: CommunityPostBoxProps) {
     const [comments, setComments] = useState(post.comments);
     const [newComment, setNewComment] = useState('');
 
+    const commentsSectionRef = useRef<HTMLDivElement>(null); // 댓글 섹션에 대한 참조 추가 (각주 1)
+
     const settings = {
         dots: true,
         infinite: true,
@@ -45,6 +47,13 @@ function CommunityPostBox({ post, currentUser }: CommunityPostBoxProps) {
         arrows: true,
         adaptiveHeight: true,
     };
+
+    // 댓글이 추가될 때마다 스크롤을 하단으로 이동시키는 useEffect 추가
+    useEffect(() => {
+        if (commentsSectionRef.current) {
+            commentsSectionRef.current.scrollTop = commentsSectionRef.current.scrollHeight;
+        }
+    }, [comments]); // 댓글 배열이 변경될 때마다 실행
 
     const handleAddComment = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -79,7 +88,6 @@ function CommunityPostBox({ post, currentUser }: CommunityPostBoxProps) {
             console.error('댓글 작성 실패:', error);
         }
     };
-
 
     const handleDeleteComment = (commentId: number) => {
         setComments((prevComments) => prevComments.filter((comment) => comment.communityAnswerListId !== commentId));
@@ -139,7 +147,7 @@ function CommunityPostBox({ post, currentUser }: CommunityPostBoxProps) {
                 </button>
             </div>
 
-            <div className={`comments-section ${isCommentOpen ? 'open' : ''}`}>
+            <div className={`comments-section ${isCommentOpen ? 'open' : ''}`} ref={commentsSectionRef}> {/* 각주 1 */}
                 {comments.map((comment) => (
                     <Comment
                         key={comment.communityAnswerListId} // 고유한 키로 사용
