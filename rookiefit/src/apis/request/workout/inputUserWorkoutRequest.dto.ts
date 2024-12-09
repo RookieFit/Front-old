@@ -2,8 +2,8 @@ export default interface InputUserWorkoutListRequestDto {
     comment: string;
     workout_title: string;
     workoutCreatedData: string;
-    workoutDetails: WorkoutDetails[];
-    workoutImageUris: string[];
+    workoutDetails?: WorkoutDetails[];
+    workoutImageUris?: string[];
 }
 
 export interface WorkoutDetails {

@@ -1,40 +1,87 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './customCalendarDetail.css';
 import moment from 'moment';
 import { useNavigate } from 'react-router-dom';
 import { useCalendarDetails } from '../calendarDetailContext';
 import { UseCalendar } from '../calendarContext';
 import { useDragPrevent } from '../../components/useDragPrevent';
+import { GetUserWorkoutListRequest } from '../../apis/api/workoutApi'; // API 호출 import
+import { GetUserWorkoutListResponseDto } from '../../apis/response/workout'; // API 응답 타입 import
+
+interface WorkoutDetails {
+    workoutDetailCreatedDate: string;
+    workout_name: string;
+    reps: number;
+    sets: number;
+    rest_time: string;
+}
 
 interface Entry {
     title: string;
     diaryContent: string;
-    workoutDetails: string[][];
     date: string;
-    images?: string[]; // 여러 이미지 URL을 저장하는 배열
+    images?: string[];
 }
 
 const CustomCalendarDetail = () => {
-    const { details } = useCalendarDetails(); // details를 context에서 가져오기
-    const { updateSelectedDate } = UseCalendar(); // calendarDetailContext에서 selectedDate 업데이트 함수 가져오기
+    const { details } = useCalendarDetails(); // context에서 선택된 날짜 정보 가져오기
+    const { selectedDate, updateSelectedDate } = UseCalendar(); // 선택된 날짜 업데이트 함수
     const navigate = useNavigate();
     const { handleMouseDown, handleMouseUp, handleMouseMove } = useDragPrevent(); // 커스텀 훅 사용
 
+    const [workoutList, setWorkoutList] = useState<Entry[]>([]); // 서버에서 받은 운동 데이터를 관리할 상태
+
+    // GetUserWorkoutListRequest를 호출하여 데이터를 가져오는 함수
+    const fetchWorkoutData = async () => {
+        try {
+            const response = await GetUserWorkoutListRequest();
+            console.log("API Response:", response); // 응답을 확인
+
+            // response가 GetUserWorkoutListResponseDto[] 타입인지 체크
+            if (Array.isArray(response)) {
+                const data = response as GetUserWorkoutListResponseDto[]; // 타입 변환
+                console.log("Fetched Data:", data); // 응답 데이터 확인
+
+                // 응답 데이터를 Entry 형식으로 변환
+                const workoutEntries = data.map((workout) => ({
+                    title: workout.workout_title,
+                    diaryContent: workout.comment,
+                    date: workout.workoutCreatedData,
+                    images: workout.imageUris,
+                }));
+
+                // 상태 업데이트
+                setWorkoutList(workoutEntries);
+            } else {
+                console.error('데이터를 불러오지 못했습니다.');
+            }
+        } catch (error) {
+            console.error('운동 데이터를 가져오는데 실패했습니다.', error);
+        }
+    };
+
+
+    // 컴포넌트가 처음 렌더링될 때 한 번만 데이터를 가져오기
+    useEffect(() => {
+        fetchWorkoutData(); // 데이터를 가져오는 함수 호출
+    }, []); // 빈 배열을 전달하면 한 번만 실행됨
+
     const goToCalendarUpdate = (date: string) => {
-        updateSelectedDate(moment(date).toDate()); // moment로 Date 객체로 변환 후 setSelectedDate에 전달
+        updateSelectedDate(moment(date).toDate()); // Date 객체로 변환 후 selectedDate 업데이트
         navigate('/calendar/detail');
     };
 
-    // 일지 목록 최근날짜 기준 5개만 보여주기
+    // 일지 목록 최근 날짜 기준으로 5개만 보여주는 함수
     const getRecentEntries = (entries: Entry[]) => {
         const sortedEntries = entries.sort((a, b) => moment(b.date).isBefore(moment(a.date)) ? -1 : 1);
-        return sortedEntries.slice(0, 5); // 5개만 slicing
+        return sortedEntries.slice(0, 5); // 5개만 표시
     };
 
+    // 긴 내용을 잘라서 표시하는 함수
     const sliceContent = (content: string) =>
         content.length > 50 ? content.slice(0, 50) + "..." : content;
 
-    // 일지 목록 출력하는데 들어갈 내용에 관한 함수 (출력 목록 제한, 마우스이벤트, 내용 글자수 제한)
+    // 일지 목록 출력하는 함수
     const renderEntries = (entries: Entry[]) => (
         getRecentEntries(entries).map((entry, index) => (
             <div
@@ -64,8 +111,8 @@ const CustomCalendarDetail = () => {
         <div className="right-back">
             <div className="calendar-detail-cell">
                 <h3>작성된 운동 세부사항</h3>
-                {details.entries.length > 0 ? (
-                    renderEntries(details.entries)
+                {workoutList.length > 0 ? (
+                    renderEntries(workoutList)
                 ) : (
                     <p>세부사항이 없습니다. <br /> 날짜를 클릭하여 기록을 해보세유</p>
                 )}

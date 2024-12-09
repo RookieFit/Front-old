@@ -4,7 +4,7 @@ import ResponseDto from "../response.dto";
 export default interface GetDietDataResponseDto extends ResponseDto {
     id: number;
     foodName: string;
-    food_First_Category: string;
+    foodFirstCategory: string;
     chocdf: number; // 탄수화물
     prot: number;   // 단백질
     fatce: number;  // 지방
