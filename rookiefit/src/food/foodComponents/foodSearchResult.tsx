@@ -99,7 +99,7 @@ const FoodSearchResult = ({
                     <p>검색 결과가 없습니다.</p>
                     <button
                         className="food-add-button"
-                        onClick={() => navigate("/food/add")}
+                        onClick={() => navigate("/food/add", { state: { searchFoodName: searchQuery } })}
                     >
                         직접 입력하기
                     </button>

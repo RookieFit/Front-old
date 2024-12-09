@@ -1,14 +1,18 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import "./foodAddPage.css";
 import { InputFoodInfoRequestDto } from "../../apis/request/diet";
 import { InputFoodInfoRequest } from "../../apis/api/dietApi";
 
 const FoodAddPage = () => {
     const navigate = useNavigate();
+    const location = useLocation();
+
+    const { searchFoodName } = location.state || {};
+    const [foodAddNameState, setAddFoodName] = useState<string>(searchFoodName || "");
 
     // 상태 관리: 사용자 입력 값
-    const [foodName, setFoodName] = useState<string>("");
+    const [foodName, setFoodName] = useState<string>(foodAddNameState);
     const [calories, setCalories] = useState<number | string>("");
     const [carbs, setCarbs] = useState<number | string>("");
     const [protein, setProtein] = useState<number | string>("");
@@ -52,7 +56,7 @@ const FoodAddPage = () => {
                     <input
                         type="text"
                         id="foodName"
-                        value={foodName}
+                        value={foodAddNameState}
                         onChange={(e) => setFoodName(e.target.value)}
                         required
                     />
