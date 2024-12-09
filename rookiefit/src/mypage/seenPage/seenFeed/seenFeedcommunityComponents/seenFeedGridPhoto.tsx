@@ -44,6 +44,7 @@ const SeenFeedGridPhoto = ({ posts }: { posts: Post[] }) => {
                                     className="seen-feed-grid-image"
                                 />
                             ) : null /* 이미지가 없으면 빈 컨테이너만 렌더링 */}
+                             <p>{post.title}</p>
                     </div>
                 )}
             />

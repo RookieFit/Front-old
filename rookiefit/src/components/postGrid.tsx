@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './postGrid.css';
 import { useDragPrevent } from './useDragPrevent';
 
@@ -11,7 +11,6 @@ interface PostGridProps<T> {
 
 const PostGrid = <T extends { id: number }>({ posts, onPostClick, renderItem, className }: PostGridProps<T>) => {
     const { handleMouseDown, handleMouseUp, handleMouseMove } = useDragPrevent();
-
     return (
         <div className={`post-grid ${className || ''}`}>
             {posts.map((item) => (
