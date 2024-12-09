@@ -3,11 +3,9 @@ import Slider from 'react-slick';
 import { useNavigate } from 'react-router-dom';
 import Comment from './communityComment';
 import './communityPostBox.css';
-import { UserCommunityAnswerRequest } from '../../../apis/api/communityApi'; // 수정된 API import
+import { UserCommunityAnswerRequest } from '../../../apis/api/communityApi';
 import { getJwtToken } from '../../../authCheck/storageUtils';
-import { LoDashImplicitNumberArrayWrapper } from 'lodash';
 
-// Post 인터페이스 정의
 interface Post {
     category: string;
     title: string;
@@ -24,13 +22,12 @@ interface PostComment {
     answerContent: string;
     answerCreatedDate: string;
     communityAnswerListId: number;
-    communityAnswerauthor: string;
+    communityAnswerauthor: number;
 }
 
-// CommunityPostBox 컴포넌트의 props 인터페이스 정의
 interface CommunityPostBoxProps {
     post: Post;
-    currentUser: number; // 현재 사용자
+    currentUser: string;
 }
 
 function CommunityPostBox({ post, currentUser }: CommunityPostBoxProps) {
@@ -48,46 +45,44 @@ function CommunityPostBox({ post, currentUser }: CommunityPostBoxProps) {
         arrows: true,
         adaptiveHeight: true,
     };
-    //MARK: 댓글 작성 api 들어가야되고 댓글 response랑 post response()
+
     const handleAddComment = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
         if (newComment.trim() === '') return;
 
         const newCommentObj = {
-            communityListId: post.id,  // 게시물 ID
-            communityAnswerListId: currentUser, // 댓글 작성자 (userId 또는 유니크 식별자 사용)
-            answerContent: newComment,  // 댓글 내용
-            answerCreatedDate: new Date().toISOString(),  // 작성 시간 (ISO 포맷)
-            author: currentUser,  // 댓글 작성자
+            communityListId: post.id,
+            communityAnswerListId: String(currentUser), // DTO 요구사항에 맞게 string으로 변환
+            answerContent: newComment,
+            answerCreatedDate: new Date().toISOString(),
+            author: currentUser,
         };
 
         setComments((prevComments) => [
             ...prevComments,
             {
-                communityListId: post.id, // 게시물 ID
-                communityAnswerListId: currentUser, // 댓글 작성자 (userId 또는 유니크 식별자 사용)
-                answerContent: newComment,  // 댓글 내용
-                answerCreatedDate: new Date().toISOString(),  // 작성 시간 (ISO 포맷)
-                communityAnswerauthor: currentUser,
+                communityListId: post.id,
+                communityAnswerListId: Number(currentUser), // `comments` 상태에서는 number 유지
+                answerContent: newComment,
+                answerCreatedDate: new Date().toISOString(),
+                communityAnswerauthor: Number(currentUser),
             },
         ]);
 
-        setNewComment(''); // 댓글 입력 필드 비우기
+        setNewComment('');
 
         try {
-            // API 호출: 댓글 등록
             const response = await UserCommunityAnswerRequest(newCommentObj);
-
-            console.log('댓글 작성 성공:', response); // 서버에서 응답이 오면 출력
+            console.log('댓글 작성 성공:', response);
         } catch (error) {
-            console.error('댓글 작성 실패:', error); // 오류 발생 시 출력
+            console.error('댓글 작성 실패:', error);
         }
     };
 
+
     const handleDeleteComment = (commentId: number) => {
-        setComments((prevComments) => prevComments.filter((comment) => comment.communityAnswerListId !== communityAnswerListId));
-        // 실제 삭제 요청을 위한 API 호출 로직을 추가할 수 있습니다.
+        setComments((prevComments) => prevComments.filter((comment) => comment.communityAnswerListId !== commentId));
     };
 
     const handleCommentToggle = () => {
@@ -147,13 +142,13 @@ function CommunityPostBox({ post, currentUser }: CommunityPostBoxProps) {
             <div className={`comments-section ${isCommentOpen ? 'open' : ''}`}>
                 {comments.map((comment) => (
                     <Comment
-                        key={comment.answerCreatedDate} // 유니크한 키로 `answerCreatedDate` 사용
+                        key={comment.communityAnswerListId} // 고유한 키로 사용
                         comment={{
-                            communityListId: comment.communityListId, // `id`를 `communityListId`로 매핑
-                            author: comment.communityAnswerauthor,       // 작성자 `author`
-                            answerCreatedDate: comment.answerCreatedDate, // 작성 시간 `answerCreatedDate`로 매핑
-                            answerContent: comment.answerContent, // 댓글 내용 `answerContent`로 매핑
-                            communityAnswerListId: comment.communityAnswerListId
+                            communityListId: comment.communityListId,
+                            author: comment.communityAnswerauthor.toString(), // 작성자는 string으로 변환
+                            answerCreatedDate: comment.answerCreatedDate,
+                            answerContent: comment.answerContent,
+                            communityAnswerListId: comment.communityAnswerListId, // number로 유지
                         }}
                         currentUser={currentUser}
                         onDelete={handleDeleteComment}

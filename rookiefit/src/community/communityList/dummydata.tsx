@@ -1,11 +1,11 @@
 type Category = '전체' | '바프' | '고민' | '정보' | '친목' | '공지';
 
 type Comment = {
-    id: number;
-    postId: number;
-    author: string;
-    date: string;
-    content: string;
+    communityListId: number; // 게시글 ID
+    answerContent: string; // 댓글 내용
+    answerCreatedDate: string; // 댓글 작성일
+    communityAnswerListId: number; // 댓글 ID
+    author: string; // 댓글 작성자
 };
 
 const funComments = [
@@ -35,11 +35,11 @@ export const dummyPosts = Array.from({ length: 100 }, (_, index) => {
     const comments: Comment[] = Array.from(
         { length: Math.max(1, Math.floor(Math.random() * 5) + 1) },
         (_, commentIndex) => ({
-            id: commentIndex + 1,
-            postId: index + 1,
-            author: `운동러 ${Math.floor(Math.random() * 100) + 1}`,
-            date: `2024-11-${(commentIndex % 30) + 1}`,
-            content: funComments[Math.floor(Math.random() * funComments.length)],
+            communityListId: index + 1, // 게시글 ID
+            answerContent: funComments[Math.floor(Math.random() * funComments.length)], // 댓글 내용
+            answerCreatedDate: `2024-11-${(commentIndex % 30) + 1}`, // 댓글 작성일
+            communityAnswerListId: commentIndex + 1, // 댓글 ID
+            author: `운동러 ${Math.floor(Math.random() * 100) + 1}`, // 댓글 작성자
         })
     );
 
@@ -60,6 +60,6 @@ export const dummyPosts = Array.from({ length: 100 }, (_, index) => {
         images, // 랜덤 이미지 배열
         content: `여기에 게시글 내용 ${index + 1}이 들어갑니다. 글의 본문을 여기에 작성합니다.설명설명설명설명설명설명설명설명설명설명설명설명설명 
         이 글은 카테고리 "${randomCategory}"에 속합니다.`,
-        comments, // 댓글 배열
+        comments, // 댓글 배열 (이제 CommentProps에 맞는 형식)
     };
 });

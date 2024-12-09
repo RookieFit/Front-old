@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { dummyPosts } from '../communityList/dummydata';
-import CommunityComment from '../communityComponents/communityPostBox/communityComment';
-import Slider from 'react-slick';  // Import the Slider component
+import CommunityComment, { CommentProps } from '../communityComponents/communityPostBox/communityComment';
+import Slider from 'react-slick';
 import './communityDetail.css';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
@@ -13,7 +13,7 @@ const CommunityDetail = () => {
 
     const post = dummyPosts.find((p) => p.id === Number(id));
 
-    const [comments, setComments] = useState(post?.comments || []);
+    const [comments, setComments] = useState<CommentProps['comment'][]>(post?.comments || []);
     const [newComment, setNewComment] = useState('');
     const currentUser = '현재사용자이름';
     const [isEditing, setIsEditing] = useState(false);
@@ -27,11 +27,11 @@ const CommunityDetail = () => {
         }
 
         const newCommentObj = {
-            id: Date.now(),
-            postId: post?.id || 0,
-            author: currentUser,
-            date: new Date().toLocaleString(),
-            content: newComment,
+            communityListId: post?.id || 0, // 게시물 ID
+            answerContent: newComment, // 댓글 내용
+            answerCreatedDate: new Date().toLocaleString(), // 작성일
+            communityAnswerListId: Date.now(), // 댓글 ID
+            author: currentUser, // 작성자
         };
 
         setComments((prevComments) => [...prevComments, newCommentObj]);
@@ -39,13 +39,15 @@ const CommunityDetail = () => {
     };
 
     const handleDeleteComment = (id: number) => {
-        setComments((prevComments) => prevComments.filter((comment) => comment.id !== id));
+        setComments((prevComments) =>
+            prevComments.filter((comment) => comment.communityAnswerListId !== id)
+        );
     };
 
     const handleEditComment = (id: number, newContent: string) => {
         setComments((prevComments) =>
             prevComments.map((comment) =>
-                comment.id === id ? { ...comment, content: newContent } : comment
+                comment.communityAnswerListId === id ? { ...comment, answerContent: newContent } : comment
             )
         );
     };
@@ -77,9 +79,9 @@ const CommunityDetail = () => {
 
     const sliderSettings = {
         dots: true,
-        infinite: false, // 이미지가 3개 이상일 때만 루프
+        infinite: false,
         speed: 500,
-        slidesToShow: Math.min(3, post.images.length), // 이미지 수가 3개 미만이면 해당 수만큼 표시
+        slidesToShow: Math.min(3, post.images.length),
         slidesToScroll: 1,
         autoplaySpeed: 2000,
     };
@@ -148,7 +150,7 @@ const CommunityDetail = () => {
                     {comments.length > 0 ? (
                         comments.map((comment) => (
                             <CommunityComment
-                                key={comment.id}
+                                key={comment.communityAnswerListId}
                                 comment={comment}
                                 currentUser={currentUser}
                                 onDelete={handleDeleteComment}
