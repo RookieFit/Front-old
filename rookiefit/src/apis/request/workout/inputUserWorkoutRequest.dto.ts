@@ -3,16 +3,13 @@ export default interface InputUserWorkoutListRequestDto {
     workout_title: string;
     workoutCreatedData: string;
     workoutDetails: WorkoutDetails[];
+    workoutImageUris: string[];
 }
 
 export interface WorkoutDetails {
     workoutDetailCreatedDate: string;
     workout_name: string;
-    reps: string;
-    sets: string;
-    rest_time: [];
-}
-
-export interface WorkoutImageUris {
-    workoutImageUris: string[];
+    reps: number;
+    sets: number;
+    rest_time: string;
 }

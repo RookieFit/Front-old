@@ -152,7 +152,8 @@ const FoodList = () => {
                         handleFoodClick={setSelectedFood}
                         selectedFood={selectedFood}
                         handleAddFood={handleAddFood}
-                        handleBack={handleBack}  // 뒤로가기 핸들러 추가
+                        handleBack={handleBack} // 뒤로가기 핸들러 추가
+                        searchQuery={searchResult}
                     />
                 ) : (
                     <div className="food-list-items">
