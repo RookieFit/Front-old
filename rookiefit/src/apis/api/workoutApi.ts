@@ -9,9 +9,9 @@ export const InputUserWorkoutListRequest = async (requestBody: InputUserWorkoutL
         .catch(errorHandler);
 };
 
-export const GetUserWorkoutListRequest = async (requestBody: GetUserWorkoutListRequestDto) => {
+export const GetUserWorkoutListRequest = async () => {
     return axiosInstance.get('/user/userworkoutlistdata')
-        .then(responseHandler<GetUserWorkoutListResponseDto>)
+        .then(response => responseHandler<GetUserWorkoutListResponseDto[]>(response)) // 응답 데이터 반환
         .catch(errorHandler);
 };
 
