@@ -8,14 +8,6 @@ import { useDragPrevent } from '../../components/useDragPrevent';
 import { GetUserWorkoutListRequest } from '../../apis/api/workoutApi'; // API 호출 import
 import { GetUserWorkoutListResponseDto } from '../../apis/response/workout'; // API 응답 타입 import
 
-interface WorkoutDetails {
-    workoutDetailCreatedDate: string;
-    workout_name: string;
-    reps: number;
-    sets: number;
-    rest_time: string;
-}
-
 interface Entry {
     title: string;
     diaryContent: string;
@@ -24,8 +16,7 @@ interface Entry {
 }
 
 const CustomCalendarDetail = () => {
-    const { details } = useCalendarDetails(); // context에서 선택된 날짜 정보 가져오기
-    const { selectedDate, updateSelectedDate } = UseCalendar(); // 선택된 날짜 업데이트 함수
+    const { updateSelectedDate } = UseCalendar(); // 선택된 날짜 업데이트 함수
     const navigate = useNavigate();
     const { handleMouseDown, handleMouseUp, handleMouseMove } = useDragPrevent(); // 커스텀 훅 사용
 
@@ -59,7 +50,6 @@ const CustomCalendarDetail = () => {
             console.error('운동 데이터를 가져오는데 실패했습니다.', error);
         }
     };
-
 
     // 컴포넌트가 처음 렌더링될 때 한 번만 데이터를 가져오기
     useEffect(() => {

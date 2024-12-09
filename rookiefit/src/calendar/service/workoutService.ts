@@ -1,14 +1,6 @@
 import moment from 'moment';
 import { axiosInstance } from '../../apis/api';
 
-interface WorkoutDetail {
-    workout_name: string;
-    reps: string;
-    sets: string;
-    rest_time: string;
-    workoutDetailCreatedDate: string;
-}
-
 interface SubmitWorkoutData {
     title: string;
     diaryContent: string;

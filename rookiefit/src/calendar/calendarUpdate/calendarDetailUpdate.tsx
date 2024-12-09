@@ -96,7 +96,7 @@ const CalendarDetailUpdate = () => {
                 </div>
                 <div className="calendar-write-add-detail">
                     {/* 운동 세부사항 추가된 부분 */}
-                    <AddedDetails workoutDetails={workoutDetails} />
+                    {/* <AddedDetails workoutDetails={workoutDetails} /> */}
                     <div className="diary-input-section">
                         <textarea
                             value={diaryContent}
