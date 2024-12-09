@@ -4,12 +4,7 @@ import { GetDietDataResponseDto } from "../../apis/response/diet";
 import FoodSearchBar from "./foodSearchBar";
 import FoodSearchResult from "./foodSearchResult";
 import "./foodList.css";
-import {
-    fetchDietDataDetail,
-    fetchDietDataRequest,
-    addFoodToDiet,
-    deleteFoodFromDiet,
-} from "../service/dietService";
+import { fetchDietDataDetail, fetchDietDataRequest, addFoodToDiet, deleteFoodFromDiet, } from "../service/dietService";
 
 const FoodList = () => {
     const { foodDetails, setFoodDetails, selectedDate } = useFoodContext();
