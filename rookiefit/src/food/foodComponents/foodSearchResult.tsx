@@ -26,7 +26,7 @@ const FoodSearchResult = ({
     useEffect(() => {
         // Reset visible entries when filteredEntries change
         setVisibleEntries(filteredEntries.slice(0, itemsToShow));
-        setItemsToShow(5); // Reset items to show
+        setItemsToShow(20); // Reset items to show
     }, [filteredEntries]);
 
     // 스크롤 이벤트 핸들러

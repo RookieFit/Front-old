@@ -5,6 +5,7 @@ import Comment from './communityComment';
 import './communityPostBox.css';
 import { UserCommunityAnswerRequest } from '../../../apis/api/communityApi'; // 수정된 API import
 import { getJwtToken } from '../../../authCheck/storageUtils';
+import { LoDashImplicitNumberArrayWrapper } from 'lodash';
 
 // Post 인터페이스 정의
 interface Post {
@@ -14,14 +15,22 @@ interface Post {
     date: string;
     images: string[];
     content: string;
-    comments: { id: number; author: string; date: string; content: string }[];
+    comments: PostComment[];
     id: number;
+}
+
+interface PostComment {
+    communityListId: number;
+    answerContent: string;
+    answerCreatedDate: string;
+    communityAnswerListId: number;
+    communityAnswerauthor: string;
 }
 
 // CommunityPostBox 컴포넌트의 props 인터페이스 정의
 interface CommunityPostBoxProps {
     post: Post;
-    currentUser: string; // 현재 사용자
+    currentUser: number; // 현재 사용자
 }
 
 function CommunityPostBox({ post, currentUser }: CommunityPostBoxProps) {
@@ -39,7 +48,7 @@ function CommunityPostBox({ post, currentUser }: CommunityPostBoxProps) {
         arrows: true,
         adaptiveHeight: true,
     };
-
+    //MARK: 댓글 작성 api 들어가야되고 댓글 response랑 post response()
     const handleAddComment = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
@@ -53,12 +62,17 @@ function CommunityPostBox({ post, currentUser }: CommunityPostBoxProps) {
             author: currentUser,  // 댓글 작성자
         };
 
-        setComments((prevComments) => [...prevComments, {
-            id: Date.now(),
-            author: currentUser,
-            date: new Date().toLocaleString(),
-            content: newComment
-        }]);
+        setComments((prevComments) => [
+            ...prevComments,
+            {
+                communityListId: post.id, // 게시물 ID
+                communityAnswerListId: currentUser, // 댓글 작성자 (userId 또는 유니크 식별자 사용)
+                answerContent: newComment,  // 댓글 내용
+                answerCreatedDate: new Date().toISOString(),  // 작성 시간 (ISO 포맷)
+                communityAnswerauthor: currentUser,
+            },
+        ]);
+
         setNewComment(''); // 댓글 입력 필드 비우기
 
         try {
@@ -72,7 +86,7 @@ function CommunityPostBox({ post, currentUser }: CommunityPostBoxProps) {
     };
 
     const handleDeleteComment = (commentId: number) => {
-        setComments((prevComments) => prevComments.filter((comment) => comment.id !== commentId));
+        setComments((prevComments) => prevComments.filter((comment) => comment.communityAnswerListId !== communityAnswerListId));
         // 실제 삭제 요청을 위한 API 호출 로직을 추가할 수 있습니다.
     };
 
@@ -133,8 +147,14 @@ function CommunityPostBox({ post, currentUser }: CommunityPostBoxProps) {
             <div className={`comments-section ${isCommentOpen ? 'open' : ''}`}>
                 {comments.map((comment) => (
                     <Comment
-                        key={comment.id}
-                        comment={comment}
+                        key={comment.answerCreatedDate} // 유니크한 키로 `answerCreatedDate` 사용
+                        comment={{
+                            communityListId: comment.communityListId, // `id`를 `communityListId`로 매핑
+                            author: comment.communityAnswerauthor,       // 작성자 `author`
+                            answerCreatedDate: comment.answerCreatedDate, // 작성 시간 `answerCreatedDate`로 매핑
+                            answerContent: comment.answerContent, // 댓글 내용 `answerContent`로 매핑
+                            communityAnswerListId: comment.communityAnswerListId
+                        }}
                         currentUser={currentUser}
                         onDelete={handleDeleteComment}
                     />
