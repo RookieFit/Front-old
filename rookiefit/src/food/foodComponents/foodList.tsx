@@ -36,7 +36,7 @@ const FoodList = () => {
             try {
                 const newDietDetail: DietDetails = {
                     food_name: selectedFood.foodName,
-                    food_first_category: selectedFood.food_First_Category || "",
+                    food_first_category: selectedFood.foodFirstCategory || "",
                     chocdf: selectedFood.chocdf || 0,
                     prot: selectedFood.prot || 0,
                     fatce: selectedFood.fatce || 0,
