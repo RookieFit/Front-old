@@ -1,17 +1,17 @@
 import React, { useState } from 'react';
 import './communityComment.css';
 
-interface CommentProps {
+export interface CommentProps {
     comment: {
         communityListId: number; // 게시글 ID
         answerContent: string; // 댓글 내용
         answerCreatedDate: string; // 댓글 작성일
-        communityAnswerListId: string; // 댓글 ID
+        communityAnswerListId: number; // 댓글 ID
         author: string; // 댓글 작성자 ID (현재 사용자를 비교)
     };
     currentUser: string; // 현재 사용자
-    onDelete?: (id: string) => void; // 삭제 처리 함수
-    onEdit?: (id: string, newContent: string) => void; // 수정 처리 함수
+    onDelete?: (id: number) => void; // 삭제 처리 함수
+    onEdit?: (id: number, newContent: string) => void; // 수정 처리 함수
 }
 
 function CommunityComment({ comment, currentUser, onDelete, onEdit }: CommentProps) {

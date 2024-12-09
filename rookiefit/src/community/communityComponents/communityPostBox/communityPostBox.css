@@ -2,7 +2,6 @@
 .post-box {
     position: relative;
     width: 700px;
-    /* 최대 너비를 적절히 조정 */
     margin: 20px auto;
     background-color: #f4f4f4;
     border-radius: 12px;
@@ -133,6 +132,10 @@
 .comments-section {
     display: none;
     margin-top: 15px;
+    max-height: 300px;
+    /* 최대 높이 지정 */
+    overflow-y: auto;
+    /* 스크롤 활성화 */
 }
 
 .comments-section.open {

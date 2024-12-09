@@ -8,31 +8,19 @@ interface CommunityCategoriesProps {
     categories: Category[];
     activeCategory: Category;
     onCategoryClick: (category: Category) => void;
+    isGridMode: boolean;  // 그리드 모드 상태 전달
 }
 
-function CommunityCategories({ categories, activeCategory, onCategoryClick }: CommunityCategoriesProps) {
+function CommunityCategories({ categories, activeCategory, onCategoryClick, isGridMode }: CommunityCategoriesProps) {
     const navigate = useNavigate();
 
-    const CATEGORY_ROUTES = {
-        전체: '/community',
-        바프: '/community/bodyprofile',
-        고민: '/community/concern',
-        정보: '/community/information',
-        친목: '/community/friendship',
-        공지: '/community/announcement'
-    } as const;
-
+    // 카테고리 클릭 시 URL 업데이트
     const handleCategoryClick = (category: Category) => {
-        const newPath = CATEGORY_ROUTES[category];
-        onCategoryClick(category);
+        onCategoryClick(category);  // 부모 컴포넌트로 카테고리 상태 전달
 
-        if (newPath !== window.location.pathname) {
-            if (category === '전체') {
-                navigate(newPath, { replace: true });
-            } else {
-                navigate(newPath);
-            }
-        }
+        // URL 쿼리 파라미터를 사용하여 카테고리와 모드 업데이트
+        const currentMode = isGridMode ? 'grid' : 'list';
+        navigate(`/community?category=${category}&mode=${currentMode}`);
     };
 
     // 공지 상수로 정의
@@ -46,9 +34,8 @@ function CommunityCategories({ categories, activeCategory, onCategoryClick }: Co
             {sortedCategories.map((category) => (
                 <button
                     key={category}
-                    className={`community-category-button ${activeCategory === category ? 'active' : ''} ${category === NOTICE ? 'announcement' : ''
-                        }`}
-                    onClick={() => handleCategoryClick(category)}
+                    className={`community-category-button ${activeCategory === category ? 'active' : ''} ${category === NOTICE ? 'announcement' : ''}`}
+                    onClick={() => handleCategoryClick(category)} //여기서 URL을 업데이트하여 카테고리 변경
                 >
                     {category}
                 </button>

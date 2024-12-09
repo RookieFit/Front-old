@@ -27,27 +27,39 @@ const CommunityList = () => {
     };
 
     const sortPostsById = (posts: typeof dummyPosts) => {
-        return posts.slice().sort((a, b) => a.id - b.id); // ID 기준 오름차순
+        return posts.slice().sort((a, b) => a.id - b.id);
     };
 
     const [selectedCategory, setSelectedCategory] = useState<Category>(getInitialCategory());
     const [isGridMode, setIsGridMode] = useState<boolean>(getInitialMode());
-    const [loadedPosts, setLoadedPosts] = useState<typeof dummyPosts>([]); // 현재 로드된 게시물
-    const [isLoading, setIsLoading] = useState<boolean>(false); // 로딩 상태
+    const [loadedPosts, setLoadedPosts] = useState<typeof dummyPosts>([]);
+    const [isLoading, setIsLoading] = useState<boolean>(false);
 
-    // 게시물을 카테고리별로 필터링하고 정렬
     useEffect(() => {
         const filtered = selectedCategory === '전체'
-            ? dummyPosts.slice(0, 10) // 처음 10개만
+            ? dummyPosts.slice(0, 10)
             : dummyPosts.filter((post) => post.category === selectedCategory).slice(0, 10);
 
-        const sorted = sortPostsById(filtered); // ID 순으로 정렬
+        const sorted = sortPostsById(filtered);
         setLoadedPosts(sorted);
     }, [selectedCategory]);
 
-    // 스크롤바가 바닥에 도달했을 때 게시물 추가 로딩
+    useEffect(() => {
+        const params = new URLSearchParams(location.search);
+        const categoryFromUrl = params.get('category') as Category;
+        const modeFromUrl = params.get('mode');
+
+        // URL에서 category와 mode를 읽어와 상태를 설정
+        if (CATEGORIES.includes(categoryFromUrl)) {
+            setSelectedCategory(categoryFromUrl);
+        }
+        if (modeFromUrl) {
+            setIsGridMode(modeFromUrl === 'grid');
+        }
+    }, [location.search]);
+
     const loadMorePosts = useCallback(() => {
-        if (isLoading) return; // 로딩 중이면 추가 로딩 방지
+        if (isLoading) return;
         setIsLoading(true);
 
         setTimeout(() => {
@@ -56,27 +68,26 @@ const CommunityList = () => {
                 ? dummyPosts.slice(startIdx, startIdx + 10)
                 : dummyPosts.filter((post) => post.category === selectedCategory).slice(startIdx, startIdx + 10);
 
-            const sorted = sortPostsById(newPosts); // ID 순으로 정렬
+            const sorted = sortPostsById(newPosts);
             setLoadedPosts((prevPosts) => [...prevPosts, ...sorted]);
             setIsLoading(false);
-        }, 300); // 3초 지연
+        }, 300);
     }, [isLoading, loadedPosts, selectedCategory]);
 
-    // IntersectionObserver를 사용하여 스크롤이 끝에 도달했을 때 추가 로드
     useEffect(() => {
         const observer = new IntersectionObserver(
             ([entry]) => {
                 if (entry.isIntersecting) {
-                    loadMorePosts(); // 스크롤이 끝에 도달했을 때 게시물 추가
+                    loadMorePosts();
                 }
             },
             {
-                rootMargin: '100px', // 스크롤이 100px 남았을 때 로드 시작
+                rootMargin: '100px',
             }
         );
 
         const sentinel = document.getElementById('sentinel');
-        if (sentinel && !isGridMode) { // 그리드 모드가 아닐 때만 Observer 활성화
+        if (sentinel && !isGridMode) {
             observer.observe(sentinel);
         }
 
@@ -89,11 +100,13 @@ const CommunityList = () => {
 
     const handleCategoryClick = (category: Category) => {
         setSelectedCategory(category);
-        navigate(`/community?category=${category}&mode=${isGridMode ? 'grid' : 'list'}`);
+        // 현재 모드를 유지하면서 카테고리만 변경
+        const currentMode = isGridMode ? 'grid' : 'list';
+        navigate(`/community?category=${category}&mode=${currentMode}`);
     };
 
     const toggleMode = () => {
-        const newMode = isGridMode ? 'list' : 'grid';
+        const newMode = !isGridMode ? 'grid' : 'list';
         setIsGridMode(!isGridMode);
         navigate(`/community?category=${selectedCategory}&mode=${newMode}`);
     };
@@ -118,6 +131,7 @@ const CommunityList = () => {
                             categories={CATEGORIES}
                             activeCategory={selectedCategory}
                             onCategoryClick={handleCategoryClick}
+                            isGridMode={isGridMode}  // isGridMode 전달
                         />
                     </div>
                     <button onClick={toggleMode} className="toggle-mode-button">
@@ -137,7 +151,7 @@ const CommunityList = () => {
                 </div>
             </div>
 
-            <div id="sentinel"></div> {/* IntersectionObserver의 타겟 */}
+            <div id="sentinel"></div>
 
             <CommunityFloatingButtons
                 onWritePost={handleWritePost}
