@@ -9,10 +9,9 @@ const FoodAddPage = () => {
     const location = useLocation();
 
     const { searchFoodName } = location.state || {};
-    const [foodAddNameState, setAddFoodName] = useState<string>(searchFoodName || "");
 
     // 상태 관리: 사용자 입력 값
-    const [foodName, setFoodName] = useState<string>(foodAddNameState);
+    const [foodName, setFoodName] = useState<string>(searchFoodName);
     const [calories, setCalories] = useState<number | string>("");
     const [carbs, setCarbs] = useState<number | string>("");
     const [protein, setProtein] = useState<number | string>("");
@@ -56,7 +55,7 @@ const FoodAddPage = () => {
                     <input
                         type="text"
                         id="foodName"
-                        value={foodAddNameState}
+                        value={foodName}
                         onChange={(e) => setFoodName(e.target.value)}
                         required
                     />
