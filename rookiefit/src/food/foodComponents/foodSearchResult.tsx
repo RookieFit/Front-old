@@ -8,7 +8,8 @@ interface FoodSearchResultProps {
     handleFoodClick: (food: GetDietDataResponseDto) => void;
     selectedFood: GetDietDataResponseDto | null;
     handleAddFood: () => void;
-    handleBack: () => void; // 뒤로가기 핸들러 추가
+    handleBack: () => void;
+    searchQuery: string; // 검색어 추가
 }
 
 const FoodSearchResult = ({
@@ -16,9 +17,42 @@ const FoodSearchResult = ({
     handleFoodClick,
     selectedFood,
     handleAddFood,
-    handleBack, // 여기서 handleBack을 받아옴
+    handleBack,
+    searchQuery, // 검색어를 받아옴
 }: FoodSearchResultProps) => {
-    const navigate = useNavigate(); // useNavigate 초기화
+    const navigate = useNavigate();
+
+    // 한글 포함 여부 체크 함수
+    const containsKorean = (text: string) => /[가-힣]/.test(text);
+
+    // 정렬 함수: 검색어와의 연관성 및 한글 포함 여부에 따라 정렬
+    const sortByRelevance = (entries: GetDietDataResponseDto[], query: string) => {
+        return entries.slice().sort((a, b) => {
+            const aContainsKorean = containsKorean(a.foodName);
+            const bContainsKorean = containsKorean(b.foodName);
+
+            // 1. 한글 포함 항목 우선
+            if (aContainsKorean && !bContainsKorean) return -1;
+            if (!aContainsKorean && bContainsKorean) return 1;
+
+            // 2. 검색어로 시작하는 항목 우선
+            const aStartsWithQuery = a.foodName.startsWith(query);
+            const bStartsWithQuery = b.foodName.startsWith(query);
+
+            if (aStartsWithQuery && !bStartsWithQuery) return -1;
+            if (!aStartsWithQuery && bStartsWithQuery) return 1;
+
+            // 3. 검색어 포함 여부
+            const aIncludesQuery = a.foodName.includes(query);
+            const bIncludesQuery = b.foodName.includes(query);
+
+            if (aIncludesQuery && !bIncludesQuery) return -1;
+            if (!aIncludesQuery && bIncludesQuery) return 1;
+
+            // 4. 기본 사전순 정렬
+            return a.foodName.localeCompare(b.foodName, "ko", { sensitivity: "base" });
+        });
+    };
 
     return (
         <div>
@@ -32,7 +66,6 @@ const FoodSearchResult = ({
                     <p>탄수화물: {selectedFood.chocdf} g</p>
                     <p>단백질: {selectedFood.prot} g</p>
                     <p>지방: {selectedFood.fatce} g</p>
-                    {/* 선택된 음식에 대해 "뒤로가기" 및 "추가하기" 버튼 표시 */}
                     <div className="food-search-result-add-food-button-container">
                         <button
                             onClick={handleBack}
@@ -49,7 +82,7 @@ const FoodSearchResult = ({
                     </div>
                 </div>
             ) : filteredEntries.length > 0 ? (
-                filteredEntries.map((food, index) => (
+                sortByRelevance(filteredEntries, searchQuery).map((food, index) => (
                     <div
                         key={index}
                         className="food-search-result-food-item"
