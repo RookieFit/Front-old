@@ -98,10 +98,6 @@ const CommunityList = () => {
         navigate(`/community?category=${selectedCategory}&mode=${newMode}`);
     };
 
-    const scrollToTop = () => {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    };
-
     const handleWritePost = () => {
         navigate('/community/write');
     };
@@ -144,7 +140,6 @@ const CommunityList = () => {
             <div id="sentinel"></div> {/* IntersectionObserver의 타겟 */}
 
             <CommunityFloatingButtons
-                onScrollToTop={scrollToTop}
                 onWritePost={handleWritePost}
                 onSearch={handleSearch}
             />

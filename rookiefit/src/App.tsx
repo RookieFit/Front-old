@@ -7,7 +7,6 @@ import SignUpPage from './signUp/signUpPage';
 import FindId from './findId/findId';
 import PasswordReset from './passwordReset/passwordReset';
 import MyPage from './mypage/myPage';
-import MyPageEdit from './mypage/myPageEdit';
 import CommunityList from './community/communityList/communityList';
 import CommunityDetail from './community/communityDetail/communityDetail';
 import CommunityWrite from './community/communityWrite';
@@ -29,6 +28,7 @@ import NoticeWrite from './admin/noticeWrite';
 import TrainerAuth from './admin/trainerAuth';
 import { useEffect, useState } from 'react';
 import { checkLoginStatus } from './authCheck/authUtils';
+import FoodAddPage from './food/foodComponents/foodAddPage';
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -64,7 +64,6 @@ function App() {
         {/* 인증된 사용자만 접근 가능한 페이지 */}
         <Route path="/seenPage" element={<SeenPage />} />
         <Route path="/mypage" element={isLoggedIn ? <MyPage /> : <SigninPage />} />
-        <Route path="/mypageedit" element={isLoggedIn ? <MyPageEdit /> : <SigninPage />} />
         <Route path="/calendar" element={isLoggedIn ? <CalenderPage /> : <SigninPage />} />
         <Route path="/calendar/write" element={isLoggedIn ? <CalenderPage /> : <SigninPage />} />
         <Route path="/calendar/detail" element={isLoggedIn ? <CalenderPage /> : <SigninPage />} />
@@ -81,6 +80,8 @@ function App() {
         <Route path="/community/searchresult" element={isLoggedIn ? <CommunitySearchResult /> : <SigninPage />} />
         <Route path="/diet" element={isLoggedIn ? <FoodPage /> : <SigninPage />} />
         <Route path="/food" element={isLoggedIn ? <FoodPage /> : <SigninPage />} />
+        <Route path="/food" element={isLoggedIn ? <FoodPage /> : <SigninPage />} />
+        <Route path="/food/add" element={isLoggedIn ? <FoodAddPage /> : <SigninPage />} /> {/* 추가된 경로 */}
         <Route path="/market" element={isLoggedIn ? <MarketPage /> : <SigninPage />} />
         <Route path="/market/detail/:id" element={isLoggedIn ? <MarketDetail /> : <SigninPage />} />
         <Route path="/market/write" element={isLoggedIn ? <MarketPost /> : <SigninPage />} />

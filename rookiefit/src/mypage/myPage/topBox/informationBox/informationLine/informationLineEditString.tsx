@@ -3,33 +3,31 @@ import './informationLine.css';
 
 interface InformationLineEditProps {
     title: string;
-    value?: string;
+    value: string;
     onChange?: (value: string) => void;
 }
 
-const InformationLineEdit = ({ title, value = '', onChange }: InformationLineEditProps) => {
+const InformationLineEditString = ({ title, value, onChange }: InformationLineEditProps) => {
     const [inputValue, setInputValue] = useState(value);
     const [isDuplicate, setIsDuplicate] = useState(false);
     const [isInformationTextareaClicked, setIsInformationTextareaClicked] = useState(false);
 
     // 더미 데이터로 중복 체크
-    const mockDuplicateNicknames = ['user1', 'admin', 'guest'];
+    const mockDuplicateNicknames = ['asd', 'asdasd', 'asd123'];
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const newValue = e.target.value;
+        const newValue: string = e.target.value;
         setInputValue(newValue);
 
         // 중복 여부 확인
         if (title === '닉네임') {
             setIsDuplicate(mockDuplicateNicknames.includes(newValue));
         }
-
         // 상위 컴포넌트로 변경 내용 전달
         if (onChange) {
             onChange(newValue);
         }
     };
-
     const showNotification = (message: string) => {
         return (
             <div className="my-information-nickname-alter">
@@ -57,4 +55,4 @@ const InformationLineEdit = ({ title, value = '', onChange }: InformationLineEdi
     );
 };
 
-export default InformationLineEdit;
+export default InformationLineEditString;

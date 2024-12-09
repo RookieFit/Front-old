@@ -5,7 +5,7 @@ interface Props {
     value: string;
 }
 
-const InformationLine = ({ title, value, }: Props) => {
+const InformationLineString = ({ title, value, }: Props) => {
     return (
         <div className="my-information-box">
             <div className="my-information-little-box">{title}</div>
@@ -14,4 +14,4 @@ const InformationLine = ({ title, value, }: Props) => {
     )
 };
 
-export default InformationLine;
+export default InformationLineString;

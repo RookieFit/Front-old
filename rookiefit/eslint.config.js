@@ -7,7 +7,9 @@ import tseslint from 'typescript-eslint'
 export default tseslint.config(
   { ignores: ['dist'] },
   {
-    extends: [js.configs.recommended, ...tseslint.configs.recommended],
+    parser: '@typescript-eslint/parser',  // TypeScript 파서 사용
+    extends: [js.configs.recommended, ...tseslint.configs.recommended, 'plugin:@typescript-eslint/recommended',  // TypeScript에 대한 권장 규칙 사용
+    ],
     files: ['**/*.{ts,tsx}'],
     languageOptions: {
       ecmaVersion: 2020,
@@ -25,7 +27,9 @@ export default tseslint.config(
       ],
       'react/react-in-jsx-scope': 'off', // 1번
       'react/jsx-uses-react': 'off', // 2번
-      'no-unused-vars': 'off',  // 사용하지 않는 변수 경고를 무시
+ 
+      "no-unused-vars": "off",
+      "react/prop-types": "off"
     },
   },
 )

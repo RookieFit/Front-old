@@ -1,41 +1,22 @@
+import { useNavigate } from 'react-router-dom';
 import React, { useState } from 'react';
 import './seenPostGridProps.css';
 import CommunityPagination from '../../../../community/communityComponents/communityPagination';
-import { useDragPrevent } from '../../../../components/useDragPrevent';
-
-// 카테고리 타입 정의
-export type Category = '전체' | '바프' | '고민' | '정보' | '친목' | '공지';
-
-// 댓글 타입 정의
-export interface Comment {
-    id: number;
-    postId: number;
-    author: string;
-    date: string;
-    content: string;
-}
+import PostGrid from '../../../../components/postGrid';
 
 // 게시글 타입 정의
 export interface Post {
     id: number;
-    category: Category;
     title: string;
     author: string;
     date: string;
     images: string[];
     content: string;
-    comments: Comment[];
 }
 
-interface SeenPostGridProps {
-    posts: Post[];
-    onPostClick: (id: number) => void; // 클릭 시 게시글 상세 페이지로 이동하는 함수
-}
-
-const SeenPostGridProps = ({ posts, onPostClick, }: SeenPostGridProps) => {
-    const { handleMouseDown, handleMouseUp, handleMouseMove } = useDragPrevent(); // 커스텀 훅 사용
+const SeenPostGridProps = ({ posts }: { posts: Post[] }) => {
+    const navigate = useNavigate();
     const [seenPage, setSeenPage] = useState(1);
-    
     const postsPerPage = 3;
 
     const indexOfLastPost = seenPage * postsPerPage;
@@ -46,35 +27,34 @@ const SeenPostGridProps = ({ posts, onPostClick, }: SeenPostGridProps) => {
         setSeenPage(newPage);
     };
 
+    const handlePostClick = (id: number) => {
+        navigate(`/community/detail/${id}`);
+    };
     return (
         <div>
-            <div className="seen-feed-post-grid">
-                {seenPosts.map((post) => (
-                    <div
-                        key={post.id}
-                        className="seen-feed-post-grid-item"
-                        onMouseDown={handleMouseDown}
-                        onMouseUp={() => handleMouseUp(() => onPostClick(post.id))}
-                        onMouseMove={handleMouseMove}
-                    >
-                        <div className="seen-feed-post-grid-header">
-                            {post.images[0] && (
+            <PostGrid<Post>
+                className='seen-feed-post-grid'
+                posts={seenPosts}// Post 타입을 지정
+                onPostClick={handlePostClick}
+                renderItem={(post: Post) => (
+                    <div className="seen-feed-post-grid-item">
+                        <div className="seen-feed-post-grid-entry-thumbnaill">
+                            {post.images[0] ? (
                                 <img
-                                    src={post.images[0]}
-                                    alt="Entry Thumbnail"
-                                    className="seen-feed-post-grid-entry-thumbnail"
+                                    src={post.images[1]}
+                                    alt={post.title}
+                                    className="seen-feed-grid-image"
                                 />
-                            )}
-                            <div className="seen-feed-post-grid-text">
-                                <p><strong>작성 날짜:</strong> {post.date}</p>
-                                <p><strong>카테고리:</strong> {post.category}</p>
-                                <p><strong>제목:</strong> {post.title}</p>
-                                <p><strong>일지 내용:</strong> {post.content.slice(0, 50)}...</p>
-                            </div>
+                            ) : null /* 이미지가 없으면 빈 컨테이너만 렌더링 */}
+                        </div>
+                        <div className='seen-feed-grid-detail'>
+                            <h3>{post.title}</h3>
+                            <p>{post.date}</p>
+                            <p>{post.content.slice(0, 50)}...</p>
                         </div>
                     </div>
-                ))}
-            </div>
+                )}
+            />
             <CommunityPagination
                 currentPage={seenPage}
                 totalPages={Math.ceil(posts.length / postsPerPage)}

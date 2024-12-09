@@ -1,15 +1,14 @@
 export default interface InputUserDietListRequestDto {
-    token: string
     diet_created_date: string
     total_calories: number
-    dietDetails: []
+    dietDetails: DietDetail[]
 }
 
 export interface DietDetail {
-    food_name: string;
-    food_first_category: string;
+    foodName: string;
+    foodFirstCategory: string;
     chocdf: number;
     prot: number;
-    fatce: number;
+    fat: number;
     enerc: number;
 }

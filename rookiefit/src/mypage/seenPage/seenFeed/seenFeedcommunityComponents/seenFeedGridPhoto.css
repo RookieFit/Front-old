@@ -1,20 +1,23 @@
-.seen-feed-container {
-    display: grid;
-    gap: 10px; 
-    padding: 10px;
+.seen-feed-photo-post-grid {
+    gap: 0;
+    padding: 0 0 0 0.1%;
 }
 
-.seen-feed-item {
-    width: 175px;  
-    height: 175px; 
+.seen-feed-photo-item {
+    background-color: #827e7ed6;
+    width: 95%;
+    height: 98%;
     display: flex;
+    flex-direction: column;
+    margin: 7% 0 0 5px;
     justify-items: center;
     align-items: center;
-    overflow: hidden; 
+    overflow: hidden;
 }
 
-.seen-feed-item img {
-    width: 100%;
-    height: 100%; 
+.seen-feed-grid-image {
+    width: 90%;
+    height: 100%;
+    margin: 4px auto;
     object-fit: cover;
 }
