@@ -10,11 +10,7 @@ export const InputUserWorkoutListRequest = async (requestBody: InputUserWorkoutL
 };
 
 export const GetUserWorkoutListRequest = async (requestBody: GetUserWorkoutListRequestDto) => {
-    return axiosInstance.get('/user/userworkoutlistdata', {
-        params: {
-            token: requestBody.token,
-        },
-    })
+    return axiosInstance.get('/user/userworkoutlistdata')
         .then(responseHandler<GetUserWorkoutListResponseDto>)
         .catch(errorHandler);
 };
@@ -33,7 +29,6 @@ export const DeleteUserWorkoutListRequest = async (requestBody: DeleteUserWorkou
     return axiosInstance.delete('/user/delete-userworkoutlistdata', {
         params: {
             workoutCreatedDate: requestBody.workoutCreatedDate,
-            token: requestBody.token,
         },
     })
         .then(responseHandler<DeleteUserWorkoutListResponseDto>)

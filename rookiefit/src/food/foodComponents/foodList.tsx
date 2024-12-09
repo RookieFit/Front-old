@@ -4,12 +4,7 @@ import { GetDietDataResponseDto } from "../../apis/response/diet";
 import FoodSearchBar from "./foodSearchBar";
 import FoodSearchResult from "./foodSearchResult";
 import "./foodList.css";
-import {
-    fetchDietDataDetail,
-    fetchDietDataRequest,
-    addFoodToDiet,
-    deleteFoodFromDiet,
-} from "../service/dietService";
+import { fetchDietDataDetail, fetchDietDataRequest, addFoodToDiet, deleteFoodFromDiet, } from "../service/dietService";
 
 const FoodList = () => {
     const { foodDetails, setFoodDetails, selectedDate } = useFoodContext();
@@ -152,7 +147,8 @@ const FoodList = () => {
                         handleFoodClick={setSelectedFood}
                         selectedFood={selectedFood}
                         handleAddFood={handleAddFood}
-                        handleBack={handleBack}  // 뒤로가기 핸들러 추가
+                        handleBack={handleBack} // 뒤로가기 핸들러 추가
+                        searchQuery={searchResult}
                     />
                 ) : (
                     <div className="food-list-items">

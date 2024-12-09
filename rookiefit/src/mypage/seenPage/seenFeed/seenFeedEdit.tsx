@@ -23,12 +23,12 @@ const SeenFeedEdit = ({ role, showBackground }: Props) => {
                         placeholder={isTextareaFocused ? '' : '입력하세요'}
                     />
                     <div className="seen-feed-photo">트레이너 대표 사진</div>
-                    <SeenFeedGridPhoto />
+                    <SeenFeedGridPhoto posts={[]} />
                 </div>
             ) : (
                 <>
                     <div className="seen-feed-photo">사진첩</div>
-                    <SeenFeedGridPhoto />
+                    <SeenFeedGridPhoto posts={[]} />
                 </>
             )}
         </div>

@@ -8,7 +8,8 @@ interface FoodSearchResultProps {
     handleFoodClick: (food: GetDietDataResponseDto) => void;
     selectedFood: GetDietDataResponseDto | null;
     handleAddFood: () => void;
-    handleBack: () => void; // 뒤로가기 핸들러 추가
+    handleBack: () => void;
+    searchQuery: string; // 검색어 추가
 }
 
 const FoodSearchResult = ({
@@ -16,56 +17,42 @@ const FoodSearchResult = ({
     handleFoodClick,
     selectedFood,
     handleAddFood,
-    handleBack, // 여기서 handleBack을 받아옴
+    handleBack,
+    searchQuery, // 검색어를 받아옴
 }: FoodSearchResultProps) => {
-    const [visibleEntries, setVisibleEntries] = useState<GetDietDataResponseDto[]>([]);
-    const [itemsToShow, setItemsToShow] = useState(5);
-    const [isLoading, setIsLoading] = useState(false);
+    const navigate = useNavigate();
 
-    // 초기 표시 데이터 설정
-    useEffect(() => {
-        // Reset visible entries when filteredEntries change
-        setVisibleEntries(filteredEntries.slice(0, itemsToShow));
-        setItemsToShow(20); // Reset items to show
-    }, [filteredEntries]);
+    // 한글 포함 여부 체크 함수
+    const containsKorean = (text: string) => /[가-힣]/.test(text);
 
-    // 스크롤 이벤트 핸들러
-    const handleScroll = useCallback(() => {
-        // Check if we're near the bottom of the page and not already loading
-        if (
-            window.innerHeight + document.documentElement.scrollTop + 100 >=
-            document.documentElement.offsetHeight &&
-            !isLoading &&
-            visibleEntries.length < filteredEntries.length
-        ) {
-            loadMoreItems();
-        }
-    }, [visibleEntries, filteredEntries, isLoading]);
+    // 정렬 함수: 검색어와의 연관성 및 한글 포함 여부에 따라 정렬
+    const sortByRelevance = (entries: GetDietDataResponseDto[], query: string) => {
+        return entries.slice().sort((a, b) => {
+            const aContainsKorean = containsKorean(a.foodName);
+            const bContainsKorean = containsKorean(b.foodName);
 
-    // 추가 항목 로드
-    const loadMoreItems = useCallback(() => {
-        setIsLoading(true);
+            // 1. 한글 포함 항목 우선
+            if (aContainsKorean && !bContainsKorean) return -1;
+            if (!aContainsKorean && bContainsKorean) return 1;
 
-        // Simulate network delay
-        setTimeout(() => {
-            const newItemsToShow = Math.min(
-                itemsToShow + 5,
-                filteredEntries.length
-            );
+            // 2. 검색어로 시작하는 항목 우선
+            const aStartsWithQuery = a.foodName.startsWith(query);
+            const bStartsWithQuery = b.foodName.startsWith(query);
 
-            setItemsToShow(newItemsToShow);
-            setVisibleEntries(filteredEntries.slice(0, newItemsToShow));
-            setIsLoading(false);
-        }, 500); // 0.5초 지연
-    }, [filteredEntries, itemsToShow]);
+            if (aStartsWithQuery && !bStartsWithQuery) return -1;
+            if (!aStartsWithQuery && bStartsWithQuery) return 1;
 
-    // 스크롤 이벤트 등록
-    useEffect(() => {
-        window.addEventListener("scroll", handleScroll);
-        return () => {
-            window.removeEventListener("scroll", handleScroll);
-        };
-    }, [handleScroll]);
+            // 3. 검색어 포함 여부
+            const aIncludesQuery = a.foodName.includes(query);
+            const bIncludesQuery = b.foodName.includes(query);
+
+            if (aIncludesQuery && !bIncludesQuery) return -1;
+            if (!aIncludesQuery && bIncludesQuery) return 1;
+
+            // 4. 기본 사전순 정렬
+            return a.foodName.localeCompare(b.foodName, "ko", { sensitivity: "base" });
+        });
+    };
 
     return (
         <div>
@@ -79,7 +66,6 @@ const FoodSearchResult = ({
                     <p>탄수화물: {selectedFood.chocdf} g</p>
                     <p>단백질: {selectedFood.prot} g</p>
                     <p>지방: {selectedFood.fatce} g</p>
-
                     <div className="food-search-result-add-food-button-container">
                         <button
                             onClick={handleBack}
@@ -95,30 +81,25 @@ const FoodSearchResult = ({
                         </button>
                     </div>
                 </div>
-            ) : visibleEntries.length > 0 ? (
-                <>
-                    {visibleEntries.map((food, index) => (
-                        <div
-                            key={index}
-                            className="food-search-result-food-item"
-                            onClick={() => handleFoodClick(food)}
-                        >
-                            <div className="food-item-left">
-                                <div className="food-item-name">{food.foodName}</div>
-                                <div className="food-item-calories">{food.enerc} kcal</div>
-                            </div>
+            ) : filteredEntries.length > 0 ? (
+                sortByRelevance(filteredEntries, searchQuery).map((food, index) => (
+                    <div
+                        key={index}
+                        className="food-search-result-food-item"
+                        onClick={() => handleFoodClick(food)}
+                    >
+                        <div className="food-item-left">
+                            <div className="food-item-name">{food.foodName}</div>
+                            <div className="food-item-calories">{food.enerc} kcal</div>
                         </div>
-                    ))}
-                    {isLoading && (
-                        <div className="loading-indicator">Loading...</div>
-                    )}
-                </>
+                    </div>
+                ))
             ) : (
                 <div className="food-search-result-no-results">
                     <p>검색 결과가 없습니다.</p>
                     <button
                         className="food-add-button"
-                        onClick={() => navigate("/food/add")}
+                        onClick={() => navigate("/food/add", { state: { searchFoodName: searchQuery } })}
                     >
                         직접 입력하기
                     </button>
