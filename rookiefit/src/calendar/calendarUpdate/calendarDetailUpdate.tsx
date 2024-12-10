@@ -6,6 +6,7 @@ import { useCalendarDetails } from '../calendarDetailContext';
 import AddedDetails from '../calendarComponents/calendarAddDetails';
 import './calendarDetailUpdate.css';
 import ImageUploaderMany from '../../components/imageUploaderMany';
+import { WorkoutDetails } from '../../apis/request/workout/inputUserWorkoutRequest.dto';
 
 const CalendarDetailUpdate = () => {
     const navigate = useNavigate();
@@ -13,7 +14,7 @@ const CalendarDetailUpdate = () => {
     const { details, setDetails } = useCalendarDetails();
     const [title, setTitle] = useState('');
     const [diaryContent, setDiaryContent] = useState('');
-    const [workoutDetails, setWorkoutDetails] = useState<string[][]>([]);
+    const [workoutDetails, setWorkoutDetails] = useState<WorkoutDetails[]>([]); // WorkoutDetails[]로 변경
     const [uploadedImages, setUploadedImages] = useState<File[]>([]);
 
     useEffect(() => {
@@ -24,14 +25,14 @@ const CalendarDetailUpdate = () => {
         if (currentEntry) {
             setTitle(currentEntry.title);
             setDiaryContent(currentEntry.diaryContent);
-            setWorkoutDetails(currentEntry.workoutDetails);
+            setWorkoutDetails(currentEntry.workoutDetails); // workoutDetails는 이미 WorkoutDetails[] 배열이어야 함
             // 기존 이미지 URL을 File 객체로 변환
             Promise.all(currentEntry.images!.map(urlToFile))
                 .then(files => setUploadedImages(files));
         } else {
             setTitle('');
             setDiaryContent('');
-            setWorkoutDetails([]);
+            setWorkoutDetails([]); // 빈 배열로 초기화
             setUploadedImages([]);
         }
     }, [selectedDate, details.entries]);
@@ -58,7 +59,7 @@ const CalendarDetailUpdate = () => {
                     ...entry,
                     title,
                     diaryContent,
-                    workoutDetails,
+                    workoutDetails, // 올바른 타입으로 전달
                     images: uploadedImages.map(file => URL.createObjectURL(file))
                 } : entry
             ),
@@ -95,7 +96,7 @@ const CalendarDetailUpdate = () => {
                 </div>
                 <div className="calendar-write-add-detail">
                     {/* 운동 세부사항 추가된 부분 */}
-                    <AddedDetails workoutDetails={workoutDetails} />
+                    {/* <AddedDetails workoutDetails={workoutDetails} /> */}
                     <div className="diary-input-section">
                         <textarea
                             value={diaryContent}

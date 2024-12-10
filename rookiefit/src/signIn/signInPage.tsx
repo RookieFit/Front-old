@@ -58,7 +58,7 @@ function SignInPage() {
 
             console.log('Stored Access Token:', getJwtToken());
 
-            navigate('/mypage');
+            navigate('/userProfile');
         }
     };
 

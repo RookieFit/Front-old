@@ -1,14 +1,17 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import "./foodAddPage.css";
 import { InputFoodInfoRequestDto } from "../../apis/request/diet";
 import { InputFoodInfoRequest } from "../../apis/api/dietApi";
 
 const FoodAddPage = () => {
     const navigate = useNavigate();
+    const location = useLocation();
+
+    const { searchFoodName } = location.state || {};
 
     // 상태 관리: 사용자 입력 값
-    const [foodName, setFoodName] = useState<string>("");
+    const [foodName, setFoodName] = useState<string>(searchFoodName);
     const [calories, setCalories] = useState<number | string>("");
     const [carbs, setCarbs] = useState<number | string>("");
     const [protein, setProtein] = useState<number | string>("");
