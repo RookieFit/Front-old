@@ -10,16 +10,13 @@ interface Props {
 const MyProfile = ({ name, message }: Props) => {
     const navigate = useNavigate();
     const myPageEdit = () => {
-        navigate(`/myPageEdit`)
+        //todo : 프로필 수정추가
+        navigate(`/myPage`)
     };
-    const main = () => {
-        navigate('/main')
-    };
-
+    
     return (
         <div className='profile-left-back'>
-            <input type='button' value="로그아웃" onClick={main} className='my-profile-logout' />
-            <img className='my-profile-image' src={logo}></img>
+            <img className='my-profile-image'></img>
             <div className='my-profile-edit-nickname'>{name}</div>
             <input type='text' className='my-profile-message-textarea' value={message} disabled />
             <input type="button" value="수정하기" onClick={myPageEdit} className='my-profile-button' />
