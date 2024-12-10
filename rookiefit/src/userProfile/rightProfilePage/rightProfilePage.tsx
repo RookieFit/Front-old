@@ -2,6 +2,7 @@ import { useState } from "react";
 import { InputProfileComponent } from "../component/inputProfileComponent";
 import currentDateToString from "../component/currentDateToString";
 import { axiosInstance } from "../../apis/api";
+import { InputUserBodyDataRequest } from "../../apis/api/userBodyDataApi";
 
 interface Props {
     isToggled: boolean;
@@ -24,22 +25,26 @@ const RightProfilePage = ({ isToggled, setUserNickname, profileImage, setIsToggl
     });
 
     const [userBodyData, setUserBodyData] = useState({
-        userAge: "",
-        userWeight: "",
-        userHeight: "",
-        userMuscleMass: "",
-        userFatMass: "",
+        userAge: 0,
+        userWeight: 0,
+        userHeight: 0,
+        userMuscleMass: 0,
+        userFatMass: 0,
         inbodydate: currentDate, // 현재 날짜
     });
 
     const handleInputChange = (key: string, value: string) => {
         if (Object.keys(profileData).includes(key)) {
-            setProfileData((prev) => ({ ...prev, [key]: value }));
-            if (key === "nickname") setUserNickname(value); // nickname을 부모 컴포넌트에 전달
+            setProfileData((prev) => ({ ...prev, [key]: value })); // 문자열만 처리
+            if (key === "nickname") setUserNickname(value); // 닉네임 전달
         } else if (Object.keys(userBodyData).includes(key)) {
-            setUserBodyData((prev) => ({ ...prev, [key]: value }));
+            setUserBodyData((prev) => ({
+                ...prev,
+                [key]: isNaN(Number(value)) ? value : Number(value) // 숫자 처리
+            }));
         }
     };
+
 
     const handleSubmit = async () => {
         try {
@@ -64,7 +69,8 @@ const RightProfilePage = ({ isToggled, setUserNickname, profileImage, setIsToggl
                     },
                 }
             );
-            const bodyResponse = await axiosInstance.post('/user/input-userbodydata', userBodyData);
+
+            const bodyResponse = await InputUserBodyDataRequest(userBodyData);
 
             if (profileResponse) {
                 console.log("프로필 데이터 전송 성공!");
@@ -107,6 +113,7 @@ const RightProfilePage = ({ isToggled, setUserNickname, profileImage, setIsToggl
                         placeholder="입력 해라"
                         value={profileData[key as keyof typeof profileData] || userBodyData[key as keyof typeof userBodyData] || ""}
                         onChange={(e) => handleInputChange(key, e.target.value)}
+                        type={["userAge", "userWeight", "userHeight", "userMuscleMass", "userFatMass"].includes(key) ? "number" : "text"} // 숫자 필드는 number 타입
                         disabled={isToggled}
                     />
                 ))}

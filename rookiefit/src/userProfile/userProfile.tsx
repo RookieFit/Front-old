@@ -11,7 +11,7 @@ const UserProfile = () => {
     const [userMessage, setUserMessage] = useState<string>('상태메시지');
 
     return (
-        <div className="body">
+        <div>
             <div className="left-right-page">
                 <LeftProfilePage
                     isToggled={isToggled}

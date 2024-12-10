@@ -3,9 +3,10 @@ import "./inputProfileComponent.css";
 interface Props {
     title: string;
     placeholder: string;
-    value: string;// string 타입으로 수정
-    onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
-    disabled?: boolean;
+    value: string | number;
+    onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+    disabled: boolean;
+    type: string; // 추가: 입력 타입 설정 (기본값은 'text')
 }
 
 export const InputProfileComponent = (props: Props) => {
@@ -19,6 +20,7 @@ export const InputProfileComponent = (props: Props) => {
                     value={props.value}
                     onChange={props.onChange}
                     readOnly={props.disabled}
+                    type={props.type || "text"} // 기본 타입: 'text'
                 />
             </div>
         </div>
