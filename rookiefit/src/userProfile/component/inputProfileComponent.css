@@ -1,0 +1,42 @@
+.input-profile-wrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    /* 입력창이 일정 위치를 유지 */
+    gap: 10px;
+    padding-top: 25px;
+    padding-bottom: 20px;
+}
+
+.input-profile-title {
+    font-size: 20px;
+    width: 30%;
+    /* 제목의 고정된 너비 */
+    text-align: center;
+    /* 텍스트 정렬 */
+}
+
+.input-box-wrapper {
+    flex-grow: 1;
+    /* 입력창의 부모가 남은 공간을 채움 */
+    width: 65%;
+    max-width: 400px;
+    /* 입력창 길이를 제한 */
+}
+
+.input-profile-box {
+    background: none;
+    border: none;
+    border-bottom: 2px solid #000;
+    outline: none;
+    width: 100%;
+    /* 부모 요소의 너비를 채움 */
+    font-size: 16px;
+    padding: 5px;
+}
+
+.input-profile-box:focus {
+    border-bottom: 2px solid #007BFF;
+    transition: border-color 0.3s ease;
+}

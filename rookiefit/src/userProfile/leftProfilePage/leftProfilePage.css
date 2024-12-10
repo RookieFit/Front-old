@@ -1,0 +1,38 @@
+.profile-wrapper {
+    height: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    justify-items: center;
+
+    gap: 2vh;
+    flex-direction: column;
+}
+
+.user-nickname-text {
+    align-items: center;
+    font-size: 38px;
+}
+
+.user-message-input {
+    justify-content: center;
+    background: none;
+    border: none;
+
+    font-size: 20px;
+    align-items: center;
+    justify-items: center;
+}
+
+.image-style {
+    border-radius: 100%;
+    width: 300px;
+    height: 300px;
+    background-position: 50% 50%;
+    background-size: 100% 100%;
+}
+
+.profile-edit-toggle-button {
+    width: 30%;
+}

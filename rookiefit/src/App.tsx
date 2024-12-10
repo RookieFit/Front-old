@@ -29,6 +29,7 @@ import TrainerAuth from './admin/trainerAuth';
 import { useEffect, useState } from 'react';
 import { checkLoginStatus } from './authCheck/authUtils';
 import FoodAddPage from './food/foodComponents/foodAddPage';
+import UserProfile from './userProfile/userProfile';
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -64,6 +65,7 @@ function App() {
         {/* 인증된 사용자만 접근 가능한 페이지 */}
         <Route path="/seenPage" element={<SeenPage />} />
         <Route path="/mypage" element={isLoggedIn ? <MyPage /> : <SigninPage />} />
+        <Route path="/userProfile" element={isLoggedIn ? <UserProfile /> : <SigninPage />} />
         <Route path="/calendar" element={isLoggedIn ? <CalenderPage /> : <SigninPage />} />
         <Route path="/calendar/write" element={isLoggedIn ? <CalenderPage /> : <SigninPage />} />
         <Route path="/calendar/detail" element={isLoggedIn ? <CalenderPage /> : <SigninPage />} />

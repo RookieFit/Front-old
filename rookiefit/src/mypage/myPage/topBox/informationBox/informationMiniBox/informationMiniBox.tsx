@@ -21,11 +21,13 @@ interface Props {
         usermuscle: number;
         userfat: number;
     };
-    informationUserString: {
-        usernickname: string;
-        username: string;
-        useraddress: string;
-        usergym: string;
+    userProfileData: {
+        userProfileImageFile: string;
+        userNickname: string;
+        userName: string;
+        userAddress: string;
+        gymName: string;
+        userMessage: string;
     };
     informationTrainerNumber: {
         trainerage: number;
@@ -42,14 +44,14 @@ interface Props {
     };
     onInformationUpdate: (newInformation: Partial<{
         informationUserNumber: Props['informationUserNumber'];
-        informationUserString: Props['informationUserString'];
+        informationUserString: Props['userProfileData'];
         informationTrainerNumber: Props['informationTrainerNumber'];
         informationTrainerString: Props['informationTrainerString'];
     }>) => void;
 
 }
 
-const InformationMiniBox = ({ role, informationUserNumber, informationUserString, informationTrainerNumber, informationTrainerString, onInformationUpdate }: Props) => {
+const InformationMiniBox = ({ role, informationUserNumber, userProfileData, informationTrainerNumber, informationTrainerString, onInformationUpdate }: Props) => {
     const navigate = useNavigate();
     const [isEditing, setIsEditing] = useState(false);
     const [activeTab, setActiveTab] = useState<'info' | 'post' | 'photo'>('info');
@@ -62,13 +64,17 @@ const InformationMiniBox = ({ role, informationUserNumber, informationUserString
         userfat: informationUserNumber.userfat,
     });
 
-    const [userStringInfo, setUserStringInfo] = useState({
-        usernickname: informationUserString.usernickname,
-        username: informationUserString.username,
-        useraddress: informationUserString.useraddress,
-        usergym: informationUserString.usergym
+    //profile
+    const [userProfile, setUserProfile] = useState({
+        userNickname: userProfileData.userNickname,
+        userName: userProfileData.userName,
+        userAddress: userProfileData.userAddress,
+        gymName: userProfileData.gymName,
+        userMessage: userProfileData.userMessage,
+        userProfileImageFile: userProfileData.userProfileImageFile,
     });
 
+    //여기 트레이너
     const [trainerNumberInfo, setTrainerNumberInfo] = useState({
         trainerage: informationTrainerNumber.trainerage,
         trainerweight: informationTrainerNumber.trainerweight,
@@ -91,17 +97,19 @@ const InformationMiniBox = ({ role, informationUserNumber, informationUserString
         }));
     };
 
+    const formdata = new FormData();
+
     const onChangeUserNumberInfo = updateInfo(setUserNumberInfo);
     const onChangeTrainerNumbeInfo = updateInfo(setTrainerNumberInfo);
-    const onChangeUserStringInfo = updateInfo(setUserStringInfo);
+    const onChangeUserStringInfo = updateInfo(userProfileData);
     const onChangeTrainerStringInfo = updateInfo(setTrainerStringInfo);
 
     useEffect(() => {
         setTrainerNumberInfo(informationTrainerNumber);
         setTrainerStringInfo(informationTrainerString);
         setUserNumberInfo(informationUserNumber);
-        setUserStringInfo(informationUserString);
-    }, [informationTrainerNumber, informationTrainerString, informationUserNumber, informationUserString]);
+        setUserProfile(userProfileData);
+    }, [informationTrainerNumber, informationTrainerString, informationUserNumber, userProfileData]);
 
     const handleEditToggle = () => {
         if (isEditing) {
@@ -109,7 +117,7 @@ const InformationMiniBox = ({ role, informationUserNumber, informationUserString
                 informationTrainerNumber: trainerNumberInfo,
                 informationTrainerString: trainerStringInfo,
                 informationUserNumber: userNumberInfo,
-                informationUserString: userStringInfo,
+                informationUserString: userProfileData,
             });
         }
         setIsEditing((prev) => !prev);
@@ -155,14 +163,14 @@ const InformationMiniBox = ({ role, informationUserNumber, informationUserString
                                 </>
                             ) : (
                                 <>
-                                    <InformationLineEditString title={'닉네임'} value={userStringInfo.usernickname} onChange={(value) => onChangeUserStringInfo('nickname', value)} />
-                                    <InformationLineEditString title={'이름'} value={userStringInfo.username} onChange={(value) => onChangeUserStringInfo('name', value)} />
+                                    <InformationLineEditString title={'닉네임'} value={userProfileData.userNickname} onChange={(value) => onChangeUserStringInfo('nickname', value)} />
+                                    <InformationLineEditString title={'이름'} value={userProfileData.userName} onChange={(value) => onChangeUserStringInfo('name', value)} />
                                     <InformationLineEditNumber title={'몸무게'} value={userNumberInfo.userweight} onChange={(value) => onChangeUserNumberInfo('weight', value)} />
                                     <InformationLineEditNumber title={'키'} value={userNumberInfo.userheight} onChange={(value) => onChangeUserNumberInfo('height', value)} />
                                     <InformationLineEditNumber title={'근육량'} value={userNumberInfo.usermuscle} onChange={(value) => onChangeUserNumberInfo('muscle', value)} />
                                     <InformationLineEditNumber title={'체지방량'} value={userNumberInfo.userfat} onChange={(value) => onChangeUserNumberInfo('fat', value)}  />
-                                    <InformationLineEditString title={'주소'} value={userStringInfo.useraddress} onChange={(value) => onChangeUserStringInfo('address', value)} />
-                                    <InformationLineEditString title={'헬스장명'} value={userStringInfo.usergym} onChange={(value) => onChangeUserStringInfo('gym', value)} />
+                                    <InformationLineEditString title={'주소'} value={userProfileData.userAddress} onChange={(value) => onChangeUserStringInfo('address', value)} />
+                                    <InformationLineEditString title={'헬스장명'} value={userProfileData.gymName} onChange={(value) => onChangeUserStringInfo('gym', value)} />
                                 </>
                             )
                         ) : (
@@ -180,15 +188,14 @@ const InformationMiniBox = ({ role, informationUserNumber, informationUserString
                                 </>
                             ) : (
                                 <>
-                                    <InformationLineString title={'닉네임'} value={userStringInfo.usernickname} />
-                                    <InformationLineString title={'이름'} value={userStringInfo.username} />
-                                    <InformationLineNumber title={'나이'} value={userNumberInfo.userage} />
-                                    <InformationLineNumber title={'몸무게'} value={userNumberInfo.userweight} />
-                                    <InformationLineNumber title={'키'} value={userNumberInfo.userheight} />
-                                    <InformationLineNumber title={'근육량'} value={userNumberInfo.usermuscle} />
-                                    <InformationLineNumber title={'체지방량'} value={userNumberInfo.userfat} />
-                                    <InformationLineString title={'주소'} value={userStringInfo.useraddress} />
-                                    <InformationLineString title={'헬스장명'} value={userStringInfo.usergym} />
+                                <InformationLineEditString title={'닉네임'} value={userProfileData.userNickname} onChange={(value) => onChangeUserStringInfo('nickname', value)} />
+                                <InformationLineEditString title={'이름'} value={userProfileData.userName} onChange={(value) => onChangeUserStringInfo('name', value)} />
+                                <InformationLineEditNumber title={'몸무게'} value={userNumberInfo.userweight} onChange={(value) => onChangeUserNumberInfo('weight', value)} />
+                                <InformationLineEditNumber title={'키'} value={userNumberInfo.userheight} onChange={(value) => onChangeUserNumberInfo('height', value)} />
+                                <InformationLineEditNumber title={'근육량'} value={userNumberInfo.usermuscle} onChange={(value) => onChangeUserNumberInfo('muscle', value)} />
+                                <InformationLineEditNumber title={'체지방량'} value={userNumberInfo.userfat} onChange={(value) => onChangeUserNumberInfo('fat', value)}  />
+                                <InformationLineEditString title={'주소'} value={userProfileData.userAddress} onChange={(value) => onChangeUserStringInfo('address', value)} />
+                                <InformationLineEditString title={'헬스장명'} value={userProfileData.gymName} onChange={(value) => onChangeUserStringInfo('gym', value)} />
                                 </>
                             ))}
                     </>

@@ -1,4 +1,4 @@
-import {InputUserProfileRequestDto } from './InputUserProfileRequest.dto';
+import {InputUserProfileRequestDto } from './inputUserProfileRequest.dto';
 
 export type {
     InputUserProfileRequestDto
