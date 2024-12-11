@@ -31,7 +31,7 @@ const CommunityDetail = () => {
             answerContent: newComment, // 댓글 내용
             answerCreatedDate: new Date().toLocaleString(), // 작성일
             communityAnswerListId: Date.now(), // 댓글 ID
-            author: currentUser, // 작성자
+            author: currentUser,
         };
 
         setComments((prevComments) => [...prevComments, newCommentObj]);
