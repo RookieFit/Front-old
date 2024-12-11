@@ -4,22 +4,11 @@ import { InputProfileComponent } from '../component/inputProfileComponent';
 import { useProfileContext } from '../userProfileContext';
 
 const RightProfilePage = ({ isToggled, setIsToggled }: { isToggled: boolean, setIsToggled: React.Dispatch<React.SetStateAction<boolean>> }) => {
-    const { profileData, userBodyData, updateProfileField, saveDataToServer } = useProfileContext();
+    const { profileData, userBodyData, updateProfileField } = useProfileContext();
 
     const handleInputChange = (key: keyof typeof profileData | keyof typeof userBodyData, value: string) => {
         const parsedValue = isNaN(Number(value)) ? value : Number(value);
         updateProfileField(key, parsedValue);
-    };
-
-    const handleSubmit = async () => {
-        try {
-            await saveDataToServer(); // Context에 정의된 함수 호출
-            setIsToggled(!isToggled)
-            alert('데이터가 성공적으로 저장되었습니다.');
-        } catch (error) {
-            console.error('Data submission error:', error);
-            alert('데이터 저장 중 문제가 발생했습니다.');
-        }
     };
 
     const fields = [
@@ -52,11 +41,6 @@ const RightProfilePage = ({ isToggled, setIsToggled }: { isToggled: boolean, set
                     />
                 ))}
             </div>
-            {!isToggled && (
-                <button className="submit-button" onClick={handleSubmit}>
-                    Submit
-                </button>
-            )}
         </div>
     );
 };

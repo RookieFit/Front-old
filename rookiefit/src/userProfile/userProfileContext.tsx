@@ -3,6 +3,8 @@ import currentDateToString from './component/currentDateToString';
 import { GetUserBodyDataRequest, InputUserBodyDataRequest } from '../apis/api/userBodyDataApi';
 import { axiosInstance } from '../apis/api';
 import { GetUserProfileRequest } from '../apis/api/profileApi';
+import defaultImage from "./component/Larry.png"
+import GetUserBodyDataResponseDto from '../apis/response/userBodyData/getUserBodyDataResponse.dto';
 
 interface ProfileData {
     userProfileImageFile: string;
@@ -51,7 +53,7 @@ export const ProfileProvider = ({ children }: { children: ReactNode }) => {
 
     const [profileData, setProfileData] = useState<ProfileData>({
         userProfileImageFile: '',
-        userNickname: '',
+        userNickname: '닉네임 없는 헬린이',
         userName: '',
         userAddress: '',
         userMessage: '',
@@ -89,6 +91,13 @@ export const ProfileProvider = ({ children }: { children: ReactNode }) => {
             // 프로필 이미지가 있으면 추가
             if (profileImage) {
                 profileFormData.append("userProfileImageFile", profileImage);
+            } else if (!profileImage && profileImageUrl) {
+            } else {
+                // 기본 이미지를 File로 처리
+                const response = await fetch(defaultImage);
+                const blob = await response.blob();
+                const defaultFile = new File([blob], "default-profile.jpg", { type: "image/jpeg" });
+                profileFormData.append("userProfileImageFile", defaultFile);  // 기본 이미지 파일을 추가
             }
 
             // 서버에 데이터 전송
@@ -117,12 +126,26 @@ export const ProfileProvider = ({ children }: { children: ReactNode }) => {
                 const { userProfileImageUri, ...rest } = profileResponse;
                 setProfileImageUrl(userProfileImageUri);
                 setProfileData(rest); // profileData 초기화
-                console.log("userProfileImageUri: " + userProfileImageUri)
             }
             const bodyResponse = await GetUserBodyDataRequest();
-            if (bodyResponse.data) {
-                setUserBodyData(bodyResponse.data);
-            }
+
+            const bodyData = bodyResponse as GetUserBodyDataResponseDto[];
+
+            console.log("bodyResponse:  " + bodyData)
+
+            // 최신 데이터를 찾기 위해 inbodyDate를 기준으로 정렬
+            const sortedData = bodyData.sort((a, b) => {
+                return parseInt(b.inbodyDate) - parseInt(a.inbodyDate);  // 숫자로 비교하여 최신 데이터 찾기
+            });
+            // 최신 데이터만 상태로 설정
+
+            // 최신 데이터에서 inbodyDate를 inbodydate로 변경하고 상태에 저장
+            const { code, message, inbodyDate, ...rest } = sortedData[0];
+
+            // inbodyDate를 inbodydate로 변경하여 상태 업데이트
+            setUserBodyData({ ...rest, inbodydate: inbodyDate });
+
+            console.log("Latest body data: ", sortedData[0]);
             console.log("Data fetched successfully");
         } catch (error) {
             console.error("Error fetching data from server:", error);

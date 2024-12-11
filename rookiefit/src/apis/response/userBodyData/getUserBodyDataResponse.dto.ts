@@ -7,5 +7,5 @@ export default interface GetUserBodyDataResponseDto extends ResponseDto {
     userHeight: number;
     userMuscleMass: number;
     userFatMass: number;
-    inbodydate: string;
+    inbodyDate: string;
 }
