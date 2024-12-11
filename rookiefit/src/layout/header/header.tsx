@@ -57,7 +57,7 @@ const Header = () => {
                 <div className="mypage-login">
                     {isLoggedIn ? (
                         <div className="auth-links horizontal">
-                            <Link to="/mypage" className={`nav-link ${isLoginPage ? 'active' : ''}`}>
+                            <Link to="/userProfile" className={`nav-link ${isLoginPage ? 'active' : ''}`}>
                                 마이페이지
                             </Link>
                             <Link to="/" onClick={handleLogout} className={`nav-link ${isLoginPage ? 'active' : ''}`}>

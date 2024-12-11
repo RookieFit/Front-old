@@ -229,19 +229,19 @@ function SignUpPage() {
                 isErrorMessage={isPasswordErrorMessage}
             />
             <InputBox
-                title="전화번호"
-                placeholder="전화번호를 입력해주세요"
+                title="휴대 전화"
+                placeholder="번호를 입력해주세요"
                 type="text"
                 value={userPhoneNumber}
                 onChange={handlePhoneNumberChange}
                 message={phoneNumberMessage}
                 isErrorMessage={isPhoneNumberError}
-                buttonTitle="인증받기"
+                buttonTitle="인증요청"
                 onButtonClick={smsCertificationButtonClickHandler}
             />
             <InputBox
-                title="인증번호"
-                placeholder="인증번호를 입력해주세요"
+                title="인증 번호"
+                placeholder="인증 번호를 입력해주세요"
                 type="text"
                 value={certificationNumber}
                 onChange={handleCertificationNumberChange}

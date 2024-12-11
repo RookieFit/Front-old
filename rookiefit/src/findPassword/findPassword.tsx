@@ -61,7 +61,7 @@ function FindPassword() {
         setPhoneNumber(input);
 
         if (input.trim() === '') {
-            setPhoneNumberMessage('전화번호를 입력해 주세요.');
+            setPhoneNumberMessage('번호를 입력해주세요');
             setIsPhoneNumberError(true);
         } else {
             setPhoneNumberMessage('');
@@ -107,7 +107,7 @@ function FindPassword() {
             return;
         }
         if (!phoneNumber.trim()) {
-            alert('전화번호를 입력해주세요.');
+            alert('번호를 입력해주세요.');
             return;
         }
         if (!certificationNumber.trim()) {
@@ -146,8 +146,8 @@ function FindPassword() {
                 onKeyDown={handleKeyDown}
             />
             <InputBox
-                title="휴대전화"
-                placeholder="전화번호를 입력해주세요"
+                title="휴대 전화"
+                placeholder="번호를 입력해주세요"
                 type="text"
                 value={phoneNumber}
                 onChange={handlePhoneNumberChange}
@@ -158,8 +158,8 @@ function FindPassword() {
                 onKeyDown={() => { }}
             />
             <InputBox
-                title="인증번호"
-                placeholder="인증번호를 입력해주세요"
+                title="인증 번호"
+                placeholder="인증 번호를 입력해주세요"
                 type="text"
                 value={certificationNumber}
                 onChange={handleCertificationNumberChange}

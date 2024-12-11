@@ -1,63 +1,83 @@
-import "./leftProfilePage.css";
+import { useProfileContext } from '../userProfileContext';
+import { useEffect, useState } from 'react';
+import './leftProfilePage.css';
 
-interface Props {
-    isToggled: boolean;
-    setIsToggled: (value: boolean) => void;
-    userNickname: string;
-    userMessage: string;
-    profileImage: File | null;
-    setProfileImage: (file: File | null) => void;
-    setUserMessage: (value: string) => void;
-}
+const LeftProfilePage = ({ isToggled, setIsToggled }: { isToggled: boolean, setIsToggled: React.Dispatch<React.SetStateAction<boolean>> }) => {
+    const { profileData, updateProfileField, saveDataToServer, setProfileImage, profileImageUrl } = useProfileContext();
+    const [localProfileImageUrl, setLocalProfileImageUrl] = useState<string>('');  // 초기값을 null로 설정
+    const [isLoading, setIsLoading] = useState<boolean>(true);  // 로딩 상태를 true로 초기화
 
-const LeftProfilePage = ({ isToggled, setIsToggled, userNickname, setProfileImage, profileImage, userMessage, setUserMessage }: Props) => {
+    // 프로필 이미지 URL을 업데이트
+    useEffect(() => {
+        // 서버에서 이미지를 가져오는 동안 로딩 상태를 true로 유지
+        if (profileImageUrl) {
+            setLocalProfileImageUrl(profileImageUrl);  // 서버에서 받은 이미지 URL을 설정
+        } else {
+            setLocalProfileImageUrl('');  // 서버에서 이미지가 없다면 null로 설정
+        }
+    }, [profileImageUrl]);  // profileImageUrl이 변경될 때마다 실행
 
     const handleImageClick = () => {
-        document.getElementById("image-input")?.click(); // 이미지 파일 선택 창을 엽니다.
+        document.getElementById("image-input")?.click();
     };
 
     const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        if (e.target.files) {
-            setProfileImage(e.target.files[0]); // 선택된 파일을 부모 컴포넌트로 전달
+        if (e.target.files && e.target.files[0]) {
+            const file = e.target.files[0];
+            setProfileImage(file); // Context에 이미지 파일 저장
+            updateProfileField('userProfileImageFile', file.name); // 파일 이름 업데이트
+
+            const previewUrl = URL.createObjectURL(file);
+            setLocalProfileImageUrl(previewUrl);
+            setIsLoading(true); // 새로운 이미지 로딩 시작
         }
     };
 
     const handleUserMessageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setUserMessage(e.target.value); // 입력 값을 상태에 반영
+        updateProfileField('userMessage', e.target.value);
     };
 
-
-    const profileImageUrl = profileImage ? URL.createObjectURL(profileImage) : "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcSLdkVXWKBsCJHpGEqezY1LWXFvjoIe7krawJZCIhVdx-NYF3LVqkP8DlQZnpIm-yj7mqkSU9VaAbkG9ldCYFx5ig";
-
+    const handleSubmit = async () => {
+        try {
+            await saveDataToServer(); // Context에 정의된 함수 호출
+            setIsToggled(!isToggled)
+            alert('데이터가 성공적으로 저장되었습니다.');
+        } catch (error) {
+            console.error('Data submission error:', error);
+            alert('데이터 저장 중 문제가 발생했습니다.');
+        }
+    };
 
     return (
         <div className="left-back">
             <div className="profile-wrapper">
                 <img
                     className="image-style"
-                    src={profileImageUrl}
+                    src={localProfileImageUrl}
                     alt="profile"
-                    onClick={handleImageClick} // 이미지 클릭 시 파일 선택 창 열기
+                    onClick={handleImageClick}
                 />
                 <input
                     type="file"
                     id="image-input"
-                    style={{ display: "none" }} // 파일 입력 창은 숨깁니다.
+                    style={{ display: "none" }}
                     onChange={handleImageChange}
                 />
-                <text className="user-nickname-text">{userNickname}</text>
+                <text className="user-nickname-text">{profileData.userNickname || "닉네임없는 헬린이"}</text>
                 <input
                     className="user-message-input"
-                    value={userMessage}
+                    value={profileData.userMessage}
                     onChange={handleUserMessageChange}
-                    readOnly={isToggled}
                 />
-                {isToggled && <button
+                {isToggled ? (
+                    <button
+                        className="profile-edit-toggle-button"
+                        onClick={() => setIsToggled(!isToggled)}
+                    >프로필편집</button>
+                ) : <button
                     className="profile-edit-toggle-button"
-                    onClick={() => setIsToggled(!isToggled)}
-                >
-                    프로필편집
-                </button>}
+                    onClick={handleSubmit}
+                >프로필 저장</button>}
             </div>
         </div>
     );

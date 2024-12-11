@@ -27,6 +27,7 @@ import TrainerAuth from './admin/trainerAuth';
 import { useEffect, useState } from 'react';
 import { checkLoginStatus } from './authCheck/authUtils';
 import FoodAddPage from './food/foodComponents/foodAddPage';
+import MarketEdit from './market/marketEdit';
 import UserProfile from './userProfile/userProfile';
 
 function App() {
@@ -82,6 +83,7 @@ function App() {
         <Route path="/food/add" element={isLoggedIn ? <FoodAddPage /> : <SigninPage />} /> {/* 추가된 경로 */}
         <Route path="/market" element={isLoggedIn ? <MarketPage /> : <SigninPage />} />
         <Route path="/market/detail/:id" element={isLoggedIn ? <MarketDetail /> : <SigninPage />} />
+        <Route path="/market/edit/:id" element={isLoggedIn ? <MarketEdit /> : <SigninPage />} />
         <Route path="/market/write" element={isLoggedIn ? <MarketPost /> : <SigninPage />} />
         <Route path="/market/chat/:id" element={isLoggedIn ? <MarketChatPage /> : <SigninPage />} />
         <Route path="/market/search" element={isLoggedIn ? <MarketSearch /> : <SigninPage />} />
