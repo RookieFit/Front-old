@@ -1,46 +1,23 @@
 /* 전체 게시글 박스 스타일 */
 .community-detail-wrapper {
-    width: 1282px;
-    max-width: 100%;
+    width: 960px;
+    /* 가로 크기 줄이기 */
+    max-width: 90%;
     margin: 20px auto;
 }
 
 .community-detail-container {
     background-color: #f4f4f4;
     border-radius: 12px;
-    padding: 30px;
+    padding: 45px;
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
 }
 
-/* 게시글 카테고리 */
-.community-detail-category {
-    font-size: 1rem;
-    font-weight: bold;
-    color: #161616;
-    margin-bottom: 10px;
-    text-transform: uppercase;
-}
-
 /* 게시글 제목 */
-.community-detail-title-edit {
-    width: 100%;
-    font-size: 1.5rem;
-    padding: 12px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    background-color: #f7f7f7;
-    /* 수정모드 배경색 */
-    color: #333;
-    margin-bottom: 20px;
-    outline: none;
-    box-sizing: border-box;
-    transition: all 0.3s ease;
-}
-
 .community-detail-title {
-    font-size: 2rem;
-    font-weight: 700;
-    margin-bottom: 15px;
+    font-size: 1.8rem;
+    /* 글씨 크기 약간 줄이기 */
+    margin-bottom: 10px;
     color: #2c3e50;
     line-height: 1.4;
     text-align: center;
@@ -48,109 +25,22 @@
 
 /* 게시물 본문 */
 .community-detail-content {
-    font-size: 1.1rem;
-    color: #555;
-    margin-bottom: 20px;
-    line-height: 1.6;
-    text-align: justify;
-}
-
-.community-detail-content-edit {
-    display: block;
-    width: 100%;
-    min-height: 150px;
-    padding: 12px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    background-color: #f7f7f7;
-    /* 수정모드 배경색 */
-    font-size: 1.1rem;
-    color: #333;
-    box-sizing: border-box;
-    resize: none;
-    margin-bottom: 20px;
-    transition: all 0.3s ease;
-}
-
-/* 이미지 컨테이너 */
-.community-detail-image-container {
-    max-width: 100%;
-    margin: 0 auto;
-    overflow: hidden;
-    border-radius: 8px;
-}
-
-/* 슬라이드 이미지 */
-.community-detail-post-image {
-    width: 100%;
-    height: auto;
-    object-fit: contain;
-    border: none;
-    /* 기본 테두리 제거 */
-    outline: none;
-}
-
-/* 선택된 슬라이드 테두리 제거 */
-.slick-slide {
-    outline: none !important;
-}
-
-.slick-slide img {
-    outline: none !important;
-}
-
-/* 슬라이드 안에 아이템 간 간격 */
-.community-slide-item {
-    padding: 5px;
-}
-
-/* 수정 및 삭제 버튼 */
-.community-detail-actions {
-    display: flex;
-    justify-content: flex-end;
-    gap: 10px;
-    margin-bottom: 20px;
-}
-
-.community-detail-edit-button,
-.community-detail-delete-button {
-    background-color: #000000;
-    color: white;
-    padding: 10px 15px;
-    border-radius: 5px;
     font-size: 1rem;
-    border: none;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.community-detail-edit-button:hover,
-.community-detail-delete-button:hover {
-    background-color: #333333;
-}
-
-/* 수정 모드일 때 제목과 본문 스타일 */
-.editing-mode .community-detail-title {
-    display: none;
-    /* 제목 텍스트를 숨기고, 입력창으로 변경 */
-}
-
-.editing-mode .community-detail-content {
-    display: none;
-    /* 본문 텍스트를 숨기고, 입력창으로 변경 */
-}
-
-/* 댓글 섹션 */
-.community-detail-comment-section {
-    margin-top: 20px;
+    /* 글씨 크기 줄이기 */
+    color: #555;
+    margin-bottom: 15px;
+    line-height: 1.5;
+    text-align: justify;
 }
 
 /* 댓글 입력창 스타일 */
 .community-new-comment-input {
     width: 100%;
-    padding: 10px;
-    margin-top: 10px;
-    font-size: 1rem;
+    padding: 8px;
+    /* 내부 여백 줄이기 */
+    margin-top: 8px;
+    font-size: 0.9rem;
+    /* 글씨 크기 줄이기 */
     border-radius: 5px;
     border: 1px solid #ddd;
     box-sizing: border-box;
@@ -160,15 +50,45 @@
 .community-comment-button {
     background-color: #000000;
     color: white;
-    padding: 10px 15px;
+    padding: 8px 12px;
+    /* 크기 줄이기 */
+    font-size: 0.9rem;
+    /* 글씨 크기 줄이기 */
     border-radius: 5px;
-    font-size: 1rem;
     border: none;
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
 
 .community-comment-button:hover {
+    background-color: #333333;
+}
+
+/* 수정 및 삭제 버튼 */
+.community-detail-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 15px;
+    /* 버튼 사이에 간격 추가 */
+    margin-bottom: 20px;
+}
+
+.community-detail-edit-button,
+.community-detail-delete-button {
+    background-color: #000000;
+    color: white;
+    padding: 10px 15px;
+    /* 원래 크기로 복원 */
+    border-radius: 5px;
+    font-size: 1rem;
+    /* 원래 글씨 크기로 복원 */
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.community-detail-edit-button:hover,
+.community-detail-delete-button:hover {
     background-color: #333333;
 }
 
@@ -183,9 +103,11 @@
 .community-detail-top-button {
     background-color: #000000;
     color: white;
-    padding: 10px 15px;
+    padding: 8px 12px;
+    /* 크기 줄이기 */
+    font-size: 0.9rem;
+    /* 글씨 크기 줄이기 */
     border-radius: 5px;
-    font-size: 1rem;
     border: none;
     cursor: pointer;
     transition: background-color 0.3s ease;
@@ -194,22 +116,4 @@
 .community-detail-go-back-button:hover,
 .community-detail-top-button:hover {
     background-color: #333333;
-}
-
-/* 수정 모드 버튼 스타일 */
-.community-detail-save-button {
-    background-color: #3498db;
-    /* 저장 버튼은 파란색 */
-    color: white;
-    padding: 10px 15px;
-    border-radius: 5px;
-    font-size: 1rem;
-    border: none;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.community-detail-save-button:hover {
-    background-color: #2980b9;
-    /* 호버시 색상 변경 */
 }
