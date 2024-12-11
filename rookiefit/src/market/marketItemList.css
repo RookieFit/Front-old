@@ -38,6 +38,7 @@
     transition: transform 0.3s ease;
     padding: 10px;
     /* 카드 안쪽 여백 */
+    height: 180px;
 }
 
 .market-item-list-grid-card:hover {
