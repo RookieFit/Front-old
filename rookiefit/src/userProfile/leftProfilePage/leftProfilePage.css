@@ -11,6 +11,7 @@
 }
 
 .user-nickname-text {
+    height: 60px;
     align-items: center;
     font-size: 38px;
 }

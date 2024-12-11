@@ -30,7 +30,7 @@ const RightProfilePage = ({ isToggled, setIsToggled }: { isToggled: boolean, set
                     <InputProfileComponent
                         key={key}
                         title={title}
-                        placeholder="입력해라"
+                        placeholder="입력해주세요"
                         value={
                             profileData[key as keyof typeof profileData] ||
                             userBodyData[key as keyof typeof userBodyData] || ''
