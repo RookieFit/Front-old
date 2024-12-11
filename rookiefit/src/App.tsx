@@ -6,14 +6,12 @@ import SigninPage from './signIn/signInPage';
 import SignUpPage from './signUp/signUpPage';
 import FindId from './findId/findId';
 import PasswordReset from './passwordReset/passwordReset';
-import MyPage from './mypage/myPage';
 import CommunityList from './community/communityList/communityList';
 import CommunityDetail from './community/communityDetail/communityDetail';
 import CommunityWrite from './community/communityWrite';
 import FindPassword from './findPassword/findPassword';
 import FindIdResult from './findIdResult/findIdResult';
 import FoodPage from './food/foodPage';
-import SeenPage from './mypage/seenPage/seenPage';
 import MarketPage from './market/marketPage';
 import MarketDetail from './market/marketDetail';
 import MarketPost from './market/marketPost';
@@ -30,6 +28,7 @@ import { useEffect, useState } from 'react';
 import { checkLoginStatus } from './authCheck/authUtils';
 import FoodAddPage from './food/foodComponents/foodAddPage';
 import MarketEdit from './market/marketEdit';
+import UserProfile from './userProfile/userProfile';
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -63,8 +62,7 @@ function App() {
         <Route path="/passwordreset" element={<PasswordReset />} />
 
         {/* 인증된 사용자만 접근 가능한 페이지 */}
-        <Route path="/seenPage" element={<SeenPage />} />
-        <Route path="/mypage" element={isLoggedIn ? <MyPage /> : <SigninPage />} />
+        <Route path="/userProfile" element={isLoggedIn ? <UserProfile /> : <SigninPage />} />
         <Route path="/calendar" element={isLoggedIn ? <CalenderPage /> : <SigninPage />} />
         <Route path="/calendar/write" element={isLoggedIn ? <CalenderPage /> : <SigninPage />} />
         <Route path="/calendar/detail" element={isLoggedIn ? <CalenderPage /> : <SigninPage />} />
