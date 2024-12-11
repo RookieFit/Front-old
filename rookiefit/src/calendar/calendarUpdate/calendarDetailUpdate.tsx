@@ -1,41 +1,63 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import moment from 'moment';
-import { UseCalendar } from '../calendarContext';
-import { useCalendarDetails } from '../calendarDetailContext';
-import AddedDetails from '../calendarComponents/calendarAddDetails';
 import './calendarDetailUpdate.css';
 import ImageUploaderMany from '../../components/imageUploaderMany';
-import { WorkoutDetails } from '../../apis/request/workout/inputUserWorkoutRequest.dto';
+import AddedDetails from '../calendarComponents/calendarAddDetails';
+import { GetUserWorkoutDetailRequest, GetUserWorkoutListRequest } from '../../apis/api/workoutApi';
+import { UseCalendar } from '../calendarContext';
 
 const CalendarDetailUpdate = () => {
     const navigate = useNavigate();
-    const { selectedDate } = UseCalendar();
-    const { details, setDetails } = useCalendarDetails();
+    const { selectedDate } = UseCalendar(); // 선택된 날짜 업데이트 함수
     const [title, setTitle] = useState('');
     const [diaryContent, setDiaryContent] = useState('');
-    const [workoutDetails, setWorkoutDetails] = useState<WorkoutDetails[]>([]); // WorkoutDetails[]로 변경
+    const [reps, setReps] = useState<number>();
+    const [restTime, setRestTime] = useState('');
+    const [sets, setSets] = useState<number>();
+    const [workoutDetails, setWorkoutDetails] = useState({
+        workoutDetailCreatedDate: '',
+        workout_name: '',
+        reps: 0,
+        sets: 0,
+        rest_time: '',
+    });
+
     const [uploadedImages, setUploadedImages] = useState<File[]>([]);
 
     useEffect(() => {
-        const currentEntry = details.entries.find(
-            (entry) => entry.date === selectedDate.toString()
-        );
+        const fetchData = async () => {
+            try {
+                const detailResponse = await GetUserWorkoutDetailRequest({
+                    workoutDetailCreatedDate: moment(selectedDate).format('YYYY-MM-DD'),
+                });
+                console.log('받은 데이터:', detailResponse);
 
-        if (currentEntry) {
-            setTitle(currentEntry.title);
-            setDiaryContent(currentEntry.diaryContent);
-            setWorkoutDetails(currentEntry.workoutDetails); // workoutDetails는 이미 WorkoutDetails[] 배열이어야 함
-            // 기존 이미지 URL을 File 객체로 변환
-            Promise.all(currentEntry.images!.map(urlToFile))
-                .then(files => setUploadedImages(files));
-        } else {
-            setTitle('');
-            setDiaryContent('');
-            setWorkoutDetails([]); // 빈 배열로 초기화
-            setUploadedImages([]);
-        }
-    }, [selectedDate, details.entries]);
+                if (detailResponse) {
+                    setWorkoutDetails({
+                        workoutDetailCreatedDate: detailResponse.workoutDetailCreatedDate,
+                        workout_name: detailResponse.workout_name,
+                        reps: detailResponse.reps,
+                        sets: detailResponse.sets,
+                        rest_time: detailResponse.rest_time
+                    });
+                } else {
+                    console.warn('API 응답이 비어있습니다. 기본값을 사용합니다.');
+                    setWorkoutDetails({
+                        workoutDetailCreatedDate: '',
+                        workout_name: '',
+                        reps: 0,
+                        sets: 0,
+                        rest_time: '',
+                    });
+                }
+            } catch (error) {
+                console.error('데이터를 불러오지 못했습니다:', error);
+            }
+        };
+
+        fetchData();
+    }, [selectedDate]);
 
     // URL을 File 객체로 변환하는 함수
     const urlToFile = async (url: string) => {
@@ -53,17 +75,15 @@ const CalendarDetailUpdate = () => {
     };
 
     const handleUpdate = () => {
-        setDetails((prevDetails) => ({
-            entries: prevDetails.entries.map((entry) =>
-                entry.date === selectedDate.toString() ? {
-                    ...entry,
-                    title,
-                    diaryContent,
-                    workoutDetails, // 올바른 타입으로 전달
-                    images: uploadedImages.map(file => URL.createObjectURL(file))
-                } : entry
-            ),
-        }));
+        // API로 수정 데이터 전송
+        console.log('수정 완료:', {
+            title,
+            diaryContent,
+            reps,
+            restTime,
+            sets,
+            images: uploadedImages.map(file => URL.createObjectURL(file)),
+        });
         navigate('/calendar');
     };
 
@@ -72,18 +92,20 @@ const CalendarDetailUpdate = () => {
     };
 
     const handleDelete = () => {
-        setDetails((previousDetails) => ({
-            entries: previousDetails.entries.filter(
-                (entry) => entry.date !== selectedDate.toString()
-            ),
-        }));
+        // API로 삭제 요청
+        console.log('삭제 요청:', { date: moment(selectedDate).format('YYYY-MM-DD') });
         navigate('/calendar');
     };
+
+    const handleCancel = useCallback(() => {
+        navigate('/calendar');
+    }, [navigate]);
 
     return (
         <div className="right-back">
             <div className="calendar-update-wrapper">
                 <div className="calendar-header">
+                    <div className="calendar-write-cancel-button" onClick={handleCancel}>취소</div>
                     <h2>{moment(selectedDate).format('YYYY-MM-DD')}</h2>
                 </div>
                 <div className="calendar-title-input">
@@ -96,7 +118,20 @@ const CalendarDetailUpdate = () => {
                 </div>
                 <div className="calendar-write-add-detail">
                     {/* 운동 세부사항 추가된 부분 */}
-                    {/* <AddedDetails workoutDetails={workoutDetails} /> */}
+                    <AddedDetails
+                        workoutDetails={[workoutDetails]} // 배열로 변환
+                        onRemoveDetail={(index) => {
+                            console.log('Detail removed:', index);
+                            // 필요시 상태 초기화
+                            // setWorkoutDetails({
+                            //     workoutDetailCreatedDate: '',
+                            //     workout_name: '',
+                            //     reps: 0,
+                            //     sets: 0,
+                            //     rest_time: '',
+                            // });
+                        }}
+                    />
                     <div className="diary-input-section">
                         <textarea
                             value={diaryContent}

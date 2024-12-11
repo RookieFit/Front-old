@@ -20,6 +20,8 @@ interface FormData {
 const CalendarWrite = () => {
     const navigate = useNavigate();
     const { selectedDate } = UseCalendar();
+    const { setDetails } = useCalendarDetails();  // 컨텍스트에서 setDetails 가져오기
+
     const handleRemoveDetail = useCallback((index: number) => {
         setDiaryFormData(prevState => ({
             ...prevState,
@@ -54,7 +56,6 @@ const CalendarWrite = () => {
         });
     }, []);
 
-
     // 운동 세부사항 추가
     const handleAddDetail = useCallback(() => {
         const { exerciseName, repetitions, sets, restTime } = diaryFormData.workoutDetails;
@@ -78,9 +79,10 @@ const CalendarWrite = () => {
         setDiaryFormData(prevState => ({ ...prevState, uploadedImages: images }));
     }, []);
 
-    // 제출 처리
+    // 폼 제출 시, 디비에 저장 후 컨텍스트에도 저장
     const handleSubmit = useCallback(async () => {
         try {
+            // 디비에 데이터 저장 (예시)
             await submitWorkoutData({
                 title: diaryFormData.title,
                 diaryContent: diaryFormData.diaryContent,
@@ -89,12 +91,34 @@ const CalendarWrite = () => {
                 selectedDate,
             });
 
+            // 컨텍스트에 데이터 저장
+            setDetails(prevState => ({
+                ...prevState,
+                entries: [
+                    ...prevState.entries,
+                    {
+                        title: diaryFormData.title,
+                        diaryContent: diaryFormData.diaryContent,
+                        workoutDetails: diaryFormData.localDetails.map(detail => ({
+                            workoutDetailCreatedDate: moment(selectedDate).format('YYYY-MM-DD'),
+                            workout_name: detail[0],
+                            reps: parseInt(detail[1], 10),
+                            sets: parseInt(detail[2], 10),
+                            rest_time: detail[3],
+                        })),
+                        date: moment(selectedDate).format('YYYY-MM-DD'), // 날짜를 string으로 변환
+                        images: diaryFormData.uploadedImages.map(image => URL.createObjectURL(image)),
+                    },
+                ],
+            }));
+
             alert('데이터가 성공적으로 저장되었습니다.');
             navigate('/calendar');
+
         } catch (error) {
             alert('데이터 저장 중 오류가 발생했습니다.');
         }
-    }, [diaryFormData, navigate, selectedDate]);
+    }, [diaryFormData, navigate, selectedDate, setDetails]);
 
     // 취소 처리
     const handleCancel = useCallback(() => {

@@ -2,18 +2,11 @@ import React, { useEffect, useState } from 'react';
 import './customCalendarDetail.css';
 import moment from 'moment';
 import { useNavigate } from 'react-router-dom';
-import { useCalendarDetails } from '../calendarDetailContext';
 import { UseCalendar } from '../calendarContext';
 import { useDragPrevent } from '../../components/useDragPrevent';
 import { GetUserWorkoutListRequest } from '../../apis/api/workoutApi'; // API 호출 import
 import { GetUserWorkoutListResponseDto } from '../../apis/response/workout'; // API 응답 타입 import
-
-interface Entry {
-    title: string;
-    diaryContent: string;
-    date: string;
-    images?: string[];
-}
+import { Entry } from '../calendarDetailContext';
 
 const CustomCalendarDetail = () => {
     const { updateSelectedDate } = UseCalendar(); // 선택된 날짜 업데이트 함수
@@ -26,12 +19,10 @@ const CustomCalendarDetail = () => {
     const fetchWorkoutData = async () => {
         try {
             const response = await GetUserWorkoutListRequest();
-            console.log("API Response:", response); // 응답을 확인
 
             // response가 GetUserWorkoutListResponseDto[] 타입인지 체크
             if (Array.isArray(response)) {
                 const data = response as GetUserWorkoutListResponseDto[]; // 타입 변환
-                console.log("Fetched Data:", data); // 응답 데이터 확인
 
                 // 응답 데이터를 Entry 형식으로 변환
                 const workoutEntries = data.map((workout) => ({
