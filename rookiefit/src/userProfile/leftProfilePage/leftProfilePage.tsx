@@ -66,6 +66,7 @@ const LeftProfilePage = ({ isToggled, setIsToggled }: { isToggled: boolean, setI
                 <text className="user-nickname-text">{profileData.userNickname || "닉네임없는 헬린이"}</text>
                 <input
                     className="user-message-input"
+                    placeholder='상태메시지를 입력해주세요'
                     value={profileData.userMessage}
                     onChange={handleUserMessageChange}
                 />

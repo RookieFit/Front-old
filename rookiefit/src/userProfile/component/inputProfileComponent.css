@@ -4,16 +4,20 @@
     align-items: center;
     justify-content: flex-start;
     /* 입력창이 일정 위치를 유지 */
-    gap: 10px;
-    padding-top: 25px;
-    padding-bottom: 20px;
+    gap: 5px;
+    padding-top: 10px;
+    padding-bottom: 15px;
 }
 
 .input-profile-title {
+    margin: 5px;
+    height: 35px;
     font-size: 20px;
+    border-style: double;
     width: 30%;
     /* 제목의 고정된 너비 */
     text-align: center;
+    align-content: center;
     /* 텍스트 정렬 */
 }
 
@@ -32,7 +36,8 @@
     outline: none;
     width: 100%;
     /* 부모 요소의 너비를 채움 */
-    font-size: 16px;
+    font-size: 17px;
+    text-align: center;
     padding: 5px;
 }
 
