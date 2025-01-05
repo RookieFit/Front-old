@@ -27,6 +27,7 @@ export default tseslint.config(
       ],
       'react/react-in-jsx-scope': 'off', // 1번
       'react/jsx-uses-react': 'off', // 2번
+ 
       "no-unused-vars": "off",
       "react/prop-types": "off"
     },
